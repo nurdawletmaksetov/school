@@ -1,0 +1,63 @@
+.gallery-dark.dark {
+    background: #0F172A;
+
+    .gallery-heading {
+        h2 {
+            color: #F1F5F9;
+        }
+
+        p {
+            color: #CBD5E1;
+        }
+    }
+
+    .gallery-main {
+        img {
+            opacity: 70%;
+        }
+    }
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+
+    .gallery-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        h2 {
+            color: #111827;
+            font-family: Inter;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 40px;
+        }
+
+        p {
+            color: #4B5563;
+            font-family: Inter;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 28px;
+        }
+    }
+
+    .gallery-main {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        img {
+            width: 100%;
+            width: 286px;
+            height: 214.5px;
+            border-radius: 16px;
+        }
+    }
+}

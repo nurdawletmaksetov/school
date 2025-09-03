@@ -1,0 +1,353 @@
+.support-dark.dark {
+    background: #0F172A;
+
+    .support-heading {
+        h1 {
+            color: #F1F5F9;
+        }
+
+        p {
+            color: #CBD5E1;
+        }
+    }
+
+    .support-main {
+        .support-top {
+            border: 1px solid #334155;
+            background: #1E293B;
+
+            .support-top-headline {
+                h4 {
+                    color: #F1F5F9;
+                }
+            }
+
+            .support-bottom {
+                summary {
+                    border-bottom: 1px solid #334155;
+
+                    p {
+                        color: #CBD5E1;
+                    }
+                }
+
+                .detail {
+                    border-bottom: 1px solid #334155;
+
+                    p {
+                        color: #CBD5E1;
+                    }
+                }
+            }
+        }
+
+        .support-contact-us {
+            border: 1px solid #334155;
+            background: #1E293B;
+
+            .support-contact-us-headline {
+                h3 {
+                    color: #F1F5F9;
+                }
+            }
+
+            .support-contact-us-main {
+
+                .support-contact-main-top {
+                    .support-boxes {
+                        background: #121f36;
+
+                        .support-box-icon {
+                            color: #F1F5F9;
+                        }
+
+                        .support-box-info {
+                            h4 {
+                                color: #F1F5F9;
+                            }
+
+                            p {
+                                color: #CBD5E1;
+                            }
+                        }
+                    }
+                }
+
+                .support-contact-main-btm {
+                    background: #121f36;
+
+                    .support-work-hour-headline {
+                        h4 {
+                            color: #F1F5F9;
+                        }
+                    }
+
+                    .support-work-hour-btm {
+
+                        .swork-hour-left,
+                        .swork-hour-right {
+
+                            h5 {
+                                color: #F1F5F9;
+                            }
+
+                            .swork-hour-ph {
+                                p {
+                                    color: #CBD5E1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+.support {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .support-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 19px;
+
+        h1 {
+            font-family: Inter;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 36px;
+            line-height: 40px;
+            color: #2563EB;
+        }
+
+        p {
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 28px;
+            color: #64748B;
+        }
+    }
+
+    .support-main {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+
+
+        .support-top {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+            height: auto;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+            .support-top-headline {
+                h4 {
+                    font-family: Inter;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 24px;
+                    line-height: 32px;
+                    color: #2563EB;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+            }
+
+            .support-bottom {
+                display: flex;
+                flex-direction: column;
+
+                summary {
+                    width: 100%;
+                    height: auto;
+                    position: relative;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: transparent;
+                    cursor: pointer;
+                    border-bottom: 1px solid #DBEAFE;
+                    padding: 20px 0;
+
+                    p {
+                        font-family: Inter;
+                        font-weight: 500;
+                        font-style: Medium;
+                        font-size: 18px;
+                        line-height: 28px;
+                        vertical-align: middle;
+                        color: #130428;
+                    }
+                }
+
+                details {
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                .detail {
+                    width: 100%;
+                    height: auto;
+                    padding: 20px 0;
+                    border-bottom: 1px solid #64748B;
+
+                    p {
+                        font-family: Inter;
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 28px;
+                        color: #64748B;
+                    }
+                }
+            }
+        }
+
+        .support-contact-us {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #DBEAFE;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+            .support-contact-us-headline {
+                h3 {
+                    font-family: Inter;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 24px;
+                    line-height: 32px;
+                    color: #2563EB;
+                }
+            }
+
+            .support-contact-us-main {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+
+                .support-contact-main-top {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+
+                    @media (min-width: 768px) {
+                        flex-direction: row;
+                    }
+
+                    .support-boxes {
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                        padding: 24px 0 48px 0;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 12px;
+                        background: #EFF6FF;
+
+                        .support-box-icon {
+                            color: #2563EB;
+                        }
+
+                        .support-box-info {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 8px;
+
+
+                            h4 {
+                                font-family: Inter;
+                                font-weight: 700;
+                                font-style: Bold;
+                                font-size: 18px;
+                                line-height: 28px;
+                                text-align: center;
+                                color: #020817;
+                            }
+
+                            p {
+                                font-family: Inter;
+                                font-weight: 400;
+                                font-style: Regular;
+                                font-size: 16px;
+                                line-height: 24px;
+                                text-align: center;
+                                color: #64748B;
+                            }
+                        }
+                    }
+                }
+
+                .support-contact-main-btm {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    padding: 25px;
+                    border-radius: 12px;
+                    background: #EFF6FF;
+
+                    .support-work-hour-headline {
+                        h4 {
+                            font-family: Inter;
+                            font-weight: 700;
+                            font-style: Bold;
+                            font-size: 18px;
+                            line-height: 28px;
+                            color: #130428;
+                        }
+                    }
+
+                    .support-work-hour-btm {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .swork-hour-left,
+                        .swork-hour-right {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+
+                            h5 {
+                                font-family: Inter;
+                                font-weight: 500;
+                                font-style: Medium;
+                                font-size: 16px;
+                                line-height: 24px;
+                                color: #020817;
+                            }
+
+                            .swork-hour-ph {
+                                p {
+                                    font-family: Inter;
+                                    font-weight: 400;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                    color: #64748B;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

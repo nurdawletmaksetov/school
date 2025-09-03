@@ -1,0 +1,336 @@
+footer {
+    background-color: whitesmoke;
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.footer-dark.dark {
+    background-color: #1E293B;
+
+    .foot {
+        .footer-top {
+            .about-school {
+                .footer-logo {
+                    .footer-logo-icon {
+                        background: #1E293B;
+                        border: 1px solid #334155;
+                    }
+
+                    .footer-logo-text {
+                        color: #F1F5F9;
+                    }
+                }
+
+                .footer-about {
+                    p {
+                        color: #F1F5F9;
+                    }
+                }
+
+                .footer-social-medias {
+
+                    .social-medias {
+                        color: #F1F5F9;
+                        background: #1E293B;
+                        border: 1px solid #334155;
+                    }
+                }
+            }
+
+            .footer-quick-list {
+                h3 {
+                    color: #F1F5F9;
+                }
+
+                .nav-lists {
+                    .nav-ul {
+                        li {
+                            color: #F1F5F9;
+                        }
+                    }
+                }
+            }
+
+            .footer-contact-us {
+
+                h3 {
+                    color: #F1F5F9;
+                }
+
+                .contact-us {
+                    .contact-us-icon {
+                        color: #F1F5F9;
+                    }
+
+                    p {
+                        color: #F1F5F9;
+                    }
+                }
+            }
+
+            .footer-newsletter {
+                h3 {
+                    color: #F1F5F9;
+                }
+
+                .subscribe-foot {
+                    p {
+                        color: #F1F5F9;
+                    }
+
+                    .sent-email {
+                        .email {
+                            background-color: #1E293B;
+                            border: 1px solid #D1D5DB;
+                            color: #F1F5F9;
+                        }
+
+                        .submit {
+                            background: #1E293B;
+                            color: #FFFFFF;
+                            border: 1px solid #4B5563;
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+
+            p {
+                color: #CBD5E1;
+            }
+        }
+    }
+}
+
+.foot {
+    display: flex;
+    flex-direction: column;
+
+    .footer-top {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        padding-bottom: 48px;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            gap: 42px;
+        }
+
+        .about-school {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+
+            .footer-logo {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+
+                .footer-logo-icon {
+                    width: auto;
+                    height: auto;
+                    padding: 8px 13px;
+                    border-radius: 12px;
+                    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+                    font-family: Inter;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 20px;
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+
+                .footer-logo-text {
+                    font-family: Inter;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 20px;
+                    line-height: 28px;
+                    border-radius: 9999px;
+                    color: #111827;
+                }
+            }
+
+            .footer-about {
+                p {
+                    font-family: Inter;
+                    font-weight: 400;
+                    font-style: Regular;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #4B5563;
+                }
+            }
+
+            .footer-social-medias {
+                display: flex;
+                gap: 16px;
+
+                .social-medias {
+                    width: auto;
+                    padding: 10px;
+                    height: a;
+                    border-radius: 9999px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: #DBEAFE;
+                    color: #2563EB;
+                }
+            }
+        }
+
+        .footer-quick-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            h3 {
+                font-family: Inter;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 18px;
+                line-height: 28px;
+                color: #111827;
+            }
+
+            .nav-lists {
+                .nav-ul {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    @media (min-width: 1440px) {
+                        width: 268px;
+                        height: auto;
+                    }
+
+                    li {
+                        font-family: Inter;
+                        font-weight: 400;
+                        font-style: Regular;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #4B5563;
+                    }
+                }
+            }
+        }
+
+        .footer-contact-us {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+
+            h3 {
+                font-family: Inter;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 18px;
+                line-height: 28px;
+                color: #111827;
+            }
+
+            .contact-us {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .contact-us-icon {
+                    color: #2563EB;
+                }
+
+                p {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    font-family: Inter;
+                    font-weight: 400;
+                    font-style: Regular;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #4B5563;
+                }
+            }
+        }
+
+        .footer-newsletter {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+
+            h3 {
+                font-family: Inter;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 18px;
+                line-height: 28px;
+                color: #111827;
+            }
+
+            .subscribe-foot {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+
+                p {
+                    font-family: Inter;
+                    font-weight: 400;
+                    font-style: Regular;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #4B5563;
+                }
+
+                .sent-email {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+
+                    .email {
+                        width: 100%;
+                        height: 40px;
+                        border-radius: 50px;
+                        background-color: #FFFFFF;
+                        border: 1px solid #D1D5DB;
+                        padding: 0 13px;
+                        font-family: Inter;
+                        font-weight: 400;
+                        font-style: Regular;
+                        font-size: 16px;
+                        line-height: 100%;
+                        outline: none;
+                    }
+
+                    .submit {
+                        width: 100%;
+                        height: 40px;
+                        background: #2563EB;
+                        color: #FFFFFF;
+                        border-radius: 50px;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        padding-top: 48px;
+        border-top: 1px solid #E5E7EB;
+
+        p {
+            font-family: Inter;
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: #4B5563;
+        }
+    }
+}

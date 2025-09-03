@@ -1,0 +1,57 @@
+.search-dark.dark .input-wrapper {
+    background: #1E293B;
+    border: 1px solid #334155;
+}
+
+.search-dark.dark .input-wrapper:focus-within {
+    border-color: #334155;
+}
+
+.search-dark.dark input {
+    background-color: transparent;
+    color: #F1F5F9;
+}
+
+.search-dark.dark input::placeholder {
+    color: #CBD5E1;
+}
+
+
+.input-wrapper {
+    background-color: #FFFFFF;
+    width: 100%;
+    border-radius: 9999px;
+    border: 1px solid #E2E8F0;
+    height: 40px;
+    padding: 0 27px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    color: #111827;
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+input:focus {
+    outline: none;
+}

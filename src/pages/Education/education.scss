@@ -1,0 +1,200 @@
+.education-dark.dark {
+    background-color: #0F172A;
+
+    .education {
+        .education-headline {
+            h1 {
+                color: #F1F5F9;
+            }
+
+            p {
+                color: #CBD5E1;
+            }
+        }
+
+        .education-activities {
+            border: 1px solid #334155;
+            background: #1E293B;
+
+            .edu-activity-heading {
+                h3 {
+                    color: #F1F5F9;
+                }
+            }
+
+            .edu-activity-main {
+                .activities-box {
+                    border: 1px solid #334155;
+                    background: #121f36;
+
+                    .actities-img {
+                        background: linear-gradient(0.7turn, #130428, #251043, #38126D, #261045, #190634);
+                    }
+
+                    .activities-box-right {
+                        .act-box-top {
+                            h4 {
+                                color: #F1F5F9;
+                            }
+
+                            p {
+                                color: #CBD5E1;
+                            }
+                        }
+
+                        p {
+                            color: #CBD5E1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.education {
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+
+    .education-headline {
+        display: flex;
+        flex-direction: column;
+        gap: 19px;
+
+        h1 {
+            font-family: Inter;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 36px;
+            line-height: 40px;
+            color: #2563EB;
+        }
+
+        p {
+            font-family: Inter;
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 18px;
+            line-height: 28px;
+            letter-spacing: 0%;
+            vertical-align: middle;
+            color: #64748B;
+        }
+    }
+
+    .education-activities {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+        border-radius: 12px;
+        border: 1px solid #E2E8F0;
+        background: #FFF;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+        .edu-activity-heading {
+            h3 {
+                font-family: Inter;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 24px;
+                line-height: 32px;
+                color: #2563EB;
+            }
+        }
+
+        .edu-activity-main {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            @media (min-width: 768px) {
+                flex-direction: row;
+            }
+
+            @media (min-width: 1440px) {
+                flex-direction: column;
+            }
+
+            .activity-main-top {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+
+                @media (min-width: 1440px) {
+                    flex-direction: row;
+                }
+            }
+
+            .activity-main-btm {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+
+                @media (min-width: 1440px) {
+                    flex-direction: row;
+                }
+            }
+
+            .activities-box {
+                width: 100%;
+                display: flex;
+                gap: 11px;
+                height: auto;
+                padding: 24px;
+                border-radius: 16px;
+                border: 1px solid #DBEAFE;
+                background: #FFF;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+                .actities-img {
+                    width: 52px;
+                    height: 34px;
+                    border-radius: 16px;
+                    background: #2563EB;
+                }
+
+                .activities-box-right {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+
+                    .act-box-top {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+
+                        h4 {
+                            font-family: Inter;
+                            font-weight: 700;
+                            font-style: Bold;
+                            font-size: 18px;
+                            line-height: 28px;
+                            vertical-align: middle;
+                            color: #020817;
+                        }
+
+                        p {
+                            font-family: Inter;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 20px;
+                            vertical-align: middle;
+                            color: #64748B;
+                        }
+                    }
+
+                    p {
+                        font-family: Inter;
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 16px;
+                        vertical-align: middle;
+                        color: #2563EB;
+                    }
+                }
+            }
+        }
+    }
+}

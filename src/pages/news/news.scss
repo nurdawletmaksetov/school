@@ -1,0 +1,120 @@
+.news-dark.dark {
+    background: #0F172A;
+
+    .school-news {
+        .school-news-headline {
+            h1 {
+                color: #F1F5F9;
+            }
+
+            p {
+                color: #CBD5E1;
+            }
+        }
+    }
+}
+
+.read-news-dark.dark {
+    background: #0F172A;
+
+
+    .news-main {
+        img {
+            opacity: 70%;
+        }
+
+        h1 {
+            color: #F1F5F9;
+        }
+
+        p {
+            color: #CBD5E1;
+        }
+
+        .data-author {
+            color: #CBD5E1;
+        }
+    }
+
+    .back-btn {
+        color: #F1F5F9;
+    }
+}
+
+.school-news {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .school-news-headline {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        h1 {
+            font-family: Inter;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 36px;
+            line-height: 40px;
+            color: #2563EB;
+        }
+
+        p {
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 28px;
+            color: #64748B;
+        }
+    }
+}
+
+.read-news {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .news-main {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h1 {
+            color: #020817;
+            font-family: Inter;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 40px;
+        }
+
+        p {
+            color: #020817;
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        .data-author {
+            color: #64748B;
+            font-family: Inter;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #020817;
+}

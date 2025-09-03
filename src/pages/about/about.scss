@@ -1,0 +1,469 @@
+.about-dark.dark {
+    background-color: #0F172A;
+
+    .about-our-school {
+        .about-school-left {
+            h1 {
+                color: #F1F5F9;
+            }
+
+            .school-inf-ph {
+                p {
+                    color: #CBD5E1;
+                }
+            }
+        }
+    }
+
+    .tabs {
+        background: #1E293B;
+
+        .tab {
+            color: #CBD5E1;
+
+            &.active {
+                color: #F1F5F9;
+                background: #121f36;
+            }
+
+            &:hover {
+                color: #F1F5F9;
+                background: #121f36;
+            }
+        }
+    }
+
+    .tab-content {
+        border: 1px solid #334155;
+        background: #1E293B;
+
+        &.active {
+            h3 {
+                color: #F1F5F9;
+            }
+
+            .tab-content-ph {
+                span {
+                    color: #CBD5E1;
+                }
+
+                p {
+                    color: #CBD5E1;
+                }
+            }
+        }
+    }
+
+    .leadership {
+        .leadership-headline {
+            h1 {
+                color: #F1F5F9;
+            }
+        }
+
+        .leadership-cards {
+            .leader-card {
+                background: #1E293B;
+
+                .leader-card-top {
+                    .avatar {
+                        background: #121f36;
+                        color: #F1F5F9;
+                    }
+
+                    .whois {
+                        h4 {
+                            color: #F1F5F9;
+                        }
+
+                        p {
+                            color: #CBD5E1;
+                        }
+                    }
+                }
+
+                .leader-card-btm {
+                    p {
+                        color: #CBD5E1;
+                    }
+                }
+            }
+        }
+    }
+
+    .facilityes {
+        .facilyties-top {
+
+            h1 {
+                color: #F1F5F9;
+            }
+        }
+
+        .facilyties-bottom {
+
+            .facilyties-cards-top,
+            .facilyties-card-bottom {
+                .facilyties-card {
+                    background: #1E293B;
+
+                    .fac-card-top {
+                        color: #F1F5F9;
+
+                        h3 {
+                            color: #F1F5F9;
+                        }
+                    }
+
+                    .fac-card-btm {
+                        p {
+                            color: #CBD5E1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+main {
+    padding: 48px 0;
+    background-color: rgba(245, 245, 245, 0.251);
+}
+
+.about-our-school {
+    display: flex;
+    flex-direction: column;
+    gap: 74px;
+
+    @media (min-width: 1440px) {
+        flex-direction: row;
+        gap: 65px;
+
+        .about-school-left {
+            justify-content: center;
+            width: 50%;
+        }
+
+        .about-school-right {
+            width: 50%;
+        }
+    }
+
+    .about-school-left {
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+
+        h1 {
+            font-family: Inter;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 36px;
+            line-height: 40px;
+            color: #111827;
+        }
+
+        .school-inf-ph {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            p {
+                font-family: Inter;
+                font-weight: 400;
+                font-style: Regular;
+                font-size: 18px;
+                line-height: 28px;
+                color: #4B5563;
+            }
+        }
+    }
+
+    .about-school-right {
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0px 4px 6px -2px #0000000D;
+
+        }
+    }
+}
+
+.tabs-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tabs {
+    max-width: 348px;
+    height: 40px;
+    display: flex;
+    background: #EFF6FF;
+    border-radius: 50px;
+    justify-content: space-between;
+    padding: 4px;
+
+    .tab {
+        background-color: transparent;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 12px;
+        width: auto;
+        cursor: pointer;
+        font-family: Inter;
+        font-weight: 500;
+        font-style: Medium;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        vertical-align: middle;
+        color: #64748B;
+
+        &.active {
+            border-radius: 16px;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            border: none;
+            color: #020817;
+            box-shadow: 0px 1px 2px 0px #0000000D;
+        }
+
+        &:hover {
+            color: #020817;
+            border-radius: 16px;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+    }
+}
+
+.tab-content {
+    width: auto;
+    height: auto;
+    display: none;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    background: #FFF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 33px;
+
+    &.active {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        h3 {
+            font-family: Inter;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 24px;
+            line-height: 32px;
+            letter-spacing: 0%;
+            color: #111827;
+        }
+
+        .tab-content-ph {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            span {
+                font-family: Inter;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 16px;
+                line-height: 24px;
+                color: #4B5563;
+            }
+
+            p {
+                font-family: Inter;
+                font-weight: 400;
+                font-style: Regular;
+                font-size: 16px;
+                line-height: 24px;
+                color: #4B5563;
+            }
+        }
+    }
+}
+
+.leadership {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .leadership-headline {
+        h1 {
+            font-family: Inter;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 30px;
+            color: #111827;
+            line-height: 36px;
+        }
+    }
+
+    .leadership-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+
+        .leader-card {
+            border-radius: 16px;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            width: 100%;
+            height: auto;
+            padding: 24px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            align-items: center;
+            justify-content: center;
+
+            .leader-card-top {
+                display: flex;
+                flex-direction: column;
+                gap: 22px;
+                align-items: center;
+
+                .avatar {
+                    width: 96px;
+                    height: 96px;
+                    border-radius: 9999px;
+                    background: #DBEAFE;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #2563EB;
+                }
+
+                .whois {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+
+                    h4 {
+                        font-family: Inter;
+                        font-weight: 600;
+                        font-style: Semi Bold;
+                        font-size: 24px;
+                        line-height: 24px;
+                        letter-spacing: -0.6px;
+                        text-align: center;
+                        color: #111827;
+                    }
+
+                    p {
+                        font-family: Inter;
+                        font-weight: 400;
+                        font-style: Regular;
+                        font-size: 14px;
+                        line-height: 20px;
+                        text-align: center;
+                        color: #4B5563;
+                    }
+                }
+            }
+
+            .leader-card-btm {
+                p {
+                    font-family: Inter;
+                    font-weight: 400;
+                    font-style: Regular;
+                    font-size: 16px;
+                    line-height: 24px;
+                    text-align: center;
+                    color: #4B5563;
+                }
+            }
+        }
+    }
+}
+
+.facilityes {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .facilyties-top {
+
+        h1 {
+            font-family: Inter;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 30px;
+            line-height: 36px;
+            color: #111827;
+        }
+    }
+
+    .facilyties-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+
+        .facilyties-cards-top,
+        .facilyties-card-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+
+            @media (min-width: 1440px) {
+                flex-direction: row;
+            }
+
+            .facilyties-card {
+                width: 100%;
+                height: 100%;
+                padding: 25px;
+                border-radius: 16px;
+                background: #FFF;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                display: flex;
+                flex-direction: column;
+                gap: 26px;
+
+                .fac-card-top {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 14px;
+                    color: #2563EB;
+
+                    h3 {
+                        font-family: Inter;
+                        font-weight: 600;
+                        font-style: Semi Bold;
+                        font-size: 24px;
+                        line-height: 24px;
+                        letter-spacing: -0.6px;
+                        color: #111827;
+                    }
+                }
+
+                .fac-card-btm {
+                    p {
+                        font-family: Inter;
+                        font-weight: 400;
+                        font-style: Regular;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #4B5563;
+                    }
+                }
+            }
+        }
+    }
+
+}

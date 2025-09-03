@@ -1,0 +1,272 @@
+.schedule-dark.dark {
+    background-color: #0F172A;
+
+    .doc-icons {
+        color: #F1F5F9;
+    }
+
+    .schedule-headline {
+        h1 {
+            color: #F1F5F9;
+        }
+
+        p {
+            color: #CBD5E1;
+        }
+    }
+
+    .schedule-bottom {
+        .download-schedule-container {
+            border: 1px solid #334155;
+            background: #1E293B;
+
+            .download-schedule-heading {
+                h1 {
+                    color: #F1F5F9;
+                }
+
+                p {
+                    color: #CBD5E1;
+                }
+            }
+
+            .schedule-select {
+                .select-label {
+                    color: #F1F5F9;
+                }
+            }
+
+            .schedule-inf {
+                border-top: 1px solid #334155;
+
+                p {
+                    color: #CBD5E1;
+                }
+            }
+        }
+
+        .dostupniy-schedule {
+            border: 1px solid #334155;
+            background: #1E293B;
+
+            .dostupniy-schedule-heading {
+                h3 {
+                    color: #F1F5F9;
+                }
+
+                p {
+                    color: #CBD5E1;
+                }
+            }
+
+            .dostupniy-schedule-main {
+                .schedule-class-box {
+                    border: 1px solid #334155;
+                    background-color: #121f36;
+
+                    h4 {
+                        color: #F1F5F9;
+                    }
+
+                    p {
+                        color: #CBD5E1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+
+    .doc-icons {
+        color: #2563EB;
+    }
+
+    .schedule-headline {
+        display: flex;
+        flex-direction: column;
+        gap: 19px;
+
+        h1 {
+            color: #2563EB;
+            font-family: Inter;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 40px;
+        }
+
+        p {
+            color: #64748B;
+            font-family: Inter;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 28px;
+        }
+    }
+
+    .schedule-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 33px;
+
+        .download-schedule-container {
+            border-radius: 16px;
+            border: 1px solid #E2E8F0;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+
+            .download-schedule {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                padding: 22px 25px 27px 25px;
+            }
+
+            .download-schedule-heading {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                h1 {
+                    display: flex;
+                    align-items: center;
+                    color: #020817;
+                    font-family: Inter;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 600;
+                    gap: 8px;
+                    line-height: 24px;
+                    letter-spacing: -0.6px;
+                }
+
+                p {
+                    color: #64748B;
+                    font-family: Inter;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+
+            .schedule-select {
+                display: flex;
+                flex-direction: column;
+                gap: 26px;
+                align-items: center;
+
+                @media (min-width: 768px) {
+                    flex-direction: row;
+                }
+
+                .select-label {
+                    color: #020817;
+                    font-family: Inter;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px;
+                }
+            }
+
+            .schedule-inf {
+                display: flex;
+                flex-direction: column;
+                border-top: 1px solid #E2E8F0;
+                padding: 26px 24px;
+
+                p {
+                    color: #64748B;
+                    font-family: Inter;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .dostupniy-schedule {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            border-radius: 16px;
+            border: 1px solid #E2E8F0;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            padding: 25px;
+
+            .dostupniy-schedule-heading {
+                display: flex;
+                flex-direction: column;
+                gap: 7px;
+
+                h3 {
+                    color: #020817;
+                    font-family: Inter;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 24px;
+                    letter-spacing: -0.6px;
+                }
+
+                p {
+                    color: #64748B;
+                    font-family: Inter;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+
+            .dostupniy-schedule-main {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px;
+                width: 100%;
+
+                .schedule-class-box {
+                    border-radius: 16px;
+                    border: 1px solid #E2E8F0;
+                    width: 100%;
+                    width: 365px;
+                    height: auto;
+                    padding: 20px 20px;
+
+                    h4 {
+                        color: #020817;
+                        font-family: Inter;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 24px;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    }
+
+                    p {
+                        color: #64748B;
+                        font-family: Inter;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,429 @@
+.rules-dark.dark {
+    background-color: #0F172A;
+
+    .rules-documents {
+        .rules-documents-heading {
+            h1 {
+                color: #F1F5F9;
+            }
+
+            p {
+                color: #CBD5E1;
+            }
+        }
+
+        .school-rules {
+            .rules-icon {
+                color: #F1F5F9;
+            }
+
+            .rules-left {
+                border: 1px solid #334155;
+                background: #1E293B;
+
+                .rules-left-heading {
+                    h3 {
+                        color: #F1F5F9;
+                    }
+                }
+
+                .rules-left-details {
+                    summary {
+                        background-color: transparent;
+                        border-bottom: 1px solid #334155;
+
+                        p {
+                            color: #CBD5E1;
+                        }
+                    }
+
+                    .detail {
+                        border-bottom: 1px solid #334155;
+
+                        p {
+                            color: #CBD5E1;
+                        }
+                    }
+                }
+            }
+
+            .rules-right {
+                background: #1E293B;
+                border: 1px solid #334155;
+
+                .rules-right-heading {
+                    h3 {
+                        color: #F1F5F9;
+                    }
+                }
+
+                .rules-main {
+                    .school-times {
+                        h4 {
+                            color: #F1F5F9;
+                        }
+
+                        p {
+                            color: #CBD5E1;
+                        }
+                    }
+                }
+            }
+        }
+
+        .school-documents {
+            .documents-heading {
+                h3 {
+                    color: #F1F5F9;
+                }
+            }
+
+            .documents-boxes {
+
+                .documents-left,
+                .documents-right {
+                    .documents-box {
+                        border: 1px solid #334155;
+                        background: #1E293B;
+
+                        .doc-box-icon {
+                            .icon-doc {
+                                background: #121f36;
+                                border: 1px solid #334155;
+                                color: #F1F5F9;
+                            }
+                        }
+
+                        .doc-right {
+                            .doc-right-name {
+                                h4 {
+                                    color: #F1F5F9;
+                                }
+
+                                p {
+                                    color: #CBD5E1;
+                                }
+                            }
+
+                            .doc-downlowad {
+                                .doc-size {
+                                    color: #CBD5E1;
+                                }
+
+                                button {
+                                    color: #F1F5F9;
+                                    background: #121f36;
+                                    border: 1px solid #334155;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.rules-documents {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+
+    .rules-documents-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        h1 {
+            font-family: Inter;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 36px;
+            line-height: 40px;
+            color: #2563EB;
+        }
+
+        p {
+            font-family: Inter;
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 18px;
+            line-height: 28px;
+            color: #64748B;
+        }
+    }
+
+    .school-rules {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+
+        .rules-icon {
+            color: #020817;
+        }
+
+        .rules-left {
+            width: 100%;
+            height: auto;
+            padding: 25px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            border-radius: 16px;
+            border: 1px solid #DBEAFE;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+            .rules-left-heading {
+                h3 {
+                    display: flex;
+                    gap: 8px;
+                    font-family: Inter;
+                    font-weight: 600;
+                    font-style: Semi Bold;
+                    font-size: 24px;
+                    line-height: 24px;
+                    letter-spacing: -0.6px;
+                    vertical-align: middle;
+                    color: #2563EB;
+                }
+            }
+
+            .rules-left-details {
+                display: flex;
+                flex-direction: column;
+                gap: 1;
+
+                summary {
+                    width: 100%;
+                    height: 60px;
+                    position: relative;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: transparent;
+                    cursor: pointer;
+                    border-bottom: 1px solid #DBEAFE;
+
+                    p {
+                        font-family: Inter;
+                        font-weight: 500;
+                        font-style: Medium;
+                        font-size: 18px;
+                        line-height: 28px;
+                        text-align: center;
+                        vertical-align: middle;
+                        color: #020817;
+                    }
+                }
+
+                .detail {
+                    width: 100%;
+                    height: auto;
+                    padding: 10px 0;
+                    border-bottom: 1px solid #DBEAFE;
+
+                    p {
+                        font-family: Inter;
+                        font-weight: 500;
+                        font-style: Medium;
+                        font-size: 18px;
+                        line-height: 28px;
+                        vertical-align: middle;
+                        color: #64748B;
+                    }
+                }
+            }
+        }
+
+        .rules-right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+            max-width: 384px;
+            height: 100%;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #DBEAFE;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+
+            .rules-right-heading {
+                h3 {
+                    display: flex;
+                    gap: 8px;
+                    font-family: Inter;
+                    font-weight: 600;
+                    font-style: Semi Bold;
+                    font-size: 24px;
+                    line-height: 24px;
+                    letter-spacing: -0.6px;
+                    vertical-align: middle;
+                    color: #2563EB;
+                }
+            }
+
+            .rules-main {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+
+                .school-times {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    h4 {
+                        font-family: Inter;
+                        font-weight: 700;
+                        font-style: Bold;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #020817;
+                    }
+
+                    p {
+                        font-family: Inter;
+                        font-weight: 400;
+                        font-style: Regular;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #64748B;
+                    }
+                }
+            }
+        }
+    }
+
+    .school-documents {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .documents-heading {
+            h3 {
+                font-family: Inter;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 30px;
+                line-height: 36px;
+                color: #020817;
+            }
+        }
+
+        .documents-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            @media (min-width: 768px) {
+                flex-direction: row;
+            }
+
+            @media (min-width: 1440px) {
+                flex-direction: column;
+            }
+
+            .documents-left,
+            .documents-right {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                width: 100%;
+
+                @media (min-width: 1440px) {
+                    flex-direction: row;
+                }
+
+                .documents-box {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    gap: 16px;
+                    padding: 25px;
+                    border-radius: 16px;
+                    border: 1px solid #DBEAFE;
+                    background: #FFF;
+                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+                    .doc-box-icon {
+                        .icon-doc {
+                            width: 56px;
+                            height: 56px;
+                            border-radius: 16px;
+                            background: #DBEAFE;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: #2563EB;
+                        }
+                    }
+
+                    .doc-right {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                        width: 100%;
+
+                        .doc-right-name {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 4px;
+
+                            h4 {
+                                font-family: Inter;
+                                font-weight: 700;
+                                font-style: Bold;
+                                font-size: 18px;
+                                line-height: 28px;
+                                color: #020817;
+                            }
+
+                            p {
+                                font-family: Inter;
+                                font-weight: 400;
+                                font-style: Regular;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #64748B;
+                            }
+                        }
+
+                        .doc-downlowad {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            .doc-size {
+                                font-family: Inter;
+                                font-weight: 400;
+                                font-style: Regular;
+                                font-size: 12px;
+                                line-height: 16px;
+                                color: #64748B;
+                            }
+
+                            button {
+                                width: 121px;
+                                height: 36px;
+                                display: flex;
+                                gap: 12px;
+                                align-items: center;
+                                border-radius: 9999px;
+                                border: 1px solid #E2E8F0;
+                                background: #FFF;
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
