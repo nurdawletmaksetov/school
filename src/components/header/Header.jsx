@@ -164,6 +164,16 @@ export const Header = ({ darkMode, setDarkMode }) => {
             </div>
             <div className="header-right">
               <ul className="header-right-list">
+                <li className="night-mode">
+                  <input
+                    type="checkbox"
+                    id="night-mode"
+                    className="mode-checkbox"
+                    checked={darkMode}
+                    onChange={() => setDarkMode(!darkMode)}
+                  />
+                  <ThemeSwitcher darkMode={darkMode} setDarkMode={setDarkMode} />
+                </li>
                 <li className="language">
                   <Globe className="right-icons" />
                   <select
@@ -182,19 +192,6 @@ export const Header = ({ darkMode, setDarkMode }) => {
                       Qaraqalpaq
                     </option>
                   </select>
-                  <label htmlFor="language-select" className="language-label">
-                    <ChevronDown className="right-icons" />
-                  </label>
-                </li>
-                <li className="night-mode">
-                  <input
-                    type="checkbox"
-                    id="night-mode"
-                    className="mode-checkbox"
-                    checked={darkMode}
-                    onChange={() => setDarkMode(!darkMode)}
-                  />
-                  <ThemeSwitcher darkMode={darkMode} setDarkMode={setDarkMode} />
                 </li>
               </ul>
               <div className="admin">
