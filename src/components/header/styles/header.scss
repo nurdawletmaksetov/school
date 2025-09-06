@@ -9,6 +9,9 @@
 
 .header-dark.dark {
     background-color: #1E293B;
+    position: sticky;
+    top: 0;
+    z-index: 123;
 
     .desktop-menu {
         color: #F1F5F9;

@@ -27,7 +27,7 @@ const Employee = () => {
     modals.open({
       children: (
         <CreateEmployee
-          getUsers={getEmployee}
+          getEmployee={getEmployee}
         />
       )
     })
@@ -38,8 +38,8 @@ const Employee = () => {
       children: (
         <UpdateEmployee
           id={id}
-          users={employee}
-          setUsers={setEmployee}
+          employee={employee}
+          setEmployee={setEmployee}
         />
       )
     })

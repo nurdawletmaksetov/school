@@ -27,6 +27,7 @@ const Login = () => {
                     <TextInput type="number"
                         name="phone"
                         label="Your phone"
+
                         placeholder="Your phone"
                         value={phone} onChange={(e) => setPhone(e.target.value)}
                     />

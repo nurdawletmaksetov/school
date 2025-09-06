@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://d362949c7aea.ngrok-free.app/api/v1",
+    baseURL: "https://312744a224cc.ngrok-free.app/api/v1",
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -9,6 +9,7 @@ export const api = axios.create({
     },
 });
 
+// Request interceptor -> access_token qo'shish
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem("access_token");
 
@@ -20,3 +21,93 @@ api.interceptors.request.use((config) => {
 
     return config;
 });
+
+// Response interceptor -> agar token eskirsa refresh qilish
+let isRefreshing = false;
+let failedQueue = [];
+
+const processQueue = (error, token = null) => {
+    failedQueue.forEach((prom) => {
+        if (error) {
+            prom.reject(error);
+        } else {
+            prom.resolve(token);
+        }
+    });
+
+    failedQueue = [];
+};
+
+api.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+        const originalRequest = error.config;
+
+        // Agar 401 bo‘lsa (token muddati o‘tgan bo‘lsa)
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            if (isRefreshing) {
+                return new Promise(function (resolve, reject) {
+                    failedQueue.push({ resolve, reject });
+                })
+                    .then((token) => {
+                        originalRequest.headers.Authorization = "Bearer " + token;
+                        return api(originalRequest);
+                    })
+                    .catch((err) => {
+                        return Promise.reject(err);
+                    });
+            }
+
+            originalRequest._retry = true;
+            isRefreshing = true;
+
+            try {
+                const refreshToken = localStorage.getItem("refresh_token");
+
+                if (!refreshToken) {
+                    // Refresh yo‘q bo‘lsa -> logout
+                    localStorage.removeItem("access_token");
+                    localStorage.removeItem("refresh_token");
+                    window.location.href = "/login";
+                    return Promise.reject(error);
+                }
+
+                // Refresh token orqali yangi access olish
+                const { data } = await axios.post(
+                    "https://312744a224cc.ngrok-free.app/api/v1/refresh",
+                    { refresh_token: refreshToken },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                            "ngrok-skip-browser-warning": "true",
+                        },
+                    }
+                );
+
+                const newAccess = data.data.access_token;
+                const newRefresh = data.data.refresh_token;
+
+                localStorage.setItem("access_token", newAccess);
+                localStorage.setItem("refresh_token", newRefresh);
+
+                api.defaults.headers.Authorization = "Bearer " + newAccess;
+                originalRequest.headers.Authorization = "Bearer " + newAccess;
+
+                processQueue(null, newAccess);
+                return api(originalRequest);
+            } catch (err) {
+                processQueue(err, null);
+
+                localStorage.removeItem("access_token");
+                localStorage.removeItem("refresh_token");
+                window.location.href = "/login";
+                return Promise.reject(err);
+            } finally {
+                isRefreshing = false;
+            }
+        }
+
+        return Promise.reject(error);
+    }
+);

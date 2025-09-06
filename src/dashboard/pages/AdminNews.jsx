@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
+import CreateNews from "../futures/AdminNews/Create";
+import UpdateNews from "../futures/AdminNews/Update";
+import DeleteNews from "../futures/AdminNews/Delete";
 
 function AdminNews() {
   const [news, setNews] = useState([]);
@@ -20,11 +23,45 @@ function AdminNews() {
     getNews();
   }, []);
 
+  function createFn() {
+    modals.open({
+      children: (
+        <CreateNews
+          getNews={getNews}
+        />
+      )
+    })
+  }
+
+  function updateFn(id) {
+    modals.open({
+      children: (
+        <UpdateNews
+          id={id}
+          news={news}
+          setNews={setNews}
+        />
+      )
+    })
+  }
+  function deleteFn(id) {
+    modals.open({
+      children: (
+        <DeleteNews
+          id={id}
+          news={news}
+          setNews={setNews}
+        />
+      ),
+    });
+  }
+
+
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
         <Title>News</Title>
-        <Button>Create</Button>
+        <Button onClick={createFn}>Create</Button>
       </Flex>
       <Table horizontalSpacing="xl" verticalSpacing="sm" highlightOnHover withTableBorder withColumnBorders>
         <Table.Thead>
@@ -47,8 +84,8 @@ function AdminNews() {
               <Table.Td>{el.full_name}</Table.Td>
               <Table.Td>
                 <Flex gap={10}>
-                  <Button>Delete</Button>
-                  <Button>Update</Button>
+                  <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                  <Button onClick={() => updateFn(el.id)}>Update</Button>
                 </Flex>
               </Table.Td>
             </Table.Tr>

@@ -1,5 +1,5 @@
 import { ChevronDown, Globe, Menu, Moon, Search, Sun, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./styles/Header.scss";
 import { Container } from "../container/container";
@@ -12,10 +12,26 @@ export const Header = ({ darkMode, setDarkMode }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const menuRef = useRef(null);
 
   const goToAdmin = () => {
     navigate("/login");
   };
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setHamburgerOpen(false); // tashqariga bosilsa hamburger menyu yopiladi
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
 
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen);
@@ -41,63 +57,66 @@ export const Header = ({ darkMode, setDarkMode }) => {
                 <label htmlFor="cheked" className="hamburger-label">
                   <Menu />
                 </label>
-                <div
-                  className={`hamburger-menu${hamburgerOpen ? " open" : ""}`}
-                >
-                  <input
-                    onClick={toggleHamburger}
-                    type="checkbox"
-                    id="menu-toggle"
-                    style={{ display: "none" }}
-                  />
-                  <label htmlFor="menu-toggle" className="menu-label">
-                    <X size={20} />
-                  </label>
-                  <ul className="menu-list">
-                    <NavLink
-                      className={"nav-link-phone"}
-                      onClick={handleClick}
-                      to="/"
-                    >
-                      {t("home")}
-                    </NavLink>
-                    <NavLink
-                      className={"nav-link-phone"}
-                      onClick={handleClick}
-                      to="/about"
-                    >
-                      {t("about")}
-                    </NavLink>
-                    <NavLink
-                      className={"nav-link-phone"}
-                      onClick={handleClick}
-                      to="/education"
-                    >
-                      {t("education")}
-                    </NavLink>
-                    <NavLink
-                      className={"nav-link-phone"}
-                      onClick={handleClick}
-                      to="/rules"
-                    >
-                      {t("rules")}
-                    </NavLink>
-                    <NavLink
-                      className={"nav-link-phone"}
-                      onClick={handleClick}
-                      to="/news"
-                    >
-                      {t("news")}
-                    </NavLink>
-                    <NavLink
-                      className={"nav-link-phone"}
-                      onClick={handleClick}
-                      to="/support"
-                    >
-                      {t("support")}
-                    </NavLink>
-                  </ul>
-                </div>
+                {hamburgerOpen && (
+                  <div
+                    ref={menuRef}
+                    className={`hamburger-menu${hamburgerOpen ? " open" : ""}`}
+                  >
+                    <input
+                      onClick={toggleHamburger}
+                      type="checkbox"
+                      id="menu-toggle"
+                      style={{ display: "none" }}
+                    />
+                    <label htmlFor="menu-toggle" className="menu-label">
+                      <X size={20} />
+                    </label>
+                    <ul className="menu-list">
+                      <NavLink
+                        className={"nav-link-phone"}
+                        onClick={handleClick}
+                        to="/"
+                      >
+                        {t("home")}
+                      </NavLink>
+                      <NavLink
+                        className={"nav-link-phone"}
+                        onClick={handleClick}
+                        to="/about"
+                      >
+                        {t("about")}
+                      </NavLink>
+                      <NavLink
+                        className={"nav-link-phone"}
+                        onClick={handleClick}
+                        to="/education"
+                      >
+                        {t("education")}
+                      </NavLink>
+                      <NavLink
+                        className={"nav-link-phone"}
+                        onClick={handleClick}
+                        to="/rules"
+                      >
+                        {t("rules")}
+                      </NavLink>
+                      <NavLink
+                        className={"nav-link-phone"}
+                        onClick={handleClick}
+                        to="/news"
+                      >
+                        {t("news")}
+                      </NavLink>
+                      <NavLink
+                        className={"nav-link-phone"}
+                        onClick={handleClick}
+                        to="/support"
+                      >
+                        {t("support")}
+                      </NavLink>
+                    </ul>
+                  </div>
+                )}
               </div>
               <div className="logo">
                 <NavLink onClick={handleClick} to="/" className="logo-icon">

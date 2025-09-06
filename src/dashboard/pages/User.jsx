@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Stack, Table, Title } from "@mantine/core";
+import { Button, Flex, Pagination, Stack, Table, Title } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreateUsers from "../futures/Users/Create";
@@ -9,28 +9,28 @@ import UpdateUsers from "../futures/Users/Update";
 function Users() {
   const [users, setUsers] = useState([]);
   const currentLang = "ru";
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
 
-  async function getUsers() {
+  async function getUsers(page = 1) {
     try {
-      const { data } = await api.get("/users");
+      const { data } = await api.get(`/users?page=${page}&per_page=10`);
       setUsers(data.data.items);
+      setLastPage(data.data.pagination.last_page);
     } catch (error) {
-      console.error("Error fetching users:", error)
+      console.error("Error fetching users:", error);
     }
   }
 
+
   useEffect(() => {
-    getUsers();
-  }, []);
+    getUsers(page);
+  }, [page]);
 
   function createFn() {
     modals.open({
-      children: (
-        <CreateUsers
-          getUsers={getUsers}
-        />
-      )
-    })
+      children: <CreateUsers getUsers={() => getUsers(page)} />,
+    });
   }
 
   function deleteFn(id) {
@@ -48,14 +48,11 @@ function Users() {
   function updateFn(id) {
     modals.open({
       children: (
-        <UpdateUsers
-          id={id}
-          users={users}
-          setUsers={setUsers}
-        />
-      )
-    })
+        <UpdateUsers id={id} users={users} setUsers={setUsers} />
+      ),
+    });
   }
+
 
   return (
     <Stack p={20} w="100%">
@@ -90,6 +87,9 @@ function Users() {
           ))}
         </Table.Tbody>
       </Table>
+      <Flex justify="center" mt="md">
+        <Pagination total={lastPage} value={page} onChange={setPage} />
+      </Flex>
     </Stack>
   );
 }
