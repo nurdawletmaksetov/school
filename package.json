@@ -54,6 +54,7 @@
     "react-scroll": "^1.9.3",
     "sass": "^1.90.0",
     "styled-components": "^6.1.19",
+    "tabler-icons-react": "^1.56.0",
     "tailwindcss": "^4.1.12",
     "yup": "^1.7.0"
   },

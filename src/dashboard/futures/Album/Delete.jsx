@@ -1,26 +1,23 @@
-import { Button, Flex, Stack, Text, Loader } from '@mantine/core';
-import { modals } from '@mantine/modals';
-import React, { useState } from 'react';
-import { api } from '../../../api/api';
+import React, { useState } from "react";
+import { Button, Flex, Stack, Text, Loader } from "@mantine/core";
+import { modals } from "@mantine/modals";
+import { api } from "../../../api/api";
 
-const DeleteUsers = ({ id, getUsers }) => {
+const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
     const [loading, setLoading] = useState(false);
 
     const deleteFn = async () => {
         setLoading(true);
         try {
-            await api.delete(`/users/delete/${id}`);
+            await api.delete(`/albums/delete/${id}`);
+            alert("✅ Album deleted successfully");
 
-            // Alert bilan success
-            alert("✅ User deleted successfully");
-
-            if (getUsers) await getUsers(); // ro'yxatni yangilash
-            modals.closeAll(); // modalni yopish
+            if (getAlbums) await getAlbums();
+            setAlbums(albums.filter((a) => a.id !== id));
+            modals.closeAll();
         } catch (error) {
             console.error(error);
-
-            // Alert bilan error
-            alert("❌ Could not delete user");
+            alert("❌ Could not delete album");
         } finally {
             setLoading(false);
         }
@@ -43,4 +40,4 @@ const DeleteUsers = ({ id, getUsers }) => {
     );
 };
 
-export default DeleteUsers;
+export default DeleteAlbum;

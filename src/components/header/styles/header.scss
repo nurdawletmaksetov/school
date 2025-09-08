@@ -270,10 +270,10 @@
     .language {
         display: flex;
         align-items: center;
-        background-color: white;
-        padding: 5px;
-        border-radius: 6px;
-        border: 1px solid #616161;
+        // background-color: white;
+        // padding: 5px;
+        // border-radius: 6px;
+        // border: 1px solid #616161;
 
         @media (max-width: 768px) {
             background: transparent;
@@ -290,8 +290,11 @@
             font-weight: 500;
             font-size: 16px;
             color: #1A0B2E;
-            width: 110px;
             text-align-last: left;
+            max-width: 85px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             option {
                 color: black;

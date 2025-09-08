@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Stack, Table, Title } from "@mantine/core";
+import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreatePosition from "../futures/Position/Create";
@@ -8,21 +8,28 @@ import UpdatePosition from "../futures/Position/Update";
 
 function Position() {
   const [positions, setPositions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
 
-  async function getPositions() {
+  const getPositions = async (page = 1) => {
+    setLoading(true);
     try {
-      const { data } = await api.get("/positions");
+      const { data } = await api.get(`/positions?page=${page}&per_page=10`);
       setPositions(data.data.items);
+      setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching positions:", error);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    getPositions();
-  }, []);
+    getPositions(page);
+  }, [page]);
 
-  function deleteFn(id) {
+  const deleteFn = (id) => {
     modals.open({
       children: (
         <DeletePosition
@@ -32,29 +39,19 @@ function Position() {
         />
       ),
     });
-  }
+  };
 
-  function createFn() {
+  const createFn = () => {
     modals.open({
-      children: (
-        <CreatePosition
-          getPositions={getPositions}
-        />
-      ),
+      children: <CreatePosition getPositions={getPositions} />,
     });
-  }
+  };
 
-  function updateFn(id) {
+  const updateFn = (id) => {
     modals.open({
-      children: (
-        <UpdatePosition
-          id={id}
-          getPositions={getPositions}
-        />
-      ),
+      children: <UpdatePosition id={id} getPositions={getPositions} />,
     });
-  }
-
+  };
 
   return (
     <Stack p={20} w="100%">
@@ -62,34 +59,49 @@ function Position() {
         <Title>Positions</Title>
         <Button onClick={createFn}>Create</Button>
       </Flex>
-      <Table horizontalSpacing="xl" verticalSpacing="sm" highlightOnHover withTableBorder withColumnBorders>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Id</Table.Th>
-            <Table.Th>Name</Table.Th>
-            <Table.Th>Description</Table.Th>
-            <Table.Th>Actions</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {positions.map((el) => (
-            <Table.Tr key={el.id}>
-              <Table.Td>{el.id}</Table.Td>
-              <Table.Td>{el.name.ru}</Table.Td>
-              <Table.Td>{el.description.ru}</Table.Td>
-              <Table.Td>
-                <Flex gap={10}>
-                  <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                  <Button onClick={() => updateFn(el.id)}>Update</Button>
-                </Flex>
-              </Table.Td>
+
+      {loading ? (
+        <Flex justify="center" align="center" style={{ height: "200px" }}>
+          <Loader variant="dots" />
+        </Flex>
+      ) : (
+        <Table
+          horizontalSpacing="xl"
+          verticalSpacing="sm"
+          highlightOnHover
+          withTableBorder
+          withColumnBorders
+        >
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Id</Table.Th>
+              <Table.Th>Name</Table.Th>
+              <Table.Th>Description</Table.Th>
+              <Table.Th>Actions</Table.Th>
             </Table.Tr>
-          ))}
-        </Table.Tbody>
-      </Table>
+          </Table.Thead>
+          <Table.Tbody>
+            {positions.map((el) => (
+              <Table.Tr key={el.id}>
+                <Table.Td>{el.id}</Table.Td>
+                <Table.Td>{el.name.ru}</Table.Td>
+                <Table.Td>{el.description.ru}</Table.Td>
+                <Table.Td>
+                  <Flex gap={10}>
+                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                  </Flex>
+                </Table.Td>
+              </Table.Tr>
+            ))}
+          </Table.Tbody>
+        </Table>
+      )}
+      <Flex justify="center" mt="md">
+        <Pagination total={lastPage} value={page} onChange={setPage} />
+      </Flex>
     </Stack>
   );
 }
-
 
 export default Position;

@@ -1,50 +1,68 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Flex, Loader } from "@mantine/core";
+import { modals } from "@mantine/modals";
 import FormUsers from './Form';
 import { api } from '../../../api/api';
 
-const UpdateUsers = ({ id }) => {
-    const [data, setData] = useState();
+const UpdateUsers = ({ id, getUsers }) => {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    async function getUsers() {
+    const fetchUser = async () => {
+        setLoading(true);
         try {
             const { data } = await api.get(`/users/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching user:", error);
+            console.error(error);
+            alert("❌ Could not fetch user");
+        } finally {
+            setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
-        getUsers();
+        fetchUser();
     }, [id]);
 
-    async function updateFn(body) {
+    const updateFn = async (body) => {
+        setLoading(true);
         try {
             await api.put(`/users/update/${id}`, body);
+            alert("✅ User updated successfully");
+            if (getUsers) await getUsers();
+            modals.closeAll();
         } catch (error) {
-            console.error("Error updating user:", error);
+            console.error(error);
+            alert("❌ Could not update user");
+        } finally {
+            setLoading(false);
         }
+    };
+
+    if (loading || !data) {
+        return (
+            <Flex justify="center" align="center" style={{ height: "200px" }}>
+                <Loader variant="dots" />
+            </Flex>
+        );
     }
+
     return (
-        <>
-            {data && (
-                <FormUsers
-                    submitFn={updateFn}
-                    initialValues={{
-                        full_name: {
-                            ru: data.full_name?.ru,
-                            uz: data.full_name?.uz,
-                            en: data.full_name?.en,
-                            kk: data.full_name?.kk,
-                        },
+        <FormUsers
+            submitFn={updateFn}
+            initialValues={{
+                full_name: {
+                    ru: data.full_name?.ru,
+                    uz: data.full_name?.uz,
+                    en: data.full_name?.en,
+                    kk: data.full_name?.kk,
+                },
+                birth_date: data.birth_date,
+                phone: data.phone,
+            }}
+        />
+    );
+};
 
-                        birth_date: data.birth_date,
-                        phone: data.phone,
-                    }}
-                />
-            )}
-        </>
-    )
-}
-
-export default UpdateUsers
+export default UpdateUsers;

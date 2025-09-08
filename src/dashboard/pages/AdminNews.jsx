@@ -67,6 +67,7 @@ function AdminNews() {
         <Table.Thead>
           <Table.Tr>
             <Table.Th>Id</Table.Th>
+            <Table.Th>Image</Table.Th>
             <Table.Th>Title</Table.Th>
             <Table.Th>Short Content</Table.Th>
             <Table.Th>Content</Table.Th>
@@ -78,6 +79,9 @@ function AdminNews() {
           {news.map((el) => (
             <Table.Tr key={el.id}>
               <Table.Td>{el.id}</Table.Td>
+              <Table.Td>
+                <img src={el.cover_image.path} />
+              </Table.Td>
               <Table.Td>{el.title[currentLang]}</Table.Td>
               <Table.Td>{el.short_content[currentLang]}</Table.Td>
               <Table.Td>{el.content[currentLang]}</Table.Td>

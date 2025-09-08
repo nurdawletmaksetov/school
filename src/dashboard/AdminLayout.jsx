@@ -22,21 +22,25 @@ const AdminLayout = () => {
 
     return (
         <Flex>
-            <Sidebar />
-            <Stack>
+            <Sidebar style={{ width: 250, minWidth: 250, maxWidth: 250 }} />
+
+            <Stack style={{ flex: 1, height: "100vh" }}>
                 <Header />
                 <Container
                     fluid
-                    w="100%"
-                    h="calc(100vh - 62px)"
+                    style={{
+                        height: "calc(100vh - 62px)",
+                        overflowY: "auto",
+                        width: "100%"
+                    }}
                     p={20}
-                    style={{ overflowY: "auto" }}
                 >
                     <Outlet />
                 </Container>
             </Stack>
         </Flex>
     );
+
 };
 
 export default AdminLayout;

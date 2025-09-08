@@ -1,15 +1,17 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://312744a224cc.ngrok-free.app/api/v1",
+    baseURL: "https://c13bf2fac267.ngrok-free.app/api/v1",
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         "ngrok-skip-browser-warning": "true",
     },
+    validateStatus: (status) => {
+        return status >= 200 && status < 300 || status === 204;
+    },
 });
 
-// Request interceptor -> access_token qo'shish
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem("access_token");
 
@@ -22,7 +24,6 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// Response interceptor -> agar token eskirsa refresh qilish
 let isRefreshing = false;
 let failedQueue = [];
 
@@ -43,7 +44,6 @@ api.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
 
-        // Agar 401 bo‘lsa (token muddati o‘tgan bo‘lsa)
         if (error.response?.status === 401 && !originalRequest._retry) {
             if (isRefreshing) {
                 return new Promise(function (resolve, reject) {
@@ -65,16 +65,14 @@ api.interceptors.response.use(
                 const refreshToken = localStorage.getItem("refresh_token");
 
                 if (!refreshToken) {
-                    // Refresh yo‘q bo‘lsa -> logout
                     localStorage.removeItem("access_token");
                     localStorage.removeItem("refresh_token");
                     window.location.href = "/login";
                     return Promise.reject(error);
                 }
 
-                // Refresh token orqali yangi access olish
                 const { data } = await axios.post(
-                    "https://312744a224cc.ngrok-free.app/api/v1/refresh",
+                    "https://c13bf2fac267.ngrok-free.app/api/v1/refresh",
                     { refresh_token: refreshToken },
                     {
                         headers: {

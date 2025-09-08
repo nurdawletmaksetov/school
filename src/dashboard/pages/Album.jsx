@@ -1,9 +1,127 @@
-import React from 'react'
+import { useEffect, useState } from "react";
+import { Button, Flex, Group, Pagination, Stack, Table, Title, Loader, Text } from "@mantine/core";
+import { modals } from "@mantine/modals";
+import { api } from "../../api/api";
+import UpdateAlbum from "../futures/Album/Update";
+import CreateAlbum from "../futures/Album/Create";
+import DeleteALbum from "../futures/Album/Delete";
 
 const Album = () => {
-  return (
-    <div>Album</div>
-  )
-}
+  const [albums, setAlbums] = useState([]);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-export default Album
+  async function getAlbums(page = 1) {
+    setLoading(true);
+    try {
+      const { data } = await api.get(`/albums?page=${page}&per_page=10`);
+      setAlbums(data.data.items);
+      setLastPage(data.data.pagination.last_page);
+    } catch (error) {
+      console.error("Error fetching albums:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getAlbums(page);
+  }, [page]);
+
+  function createFn() {
+    modals.open({
+      title: "Create",
+      children: <CreateAlbum getAlbums={getAlbums} />,
+    });
+  }
+
+  function updateFn(id) {
+    modals.open({
+      title: "Update",
+      children: <UpdateAlbum id={id} albums={albums} setAlbums={setAlbums} />,
+    });
+  }
+
+  function deleteFn(id) {
+    modals.open({
+      children: <DeleteALbum id={id} albums={albums} setAlbums={setAlbums} />,
+    });
+  }
+
+  return (
+    <Stack p={20}>
+      <Flex justify="space-between" align="center">
+        <Title>Album</Title>
+        <Button onClick={createFn}>Create</Button>
+      </Flex>
+
+      {loading ? (
+        <Flex justify="center" align="center" style={{ height: "200px" }}>
+          <Loader variant="dots" />
+        </Flex>
+      ) : (
+        <Table
+          horizontalSpacing="xl"
+          verticalSpacing="sm"
+          highlightOnHover
+          withTableBorder
+          withColumnBorders
+        >
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Id</Table.Th>
+              <Table.Th>Title</Table.Th>
+              <Table.Th>Picture</Table.Th>
+              <Table.Th>Description</Table.Th>
+              <Table.Th>Actions</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            {albums
+              .filter((album) => album && album.id)
+              .map((album) => (
+                <Table.Tr key={album.id}>
+                  <Table.Td>{album.id}</Table.Td>
+                  <Table.Td>{album.title?.ru || "No title"}</Table.Td>
+                  <Table.Td>
+                    {album.photos && album.photos.length > 0 ? (
+                      <div style={{ display: "flex", gap: "10px" }}>
+                        {album.photos.map((photo, index) => (
+                          <img
+                            key={index}
+                            src={photo}
+                            alt="album"
+                            width={80}
+                            height={60}
+                            style={{ objectFit: "cover", borderRadius: "6px" }}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <span>No photos</span>
+                    )}
+                  </Table.Td>
+                  <Table.Td>{album.description?.ru || "No description"}</Table.Td>
+                  <Table.Td>
+                    <Group>
+                      <Button onClick={() => deleteFn(album.id)}>
+                        Delete
+                      </Button>
+                      <Button onClick={() => updateFn(album.id)}>Update</Button>
+                    </Group>
+                  </Table.Td>
+                </Table.Tr>
+              ))}
+          </Table.Tbody>
+        </Table>
+      )}
+
+      <Flex justify="center" mt="md">
+        <Pagination total={lastPage} value={page} onChange={setPage} />
+      </Flex>
+    </Stack>
+  );
+};
+
+export default Album;

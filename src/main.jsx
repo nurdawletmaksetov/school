@@ -7,6 +7,7 @@ import './i18next/index.js';
 import { MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 
 createRoot(document.getElementById('root')).render(
   <MantineProvider>
