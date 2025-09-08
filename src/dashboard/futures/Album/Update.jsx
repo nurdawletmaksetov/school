@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Flex, Loader, Stack } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { notifications } from "@mantine/notifications"; 
+import { Check, X } from "tabler-icons-react"; 
 import FormAlbum from "./Form";
 import { api } from "../../../api/api";
 
@@ -15,7 +17,12 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
             setAlbum(data.data);
         } catch (error) {
             console.error(error);
-            alert("❌ Could not fetch album");
+            notifications.show({
+                title: "Error",
+                message: "❌ Could not fetch album",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
             setLoading(false);
         }
@@ -43,13 +50,27 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
             formData.set("_method", "PUT");
 
             const { data } = await api.post(`/albums/update/${id}`, formData);
-            setAlbums((prev) => prev.map((a) => (a.id === id ? data.data : a)));
 
-            alert("✅ Album updated successfully");
+            setAlbums((prev) =>
+                prev.map((a) => (a.id === id ? data.data : a))
+            );
+
+            notifications.show({
+                title: "Success",
+                message: "✅ Album updated successfully",
+                color: "teal",
+                icon: <Check />,
+            });
+
             modals.closeAll();
         } catch (error) {
             console.error(error);
-            alert("❌ Could not update album");
+            notifications.show({
+                title: "Error",
+                message: "❌ Could not update album",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
             setLoading(false);
         }

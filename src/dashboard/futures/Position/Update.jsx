@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import FormPosition from "./Form";
 import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
+import { modals } from "@mantine/modals";
+import { Check, X } from "tabler-icons-react";
 
 const UpdatePosition = ({ id, getPositions }) => {
     const [data, setData] = useState(null);
@@ -14,7 +17,12 @@ const UpdatePosition = ({ id, getPositions }) => {
             setData(data.data);
         } catch (error) {
             console.error("Error fetching position:", error);
-            alert("Failed to fetch position!");
+            notifications.show({
+                title: "Error",
+                message: "Failed to fetch position!",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
             setLoading(false);
         }
@@ -33,11 +41,22 @@ const UpdatePosition = ({ id, getPositions }) => {
                 await getPositions();
             }
 
-            alert("Position updated successfully!");
+            modals.closeAll();
+
+            notifications.show({
+                title: "Success",
+                message: "Position updated successfully!",
+                color: "teal",
+                icon: <Check />,
+            });
         } catch (error) {
             console.error("Error updating position:", error);
-
-            alert("Failed to update position!");
+            notifications.show({
+                title: "Error",
+                message: "Failed to update position!",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
             setLoading(false);
         }

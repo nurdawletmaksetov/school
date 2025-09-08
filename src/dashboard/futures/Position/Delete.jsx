@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button, Flex, Stack, Text, Loader } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../../api/api";
+import { notifications } from "@mantine/notifications";
+import { Check, X } from "tabler-icons-react";
 
 const DeletePosition = ({ id, positions, setPositions, getPositions }) => {
     const [loading, setLoading] = useState(false);
@@ -16,11 +18,21 @@ const DeletePosition = ({ id, positions, setPositions, getPositions }) => {
 
             modals.closeAll();
 
-            alert("Position deleted successfully!");
+            notifications.show({
+                title: "Success",
+                message: "Position deleted successfully!",
+                color: "teal",
+                icon: <Check />,
+            });
         } catch (error) {
             console.error("Error deleting position:", error);
 
-            alert("Failed to delete position!");
+            notifications.show({
+                title: "Error",
+                message: "Failed to delete position!",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
             setLoading(false);
         }

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Flex, Loader } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import FormUsers from './Form';
-import { api } from '../../../api/api';
+import { notifications } from "@mantine/notifications"; 
+import FormUsers from "./Form";
+import { api } from "../../../api/api";
 
 const UpdateUsers = ({ id, getUsers }) => {
     const [data, setData] = useState(null);
@@ -15,7 +16,11 @@ const UpdateUsers = ({ id, getUsers }) => {
             setData(data.data);
         } catch (error) {
             console.error(error);
-            alert("❌ Could not fetch user");
+            notifications.show({
+                title: "Error",
+                message: "❌ Could not fetch user",
+                color: "red",
+            });
         } finally {
             setLoading(false);
         }
@@ -29,12 +34,22 @@ const UpdateUsers = ({ id, getUsers }) => {
         setLoading(true);
         try {
             await api.put(`/users/update/${id}`, body);
-            alert("✅ User updated successfully");
+
+            notifications.show({
+                title: "Success",
+                message: "✅ User updated successfully",
+                color: "teal",
+            });
+
             if (getUsers) await getUsers();
             modals.closeAll();
         } catch (error) {
             console.error(error);
-            alert("❌ Could not update user");
+            notifications.show({
+                title: "Error",
+                message: "❌ Could not update user",
+                color: "red",
+            });
         } finally {
             setLoading(false);
         }

@@ -13,6 +13,11 @@ export const AuthProvider = ({ children }) => {
             if (status === 200) {
                 localStorage.setItem("access_token", data.data.access_token);
                 localStorage.setItem("refresh_token", data.data.refresh_token);
+
+                api.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${data.data.access_token}`;
+
                 setIsAuth(true);
                 return true;
             }
@@ -29,8 +34,12 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             console.error("Logout error:", error);
         }
+
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
+
+        delete api.defaults.headers.common["Authorization"];
+
         setIsAuth(false);
 
         if (callback) {
@@ -55,7 +64,13 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        getMe();
+        const token = localStorage.getItem("access_token");
+        if (token) {
+            api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+            getMe();
+        } else {
+            setLoading(false);
+        }
     }, []);
 
     return (

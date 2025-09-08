@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Flex, Loader, Stack } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { notifications } from "@mantine/notifications"; 
+import { Check, X } from "tabler-icons-react";
 import FormAlbum from "./Form";
 import { api } from "../../../api/api";
 
@@ -26,12 +28,23 @@ const CreateAlbum = ({ getAlbums }) => {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
-            alert("✅ Album created successfully");
+            notifications.show({
+                title: "Success",
+                message: "✅ Album created successfully",
+                color: "teal",
+                icon: <Check />,
+            });
+
             if (getAlbums) await getAlbums();
             modals.closeAll();
         } catch (error) {
             console.error(error);
-            alert("❌ Could not create album");
+            notifications.show({
+                title: "Error",
+                message: "❌ Could not create album",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
             setLoading(false);
         }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination } from "@mantine/core";
+import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreatePosition from "../futures/Position/Create";
@@ -11,7 +11,7 @@ function Position() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
-
+  const currentLang = "ru";
   const getPositions = async (page = 1) => {
     setLoading(true);
     try {
@@ -84,8 +84,15 @@ function Position() {
             {positions.map((el) => (
               <Table.Tr key={el.id}>
                 <Table.Td>{el.id}</Table.Td>
-                <Table.Td>{el.name.ru}</Table.Td>
-                <Table.Td>{el.description.ru}</Table.Td>
+                <Table.Td>{el.name[currentLang]}</Table.Td>
+                <Table.Td
+                  style={{
+                    maxWidth: "300px",
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
+                    overflowWrap: "anywhere",
+                  }}
+                >{el.description[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
                     <Button onClick={() => deleteFn(el.id)}>Delete</Button>

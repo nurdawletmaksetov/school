@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Group, Pagination, Stack, Table, Title, Loader, Text } from "@mantine/core";
+import { Button, Flex, Group, Pagination, Stack, Table, Title, Loader, Text, Notification } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import UpdateAlbum from "../futures/Album/Update";
@@ -85,13 +85,13 @@ const Album = () => {
                   <Table.Td>{album.id}</Table.Td>
                   <Table.Td>{album.title?.ru || "No title"}</Table.Td>
                   <Table.Td>
-                    {album.photos && album.photos.length > 0 ? (
+                    {album.photos_url && album.photos_url.length > 0 ? (
                       <div style={{ display: "flex", gap: "10px" }}>
-                        {album.photos.map((photo, index) => (
+                        {album.photos_url.map((photo, index) => (
                           <img
                             key={index}
-                            src={photo}
-                            alt="album"
+                            src={photo.path}
+                            alt={photo.name}
                             width={80}
                             height={60}
                             style={{ objectFit: "cover", borderRadius: "6px" }}

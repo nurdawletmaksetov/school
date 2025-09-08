@@ -2,6 +2,8 @@ import { useState } from "react";
 import { api } from "../../../api/api";
 import FormPosition from "./Form";
 import { Loader, Flex, Stack } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
+import { Check, X } from "tabler-icons-react";
 
 const CreatePosition = ({ getPositions }) => {
     const [loading, setLoading] = useState(false);
@@ -11,7 +13,12 @@ const CreatePosition = ({ getPositions }) => {
         try {
             await api.post("/positions/create", body);
 
-            alert("Position created successfully!");
+            notifications.show({
+                title: "Success",
+                message: "Position created successfully!",
+                color: "teal",
+                icon: <Check />,
+            });
 
             if (getPositions) {
                 await getPositions();
@@ -19,7 +26,12 @@ const CreatePosition = ({ getPositions }) => {
         } catch (error) {
             console.error("Error creating position:", error);
 
-            alert("Failed to create position!");
+            notifications.show({
+                title: "Error",
+                message: "Failed to create position!",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
             setLoading(false);
         }

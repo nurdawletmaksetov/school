@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Flex, Stack, Text, Loader } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { notifications } from "@mantine/notifications";
+import { Check, X } from "tabler-icons-react"; 
 import { api } from "../../../api/api";
 
 const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
@@ -10,14 +12,25 @@ const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
         setLoading(true);
         try {
             await api.delete(`/albums/delete/${id}`);
-            alert("✅ Album deleted successfully");
+
+            notifications.show({
+                title: "Success",
+                message: "✅ Album deleted successfully",
+                color: "teal",
+                icon: <Check />,
+            });
 
             if (getAlbums) await getAlbums();
             setAlbums(albums.filter((a) => a.id !== id));
             modals.closeAll();
         } catch (error) {
             console.error(error);
-            alert("❌ Could not delete album");
+            notifications.show({
+                title: "Error",
+                message: "❌ Could not delete album",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
             setLoading(false);
         }
@@ -33,7 +46,9 @@ const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
             ) : (
                 <Flex gap={10} justify="flex-end">
                     <Button onClick={() => modals.closeAll()}>Отмена</Button>
-                    <Button color="red" onClick={deleteFn}>Удалить</Button>
+                    <Button color="red" onClick={deleteFn}>
+                        Удалить
+                    </Button>
                 </Flex>
             )}
         </Stack>
