@@ -2,7 +2,7 @@ import { useForm } from "@mantine/form";
 import { Button, TextInput, Textarea, Stack, Flex } from "@mantine/core";
 import { modals } from "@mantine/modals";
 
-const FormPosition = ({ submitFn, initialValues }) => {
+const FormSchool = ({ submitFn, initialValues }) => {
     const form = useForm({
         initialValues,
     });
@@ -16,23 +16,60 @@ const FormPosition = ({ submitFn, initialValues }) => {
             <Stack>
                 <TextInput
                     label="Karakalpak (kk)"
-                    placeholder="Your name"
+                    placeholder="name"
                     {...form.getInputProps("name.kk")}
                 />
                 <TextInput
                     label="Uzbek (uz)"
-                    placeholder="Your name"
+                    placeholder="name"
                     {...form.getInputProps("name.uz")}
                 />
                 <TextInput
                     label="Russian (ru)"
-                    placeholder="Your name"
+                    placeholder="name"
                     {...form.getInputProps("name.ru")}
                 />
                 <TextInput
                     label="English (en)"
-                    placeholder="Your name"
+                    placeholder="name"
                     {...form.getInputProps("name.en")}
+                />
+
+                <Textarea
+                    label="Karakalpak (kk)"
+                    placeholder="history"
+                    minRows={2}
+                    {...form.getInputProps("history.kk")}
+                />
+                <Textarea
+                    label="Uzbek (uz)"
+                    placeholder="history"
+                    minRows={2}
+                    {...form.getInputProps("history.uz")}
+                />
+                <Textarea
+                    label="Russian (ru)"
+                    placeholder="history"
+                    minRows={2}
+                    {...form.getInputProps("history.ru")}
+                />
+                <Textarea
+                    label="English (en)"
+                    placeholder="history"
+                    minRows={2}
+                    {...form.getInputProps("history.en")}
+                />
+
+                <TextInput
+                    label="Phone"
+                    placeholder="Phone number"
+                    {...form.getInputProps("phone")}
+                />
+
+                <TextInput
+                    label="Location"
+                    placeholder="Location"
+                    {...form.getInputProps("location")}
                 />
 
                 <Textarea
@@ -69,4 +106,4 @@ const FormPosition = ({ submitFn, initialValues }) => {
     );
 };
 
-export default FormPosition;
+export default FormSchool;

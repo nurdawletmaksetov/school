@@ -1,85 +1,51 @@
-import { Button, FileInput, Flex, Input, Stack, Textarea, TextInput } from '@mantine/core'
+import { Button, FileInput, Flex, Stack, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { modals } from '@mantine/modals';
 import { IconAt } from '@tabler/icons-react';
-import React, { useState } from 'react'
+import React from 'react'
 
 const FormEmployee = ({ submitFn, initialValues }) => {
-    const [value, setValue] = useState(null);
     const form = useForm({
-        initialValues,
+        initialValues: {
+            full_name: { kk: "", uz: "", ru: "", en: "", ...initialValues.full_name },
+            phone: initialValues.phone || "",
+            photo: initialValues.photo || null,
+            email: initialValues.email || "",
+            position_id: initialValues.position_id || "",
+            birth_date: initialValues.birth_date || "",
+            description: { kk: "", uz: "", ru: "", en: "", ...initialValues.description },
+        },
     });
 
     const handleSubmit = async (values) => {
         await submitFn(values);
-        modals.closeAll();
     }
+
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
-                <TextInput
-                    label="Kazakh (kk)"
-                    placeholder="Введите название"
-                    {...form.getInputProps("full_name.kk")}
-                />
-                <TextInput
-                    label="Uzbek (uz)"
-                    placeholder="Введите название"
-                    {...form.getInputProps("full_name.uz")}
-                />
-                <TextInput
-                    label="Russian (ru)"
-                    placeholder="Введите название"
-                    {...form.getInputProps("full_name.ru")}
-                />
-                <TextInput
-                    label="English (en)"
-                    placeholder="Введите название"
-                    {...form.getInputProps("full_name.en")}
-                />
-                <Textarea
-                    label="Phone"
-                    placeholder="Введите описание"
-                    {...form.getInputProps("phone")}
-                />
-                <FileInput
-                    label="Your Photo"
-                    accept="image/png,image/jpeg"
-                    value={value} onChange={setValue}
-                    {...form.getInputProps("photo")}
-                />
-                <Input
-                    placeholder="Your email"
-                    leftSection={<IconAt size={16} />}
-                    {...form.getInputProps("email")}
-                />
-                <TextInput
-                    label="Kazakh (kk)"
-                    placeholder="Введите название"
-                    {...form.getInputProps("position.kk")}
-                />
-                <TextInput
-                    label="Uzbek (uz)"
-                    placeholder="Введите название"
-                    {...form.getInputProps("position.uz")}
-                />
-                <TextInput
-                    label="Russian (ru)"
-                    placeholder="Введите название"
-                    {...form.getInputProps("position.ru")}
-                />
-                <TextInput
-                    label="English (en)"
-                    placeholder="Введите название"
-                    {...form.getInputProps("position.en")}
-                />
-                <Textarea
-                    label="Birth Date"
-                    placeholder="Введите описание"
-                    {...form.getInputProps("birth_date")}
-                />
+                <TextInput label="Karakalpak (kk)" placeholder="Full Name" {...form.getInputProps("full_name.kk")} />
+                <TextInput label="Uzbek (uz)" placeholder="Full Name" {...form.getInputProps("full_name.uz")} />
+                <TextInput label="Russian (ru)" placeholder="Full Name" {...form.getInputProps("full_name.ru")} />
+                <TextInput label="English (en)" placeholder="Full Name" {...form.getInputProps("full_name.en")} />
+
+                <TextInput label="Phone" placeholder="Phone number" {...form.getInputProps("phone")} />
+
+                <FileInput label="Your Photo" placeholder="Upload your photo" accept="image/png,image/jpeg" {...form.getInputProps("photo")} />
+
+                <TextInput label="Email" placeholder="Your email" leftSection={<IconAt size={16} />} {...form.getInputProps("email")} />
+
+                <TextInput label="Position id" placeholder="Position id" {...form.getInputProps("position_id")} />
+
+                <TextInput label="Birth Date" placeholder="YYYY-MM-DD" {...form.getInputProps("birth_date")} />
+
+                <TextInput label="Karakalpak (kk)" placeholder="Description" {...form.getInputProps("description.kk")} />
+                <TextInput label="Uzbek (uz)" placeholder="Description" {...form.getInputProps("description.uz")} />
+                <TextInput label="Russian (ru)" placeholder="Description" {...form.getInputProps("description.ru")} />
+                <TextInput label="English (en)" placeholder="Description" {...form.getInputProps("description.en")} />
+
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()}>Отмена</Button>
+                    <Button onClick={() => { form.reset(); modals.closeAll(); }}>Отмена</Button>
                     <Button type="submit">Сохранить</Button>
                 </Flex>
             </Stack>

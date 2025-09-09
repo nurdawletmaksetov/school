@@ -2,26 +2,24 @@ import { useForm } from "@mantine/form";
 import {
     Button,
     TextInput,
+    Textarea,
     Stack,
     Flex,
     FileInput,
     Select,
     MultiSelect,
 } from "@mantine/core";
-import { modals } from "@mantine/modals";
 import { useState, useEffect } from "react";
 import { api } from "../../../api/api";
+import { modals } from "@mantine/modals";
 
 const FormNews = ({ submitFn, initialValues }) => {
     const [file, setFile] = useState(null);
     const [authors, setAuthors] = useState([]);
     const [tags, setTags] = useState([]);
 
-    const form = useForm({
-        initialValues,
-    });
+    const form = useForm({ initialValues });
 
-    // Avtorlarni olish
     useEffect(() => {
         async function fetchAuthors() {
             try {
@@ -37,69 +35,19 @@ const FormNews = ({ submitFn, initialValues }) => {
             }
         }
 
-        async function createFn(body) {
-            setLoading(true);
+        async function fetchTags() {
             try {
-                const formData = new FormData();
-
-                // Title massiv
-                Object.values(body.title).forEach((t) => {
-                    formData.append("title[]", t || "");
-                });
-
-                // Short content massiv
-                Object.values(body.short_content).forEach((sc) => {
-                    formData.append("short_content[]", sc || "");
-                });
-
-                // Content massiv
-                Object.values(body.content).forEach((c) => {
-                    formData.append("content[]", c || "");
-                });
-
-                // Author
-                if (body.author_id) {
-                    formData.append("author_id", body.author_id);
-                }
-
-                // Tags
-                if (body.tags && body.tags.length > 0) {
-                    body.tags.forEach((tag) => {
-                        formData.append("tags[]", tag);
-                    });
-                }
-
-                // Cover image
-                if (body.cover_image) {
-                    formData.append("cover_image", body.cover_image);
-                }
-
-                await api.post("/news/create", formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                });
-
-                notifications.show({
-                    title: "✅ Success",
-                    message: "News created successfully",
-                    color: "green",
-                });
-
-                if (getNews) await getNews();
-                modals.closeAll();
+                const { data } = await api.get("/tags");
+                setTags(
+                    data.data.items.map((t) => ({
+                        value: t.id.toString(),
+                        label: t.name,
+                    }))
+                );
             } catch (error) {
-                console.error("Error creating news:", error);
-                notifications.show({
-                    title: "❌ Error",
-                    message: error?.response?.data?.message || "Could not create news",
-                    color: "red",
-                });
-            } finally {
-                setLoading(false);
+                console.error("Error fetching tags:", error);
             }
         }
-
 
         fetchAuthors();
         fetchTags();
@@ -110,63 +58,37 @@ const FormNews = ({ submitFn, initialValues }) => {
             ...values,
             cover_image: file,
         });
-        modals.closeAll();
     };
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
-                <TextInput
-                    label="Title (kk)"
-                    {...form.getInputProps("title.kk")}
-                />
-                <TextInput
+                <TextInput label="Title (kk)" {...form.getInputProps("title.kk")} />
+                <TextInput label="Title (uz)" {...form.getInputProps("title.uz")} />
+                <TextInput label="Title (ru)" {...form.getInputProps("title.ru")} />
+                <TextInput label="Title (en)" {...form.getInputProps("title.en")} />
 
-                    label="Title (uz)"
-                    {...form.getInputProps("title.uz")}
-                />
-                <TextInput
-                    label="Title (ru)"
-                    {...form.getInputProps("title.ru")}
-                />
-                <TextInput
-                    label="Title (en)"
-                    {...form.getInputProps("title.en")}
-                />
-
-                <TextInput
+                <Textarea
                     label="Short Content (kk)"
                     {...form.getInputProps("short_content.kk")}
                 />
-                <TextInput
+                <Textarea
                     label="Short Content (uz)"
                     {...form.getInputProps("short_content.uz")}
                 />
-                <TextInput
+                <Textarea
                     label="Short Content (ru)"
                     {...form.getInputProps("short_content.ru")}
                 />
-                <TextInput
+                <Textarea
                     label="Short Content (en)"
                     {...form.getInputProps("short_content.en")}
                 />
 
-                <TextInput
-                    label="Content (kk)"
-                    {...form.getInputProps("content.kk")}
-                />
-                <TextInput
-                    label="Content (uz)"
-                    {...form.getInputProps("content.uz")}
-                />
-                <TextInput
-                    label="Content (ru)"
-                    {...form.getInputProps("content.ru")}
-                />
-                <TextInput
-                    label="Content (en)"
-                    {...form.getInputProps("content.en")}
-                />
+                <Textarea label="Content (kk)" {...form.getInputProps("content.kk")} />
+                <Textarea label="Content (uz)" {...form.getInputProps("content.uz")} />
+                <Textarea label="Content (ru)" {...form.getInputProps("content.ru")} />
+                <Textarea label="Content (en)" {...form.getInputProps("content.en")} />
 
                 <Select
                     label="Author"
@@ -191,9 +113,9 @@ const FormNews = ({ submitFn, initialValues }) => {
 
                 <Flex justify="end" gap={10}>
                     <Button onClick={() => modals.closeAll()} variant="outline">
-                        Отмена
+                        Cancel
                     </Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button type="submit">Save</Button>
                 </Flex>
             </Stack>
         </form>

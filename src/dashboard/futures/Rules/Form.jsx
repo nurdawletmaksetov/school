@@ -9,7 +9,6 @@ const FormRules = ({ submitFn, initialValues }) => {
 
     const handleSubmit = async (values) => {
         await submitFn(values);
-        modals.closeAll();
     };
 
     return (

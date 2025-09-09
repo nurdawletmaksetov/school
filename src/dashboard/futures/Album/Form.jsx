@@ -1,4 +1,4 @@
-import { Button, FileInput, Group, Stack, TextInput } from "@mantine/core";
+import { Button, FileInput, Flex, Group, Stack, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { modals } from "@mantine/modals";
 
@@ -49,12 +49,10 @@ const FormAlbum = ({ submitFn, initialValues }) => {
                     value={form.values.photos}
                     onChange={(files) => form.setFieldValue("photos", files)}
                 />
-                <Group>
-                    <Button onClick={() => modals.closeAll()} variant="outline">
-                        Cancel
-                    </Button>
-                    <Button type="submit">Save</Button>
-                </Group>
+                <Flex justify="end" gap={10}>
+                    <Button onClick={() => modals.closeAll()}>Отмена</Button>
+                    <Button type="submit">Сохранить</Button>
+                </Flex>
             </Stack>
         </form>
     );

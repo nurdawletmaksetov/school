@@ -10,7 +10,6 @@ const FormUsers = ({ submitFn, initialValues }) => {
 
     const handleSubmit = async (values) => {
         await submitFn(values);
-        modals.closeAll();
     }
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
