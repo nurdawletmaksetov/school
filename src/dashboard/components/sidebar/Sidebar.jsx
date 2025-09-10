@@ -1,4 +1,4 @@
-import { Flex, Stack, Title, NavLink } from "@mantine/core";
+import { Flex, Stack, Title, NavLink, ScrollArea } from "@mantine/core";
 import { Link, useLocation } from "react-router-dom";
 import {
     Building,
@@ -11,7 +11,11 @@ import {
     Home,
     BookOpen,
     Star,
+    Clock,
+    Target,
+    File,
 } from "lucide-react";
+import { IconFlagQuestion } from "@tabler/icons-react";
 
 const links = [
     { to: "school", label: "School", icon: <Building size={18} /> },
@@ -23,7 +27,15 @@ const links = [
     { to: "document", label: "Document", icon: <FileText size={18} /> },
     { to: "main", label: "Main", icon: <Home size={18} /> },
     { to: "rules", label: "Rules", icon: <BookOpen size={18} /> },
+    { to: "club", label: "Club", icon: <Users size={18} /> },
     { to: "value", label: "Value", icon: <Star size={18} /> },
+    { to: "faq", label: "FAQ", icon: <IconFlagQuestion size={18} /> },
+    { to: "hours", label: "SchoolHours", icon: <Clock size={18} /> },
+    { to: "target", label: "Target", icon: <Target size={18} /> },
+    { to: "history", label: "History", icon: <BookOpen size={18} /> },
+    { to: "information", label: "Information", icon: <File size={18} /> },
+    { to: "vacancy", label: "Vacancy", icon: <FileText size={18} /> },
+    { to: "admin-schedule", label: "AdminSchedule", icon: <FileText size={18} /> },
 ];
 
 export const Sidebar = () => {
@@ -41,25 +53,27 @@ export const Sidebar = () => {
                 Polytechnic
             </Title>
 
-            <Stack gap={8}>
-                {links.map((item) => (
-                    <NavLink
-                        key={item.to}
-                        label={item.label}
-                        component={Link}
-                        to={item.to}
-                        bdrs={6}
-                        leftSection={item.icon}
-                        active={location.pathname.includes(item.to)}
-                        styles={(theme) => ({
-                            active: {
-                                backgroundColor: theme.colors.blue[7],
-                                color: "white",
-                            },
-                        })}
-                    />
-                ))}
-            </Stack>
-        </Stack>
+            <ScrollArea w={"auto"} h={"100%"} scrollbarSize={"hidden"} scrollbars="y">
+                <Stack gap={8}>
+                    {links.map((item) => (
+                        <NavLink
+                            key={item.to}
+                            label={item.label}
+                            component={Link}
+                            to={item.to}
+                            bdrs={6}
+                            leftSection={item.icon}
+                            active={location.pathname.includes(item.to)}
+                            styles={(theme) => ({
+                                active: {
+                                    backgroundColor: theme.colors.blue[7],
+                                    color: "white",
+                                },
+                            })}
+                        />
+                    ))}
+                </Stack>
+            </ScrollArea>
+        </Stack >
     );
 };

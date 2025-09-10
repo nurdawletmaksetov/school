@@ -92,14 +92,7 @@ function AdminNews() {
                 </Table.Td>
                 <Table.Td>{el.title?.[currentLang]}</Table.Td>
                 <Table.Td>{el.short_content?.[currentLang]}</Table.Td>
-                <Table.Td
-                  style={{
-                    maxWidth: "500px",
-                    whiteSpace: "normal",
-                    wordBreak: "break-word",
-                    overflowWrap: "anywhere",
-                  }}
-                >{el.content?.[currentLang]}</Table.Td>
+                <Table.Td>{el.content?.[currentLang]}</Table.Td>
                 <Table.Td>{el.author?.full_name?.[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>

@@ -24,6 +24,14 @@ const Document = lazy(() => import("../dashboard/pages/Document"));
 const Main = lazy(() => import("../dashboard/pages/Main"));
 const Value = lazy(() => import("../dashboard/pages/Value"));
 const AdminRules = lazy(() => import("../dashboard/pages/Rules"));
+const SchoolHours = lazy(() => import("../dashboard/pages/SchoolHours"));
+const Target = lazy(() => import("../dashboard/pages/Target"));
+const History = lazy(() => import("../dashboard/pages/History"));
+const Information = lazy(() => import("../dashboard/pages/Information"));
+const Vacancy = lazy(() => import("../dashboard/pages/Vacancy"));
+const AdminSchedule = lazy(() => import("../dashboard/pages/AdminSchedule"));
+const FAQ = lazy(() => import("../dashboard/pages/FAQ"));
+const Club = lazy(() => import("../dashboard/pages/Club"));
 
 const Login = lazy(() => import("../auth/Login"));
 const Register = lazy(() => import("../auth/Register"));
@@ -214,6 +222,70 @@ export const router = createBrowserRouter([
                         <Value />
                     </Suspense>
                 ),
+            },
+            {
+                path: "club",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <Club />
+                    </Suspense>
+                )
+            },
+            {
+                path: "faq",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <FAQ />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "hours",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <SchoolHours />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "target",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <Target />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "history",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <History />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "information",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <Information />
+                    </Suspense>
+                )
+            },
+            {
+                path: "vacancy",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <Vacancy />
+                    </Suspense>
+                )
+            },
+            {
+                path: "admin-schedule",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <AdminSchedule />
+                    </Suspense>
+                )
             },
         ],
     },

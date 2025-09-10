@@ -1,8 +1,84 @@
-import React from 'react'
+import { useEffect, useState } from "react";
+import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
+// import { modals } from "@mantine/modals";
+import { api } from "../../api/api";
 
 const Information = () => {
+  const [information, setInformation] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
+  const currentLang = "ru";
+
+  const getInformation = async (page = 1) => {
+    setLoading(true);
+    try {
+      const { data } = await api.get(`/informations?page=${page}&per_page=10`);
+      setInformation(data.data.items);
+      setLastPage(data.data.pagination.last_page);
+    } catch (error) {
+      console.error("Error fetching information:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getInformation(page);
+  }, [page]);
+
   return (
-    <div>Information</div>
+    <>
+      <Stack p={20} w="100%">
+        <Flex justify="space-between" align="center">
+          <Title>Information</Title>
+          <Button>Create</Button>
+        </Flex>
+
+        {loading ? (
+          <Flex justify="center" align="center" style={{ height: "200px" }}>
+            <Loader variant="dots" />
+          </Flex>
+        ) : (
+          <Table
+            horizontalSpacing="xl"
+            verticalSpacing="sm"
+            highlightOnHover
+            withTableBorder
+            withColumnBorders
+          >
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>Id</Table.Th>
+                <Table.Th>Title</Table.Th>
+                <Table.Th>Count</Table.Th>
+                <Table.Th>Description</Table.Th>
+                <Table.Th>Actions</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {information.map((el) => (
+                <Table.Tr key={el.id}>
+                  <Table.Td>{el.id}</Table.Td>
+                  <Table.Td>{el.title[currentLang]}</Table.Td>
+                  <Table.Td>{el.count}</Table.Td>
+                  <Table.Td>{el.description[currentLang]}</Table.Td>
+                  <Table.Td>
+                    <Flex gap={10}>
+                      <Button>Delete</Button>
+                      <Button>Update</Button>
+                    </Flex>
+                  </Table.Td>
+                </Table.Tr>
+              ))}
+            </Table.Tbody>
+          </Table>
+        )}
+        <Flex justify="center" mt="md">
+          <Pagination total={lastPage} value={page} onChange={setPage} />
+        </Flex>
+      </Stack>
+    </>
   )
 }
 

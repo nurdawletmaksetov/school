@@ -1,8 +1,80 @@
-import React from 'react'
+import { useEffect, useState } from "react";
+import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
+// import { modals } from "@mantine/modals";
+import { api } from "../../api/api";
 
 const Target = () => {
+  const [target, setTarget] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
+  const currentLang = "ru";
+
+  const getTarget = async (page = 1) => {
+    setLoading(true);
+    try {
+      const { data } = await api.get(`/targets?page=${page}&per_page=10`);
+      setTarget(data.data.items);
+      setLastPage(data.data.pagination.last_page);
+    } catch (error) {
+      console.error("Error fetching target:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getTarget(page);
+  }, [page]);
+
   return (
-    <div>Target</div>
+    <Stack p={20} w="100%">
+      <Flex justify="space-between" align="center">
+        <Title>Target</Title>
+        <Button>Create</Button>
+      </Flex>
+
+      {loading ? (
+        <Flex justify="center" align="center" style={{ height: "200px" }}>
+          <Loader variant="dots" />
+        </Flex>
+      ) : (
+        <Table
+          horizontalSpacing="xl"
+          verticalSpacing="sm"
+          highlightOnHover
+          withTableBorder
+          withColumnBorders
+        >
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Id</Table.Th>
+              <Table.Th>Name</Table.Th>
+              <Table.Th>Description</Table.Th>
+              <Table.Th>Actions</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            {target.map((el) => (
+              <Table.Tr key={el.id}>
+                <Table.Td>{el.id}</Table.Td>
+                <Table.Td>{el.name[currentLang]}</Table.Td>
+                <Table.Td>{el.description[currentLang]}</Table.Td>
+                <Table.Td>
+                  <Flex gap={10}>
+                    <Button>Delete</Button>
+                    <Button>Update</Button>
+                  </Flex>
+                </Table.Td>
+              </Table.Tr>
+            ))}
+          </Table.Tbody>
+        </Table>
+      )}
+      <Flex justify="center" mt="md">
+        <Pagination total={lastPage} value={page} onChange={setPage} />
+      </Flex>
+    </Stack>
   )
 }
 
