@@ -3,32 +3,32 @@ import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
-import FormVacancy from "./Form";
+import FormSchoolHours from "./Form";
 
-const CreateVacancy = ({ getVacancy }) => {
+const CreateSchoolHours = ({ getSchoolHours }) => {
     const [loading, setLoading] = useState(false);
 
     const createFn = async (body) => {
         setLoading(true);
         try {
-            await api.post("/vacancies/create", body);
+            await api.post("/school-hours/create", body);
 
             notifications.show({
                 title: "Success",
-                message: "Vacancy created successfully!",
+                message: "SchoolHours created successfully!",
                 color: "teal",
                 icon: <Check />,
             });
 
-            if (getVacancy) {
-                await getVacancy();
+            if (getSchoolHours) {
+                await getSchoolHours();
             }
         } catch (error) {
-            console.error("Error creating position:", error);
+            console.error("Error creating SchoolHours:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create position!",
+                message: "Failed to create SchoolHours!",
                 color: "red",
                 icon: <X />,
             });
@@ -45,12 +45,12 @@ const CreateVacancy = ({ getVacancy }) => {
                 </Flex>
             ) : (
                 <Stack>
-                    <FormVacancy
+                    <FormSchoolHours
                         submitFn={createFn}
                         initialValues={{
                             title: { kk: "", uz: "", ru: "", en: "" },
-                            content: { kk: "", uz: "", ru: "", en: "" },
-                            salary: "",
+                            workday: { kk: "", uz: "", ru: "", en: "" },
+                            holiday: { kk: "", uz: "", ru: "", en: "" },
                         }}
                     />
                 </Stack>
@@ -59,4 +59,4 @@ const CreateVacancy = ({ getVacancy }) => {
     );
 };
 
-export default CreateVacancy;
+export default CreateSchoolHours;

@@ -1,8 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
-// import { modals } from "@mantine/modals";
+import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
+import CreateSchoolHours from '../futures/SchoolHours/Create';
 const SchoolHours = () => {
   const [schoolhours, setSchoolHours] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,11 +28,17 @@ const SchoolHours = () => {
     getSchoolHours(page);
   }, [page]);
 
+  const createFn = () => {
+    modals.open({
+      children: <CreateSchoolHours getSchoolHours={getSchoolHours} />,
+    });
+  };
+
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
         <Title>School Hours</Title>
-        <Button>Create</Button>
+        <Button onClick={() => createFn()}>Create</Button>
       </Flex>
 
       {loading ? (

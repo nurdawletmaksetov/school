@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
-// import { modals } from "@mantine/modals";
+import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
+import CreateFaqs from "../futures/FAQ/Create";
 const FAQ = () => {
   const [faqs, setFaqs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -26,11 +27,17 @@ const FAQ = () => {
     getFaqs(page);
   }, [page]);
 
+  const createFn = () => {
+    modals.open({
+      children: <CreateFaqs getFaqs={getFaqs} />,
+    });
+  };
+
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
         <Title>FAQ</Title>
-        <Button>Create</Button>
+        <Button onClick={() => createFn()}>Create</Button>
       </Flex>
 
       {loading ? (

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://d3808b2e71ef.ngrok-free.app/api/v1",
+    baseURL: "https://cbefab3da55c.ngrok-free.app/api/v1",
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -72,7 +72,7 @@ api.interceptors.response.use(
                 }
 
                 const { data } = await axios.post(
-                    "https://d3808b2e71ef.ngrok-free.app/api/v1/refresh",
+                    "https://cbefab3da55c.ngrok-free.app/api/v1/refresh",
                     { refresh_token: refreshToken },
                     {
                         headers: {

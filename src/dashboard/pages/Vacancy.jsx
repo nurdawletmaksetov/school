@@ -60,7 +60,7 @@ const Vacancy = () => {
                 <Table.Th>Title</Table.Th>
                 <Table.Th>Content</Table.Th>
                 <Table.Th>Active</Table.Th>
-                <Table.Th>Salary</Table.Th>
+                <Table.Th>Salary(sum)</Table.Th>
                 <Table.Th>Actions</Table.Th>
               </Table.Tr>
             </Table.Thead>

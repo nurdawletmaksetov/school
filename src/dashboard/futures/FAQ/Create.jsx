@@ -1,34 +1,34 @@
 import { useState } from "react";
 import { api } from "../../../api/api";
+import FormPosition from "./Form";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
-import FormVacancy from "./Form";
 
-const CreateVacancy = ({ getVacancy }) => {
+const CreateFaqs = ({ getFaqs }) => {
     const [loading, setLoading] = useState(false);
 
     const createFn = async (body) => {
         setLoading(true);
         try {
-            await api.post("/vacancies/create", body);
+            await api.post("/faqs/create", body);
 
             notifications.show({
                 title: "Success",
-                message: "Vacancy created successfully!",
+                message: "FAQ created successfully!",
                 color: "teal",
                 icon: <Check />,
             });
 
-            if (getVacancy) {
-                await getVacancy();
+            if (getFaqs) {
+                await getFaqs();
             }
         } catch (error) {
-            console.error("Error creating position:", error);
+            console.error("Error creating faq:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create position!",
+                message: "Failed to create FAQ!",
                 color: "red",
                 icon: <X />,
             });
@@ -45,12 +45,11 @@ const CreateVacancy = ({ getVacancy }) => {
                 </Flex>
             ) : (
                 <Stack>
-                    <FormVacancy
+                    <FormPosition
                         submitFn={createFn}
                         initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
-                            content: { kk: "", uz: "", ru: "", en: "" },
-                            salary: "",
+                            question: { kk: "", uz: "", ru: "", en: "" },
+                            answer: { kk: "", uz: "", ru: "", en: "" },
                         }}
                     />
                 </Stack>
@@ -59,4 +58,4 @@ const CreateVacancy = ({ getVacancy }) => {
     );
 };
 
-export default CreateVacancy;
+export default CreateFaqs;
