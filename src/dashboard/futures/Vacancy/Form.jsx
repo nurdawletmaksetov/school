@@ -1,5 +1,5 @@
 import { useForm } from "@mantine/form";
-import { Button, TextInput, Textarea, Stack, Flex } from "@mantine/core";
+import { Button, TextInput, Textarea, Stack, Flex, Select, Switch } from "@mantine/core";
 import { modals } from "@mantine/modals";
 
 const FormVacancy = ({ submitFn, initialValues }) => {
@@ -59,10 +59,23 @@ const FormVacancy = ({ submitFn, initialValues }) => {
                     minRows={2}
                     {...form.getInputProps("content.en")}
                 />
+                <Switch
+                    label={
+                        form.values.active
+                            ? "Vacancy is active"
+                            : "Vacancy is not active"
+                    }
+                    checked={form.values.active}
+                    onChange={(event) =>
+                        form.setFieldValue("active", event.currentTarget.checked)
+                    }
+                />
+
                 <TextInput
                     label="Salary"
                     placeholder="Salary"
-                    {...form.getInputProps("salary")} />
+                    {...form.getInputProps("salary")}
+                />
 
                 <Flex justify="end" gap={10}>
                     <Button onClick={() => modals.closeAll()}>Отмена</Button>

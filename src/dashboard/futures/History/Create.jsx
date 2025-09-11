@@ -3,34 +3,35 @@ import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
-import FormVacancy from "./Form";
 import { modals } from "@mantine/modals";
+import FormHistory from "./Form";
 
-const CreateVacancy = ({ getVacancy }) => {
+const CreateHistory = ({ getHistory }) => {
     const [loading, setLoading] = useState(false);
 
     const createFn = async (body) => {
         setLoading(true);
         try {
-            await api.post("/vacancies/create", body);
+            await api.post("/histories/create", body);
 
             notifications.show({
                 title: "Success",
-                message: "Vacancy created successfully!",
+                message: "History created successfully!",
                 color: "teal",
                 icon: <Check />,
             });
 
-            if (getVacancy) {
-                await getVacancy();
-                modals.closeAll();
+            if (getHistory) {
+                await getHistory();
             }
+            modals.closeAll();
+
         } catch (error) {
-            console.error("Error creating position:", error);
+            console.error("Error creating History:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create position!",
+                message: "Failed to create History!",
                 color: "red",
                 icon: <X />,
             });
@@ -47,12 +48,11 @@ const CreateVacancy = ({ getVacancy }) => {
                 </Flex>
             ) : (
                 <Stack>
-                    <FormVacancy
+                    <FormHistory
                         submitFn={createFn}
                         initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
-                            content: { kk: "", uz: "", ru: "", en: "" },
-                            salary: null,
+                            year: null,
+                            text: { kk: "", uz: "", ru: "", en: "" },
                         }}
                     />
                 </Stack>
@@ -61,4 +61,4 @@ const CreateVacancy = ({ getVacancy }) => {
     );
 };
 
-export default CreateVacancy;
+export default CreateHistory;

@@ -4,6 +4,7 @@ import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreateSchedule from "../futures/Schedule/Create";
 import UpdateSchedule from "../futures/Schedule/Update";
+import DeleteSchedule from "../futures/Schedule/Delete";
 
 
 const AdminSchedule = () => {
@@ -63,6 +64,18 @@ const AdminSchedule = () => {
     });
   };
 
+  const deleteFn = (id) => {
+    modals.open({
+      children: (
+        <DeleteSchedule
+          id={id}
+          AdminSchedule={AdminSchedule}
+          setAdminSchedule={setAdminSchedule}
+        />
+      ),
+    });
+  };
+
   return (
     <>
       <Stack p={20} w="100%">
@@ -99,7 +112,7 @@ const AdminSchedule = () => {
                   </Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
-                      <Button>Delete</Button>
+                      <Button onClick={() => deleteFn(el.id)}>Delete</Button>
                       <Button onClick={() => updateFn(el.id)}>Update</Button>
                     </Flex>
                   </Table.Td>

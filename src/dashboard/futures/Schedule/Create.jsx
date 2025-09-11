@@ -49,7 +49,7 @@ const CreateSchedule = ({ getAdminSchedule }) => {
                     <FormSchedule
                         submitFn={createFn}
                         initialValues={{
-                            description: { kk: "", uz: "", ru: "", en: "" },
+                            description: "",
                             file: null,
                         }}
                     />

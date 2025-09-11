@@ -4,22 +4,22 @@ import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { Check, X } from "tabler-icons-react";
-import FormSchedule from "./Form";
+import FormHistory from "./Form";
 
-const UpdateSchedule = ({ id, getAdminSchedule }) => {
+const UpdateHistory = ({ id, getHistory }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const getSchedules = async () => {
+    const getHistories = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/schedules/${id}`);
+            const { data } = await api.get(`/histories/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching Schedule:", error);
+            console.error("Error fetching History:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to fetch Schedule!",
+                message: "Failed to fetch History!",
                 color: "red",
                 icon: <X />,
             });
@@ -29,31 +29,31 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
     };
 
     useEffect(() => {
-        getSchedules();
+        getHistories();
     }, [id]);
 
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/schedules/update/${id}`, body);
+            await api.put(`/informations/update/${id}`, body);
 
-            if (getAdminSchedule) {
-                await getAdminSchedule();
+            if (getHistory) {
+                await getHistory();
             }
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "Schedule updated successfully!",
+                message: "History updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating Schedule:", error);
+            console.error("Error updating History:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Schedule!",
+                message: "Failed to update History!",
                 color: "red",
                 icon: <X />,
             });
@@ -73,14 +73,19 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
     }
 
     return (
-        <FormSchedule
+        <FormHistory
             submitFn={updateFn}
             initialValues={{
-                description: data.description,
-                file: data.file,
+                year: data.year,
+                text: {
+                    ru: data.text.ru,
+                    uz: data.text.uz,
+                    en: data.text.en,
+                    kk: data.text.kk,
+                },
             }}
         />
     );
 };
 
-export default UpdateSchedule;
+export default UpdateHistory;

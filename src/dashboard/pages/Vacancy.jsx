@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
+import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea, Badge } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreateVacancy from "../futures/Vacancy/Create";
+import UpdateVacancy from "../futures/Vacancy/Update";
+import DeleteVacancy from "../futures/Vacancy/Delete";
 
 const Vacancy = () => {
   const [vacancy, setVacancy] = useState([]);
@@ -31,6 +33,24 @@ const Vacancy = () => {
   const createFn = () => {
     modals.open({
       children: <CreateVacancy getVacancy={getVacancy} />,
+    });
+  };
+
+  const updateFn = (id) => {
+    modals.open({
+      children: <UpdateVacancy id={id} getVacancy={getVacancy} />,
+    });
+  };
+
+  const deleteFn = (id) => {
+    modals.open({
+      children: (
+        <DeleteVacancy
+          id={id}
+          vacancy={vacancy}
+          setVacancy={setVacancy}
+        />
+      ),
     });
   };
 
@@ -68,12 +88,18 @@ const Vacancy = () => {
                   <Table.Td>{el.id}</Table.Td>
                   <Table.Td>{el.title[currentLang]}</Table.Td>
                   <Table.Td>{el.content[currentLang]}</Table.Td>
-                  <Table.Td>{el.active}</Table.Td>
+                  <Table.Td>
+                    {el.active ? (
+                      <Badge variant="light" color="green">Active</Badge>
+                    ) : (
+                      <Badge variant="light" color="red">Inactive</Badge>
+                    )}
+                  </Table.Td>
                   <Table.Td>{el.salary}</Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
-                      <Button>Delete</Button>
-                      <Button>Update</Button>
+                      <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                      <Button onClick={() => updateFn(el.id)}>Update</Button>
                     </Flex>
                   </Table.Td>
                 </Table.Tr>

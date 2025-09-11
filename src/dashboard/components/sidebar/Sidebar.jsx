@@ -14,14 +14,27 @@ import {
     Clock,
     Target,
     File,
+    Check,
 } from "lucide-react";
 import { IconFlagQuestion } from "@tabler/icons-react";
 
 const links = [
-    { to: "school", label: "School", icon: <Building size={18} /> },
-    { to: "position", label: "Position", icon: <Briefcase size={18} /> },
-    { to: "album", label: "Album", icon: <ImageIcon size={18} /> },
-    { to: "user", label: "User", icon: <User size={18} /> },
+    {
+        to: "school", label: "School", icon: <Check size={18} />,
+        // icon: <Building size={18} />
+    },
+    {
+        to: "position", label: "Position", icon: <Check size={18} />,
+        //  icon: <Briefcase size={18} />
+    },
+    {
+        to: "album", label: "Album", icon: <Check size={18} />,
+        //  icon: <ImageIcon size={18} /> 
+    },
+    {
+        to: "user", label: "User", icon: <Check size={18} />,
+        // icon: <User size={18} />
+    },
     { to: "employee", label: "Employee", icon: <Users size={18} /> },
     { to: "news", label: "News", icon: <Newspaper size={18} /> },
     { to: "document", label: "Document", icon: <FileText size={18} /> },
@@ -31,11 +44,24 @@ const links = [
     { to: "value", label: "Value", icon: <Star size={18} /> },
     { to: "faq", label: "FAQ", icon: <IconFlagQuestion size={18} /> },
     { to: "hours", label: "SchoolHours", icon: <Clock size={18} /> },
-    { to: "target", label: "Target", icon: <Target size={18} /> },
+    {
+        to: "target", label: "Target", icon: <Check size={18} />,
+        //  icon: <Target size={18} /> 
+    },
     { to: "history", label: "History", icon: <BookOpen size={18} /> },
-    { to: "information", label: "Information", icon: <File size={18} /> },
-    { to: "vacancy", label: "Vacancy", icon: <FileText size={18} /> },
-    { to: "admin-schedule", label: "Schedule", icon: <FileText size={18} /> },
+    {
+        to: "information", label: "Information", icon: <Check size={18} />,
+        // icon: <File size={18} />
+    },
+    {
+
+        to: "vacancy", label: "Vacancy", icon: <Check size={18} />,
+        // icon: <FileText size={18} />
+    },
+    {
+        to: "admin-schedule", label: "Schedule",
+        icon: <FileText size={18} />
+    }
 ];
 
 export const Sidebar = () => {

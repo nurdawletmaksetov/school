@@ -2,7 +2,7 @@ import { useForm } from "@mantine/form";
 import { Button, TextInput, Textarea, Stack, Flex } from "@mantine/core";
 import { modals } from "@mantine/modals";
 
-const FormPosition = ({ submitFn, initialValues }) => {
+const FormInformation = ({ submitFn, initialValues }) => {
     const form = useForm({
         initialValues,
     });
@@ -15,26 +15,30 @@ const FormPosition = ({ submitFn, initialValues }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label="Name (kk)"
-                    placeholder="Name"
-                    {...form.getInputProps("name.kk")}
+                    label="Title (kk)"
+                    placeholder="Title"
+                    {...form.getInputProps("title.kk")}
                 />
                 <TextInput
-                    label="Name (uz)"
-                    placeholder="Name"
-                    {...form.getInputProps("name.uz")}
+                    label="Title (uz)"
+                    placeholder="Title"
+                    {...form.getInputProps("title.uz")}
                 />
                 <TextInput
-                    label="Name (ru)"
-                    placeholder="Name"
-                    {...form.getInputProps("name.ru")}
+                    label="Title (ru)"
+                    placeholder="Title"
+                    {...form.getInputProps("title.ru")}
                 />
                 <TextInput
-                    label="Name (en)"
-                    placeholder="Name"
-                    {...form.getInputProps("name.en")}
+                    label="Title (en)"
+                    placeholder="Title"
+                    {...form.getInputProps("title.en")}
                 />
-
+                <TextInput
+                    label="Count"
+                    placeholder="Count"
+                    {...form.getInputProps("count")}
+                />
                 <Textarea
                     label="Description (kk)"
                     placeholder="Description"
@@ -69,4 +73,4 @@ const FormPosition = ({ submitFn, initialValues }) => {
     );
 };
 
-export default FormPosition;
+export default FormInformation;

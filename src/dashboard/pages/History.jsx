@@ -1,8 +1,11 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
-// import { modals } from "@mantine/modals";
+import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
+import DeleteHistory from '../futures/History/Delete';
+import UpdateHistory from '../futures/History/Update';
+import CreateHistory from '../futures/History/Create';
 const History = () => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -26,12 +29,38 @@ const History = () => {
   useEffect(() => {
     getHistory(page);
   }, [page]);
+
+  const createFn = () => {
+    modals.open({
+      children: <CreateHistory getHistory={getHistory} />,
+    });
+  };
+
+  const updateFn = (id) => {
+    modals.open({
+      children: <UpdateHistory id={id} getHistory={getHistory} />,
+    });
+  };
+
+  const deleteFn = (id) => {
+    modals.open({
+      children: (
+        <DeleteHistory
+          id={id}
+          history={history}
+          setHistory={setHistory}
+        />
+      ),
+    });
+  };
+
+
   return (
     <>
       <Stack p={20} w="100%">
         <Flex justify="space-between" align="center">
           <Title>History</Title>
-          <Button>Create</Button>
+          <Button onClick={createFn}>Create</Button>
         </Flex>
 
         {loading ? (
@@ -60,8 +89,8 @@ const History = () => {
                   <Table.Td>{el.text[currentLang]}</Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
-                      <Button>Delete</Button>
-                      <Button>Update</Button>
+                      <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                      <Button onClick={() => updateFn(el.id)}>Update</Button>
                     </Flex>
                   </Table.Td>
                 </Table.Tr>

@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
+import FormPosition from "./Form";
 import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { Check, X } from "tabler-icons-react";
-import FormSchedule from "./Form";
 
-const UpdateSchedule = ({ id, getAdminSchedule }) => {
+const UpdateInformation = ({ id, getInformation }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const getSchedules = async () => {
+    const getInformations = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/schedules/${id}`);
+            const { data } = await api.get(`/informations/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching Schedule:", error);
+            console.error("Error fetching Information:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to fetch Schedule!",
+                message: "Failed to fetch Information!",
                 color: "red",
                 icon: <X />,
             });
@@ -29,31 +29,31 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
     };
 
     useEffect(() => {
-        getSchedules();
+        getInformations();
     }, [id]);
 
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/schedules/update/${id}`, body);
+            await api.put(`/informations/update/${id}`, body);
 
-            if (getAdminSchedule) {
-                await getAdminSchedule();
+            if (getInformation) {
+                await getInformation();
             }
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "Schedule updated successfully!",
+                message: "Information updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating Schedule:", error);
+            console.error("Error updating Information:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Schedule!",
+                message: "Failed to update Information!",
                 color: "red",
                 icon: <X />,
             });
@@ -73,14 +73,25 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
     }
 
     return (
-        <FormSchedule
+        <FormPosition
             submitFn={updateFn}
             initialValues={{
-                description: data.description,
-                file: data.file,
+                title: {
+                    ru: data.title.ru,
+                    uz: data.title.uz,
+                    en: data.title.en,
+                    kk: data.title.kk,
+                },
+                count: data.count,
+                description: {
+                    ru: data.description.ru,
+                    uz: data.description.uz,
+                    en: data.description.en,
+                    kk: data.description.kk,
+                },
             }}
         />
     );
 };
 
-export default UpdateSchedule;
+export default UpdateInformation;

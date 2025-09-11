@@ -4,22 +4,22 @@ import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { Check, X } from "tabler-icons-react";
-import FormSchedule from "./Form";
+import FormVacancy from "./Form";
 
-const UpdateSchedule = ({ id, getAdminSchedule }) => {
+const UpdateVacancy = ({ id, getVacancy }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const getSchedules = async () => {
+    const getVacancies = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/schedules/${id}`);
+            const { data } = await api.get(`/vacancies/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching Schedule:", error);
+            console.error("Error fetching Vacancy:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to fetch Schedule!",
+                message: "Failed to fetch Vacancy!",
                 color: "red",
                 icon: <X />,
             });
@@ -29,31 +29,27 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
     };
 
     useEffect(() => {
-        getSchedules();
+        getVacancies();
     }, [id]);
 
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/schedules/update/${id}`, body);
-
-            if (getAdminSchedule) {
-                await getAdminSchedule();
-            }
-
+            await api.put(`/vacancies/update/${id}`, body);
+            await getVacancy();
+            if (getVacancy) await getVacancy();
             modals.closeAll();
-
             notifications.show({
                 title: "Success",
-                message: "Schedule updated successfully!",
+                message: "Position updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating Schedule:", error);
+            console.error("Error updating Vacancy:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Schedule!",
+                message: "Failed to update Vacancy!",
                 color: "red",
                 icon: <X />,
             });
@@ -73,14 +69,26 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
     }
 
     return (
-        <FormSchedule
+        <FormVacancy
             submitFn={updateFn}
             initialValues={{
-                description: data.description,
-                file: data.file,
+                title: {
+                    ru: data.title.ru,
+                    uz: data.title.uz,
+                    en: data.title.en,
+                    kk: data.title.kk,
+                },
+                content: {
+                    ru: data.content.ru,
+                    uz: data.content.uz,
+                    en: data.content.en,
+                    kk: data.content.kk,
+                },
+                active: data.active,
+                salary: data.salary,
             }}
         />
     );
 };
 
-export default UpdateSchedule;
+export default UpdateVacancy;

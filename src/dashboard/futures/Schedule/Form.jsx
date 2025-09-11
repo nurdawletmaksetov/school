@@ -17,33 +17,15 @@ const FormSchedule = ({ submitFn, initialValues }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <Textarea
-                    label="Description (kk)"
+                    label="Description"
                     placeholder="Description"
                     minRows={2}
-                    {...form.getInputProps("description.kk")}
-                />
-                <Textarea
-                    label="Description (uz)"
-                    placeholder="Description"
-                    minRows={2}
-                    {...form.getInputProps("description.uz")}
-                />
-                <Textarea
-                    label="Description (ru)"
-                    placeholder="Description"
-                    minRows={2}
-                    {...form.getInputProps("description.ru")}
-                />
-                <Textarea
-                    label="Description(en)"
-                    placeholder="Description"
-                    minRows={2}
-                    {...form.getInputProps("description.en")}
+                    {...form.getInputProps("description")}
                 />
 
                 <FileInput
-                    label="PDF yoki XLSX fayl"
-                    placeholder="Upload PDF yoki XLSX"
+                    label="PDF or XLSX fail"
+                    placeholder="Upload PDF or XLSX"
                     accept=".pdf,.xlsx,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     {...form.getInputProps("file")}
                 />

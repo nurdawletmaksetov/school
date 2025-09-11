@@ -4,6 +4,7 @@ import FormPosition from "./Form";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
+import { modals } from "@mantine/modals";
 
 const CreatePosition = ({ getPositions }) => {
     const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ const CreatePosition = ({ getPositions }) => {
 
             if (getPositions) {
                 await getPositions();
+                modals.closeAll();
             }
         } catch (error) {
             console.error("Error creating position:", error);

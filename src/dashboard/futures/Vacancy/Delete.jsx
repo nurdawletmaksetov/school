@@ -5,31 +5,30 @@ import { api } from "../../../api/api";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
 
-const DeleteSchedule = ({ id, AdminSchedule, setAdminSchedule, getAdminSchedule }) => {
+const DeleteVacancy = ({ id, vacancy, setVacancy, getVacancy }) => {
     const [loading, setLoading] = useState(false);
 
     const deleteFn = async () => {
         setLoading(true);
         try {
-            await api.delete(`/schedules/delete/${id}`);
-
-            if (getAdminSchedule) await getAdminSchedule();
-            else setAdminSchedule(AdminSchedule.filter((u) => u.id !== id));
+            await api.delete(`/vacancies/delete/${id}`);
+            if (getVacancy) await getVacancy();
+            else setVacancy(vacancy.filter((u) => u.id !== id));
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "Position deleted successfully!",
+                message: "Vacancy deleted successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error deleting position:", error);
+            console.error("Error deleting Vacancy:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to delete position!",
+                message: "Failed to delete Vacancy!",
                 color: "red",
                 icon: <X />,
             });
@@ -48,7 +47,7 @@ const DeleteSchedule = ({ id, AdminSchedule, setAdminSchedule, getAdminSchedule 
 
     return (
         <Stack>
-            <Text>Are you sure you want to delete this position?</Text>
+            <Text>Are you sure you want to delete this Vacancy?</Text>
             <Flex gap={10} justify="flex-end">
                 <Button onClick={() => modals.closeAll()}>Cancel</Button>
                 <Button color="red" onClick={deleteFn}>
@@ -59,4 +58,4 @@ const DeleteSchedule = ({ id, AdminSchedule, setAdminSchedule, getAdminSchedule 
     );
 };
 
-export default DeleteSchedule;
+export default DeleteVacancy;
