@@ -62,8 +62,6 @@ function AdminNews() {
         </Flex>
       ) : (
         <Table
-          horizontalSpacing="xl"
-          verticalSpacing="sm"
           highlightOnHover
           withTableBorder
           withColumnBorders
@@ -92,7 +90,13 @@ function AdminNews() {
                 </Table.Td>
                 <Table.Td>{el.title?.[currentLang]}</Table.Td>
                 <Table.Td>{el.short_content?.[currentLang]}</Table.Td>
-                <Table.Td>{el.content?.[currentLang]}</Table.Td>
+                <Table.Td
+                  style={{
+                    maxWidth: "300px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >{el.content?.[currentLang]}</Table.Td>
                 <Table.Td>{el.author?.full_name?.[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>

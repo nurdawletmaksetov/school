@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Flex, Loader, Stack, Table, Title, Button, Group } from '@mantine/core';
 import { modals } from '@mantine/modals';
-import UpdateSchool from '../futures/School.jsx/Update';
+import UpdateSchool from '../futures/School/Update';
 import { api } from '../../api/api';
 
 const School = () => {
@@ -12,8 +12,8 @@ const School = () => {
   async function getSchools() {
     setLoading(true);
     try {
-      const { data } = await api.get('/albums');
-      setSchools(data.data.items);
+      const { data } = await api.get(`/schools/1`);
+      setSchools(Array.isArray(data.data) ? data.data : [data.data]);
     } catch (error) {
       console.error("Error fetching schools:", error);
     } finally {
@@ -28,7 +28,7 @@ const School = () => {
   function updateFn(id) {
     modals.open({
       title: "Update",
-      children: <UpdateSchool id={id} schools={schools} setSchools={setSchools} />,
+      children: <UpdateSchool id={id} getSchools={getSchools} />,
     });
   }
 
@@ -44,8 +44,6 @@ const School = () => {
         </Flex>
       ) : (
         <Table
-          horizontalSpacing="xl"
-          verticalSpacing="sm"
           highlightOnHover
           withTableBorder
           withColumnBorders

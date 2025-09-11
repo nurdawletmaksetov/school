@@ -67,7 +67,7 @@ const Employee = () => {
           <Loader variant="dots" />
         </Flex>
       ) : (
-        <Table horizontalSpacing="xl" verticalSpacing="sm" highlightOnHover withTableBorder withColumnBorders>
+        <Table highlightOnHover withTableBorder withColumnBorders>
           <Table.Thead>
             <Table.Tr>
               <Table.Th>ID</Table.Th>
@@ -76,6 +76,7 @@ const Employee = () => {
               <Table.Th>Phone</Table.Th>
               <Table.Th>Email</Table.Th>
               <Table.Th>Position</Table.Th>
+              <Table.Th>Description</Table.Th>
               <Table.Th>Birth Date</Table.Th>
               <Table.Th>Actions</Table.Th>
             </Table.Tr>
@@ -84,11 +85,16 @@ const Employee = () => {
             {employee.map((el) => (
               <Table.Tr key={el.id}>
                 <Table.Td>{el.id}</Table.Td>
-                <Table.Td><img src={el.photo?.path} alt={el.full_name[currentLang]} /></Table.Td>
+                <Table.Td><img style={{
+                  width: "50px",
+                  height: "50px",
+                  borderRadius: "50%"
+                }} src={el.photo?.path} alt={el.full_name[currentLang]} /></Table.Td>
                 <Table.Td>{el.full_name[currentLang]}</Table.Td>
                 <Table.Td>{el.phone}</Table.Td>
                 <Table.Td>{el.email}</Table.Td>
-                <Table.Td>{el.position[currentLang]}</Table.Td>
+                <Table.Td>{el.position.name[currentLang]}</Table.Td>
+                <Table.Td>{el.position.description[currentLang]}</Table.Td>
                 <Table.Td>{el.birth_date}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>

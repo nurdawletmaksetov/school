@@ -63,7 +63,7 @@ function AdminRules() {
         <Title>Rules</Title>
         <Button onClick={createFn}>Create</Button>
       </Flex>
-      <Table horizontalSpacing="xl" verticalSpacing="sm" highlightOnHover withTableBorder withColumnBorders>
+      <Table highlightOnHover withTableBorder withColumnBorders>
         <Table.Thead>
           <Table.Tr>
             <Table.Th>Id</Table.Th>

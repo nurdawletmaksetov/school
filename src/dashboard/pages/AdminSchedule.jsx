@@ -27,6 +27,28 @@ const AdminSchedule = () => {
     getAdminSchedule(page);
   }, [page]);
 
+  const handleDownload = async (id, fileName) => {
+    try {
+      const response = await api.get(`/schedules/download/${id}`, {
+        responseType: "blob",
+      });
+
+      const blob = new Blob([response.data]);
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", fileName || "document");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download failed:", error);
+    }
+  };
+
   return (
     <>
       <Stack p={20} w="100%">
@@ -41,8 +63,6 @@ const AdminSchedule = () => {
           </Flex>
         ) : (
           <Table
-            horizontalSpacing="xl"
-            verticalSpacing="sm"
             highlightOnHover
             withTableBorder
             withColumnBorders
@@ -61,7 +81,7 @@ const AdminSchedule = () => {
                   <Table.Td>{el.id}</Table.Td>
                   <Table.Td>{el.description}</Table.Td>
                   <Table.Td>
-                    <Button>Download</Button>
+                    <Button onClick={() => handleDownload(el.id, el.name)}>Download</Button>
                   </Table.Td>
                   <Table.Td>
                     <Flex gap={10}>

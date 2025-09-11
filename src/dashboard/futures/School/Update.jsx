@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import FormPosition from "./Form";
 import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { Check, X } from "tabler-icons-react";
+import FormSchool from "./Form";
 
-const UpdateSchool = ({ id, getPositions }) => {
+const UpdateSchool = ({ id, getSchools }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const getSchools = async () => {
+    const fetchSchool = async () => {
         setLoading(true);
         try {
             const { data } = await api.get(`/schools/${id}`);
@@ -29,7 +29,7 @@ const UpdateSchool = ({ id, getPositions }) => {
     };
 
     useEffect(() => {
-        getSchools();
+        fetchSchool();
     }, [id]);
 
     const updateFn = async (body) => {
@@ -37,23 +37,25 @@ const UpdateSchool = ({ id, getPositions }) => {
         try {
             await api.put(`/schools/update/${id}`, body);
 
-            if (getPositions) {
-                await getPositions();
+            await fetchSchool();
+
+            if (getSchools) {
+                await getSchools();
             }
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "Position updated successfully!",
+                message: "School updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating position:", error);
+            console.error("Error updating school:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update position!",
+                message: "Failed to update school!",
                 color: "red",
                 icon: <X />,
             });
@@ -73,28 +75,28 @@ const UpdateSchool = ({ id, getPositions }) => {
     }
 
     return (
-        <FormPosition
+        <FormSchool
             submitFn={updateFn}
             initialValues={{
                 name: {
-                    ru: data.name.ru,
-                    uz: data.name.uz,
-                    en: data.name.en,
-                    kk: data.name.kk,
+                    ru: data.name?.ru || "",
+                    uz: data.name?.uz || "",
+                    en: data.name?.en || "",
+                    kk: data.name?.kk || "",
                 },
-                name: {
-                    ru: data.history.ru,
-                    uz: data.history.uz,
-                    en: data.history.en,
-                    kk: data.history.kk,
+                history: {
+                    ru: data.history?.ru || "",
+                    uz: data.history?.uz || "",
+                    en: data.history?.en || "",
+                    kk: data.history?.kk || "",
                 },
-                phone: data.phone,
-                location: data.location,
+                phone: data.phone || "",
+                location: data.location || "",
                 description: {
-                    ru: data.description.ru,
-                    uz: data.description.uz,
-                    en: data.description.en,
-                    kk: data.description.kk,
+                    ru: data.description?.ru || "",
+                    uz: data.description?.uz || "",
+                    en: data.description?.en || "",
+                    kk: data.description?.kk || "",
                 },
             }}
         />

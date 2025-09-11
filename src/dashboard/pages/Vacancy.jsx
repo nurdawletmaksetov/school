@@ -48,8 +48,6 @@ const Vacancy = () => {
           </Flex>
         ) : (
           <Table
-            horizontalSpacing="xl"
-            verticalSpacing="sm"
             highlightOnHover
             withTableBorder
             withColumnBorders

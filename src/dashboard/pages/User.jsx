@@ -67,8 +67,6 @@ function Users() {
         </Flex>
       ) : (
         <Table
-          horizontalSpacing="xl"
-          verticalSpacing="sm"
           highlightOnHover
           withTableBorder
           withColumnBorders
@@ -91,7 +89,7 @@ function Users() {
                 <Table.Td>{el.phone}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button color="red" onClick={() => deleteFn(el.id)}>Delete</Button>
+                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
                     <Button onClick={() => updateFn(el.id)}>Update</Button>
                   </Flex>
                 </Table.Td>

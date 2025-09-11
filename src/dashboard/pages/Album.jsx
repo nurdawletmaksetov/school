@@ -62,8 +62,6 @@ const Album = () => {
         </Flex>
       ) : (
         <Table
-          horizontalSpacing="xl"
-          verticalSpacing="sm"
           highlightOnHover
           withTableBorder
           withColumnBorders

@@ -15,46 +15,46 @@ const FormSchool = ({ submitFn, initialValues }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label="Karakalpak (kk)"
+                    label="Name (kk)"
                     placeholder="name"
                     {...form.getInputProps("name.kk")}
                 />
                 <TextInput
-                    label="Uzbek (uz)"
+                    label="Name (uz)"
                     placeholder="name"
                     {...form.getInputProps("name.uz")}
                 />
                 <TextInput
-                    label="Russian (ru)"
+                    label="Name (ru)"
                     placeholder="name"
                     {...form.getInputProps("name.ru")}
                 />
                 <TextInput
-                    label="English (en)"
+                    label="Name (en)"
                     placeholder="name"
                     {...form.getInputProps("name.en")}
                 />
 
                 <Textarea
-                    label="Karakalpak (kk)"
+                    label="History (kk)"
                     placeholder="history"
                     minRows={2}
                     {...form.getInputProps("history.kk")}
                 />
                 <Textarea
-                    label="Uzbek (uz)"
+                    label="History (uz)"
                     placeholder="history"
                     minRows={2}
                     {...form.getInputProps("history.uz")}
                 />
                 <Textarea
-                    label="Russian (ru)"
+                    label="History (ru)"
                     placeholder="history"
                     minRows={2}
                     {...form.getInputProps("history.ru")}
                 />
                 <Textarea
-                    label="English (en)"
+                    label="History (en)"
                     placeholder="history"
                     minRows={2}
                     {...form.getInputProps("history.en")}
@@ -73,25 +73,25 @@ const FormSchool = ({ submitFn, initialValues }) => {
                 />
 
                 <Textarea
-                    label="Karakalpak (kk)"
+                    label="Description (kk)"
                     placeholder="Description"
                     minRows={2}
                     {...form.getInputProps("description.kk")}
                 />
                 <Textarea
-                    label="Uzbek (uz)"
+                    label="Description (uz)"
                     placeholder="Description"
                     minRows={2}
                     {...form.getInputProps("description.uz")}
                 />
                 <Textarea
-                    label="Russian (ru)"
+                    label="Description (ru)"
                     placeholder="Description"
                     minRows={2}
                     {...form.getInputProps("description.ru")}
                 />
                 <Textarea
-                    label="English (en)"
+                    label="Description (en)"
                     placeholder="Description"
                     minRows={2}
                     {...form.getInputProps("description.en")}

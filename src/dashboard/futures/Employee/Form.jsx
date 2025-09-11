@@ -24,25 +24,80 @@ const FormEmployee = ({ submitFn, initialValues }) => {
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
-                <TextInput label="Karakalpak (kk)" placeholder="Full Name" {...form.getInputProps("full_name.kk")} />
-                <TextInput label="Uzbek (uz)" placeholder="Full Name" {...form.getInputProps("full_name.uz")} />
-                <TextInput label="Russian (ru)" placeholder="Full Name" {...form.getInputProps("full_name.ru")} />
-                <TextInput label="English (en)" placeholder="Full Name" {...form.getInputProps("full_name.en")} />
+                <TextInput
+                    label="Karakalpak (kk)"
+                    placeholder="Full Name"
+                    {...form.getInputProps("full_name.kk")}
+                />
+                <TextInput
+                    label="Uzbek (uz)"
+                    placeholder="Full Name"
+                    {...form.getInputProps("full_name.uz")}
+                />
+                <TextInput
+                    label="Russian (ru)"
+                    placeholder="Full Name"
+                    {...form.getInputProps("full_name.ru")}
+                />
+                <TextInput
+                    label="English (en)"
+                    placeholder="Full Name"
+                    {...form.getInputProps("full_name.en")}
+                />
 
-                <TextInput label="Phone" placeholder="Phone number" {...form.getInputProps("phone")} />
+                <TextInput
+                    label="Phone"
+                    placeholder="Phone number"
+                    {...form.getInputProps("phone")}
+                />
 
-                <FileInput label="Your Photo" placeholder="Upload your photo" accept="image/png,image/jpeg" {...form.getInputProps("photo")} />
+                <FileInput
+                    label="Your Photo"
+                    placeholder="Upload your photo"
+                    accept="image/png,image/jpeg"
 
-                <TextInput label="Email" placeholder="Your email" leftSection={<IconAt size={16} />} {...form.getInputProps("email")} />
+                    {...form.getInputProps("photo.path")}
+                />
 
-                <TextInput label="Position id" placeholder="Position id" {...form.getInputProps("position_id")} />
+                <TextInput
+                    label="Email"
+                    placeholder="Your email"
+                    leftSection={<IconAt size={16} />}
+                    {...form.getInputProps("email")}
+                />
 
-                <TextInput label="Birth Date" placeholder="YYYY-MM-DD" {...form.getInputProps("birth_date")} />
+                <TextInput
+                    label="Position id"
+                    placeholder="Position id"
+                    {...form.getInputProps("position_id")}
+                />
 
-                <TextInput label="Karakalpak (kk)" placeholder="Description" {...form.getInputProps("description.kk")} />
-                <TextInput label="Uzbek (uz)" placeholder="Description" {...form.getInputProps("description.uz")} />
-                <TextInput label="Russian (ru)" placeholder="Description" {...form.getInputProps("description.ru")} />
-                <TextInput label="English (en)" placeholder="Description" {...form.getInputProps("description.en")} />
+                <TextInput
+                    label="Birth Date"
+                    placeholder="YYYY-MM-DD"
+                    {...form.getInputProps("birth_date")}
+                />
+
+                <TextInput
+                    label="Description (kk)"
+                    placeholder="Description"
+                    {...form.getInputProps("position.description.kk")}
+                />
+                <TextInput
+                    label="Description (uz)"
+                    placeholder="Description"
+                    {...form.getInputProps("position.description.uz")}
+                />
+                <TextInput
+                    label="Description (ru)"
+                    placeholder="Description"
+                    {...form.getInputProps("position.description.ru")}
+                />
+                <TextInput
+                    label="Description (en)"
+                    placeholder="Description"
+                    {...form.getInputProps("position.description.en")}
+                />
 
                 <Flex justify="end" gap={10}>
                     <Button onClick={() => { form.reset(); modals.closeAll(); }}>Отмена</Button>
