@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
-// import { modals } from "@mantine/modals";
+import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
+import CreateTarget from "../futures/Target/Create";
+import UpdateTarget from "../futures/Target/Update";
+import DeleteTarget from "../futures/Target/Delete";
 
 const Target = () => {
   const [target, setTarget] = useState([]);
@@ -27,11 +30,36 @@ const Target = () => {
     getTarget(page);
   }, [page]);
 
+  const createFn = () => {
+    modals.open({
+      children: <CreateTarget getTarget={getTarget} />,
+    });
+  };
+
+
+  const updateFn = (id) => {
+    modals.open({
+      children: <UpdateTarget id={id} getTarget={getTarget} />,
+    });
+  };
+
+  const deleteFn = (id) => {
+    modals.open({
+      children: (
+        <DeleteTarget
+          id={id}
+          target={target}
+          setTarget={setTarget}
+        />
+      ),
+    });
+  };
+
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
         <Title>Target</Title>
-        <Button>Create</Button>
+        <Button onClick={() => createFn()}>Create</Button>
       </Flex>
 
       {loading ? (
@@ -60,8 +88,8 @@ const Target = () => {
                 <Table.Td>{el.description[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button>Delete</Button>
-                    <Button>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                    <Button onClick={() => updateFn(el.id)}>Update</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

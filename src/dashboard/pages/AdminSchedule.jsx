@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
-// import { modals } from "@mantine/modals";
+import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
+import CreateSchedule from "../futures/Schedule/Create";
+import UpdateSchedule from "../futures/Schedule/Update";
 
 
 const AdminSchedule = () => {
@@ -49,12 +51,24 @@ const AdminSchedule = () => {
     }
   };
 
+  const createFn = () => {
+    modals.open({
+      children: <CreateSchedule getAdminSchedule={getAdminSchedule} />,
+    });
+  };
+
+  const updateFn = (id) => {
+    modals.open({
+      children: <UpdateSchedule id={id} getAdminSchedule={getAdminSchedule} />,
+    });
+  };
+
   return (
     <>
       <Stack p={20} w="100%">
         <Flex justify="space-between" align="center">
           <Title>Schedule</Title>
-          <Button>Create</Button>
+          <Button onClick={() => createFn()}>Create</Button>
         </Flex>
 
         {loading ? (
@@ -86,7 +100,7 @@ const AdminSchedule = () => {
                   <Table.Td>
                     <Flex gap={10}>
                       <Button>Delete</Button>
-                      <Button>Update</Button>
+                      <Button onClick={() => updateFn(el.id)}>Update</Button>
                     </Flex>
                   </Table.Td>
                 </Table.Tr>

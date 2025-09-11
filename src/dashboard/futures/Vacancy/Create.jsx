@@ -22,6 +22,7 @@ const CreateVacancy = ({ getVacancy }) => {
 
             if (getVacancy) {
                 await getVacancy();
+                
             }
         } catch (error) {
             console.error("Error creating position:", error);

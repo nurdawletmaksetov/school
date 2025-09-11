@@ -4,22 +4,22 @@ import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { Check, X } from "tabler-icons-react";
-import FormSchool from "./Form";
+import FormSchedule from "./Form";
 
-const UpdateSchool = ({ id, getSchools }) => {
+const UpdateSchedule = ({ id }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const fetchSchool = async () => {
+    const getAdminSchedule = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/schools/${id}`);
+            const { data } = await api.get(`/schedules/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching school:", error);
+            console.error("Error fetching Schedule:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to fetch school!",
+                message: "Failed to fetch Schedule!",
                 color: "red",
                 icon: <X />,
             });
@@ -29,33 +29,31 @@ const UpdateSchool = ({ id, getSchools }) => {
     };
 
     useEffect(() => {
-        fetchSchool();
+        getAdminSchedule();
     }, [id]);
 
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/schools/update/${id}`, body);
+            await api.put(`/schedules/update/${id}`, body);
 
-            await fetchSchool();
-
-            if (getSchools) {
-                await getSchools();
-                modals.closeAll();
+            if (getAdminSchedule) {
+                await getAdminSchedule();
             }
 
+            modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "School updated successfully!",
+                message: "Schedule updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating school:", error);
+            console.error("Error updating Schedule:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update school!",
+                message: "Failed to update Schedule!",
                 color: "red",
                 icon: <X />,
             });
@@ -75,32 +73,19 @@ const UpdateSchool = ({ id, getSchools }) => {
     }
 
     return (
-        <FormSchool
+        <FormSchedule
             submitFn={updateFn}
             initialValues={{
-                name: {
-                    ru: data.name?.ru || "",
-                    uz: data.name?.uz || "",
-                    en: data.name?.en || "",
-                    kk: data.name?.kk || "",
-                },
-                history: {
-                    ru: data.history?.ru || "",
-                    uz: data.history?.uz || "",
-                    en: data.history?.en || "",
-                    kk: data.history?.kk || "",
-                },
-                phone: data.phone || "",
-                location: data.location || "",
                 description: {
-                    ru: data.description?.ru || "",
-                    uz: data.description?.uz || "",
-                    en: data.description?.en || "",
-                    kk: data.description?.kk || "",
+                    ru: data.description.ru,
+                    uz: data.description.uz,
+                    en: data.description.en,
+                    kk: data.description.kk,
                 },
+                file: null,
             }}
         />
     );
 };
 
-export default UpdateSchool;
+export default UpdateSchedule;

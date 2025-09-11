@@ -3,33 +3,33 @@ import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
-import FormSchoolHours from "./Form";
+import FormSchedule from "./Form";
 
-const CreateSchoolHours = ({ getSchoolHours }) => {
+const CreateSchedule = ({ getAdminSchedule }) => {
     const [loading, setLoading] = useState(false);
 
     const createFn = async (body) => {
         setLoading(true);
         try {
-            await api.post("/school-hours/create", body);
+            await api.post("/schedules/create", body);
 
             notifications.show({
                 title: "Success",
-                message: "SchoolHours created successfully!",
+                message: "Schedule created successfully!",
                 color: "teal",
                 icon: <Check />,
             });
 
-            if (getSchoolHours) {
-                await getSchoolHours();
+            if (getAdminSchedule) {
+                await getAdminSchedule();
                 modals.closeAll();
             }
         } catch (error) {
-            console.error("Error creating SchoolHours:", error);
+            console.error("Error creating Schedule:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create SchoolHours!",
+                message: "Failed to create Schedule!",
                 color: "red",
                 icon: <X />,
             });
@@ -46,12 +46,11 @@ const CreateSchoolHours = ({ getSchoolHours }) => {
                 </Flex>
             ) : (
                 <Stack>
-                    <FormSchoolHours
+                    <FormSchedule
                         submitFn={createFn}
                         initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
-                            workday: { kk: "", uz: "", ru: "", en: "" },
-                            holiday: { kk: "", uz: "", ru: "", en: "" },
+                            description: { kk: "", uz: "", ru: "", en: "" },
+                            file: null,
                         }}
                     />
                 </Stack>
@@ -60,4 +59,4 @@ const CreateSchoolHours = ({ getSchoolHours }) => {
     );
 };
 
-export default CreateSchoolHours;
+export default CreateSchedule;

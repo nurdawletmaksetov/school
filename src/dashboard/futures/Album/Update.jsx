@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Flex, Loader, Stack } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { notifications } from "@mantine/notifications"; 
-import { Check, X } from "tabler-icons-react"; 
+import { notifications } from "@mantine/notifications";
+import { Check, X } from "tabler-icons-react";
 import FormAlbum from "./Form";
 import { api } from "../../../api/api";
 

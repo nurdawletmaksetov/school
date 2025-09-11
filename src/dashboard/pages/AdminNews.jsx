@@ -92,9 +92,9 @@ function AdminNews() {
                 <Table.Td>{el.short_content?.[currentLang]}</Table.Td>
                 <Table.Td
                   style={{
-                    maxWidth: "300px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
+                    // maxWidth: "300px",
+                    // overflow: "hidden",
+                    // textOverflow: "ellipsis",
                   }}
                 >{el.content?.[currentLang]}</Table.Td>
                 <Table.Td>{el.author?.full_name?.[currentLang]}</Table.Td>

@@ -63,10 +63,22 @@ const FormNews = ({ submitFn, initialValues }) => {
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
-                <TextInput label="Title (kk)" {...form.getInputProps("title.kk")} />
-                <TextInput label="Title (uz)" {...form.getInputProps("title.uz")} />
-                <TextInput label="Title (ru)" {...form.getInputProps("title.ru")} />
-                <TextInput label="Title (en)" {...form.getInputProps("title.en")} />
+                <TextInput
+                    label="Title (kk)"
+                    {...form.getInputProps("title.kk")}
+                />
+                <TextInput
+                    label="Title (uz)"
+                    {...form.getInputProps("title.uz")}
+                />
+                <TextInput
+                    label="Title (ru)"
+                    {...form.getInputProps("title.ru")}
+                />
+                <TextInput
+                    label="Title (en)"
+                    {...form.getInputProps("title.en")}
+                />
 
                 <Textarea
                     label="Short Content (kk)"
@@ -85,10 +97,22 @@ const FormNews = ({ submitFn, initialValues }) => {
                     {...form.getInputProps("short_content.en")}
                 />
 
-                <Textarea label="Content (kk)" {...form.getInputProps("content.kk")} />
-                <Textarea label="Content (uz)" {...form.getInputProps("content.uz")} />
-                <Textarea label="Content (ru)" {...form.getInputProps("content.ru")} />
-                <Textarea label="Content (en)" {...form.getInputProps("content.en")} />
+                <Textarea
+                    label="Content (kk)"
+                    {...form.getInputProps("content.kk")}
+                />
+                <Textarea
+                    label="Content (uz)"
+                    {...form.getInputProps("content.uz")}
+                />
+                <Textarea
+                    label="Content (ru)"
+                    {...form.getInputProps("content.ru")}
+                />
+                <Textarea
+                    label="Content (en)"
+                    {...form.getInputProps("content.en")}
+                />
 
                 <Select
                     label="Author"

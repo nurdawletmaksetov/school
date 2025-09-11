@@ -35,7 +35,7 @@ const links = [
     { to: "history", label: "History", icon: <BookOpen size={18} /> },
     { to: "information", label: "Information", icon: <File size={18} /> },
     { to: "vacancy", label: "Vacancy", icon: <FileText size={18} /> },
-    { to: "admin-schedule", label: "AdminSchedule", icon: <FileText size={18} /> },
+    { to: "admin-schedule", label: "Schedule", icon: <FileText size={18} /> },
 ];
 
 export const Sidebar = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Flex, Loader, Stack } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { notifications } from "@mantine/notifications"; 
+import { notifications } from "@mantine/notifications";
 import FormUsers from "./Form";
 import { api } from "../../../api/api";
 
@@ -19,8 +19,10 @@ const CreateUsers = ({ getUsers }) => {
                 color: "teal",
             });
 
-            if (getUsers) await getUsers();
-            modals.closeAll();
+            if (getUsers) {
+                await getUsers();
+                modals.closeAll();
+            }
         } catch (error) {
             console.error(error);
 
