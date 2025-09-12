@@ -4,6 +4,7 @@ import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
 import FormSchoolHours from "./Form";
+import { modals } from "@mantine/modals";
 
 const CreateSchoolHours = ({ getSchoolHours }) => {
     const [loading, setLoading] = useState(false);

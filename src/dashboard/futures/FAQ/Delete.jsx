@@ -1,35 +1,38 @@
-import { useState } from "react";
-import { Button, Flex, Stack, Text, Loader } from "@mantine/core";
+import React, { useState } from "react";
+import { Button, Flex, Loader, Stack, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../../api/api";
 import { notifications } from "@mantine/notifications";
-import { Check, X } from "tabler-icons-react";
+import { Check, X } from "lucide-react";
 
-const DeleteHistory = ({ id, history, setHistory, getHistory }) => {
+const DeleteFaqs = ({ id, setFaqs, getFaqs }) => {
     const [loading, setLoading] = useState(false);
 
     const deleteFn = async () => {
         setLoading(true);
         try {
-            await api.delete(`/histories/delete/${id}`);
+            await api.delete(`/faqs/delete/${id}`);
 
-            if (getHistory) await getHistory();
-            else setHistory(history.filter((u) => u.id !== id));
+            if (getFaqs) {
+                await getFaqs();
+            } else if (Array.isArray(setFaqs) && setFaqs) {
+                setFaqs(setFaqs.filter((u) => u.id !== id));
+            }
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "History deleted successfully!",
+                message: "Faqs deleted successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error deleting History:", error);
+            console.error("Error deleting Faqs:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to delete History!",
+                message: "Failed to delete Faqs!",
                 color: "red",
                 icon: <X />,
             });
@@ -48,7 +51,7 @@ const DeleteHistory = ({ id, history, setHistory, getHistory }) => {
 
     return (
         <Stack>
-            <Text>Are you sure you want to delete this History?</Text>
+            <Text>Are you sure you want to delete this Faqs?</Text>
             <Flex gap={10} justify="flex-end">
                 <Button onClick={() => modals.closeAll()}>Cancel</Button>
                 <Button color="red" onClick={deleteFn}>
@@ -59,4 +62,4 @@ const DeleteHistory = ({ id, history, setHistory, getHistory }) => {
     );
 };
 
-export default DeleteHistory;
+export default DeleteFaqs;

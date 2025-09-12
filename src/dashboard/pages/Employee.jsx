@@ -75,8 +75,8 @@ const Employee = () => {
               <Table.Th>Name</Table.Th>
               <Table.Th>Phone</Table.Th>
               <Table.Th>Email</Table.Th>
-              <Table.Th>Position</Table.Th>
-              <Table.Th>Description</Table.Th>
+              {/* <Table.Th>Position</Table.Th> */}
+              {/* <Table.Th>Description</Table.Th> */}
               <Table.Th>Birth Date</Table.Th>
               <Table.Th>Actions</Table.Th>
             </Table.Tr>
@@ -93,8 +93,8 @@ const Employee = () => {
                 <Table.Td>{el.full_name[currentLang]}</Table.Td>
                 <Table.Td>{el.phone}</Table.Td>
                 <Table.Td>{el.email}</Table.Td>
-                <Table.Td>{el.position.name[currentLang]}</Table.Td>
-                <Table.Td>{el.position.description[currentLang]}</Table.Td>
+                {/* <Table.Td>{el.position.name[currentLang]}</Table.Td> */}
+                {/* <Table.Td>{el.position.description[currentLang]}</Table.Td> */}
                 <Table.Td>{el.birth_date}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>

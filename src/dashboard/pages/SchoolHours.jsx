@@ -4,6 +4,8 @@ import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea }
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreateSchoolHours from '../futures/SchoolHours/Create';
+import DeleteSchoolHourse from '../futures/SchoolHours/Delete';
+import UpdateSchoolHourse from '../futures/SchoolHours/Update';
 const SchoolHours = () => {
   const [schoolhours, setSchoolHours] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,6 +33,24 @@ const SchoolHours = () => {
   const createFn = () => {
     modals.open({
       children: <CreateSchoolHours getSchoolHours={getSchoolHours} />,
+    });
+  };
+
+  const updateFn = (id) => {
+    modals.open({
+      children: <UpdateSchoolHourse id={id} getSchoolHours={getSchoolHours} />,
+    });
+  };
+
+  const deleteFn = (id) => {
+    modals.open({
+      children: (
+        <DeleteSchoolHourse
+          id={id}
+          schoolhours={schoolhours}
+          setSchoolHours={setSchoolHours}
+        />
+      ),
     });
   };
 
@@ -69,8 +89,8 @@ const SchoolHours = () => {
                 <Table.Td>{el.holiday[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button>Delete</Button>
-                    <Button>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                    <Button onClick={() => updateFn(el.id)}>Update</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

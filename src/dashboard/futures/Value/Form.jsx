@@ -1,64 +1,66 @@
+import { Button, FileInput, Flex, Group, Stack, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { Button, TextInput, Textarea, Stack, Flex } from "@mantine/core";
 import { modals } from "@mantine/modals";
 
-const FormRules = ({ submitFn, initialValues }) => {
+const FormValue = ({ submitFn, initialValues }) => {
     const form = useForm({
         initialValues,
     });
 
-    const handleSubmit = async (values) => {
+    async function handleSubmit(values) {
         await submitFn(values);
-    };
+    }
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label="Title (kk)"
-                    placeholder="Title"
-                    {...form.getInputProps("title.kk")}
+                    label="Name (kk)"
+                    placeholder="Name (kk)"
+                    {...form.getInputProps("name.kk")}
                 />
                 <TextInput
-                    label="Title (uz)"
-                    placeholder="Title"
-                    {...form.getInputProps("title.uz")}
+                    label="Name (uz)"
+                    placeholder="Name (uz)"
+                    {...form.getInputProps("name.uz")}
                 />
                 <TextInput
-                    label="Title (ru)"
-                    placeholder="Title"
-                    {...form.getInputProps("title.ru")}
+                    label="Name (ru)"
+                    placeholder="Name (ru)"
+                    {...form.getInputProps("name.ru")}
                 />
                 <TextInput
-                    label="Title (en)"
-                    placeholder="Title"
-                    {...form.getInputProps("title.en")}
+                    label="Name (en)"
+                    placeholder="Name (en)"
+                    {...form.getInputProps("name.en")}
                 />
-
                 <Textarea
                     label="Text (kk)"
-                    placeholder="Text"
-                    minRows={2}
+                    placeholder="Text (kk)"
                     {...form.getInputProps("text.kk")}
                 />
                 <Textarea
                     label="Text (uz)"
-                    placeholder="Text"
-                    minRows={2}
+                    placeholder="Text (uz)"
                     {...form.getInputProps("text.uz")}
                 />
                 <Textarea
                     label="Text (ru)"
-                    placeholder="Text"
-                    minRows={2}
+                    placeholder="Text (ru)"
                     {...form.getInputProps("text.ru")}
                 />
                 <Textarea
                     label="Text (en)"
-                    placeholder="Text"
-                    minRows={2}
+                    placeholder="Text (en)"
                     {...form.getInputProps("text.en")}
                 />
+                <FileInput
+                    label="Photo"
+                    placeholder={initialValues.photo ? "Current photo uploaded" : "Upload photo"}
+                    accept="image/*"
+                    onChange={(file) => form.setFieldValue("photo", file)}
+                />
+
 
                 <Flex justify="end" gap={10}>
                     <Button onClick={() => modals.closeAll()}>Отмена</Button>
@@ -69,4 +71,4 @@ const FormRules = ({ submitFn, initialValues }) => {
     );
 };
 
-export default FormRules;
+export default FormValue;

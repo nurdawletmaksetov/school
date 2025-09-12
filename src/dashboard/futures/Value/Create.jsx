@@ -4,34 +4,56 @@ import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
 import { modals } from "@mantine/modals";
-import FormRules from "./Form";
+import FormValue from "./Form";
 
-const CreateRules = ({ getRules }) => {
+const CreateValue = ({ getValue }) => {
     const [loading, setLoading] = useState(false);
 
     const createFn = async (body) => {
         setLoading(true);
         try {
-            await api.post("/rules/create", body);
+            const formData = new FormData();
+
+            if (body.photo) {
+                formData.append("photo", body.photo);
+            }
+
+
+            Object.entries(body.name).forEach(([lang, value]) => {
+                formData.append(`name[${lang}]`, value);
+            });
+
+            Object.entries(body.text).forEach(([lang, value]) => {
+                formData.append(`text[${lang}]`, value);
+            });
+
+            if (body.photo && body.photo.length > 0) {
+                body.photo.forEach((file) => {
+                    formData.append("photo", file);
+                });
+            }
+
+            await api.post("/values/create", formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
 
             notifications.show({
                 title: "Success",
-                message: "Rules created successfully!",
+                message: "Value created successfully!",
                 color: "teal",
                 icon: <Check />,
             });
 
-            if (getRules) {
-                await getRules();
+            if (getValue) {
+                getValue();
+                modals.closeAll();
             }
-            modals.closeAll();
-
         } catch (error) {
-            console.error("Error creating Rules:", error);
+            console.error("Error creating Value:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create Rules!",
+                message: error.response?.data?.message || "Failed to create Value!",
                 color: "red",
                 icon: <X />,
             });
@@ -39,6 +61,8 @@ const CreateRules = ({ getRules }) => {
             setLoading(false);
         }
     };
+
+
 
     return (
         <div>
@@ -48,11 +72,12 @@ const CreateRules = ({ getRules }) => {
                 </Flex>
             ) : (
                 <Stack>
-                    <FormRules
+                    <FormValue
                         submitFn={createFn}
                         initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
+                            name: { kk: "", uz: "", ru: "", en: "" },
                             text: { kk: "", uz: "", ru: "", en: "" },
+                            photo: [],
                         }}
                     />
                 </Stack>
@@ -61,4 +86,4 @@ const CreateRules = ({ getRules }) => {
     );
 };
 
-export default CreateRules;
+export default CreateValue;

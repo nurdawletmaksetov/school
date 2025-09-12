@@ -56,7 +56,7 @@ const FormEmployee = ({ submitFn, initialValues }) => {
                     placeholder="Upload your photo"
                     accept="image/png,image/jpeg"
 
-                    {...form.getInputProps("photo.path")}
+                    {...form.getInputProps("photo")}
                 />
 
                 <TextInput

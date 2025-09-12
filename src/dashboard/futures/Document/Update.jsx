@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
-import FormPosition from "./Form";
 import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { Check, X } from "tabler-icons-react";
+import FormDocument from "./Form";
 
-const UpdateRules = ({ id, getRules }) => {
+const UpdateDocument = ({ id, getDocuments }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-
-    const getRule = async () => {
+    const getDocument = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/rules/${id}`);
+            const { data } = await api.get(`/documents/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching Rule:", error);
+            console.error("Error fetching Document:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to fetch Rule!",
+                message: "Failed to fetch Document!",
                 color: "red",
                 icon: <X />,
             });
@@ -30,31 +29,46 @@ const UpdateRules = ({ id, getRules }) => {
     };
 
     useEffect(() => {
-        getRule();
+        getDocument();
     }, [id]);
 
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/rules/update/${id}`, body);
+            const formData = new FormData();
+            formData.append("name", body.name?.trim() || "");
+            formData.append("description", body.description?.trim() || "");
 
-            if (getRules) {
-                await getRules();
+            if (body.file instanceof File) {
+                formData.append("file", body.file);
+            }
+
+            // Laravel method spoofing
+            formData.append("_method", "PUT");
+
+            console.log("Update id:", id);
+
+            await api.post(`/documents/update/${id}`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+
+            if (getDocuments) {
+                await getDocuments();
             }
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "Rule updated successfully!",
+                message: "Document updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating Rule:", error);
+            console.error("Error updating Document:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Rule!",
+                message: "Failed to update Document!",
                 color: "red",
                 icon: <X />,
             });
@@ -74,24 +88,15 @@ const UpdateRules = ({ id, getRules }) => {
     }
 
     return (
-        <FormPosition
+        <FormDocument
             submitFn={updateFn}
             initialValues={{
-                title: {
-                    ru: data.title.ru,
-                    uz: data.title.uz,
-                    en: data.title.en,
-                    kk: data.title.kk,
-                },
-                text: {
-                    ru: data.text.ru,
-                    uz: data.text.uz,
-                    en: data.text.en,
-                    kk: data.text.kk,
-                },
+                name: data.name || "",
+                description: data.description || "",
+                file: null,
             }}
         />
     );
 };
 
-export default UpdateRules;
+export default UpdateDocument;

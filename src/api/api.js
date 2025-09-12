@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://meaningful-link-rf-starter.trycloudflare.com/api/v1",
+    baseURL: "https://likelihood-shade-commissioners-types.trycloudflare.com/api/v1",
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -72,7 +72,7 @@ api.interceptors.response.use(
                 }
 
                 const { data } = await axios.post(
-                    "https://meaningful-link-rf-starter.trycloudflare.com/api/v1/refresh",
+                    "https://likelihood-shade-commissioners-types.trycloudflare.com/api/v1/refresh",
                     { refresh_token: refreshToken },
                     {
                         headers: {

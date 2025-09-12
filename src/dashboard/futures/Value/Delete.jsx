@@ -5,31 +5,31 @@ import { api } from "../../../api/api";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
 
-const DeleteHistory = ({ id, history, setHistory, getHistory }) => {
+const DeleteValue = ({ id, value, setValue, getValue }) => {
     const [loading, setLoading] = useState(false);
 
     const deleteFn = async () => {
         setLoading(true);
         try {
-            await api.delete(`/histories/delete/${id}`);
+            await api.delete(`/values/delete/${id}`);
 
-            if (getHistory) await getHistory();
-            else setHistory(history.filter((u) => u.id !== id));
+            if (getValue) await getValue();
+            else setValue(value.filter((u) => u.id !== id));
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "History deleted successfully!",
+                message: "Value deleted successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error deleting History:", error);
+            console.error("Error deleting Value:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to delete History!",
+                message: "Failed to delete Value!",
                 color: "red",
                 icon: <X />,
             });
@@ -48,7 +48,7 @@ const DeleteHistory = ({ id, history, setHistory, getHistory }) => {
 
     return (
         <Stack>
-            <Text>Are you sure you want to delete this History?</Text>
+            <Text>Are you sure you want to delete this Value?</Text>
             <Flex gap={10} justify="flex-end">
                 <Button onClick={() => modals.closeAll()}>Cancel</Button>
                 <Button color="red" onClick={deleteFn}>
@@ -59,4 +59,4 @@ const DeleteHistory = ({ id, history, setHistory, getHistory }) => {
     );
 };
 
-export default DeleteHistory;
+export default DeleteValue;

@@ -3,6 +3,8 @@ import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea }
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreateFaqs from "../futures/FAQ/Create";
+import DeleteFaqs from "../futures/FAQ/Delete";
+import UpdateFaq from "../futures/FAQ/Update";
 const FAQ = () => {
   const [faqs, setFaqs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -30,6 +32,24 @@ const FAQ = () => {
   const createFn = () => {
     modals.open({
       children: <CreateFaqs getFaqs={getFaqs} />,
+    });
+  };
+
+  const updateFn = (id) => {
+    modals.open({
+      children: <UpdateFaq id={id} getFaqs={getFaqs} />,
+    });
+  };
+
+  const deleteFn = (id) => {
+    modals.open({
+      children: (
+        <DeleteFaqs
+          id={id}
+          faqs={faqs}
+          setFaqs={setFaqs}
+        />
+      ),
     });
   };
 
@@ -66,8 +86,8 @@ const FAQ = () => {
                 <Table.Td>{el.answer[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button>Delete</Button>
-                    <Button>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                    <Button onClick={() => updateFn(el.id)}>Update</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

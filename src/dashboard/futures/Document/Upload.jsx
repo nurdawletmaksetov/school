@@ -4,34 +4,44 @@ import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
 import { modals } from "@mantine/modals";
-import FormRules from "./Form";
+import FormDocument from "./Form";
 
-const CreateRules = ({ getRules }) => {
+const UploadDocument = ({ getDocuments }) => {
     const [loading, setLoading] = useState(false);
 
     const createFn = async (body) => {
         setLoading(true);
         try {
-            await api.post("/rules/create", body);
+            const formData = new FormData();
+            formData.append("name", body.name);
+            formData.append("description", body.description);
+
+            if (body.file) {
+                formData.append("file", body.file);
+            }
+
+            await api.post("/documents/upload", formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
 
             notifications.show({
                 title: "Success",
-                message: "Rules created successfully!",
+                message: "Document uploaded successfully!",
                 color: "teal",
                 icon: <Check />,
             });
 
-            if (getRules) {
-                await getRules();
+            if (getDocuments) {
+                await getDocuments();
             }
             modals.closeAll();
 
         } catch (error) {
-            console.error("Error creating Rules:", error);
+            console.error("Error uploading document:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create Rules!",
+                message: "Failed to upload document!",
                 color: "red",
                 icon: <X />,
             });
@@ -39,6 +49,9 @@ const CreateRules = ({ getRules }) => {
             setLoading(false);
         }
     };
+
+
+
 
     return (
         <div>
@@ -48,11 +61,12 @@ const CreateRules = ({ getRules }) => {
                 </Flex>
             ) : (
                 <Stack>
-                    <FormRules
+                    <FormDocument
                         submitFn={createFn}
                         initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
-                            text: { kk: "", uz: "", ru: "", en: "" },
+                            name: '',
+                            description: '',
+                            file: null,
                         }}
                     />
                 </Stack>
@@ -61,4 +75,4 @@ const CreateRules = ({ getRules }) => {
     );
 };
 
-export default CreateRules;
+export default UploadDocument;

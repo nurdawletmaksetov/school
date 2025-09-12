@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
-import FormPosition from "./Form";
 import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { Check, X } from "tabler-icons-react";
+import FormSchoolHours from "./Form";
 
-const UpdateRules = ({ id, getRules }) => {
+const UpdateSchoolHourse = ({ id, getSchoolHours }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-
-    const getRule = async () => {
+    const getHourse = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/rules/${id}`);
+            const { data } = await api.get(`/school-hours/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching Rule:", error);
+            console.error("Error fetching School Hourse:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to fetch Rule!",
+                message: "Failed to fetch School Hourse!",
                 color: "red",
                 icon: <X />,
             });
@@ -30,31 +29,31 @@ const UpdateRules = ({ id, getRules }) => {
     };
 
     useEffect(() => {
-        getRule();
+        getHourse();
     }, [id]);
 
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/rules/update/${id}`, body);
+            await api.put(`/school-hours/update/${id}`, body);
 
-            if (getRules) {
-                await getRules();
+            if (getSchoolHours) {
+                await getSchoolHours();
             }
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "Rule updated successfully!",
+                message: "School Hourse updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating Rule:", error);
+            console.error("Error updating School Hourse:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Rule!",
+                message: "Failed to update School Hourse!",
                 color: "red",
                 icon: <X />,
             });
@@ -74,7 +73,7 @@ const UpdateRules = ({ id, getRules }) => {
     }
 
     return (
-        <FormPosition
+        <FormSchoolHours
             submitFn={updateFn}
             initialValues={{
                 title: {
@@ -83,15 +82,21 @@ const UpdateRules = ({ id, getRules }) => {
                     en: data.title.en,
                     kk: data.title.kk,
                 },
-                text: {
-                    ru: data.text.ru,
-                    uz: data.text.uz,
-                    en: data.text.en,
-                    kk: data.text.kk,
+                workday: {
+                    ru: data.workday.ru,
+                    uz: data.workday.uz,
+                    en: data.workday.en,
+                    kk: data.workday.kk,
+                },
+                holiday: {
+                    ru: data.holiday.ru,
+                    uz: data.holiday.uz,
+                    en: data.holiday.en,
+                    kk: data.holiday.kk,
                 },
             }}
         />
     );
 };
 
-export default UpdateRules;
+export default UpdateSchoolHourse;

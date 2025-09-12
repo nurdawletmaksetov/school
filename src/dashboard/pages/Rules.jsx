@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Stack, Table, Title } from "@mantine/core";
+import { Button, Flex, Loader, Pagination, Stack, Table, Title } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import CreateRules from "../futures/Rules/Create";
 import DeleteRules from "../futures/Rules/Delete";
@@ -8,32 +8,35 @@ import { api } from "../../api/api";
 
 function AdminRules() {
   const [rules, setRules] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
   const currentLang = "ru";
 
   async function getRules() {
+    setLoading(true);
     try {
-      const { data } = await api.get("/rules");
+      const { data } = await api.get(`/rules?page=${page}&per_page=10`);
       setRules(data.data.items);
+      setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching rules:", error)
+    } finally {
+      setLoading(false);
     }
   }
 
   useEffect(() => {
-    getRules();
-  }, []);
+    getRules(page);
+  }, [page]);
 
-  function createFn() {
+  const createFn = () => {
     modals.open({
-      children: (
-        <CreateRules
-          getRules={getRules}
-        />
-      )
-    })
-  }
+      children: <CreateRules getRules={getRules} />,
+    });
+  };
 
-  function deleteFn(id) {
+  const deleteFn = (id) => {
     modals.open({
       children: (
         <DeleteRules
@@ -41,21 +44,15 @@ function AdminRules() {
           rules={rules}
           setRules={setRules}
         />
-      )
-    })
-  }
+      ),
+    });
+  };
 
-  function updateFn(id) {
+  const updateFn = (id) => {
     modals.open({
-      children: (
-        <UpdateRules
-          id={id}
-          rules={rules}
-          setRules={setRules}
-        />
-      )
-    })
-  }
+      children: <UpdateRules id={id} getRules={getRules} />,
+    });
+  };
 
   return (
     <Stack p={20} w="100%">
@@ -63,31 +60,40 @@ function AdminRules() {
         <Title>Rules</Title>
         <Button onClick={createFn}>Create</Button>
       </Flex>
-      <Table highlightOnHover withTableBorder withColumnBorders>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Id</Table.Th>
-            <Table.Th>Title</Table.Th>
-            <Table.Th>Text</Table.Th>
-            <Table.Th>Actions</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {rules.map((el) => (
-            <Table.Tr key={el.id}>
-              <Table.Td>{el.id}</Table.Td>
-              <Table.Td>{el.title[currentLang]}</Table.Td>
-              <Table.Td>{el.text[currentLang]}</Table.Td>
-              <Table.Td>
-                <Flex gap={10}>
-                  <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                  <Button onClick={() => updateFn(el.id)}>Update</Button>
-                </Flex>
-              </Table.Td>
+      {loading ? (
+        <Flex justify="center" align="center" style={{ height: "200px" }}>
+          <Loader variant="dots" />
+        </Flex>
+      ) : (
+        <Table highlightOnHover withTableBorder withColumnBorders>
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Id</Table.Th>
+              <Table.Th>Title</Table.Th>
+              <Table.Th>Text</Table.Th>
+              <Table.Th>Actions</Table.Th>
             </Table.Tr>
-          ))}
-        </Table.Tbody>
-      </Table>
+          </Table.Thead>
+          <Table.Tbody>
+            {rules.map((el) => (
+              <Table.Tr key={el.id}>
+                <Table.Td>{el.id}</Table.Td>
+                <Table.Td>{el.title[currentLang]}</Table.Td>
+                <Table.Td>{el.text[currentLang]}</Table.Td>
+                <Table.Td>
+                  <Flex gap={10}>
+                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                  </Flex>
+                </Table.Td>
+              </Table.Tr>
+            ))}
+          </Table.Tbody>
+        </Table>
+      )}
+      <Flex justify="center" mt="md">
+        <Pagination total={lastPage} value={page} onChange={setPage} />
+      </Flex>
     </Stack>
   );
 }

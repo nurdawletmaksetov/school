@@ -38,17 +38,29 @@ const links = [
     { to: "employee", label: "Employee", icon: <Users size={18} /> },
     { to: "news", label: "News", icon: <Newspaper size={18} /> },
     { to: "document", label: "Document", icon: <FileText size={18} /> },
-    { to: "main", label: "Main", icon: <Home size={18} /> },
-    { to: "rules", label: "Rules", icon: <BookOpen size={18} /> },
+    // { to: "main", label: "Main", icon: <Home size={18} /> },
+    {
+        to: "rules", label: "Rules", icon: <Check size={18} />,
+        //  icon: <BookOpen size={18} /> 
+    },
     { to: "club", label: "Club", icon: <Users size={18} /> },
     { to: "value", label: "Value", icon: <Star size={18} /> },
-    { to: "faq", label: "FAQ", icon: <IconFlagQuestion size={18} /> },
-    { to: "hours", label: "SchoolHours", icon: <Clock size={18} /> },
+    {
+        to: "faq", label: "FAQ", icon: <Check size={18} />,
+        // icon: <IconFlagQuestion size={18} />
+    },
+    {
+        to: "hours", label: "SchoolHours", icon: <Check size={18} />,
+        // icon:<Clock size={18} />
+    },
     {
         to: "target", label: "Target", icon: <Check size={18} />,
         //  icon: <Target size={18} /> 
     },
-    { to: "history", label: "History", icon: <BookOpen size={18} /> },
+    {
+        to: "history", label: "History", icon: <Check size={18} />,
+        //  icon: <BookOpen size={18} />
+    },
     {
         to: "information", label: "Information", icon: <Check size={18} />,
         // icon: <File size={18} />

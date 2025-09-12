@@ -50,7 +50,7 @@ const CreateEmployee = ({ getEmployees }) => {
                         initialValues={{
                             full_name: { kk: "", uz: "", ru: "", en: "" },
                             phone: "",
-                            photo: [],
+                            photo: null,
                             email: "",
                             position_id: "",
                             birth_date: "",

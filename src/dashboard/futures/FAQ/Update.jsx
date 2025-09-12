@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
-import FormPosition from "./Form";
 import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { Check, X } from "tabler-icons-react";
+import FormFaq from "./Form";
 
-const UpdateRules = ({ id, getRules }) => {
+const UpdateFaq = ({ id, getFaqs }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-
-    const getRule = async () => {
+    const getHistories = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/rules/${id}`);
+            const { data } = await api.get(`/faqs/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching Rule:", error);
+            console.error("Error fetching FAQ:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to fetch Rule!",
+                message: "Failed to fetch FAQ!",
                 color: "red",
                 icon: <X />,
             });
@@ -30,31 +29,30 @@ const UpdateRules = ({ id, getRules }) => {
     };
 
     useEffect(() => {
-        getRule();
+        getHistories();
     }, [id]);
 
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/rules/update/${id}`, body);
-
-            if (getRules) {
-                await getRules();
+            await api.put(`/faqs/update/${id}`, body);
+            if (getFaqs) {
+                await getFaqs();
             }
 
             modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "Rule updated successfully!",
+                message: "FAQ updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating Rule:", error);
+            console.error("Error updating FAQ:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Rule!",
+                message: "Failed to update FAQ!",
                 color: "red",
                 icon: <X />,
             });
@@ -74,24 +72,24 @@ const UpdateRules = ({ id, getRules }) => {
     }
 
     return (
-        <FormPosition
+        <FormFaq
             submitFn={updateFn}
             initialValues={{
-                title: {
-                    ru: data.title.ru,
-                    uz: data.title.uz,
-                    en: data.title.en,
-                    kk: data.title.kk,
+                question: {
+                    ru: data.question.ru,
+                    uz: data.question.uz,
+                    en: data.question.en,
+                    kk: data.question.kk,
                 },
-                text: {
-                    ru: data.text.ru,
-                    uz: data.text.uz,
-                    en: data.text.en,
-                    kk: data.text.kk,
+                answer: {
+                    ru: data.answer.ru,
+                    uz: data.answer.uz,
+                    en: data.answer.en,
+                    kk: data.answer.kk,
                 },
             }}
         />
     );
 };
 
-export default UpdateRules;
+export default UpdateFaq;

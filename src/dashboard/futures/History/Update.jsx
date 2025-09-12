@@ -35,7 +35,7 @@ const UpdateHistory = ({ id, getHistory }) => {
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/informations/update/${id}`, body);
+            await api.put(`/histories/update/${id}`, body);
 
             if (getHistory) {
                 await getHistory();

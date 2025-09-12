@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
+import UploadDocument from "../futures/Document/Upload";
+import DeleteDocument from "../futures/Document/Delete";
+import UpdateDocument from "../futures/Document/Update";
 
 function Document() {
   const [documents, setDocuments] = useState([]);
@@ -19,6 +22,30 @@ function Document() {
   useEffect(() => {
     getDocuments();
   }, []);
+
+  const createFn = () => {
+    modals.open({
+      children: <UploadDocument getDocuments={getDocuments} />,
+    });
+  };
+
+  const updateFn = (id) => {
+    modals.open({
+      children: <UpdateDocument id={id} getDocuments={getDocuments} />,
+    });
+  };
+
+  const deleteFn = (id) => {
+    modals.open({
+      children: (
+        <DeleteDocument
+          id={id}
+          documents={documents}
+          setDocuments={setDocuments}
+        />
+      ),
+    });
+  };
 
   const handleDownload = async (id, fileName) => {
     try {
@@ -42,13 +69,11 @@ function Document() {
     }
   };
 
-
-
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
         <Title>Documents</Title>
-        <Button>Create</Button>
+        <Button onClick={createFn}>Upload</Button>
       </Flex>
       <Table highlightOnHover withTableBorder withColumnBorders>
         <Table.Thead>
@@ -71,15 +96,22 @@ function Document() {
               </Table.Td>
               <Table.Td>
                 <Flex gap={10}>
-                  <Button>Delete</Button>
-                  <Button>Update</Button>
+                  <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                  <Button
+                    onClick={() => {
+                      console.log("Update clicked, id:", el.id);
+                      updateFn(el.id);
+                    }}
+                  >
+                    Update
+                  </Button>
                 </Flex>
               </Table.Td>
             </Table.Tr>
           ))}
         </Table.Tbody>
       </Table>
-    </Stack>
+    </Stack >
   );
 }
 
