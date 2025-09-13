@@ -8,15 +8,13 @@ import FormValue from "./Form";
 
 const UpdateValue = ({ id, getValue }) => {
     const [data, setData] = useState(null);
-    const [fetching, setFetching] = useState(false);
-    const [updating, setUpdating] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const getValues = async () => {
-        setFetching(true);
+        setLoading(true);
         try {
-            const response = await api.get(`/values/${id}`);
-            setData(response.data.data);
-
+            const { data } = await api.get(`/values/${id}`);
+            setData(data.data);
         } catch (error) {
             console.error("Error fetching value:", error);
             notifications.show({
@@ -26,7 +24,7 @@ const UpdateValue = ({ id, getValue }) => {
                 icon: <X />,
             });
         } finally {
-            setFetching(false);
+            setLoading(false);
         }
     };
 
@@ -34,31 +32,34 @@ const UpdateValue = ({ id, getValue }) => {
         getValues();
     }, [id]);
 
-    const updateFn = async (body) => {
-        console.log("START updateFn");
-        setUpdating(true);
-        try {
-            const formData = new FormData();
-            Object.entries(body.name).forEach(([lang, value]) => {
-                formData.append(`name[${lang}]`, value);
-            });
-            Object.entries(body.text).forEach(([lang, value]) => {
-                formData.append(`text[${lang}]`, value);
-            });
-            if (body.photo instanceof File) {
-                formData.append("photo", body.photo);
-            }
+    const updateFn = async (values) => {
+        setLoading(true);
 
-            const res = await api.post(`/values/update/${id}`, formData, {
+        const formData = new FormData();
+
+        formData.append("name[kk]", values.name.kk);
+        formData.append("name[uz]", values.name.uz);
+        formData.append("name[ru]", values.name.ru);
+        formData.append("name[en]", values.name.en);
+
+        formData.append("text[kk]", values.text.kk);
+        formData.append("text[uz]", values.text.uz);
+        formData.append("text[ru]", values.text.ru);
+        formData.append("text[en]", values.text.en);
+
+        if (values.photo instanceof File) {
+            formData.append("photo", values.photo);
+        }
+
+        formData.append("_method", "PUT");
+
+        try {
+            await api.post(`/values/update/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
-            console.log("RESPONSE:", res);
 
-            if (getValue) {
-                getValue();
-            }
-
+            if (getValue) await getValue();
             modals.closeAll();
 
             notifications.show({
@@ -68,14 +69,19 @@ const UpdateValue = ({ id, getValue }) => {
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("CATCH error:", error);
+            console.error("Error updating value:", error);
+            notifications.show({
+                title: "Error",
+                message: "Failed to update value!",
+                color: "red",
+                icon: <X />,
+            });
         } finally {
-            console.log("FINALLY ishladi");
-            setUpdating(false);
+            setLoading(false);
         }
     };
 
-    if (fetching || !data) {
+    if (loading || !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -90,21 +96,19 @@ const UpdateValue = ({ id, getValue }) => {
             submitFn={updateFn}
             initialValues={{
                 name: {
-                    ru: data?.name?.ru || "",
-                    uz: data?.name?.uz || "",
-                    en: data?.name?.en || "",
                     kk: data?.name?.kk || "",
+                    uz: data?.name?.uz || "",
+                    ru: data?.name?.ru || "",
+                    en: data?.name?.en || "",
                 },
                 text: {
-                    ru: data?.text?.ru || "",
-                    uz: data?.text?.uz || "",
-                    en: data?.text?.en || "",
                     kk: data?.text?.kk || "",
+                    uz: data?.text?.uz || "",
+                    ru: data?.text?.ru || "",
+                    en: data?.text?.en || "",
                 },
-                photo: data?.photo || null,
+                photo: null, 
             }}
-
-            submitting={updating} // ⚡ agar FormValue’da loader ko‘rsatmoqchi bo‘lsang
         />
     );
 };
