@@ -1,4 +1,4 @@
-import { Image, Text } from '@mantine/core';
+import { Flex, Image, Loader, Text } from '@mantine/core';
 import { useEffect, useState } from 'react'
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
 import { Container } from '../../components/container/container';
@@ -19,7 +19,11 @@ const ReadNews = () => {
     }, [id]);
 
 
-    if (!news) return <p>Loading...</p>;
+    if (!news) return (
+        <Flex justify="center" align="center" style={{ height: "200px" }}>
+            <Loader variant="dots" size="lg" />
+        </Flex>
+    );
 
     return (
         <main className={`read-news-dark${darkMode ? ' dark' : ''}`}>

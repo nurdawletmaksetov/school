@@ -43,8 +43,14 @@ const links = [
         to: "rules", label: "Rules", icon: <Check size={18} />,
         //  icon: <BookOpen size={18} /> 
     },
-    { to: "club", label: "Club", icon: <Users size={18} /> },
-    { to: "value", label: "Value", icon: <Star size={18} /> },
+    {
+        to: "club", label: "Club", icon: <Check size={18} />,
+        // icon: <Users size={18} />
+    },
+    {
+        to: "value", label: "Value", icon: <Check size={18} />,
+        // icon: <Star size={18} />
+    },
     {
         to: "faq", label: "FAQ", icon: <Check size={18} />,
         // icon: <IconFlagQuestion size={18} />

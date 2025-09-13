@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://meyer-wherever-wales-prediction.trycloudflare.com/api/v1",
+    baseURL: "https://ha-neighbors-operates-instructor.trycloudflare.com/api/v1",
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -72,7 +72,7 @@ api.interceptors.response.use(
                 }
 
                 const { data } = await axios.post(
-                    "https://meyer-wherever-wales-prediction.trycloudflare.com/api/v1/refresh",
+                    "https://ha-neighbors-operates-instructor.trycloudflare.com/v1/refresh",
                     { refresh_token: refreshToken },
                     {
                         headers: {

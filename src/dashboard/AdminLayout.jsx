@@ -4,9 +4,11 @@ import { Sidebar } from "./components/sidebar/Sidebar";
 import { Header } from "./components/header/Header";
 import { Container, Flex, Loader, Stack } from "@mantine/core";
 import { AuthContext } from "../context/auth-context";
+import { useTranslation } from "react-i18next";
 
 const AdminLayout = () => {
     const { isAuth, loading } = useContext(AuthContext);
+    const { t } = useTranslation();
 
     if (loading) {
         return (

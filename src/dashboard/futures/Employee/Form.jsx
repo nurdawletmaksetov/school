@@ -100,8 +100,8 @@ const FormEmployee = ({ submitFn, initialValues }) => {
                 />
 
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => { form.reset(); modals.closeAll(); }}>Отмена</Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button onClick={() => { form.reset(); modals.closeAll(); }}>Cancel</Button>
+                    <Button type="submit">Save</Button>
                 </Flex>
             </Stack>
         </form>

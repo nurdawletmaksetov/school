@@ -25,6 +25,7 @@ export const SearchInput = ({ setResults, darkMode }) => {
             });
     };
 
+
     const handleChange = (value) => {
         setInput(value);
         fetchData(value);

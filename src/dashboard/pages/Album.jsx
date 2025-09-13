@@ -5,12 +5,14 @@ import { api } from "../../api/api";
 import UpdateAlbum from "../futures/Album/Update";
 import CreateAlbum from "../futures/Album/Create";
 import DeleteALbum from "../futures/Album/Delete";
+import { useTranslation } from "react-i18next";
 
 const Album = () => {
   const [albums, setAlbums] = useState([]);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   async function getAlbums(page = 1) {
     setLoading(true);
@@ -52,7 +54,7 @@ const Album = () => {
   return (
     <Stack p={20}>
       <Flex justify="space-between" align="center">
-        <Title>Album</Title>
+        <Title>{t("logout")}</Title>
         <Button onClick={createFn}>Create</Button>
       </Flex>
 

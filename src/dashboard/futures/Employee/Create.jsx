@@ -4,6 +4,7 @@ import { api } from "../../../api/api";
 import { notifications } from "@mantine/notifications";
 import { Flex, Loader, Stack } from "@mantine/core";
 import { Check, X } from "lucide-react";
+import { modals } from "@mantine/modals";
 
 const CreateEmployee = ({ getEmployees }) => {
     const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ const CreateEmployee = ({ getEmployees }) => {
 
             if (getEmployees) {
                 await getEmployees();
+                modals.closeAll();
             }
         } catch (error) {
             console.error("Error creating Employee:", error);

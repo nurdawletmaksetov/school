@@ -21,7 +21,7 @@ export const Header = ({ darkMode, setDarkMode }) => {
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setHamburgerOpen(false); // tashqariga bosilsa hamburger menyu yopiladi
+        setHamburgerOpen(false);
       }
     }
 
@@ -119,8 +119,11 @@ export const Header = ({ darkMode, setDarkMode }) => {
                 )}
               </div>
               <div className="logo">
-                <NavLink onClick={handleClick} to="/" className="logo-icon">
+                <NavLink onClick={handleClick} to="/"
+                  className="logo-icon"
+                >
                   N
+                  {/* <img src="/logo.png" className="icon-header" /> */}
                 </NavLink>
                 <NavLink onClick={handleClick} to="/" className="logo-text">
                   Nurdawlet's School

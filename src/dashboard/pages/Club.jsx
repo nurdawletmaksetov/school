@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
 // import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
+import CreateClub from "../futures/Club/Create";
+import UpdateClub from "../futures/Club/Update";
+import DeleteClub from "../futures/Club/Delete";
+import { modals } from "@mantine/modals";
 
 const Club = () => {
   const [club, setClub] = useState([]);
@@ -10,7 +14,7 @@ const Club = () => {
   const [lastPage, setLastPage] = useState(1);
   const currentLang = "ru";
 
-  const getClub = async (page = 1) => {
+  const getClubs = async (page = 1) => {
     setLoading(true);
     try {
       const { data } = await api.get(`/clubs?page=${page}&per_page=10`);
@@ -24,14 +28,39 @@ const Club = () => {
   };
 
   useEffect(() => {
-    getClub(page);
+    getClubs(page);
   }, [page]);
+
+
+  const createFn = () => {
+    modals.open({
+      children: <CreateClub getClubs={getClubs} />,
+    });
+  };
+
+  const updateFn = (id) => {
+    modals.open({
+      children: <UpdateClub id={id} getClubs={getClubs} />,
+    });
+  };
+
+  const deleteFn = (id) => {
+    modals.open({
+      children: (
+        <DeleteClub
+          id={id}
+          club={club}
+          setClub={setClub}
+        />
+      ),
+    });
+  };
 
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
         <Title>Club</Title>
-        <Button>Create</Button>
+        <Button onClick={createFn}>Create</Button>
       </Flex>
 
       {loading ? (
@@ -64,8 +93,8 @@ const Club = () => {
                 <Table.Td>{el.photo.path}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button>Delete</Button>
-                    <Button>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                    <Button onClick={() => updateFn(el.id)}>Update</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>
