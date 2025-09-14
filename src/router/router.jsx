@@ -21,7 +21,6 @@ const Album = lazy(() => import("../dashboard/pages/Album"));
 const Employee = lazy(() => import("../dashboard/pages/Employee"));
 const AdminNews = lazy(() => import("../dashboard/pages/AdminNews"));
 const Document = lazy(() => import("../dashboard/pages/Document"));
-const Main = lazy(() => import("../dashboard/pages/Main"));
 const Value = lazy(() => import("../dashboard/pages/Value"));
 const AdminRules = lazy(() => import("../dashboard/pages/Rules"));
 const SchoolHours = lazy(() => import("../dashboard/pages/SchoolHours"));
@@ -196,14 +195,6 @@ export const router = createBrowserRouter([
                 element: (
                     <Suspense fallback={<PageLoader />}>
                         <Document />
-                    </Suspense>
-                ),
-            },
-            {
-                path: "main",
-                element: (
-                    <Suspense fallback={<PageLoader />}>
-                        <Main />
                     </Suspense>
                 ),
             },

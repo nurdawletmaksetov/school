@@ -5,6 +5,7 @@ import { api } from "../../api/api";
 import DeleteInformation from "../futures/Information/Delete";
 import UpdateInformation from "../futures/Information/Update";
 import CreateInformation from "../futures/Information/Create";
+import { useTranslation } from "react-i18next";
 
 const Information = () => {
   const [information, setInformation] = useState([]);
@@ -12,6 +13,7 @@ const Information = () => {
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const currentLang = "ru";
+  const { t } = useTranslation();
 
   const getInformation = async (page = 1) => {
     setLoading(true);
@@ -58,8 +60,8 @@ const Information = () => {
     <>
       <Stack p={20} w="100%">
         <Flex justify="space-between" align="center">
-          <Title>Information</Title>
-          <Button onClick={createFn}>Create</Button>
+          <Title>{t("sidebar.information")}</Title>
+          <Button onClick={createFn}>{t("actions.create")}</Button>
         </Flex>
 
         {loading ? (
@@ -90,8 +92,8 @@ const Information = () => {
                   <Table.Td>{el.description[currentLang]}</Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
-                      <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                      <Button onClick={() => updateFn(el.id)}>Update</Button>
+                      <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                      <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                     </Flex>
                   </Table.Td>
                 </Table.Tr>

@@ -6,11 +6,13 @@ import { api } from "../../api/api";
 import CreateUsers from "../futures/Users/Create";
 import DeleteUsers from "../futures/Users/Delete";
 import UpdateUsers from "../futures/Users/Update";
+import { useTranslation } from "react-i18next";
 
 function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const currentLang = "ru";
+  const { t } = useTranslation();
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
 
@@ -57,8 +59,8 @@ function Users() {
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
-        <Title>Users</Title>
-        <Button onClick={createFn}>Create</Button>
+        <Title>{t("sidebar.user")}</Title>
+        <Button onClick={createFn}>{t("actions.create")}</Button>
       </Flex>
 
       {loading ? (
@@ -89,8 +91,8 @@ function Users() {
                 <Table.Td>{el.phone}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

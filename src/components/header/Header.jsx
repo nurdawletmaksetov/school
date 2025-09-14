@@ -203,6 +203,9 @@ export const Header = ({ darkMode, setDarkMode }) => {
                     <option className={"value"} value="qr">
                       Qaraqalpaq
                     </option>
+                    <option className={"value"} value="uz">
+                      Uzbek
+                    </option>
                   </select>
                 </li>
                 <li className="night-mode">

@@ -26,6 +26,7 @@ const CreateRules = ({ getRules }) => {
             }
             modals.closeAll();
 
+
         } catch (error) {
             console.error("Error creating Rules:", error);
 

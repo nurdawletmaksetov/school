@@ -5,12 +5,14 @@ import { api } from "../../api/api";
 import CreateFaqs from "../futures/FAQ/Create";
 import DeleteFaqs from "../futures/FAQ/Delete";
 import UpdateFaq from "../futures/FAQ/Update";
+import { useTranslation } from "react-i18next";
 const FAQ = () => {
   const [faqs, setFaqs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const currentLang = "ru";
+  const { t } = useTranslation();
 
   const getFaqs = async (page = 1) => {
     setLoading(true);
@@ -57,7 +59,7 @@ const FAQ = () => {
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
         <Title>FAQ</Title>
-        <Button onClick={() => createFn()}>Create</Button>
+        <Button onClick={() => createFn()}>{t("actions.create")}</Button>
       </Flex>
 
       {loading ? (
@@ -86,8 +88,8 @@ const FAQ = () => {
                 <Table.Td>{el.answer[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

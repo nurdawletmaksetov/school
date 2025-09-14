@@ -6,13 +6,37 @@ import { Flex, Loader, Stack } from "@mantine/core";
 import { Check, X } from "lucide-react";
 import { modals } from "@mantine/modals";
 
-const CreateEmployee = ({ getEmployees }) => {
+const CreateEmployee = ({ getEmployee }) => {
     const [loading, setLoading] = useState(false);
 
-    const createFn = async (body) => {
+    const createFn = async (values) => {
         setLoading(true);
         try {
-            await api.post("/employees/create", body);
+            const formData = new FormData();
+            formData.append("full_name[kk]", values.full_name.kk);
+            formData.append("full_name[uz]", values.full_name.uz);
+            formData.append("full_name[ru]", values.full_name.ru);
+            formData.append("full_name[en]", values.full_name.en);
+
+            formData.append("phone", values.phone);
+            formData.append("email", values.email);
+            formData.append("position_id", values.position_id);
+            formData.append("birth_date", values.birth_date);
+
+            if (values.photo) {
+                formData.append("photo", values.photo);
+            }
+
+            await api.post("/employees/create", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            if (getEmployee) {
+                await getEmployee();
+                modals.closeAll();
+            }
 
             notifications.show({
                 title: "Success",
@@ -21,16 +45,12 @@ const CreateEmployee = ({ getEmployees }) => {
                 icon: <Check />,
             });
 
-            if (getEmployees) {
-                await getEmployees();
-                modals.closeAll();
-            }
         } catch (error) {
             console.error("Error creating Employee:", error);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create Employee!",
+                message: error.response?.data?.message || "Failed to create Employee!",
                 color: "red",
                 icon: <X />,
             });
@@ -38,6 +58,7 @@ const CreateEmployee = ({ getEmployees }) => {
             setLoading(false);
         }
     };
+
 
     return (
         <div>
@@ -56,7 +77,6 @@ const CreateEmployee = ({ getEmployees }) => {
                             email: "",
                             position_id: "",
                             birth_date: "",
-                            description: { kk: "", uz: "", ru: "", en: "" },
                         }}
                     />
 

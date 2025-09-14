@@ -5,11 +5,13 @@ import { api } from "../../api/api";
 import CreateTarget from "../futures/Target/Create";
 import UpdateTarget from "../futures/Target/Update";
 import DeleteTarget from "../futures/Target/Delete";
+import { useTranslation } from "react-i18next";
 
 const Target = () => {
   const [target, setTarget] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const { t } = useTranslation();
   const [lastPage, setLastPage] = useState(1);
   const currentLang = "ru";
 
@@ -58,8 +60,8 @@ const Target = () => {
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
-        <Title>Target</Title>
-        <Button onClick={() => createFn()}>Create</Button>
+        <Title>{t("sidebar.target")}</Title>
+        <Button onClick={() => createFn()}>{t("actions.create")}</Button>
       </Flex>
 
       {loading ? (
@@ -88,8 +90,8 @@ const Target = () => {
                 <Table.Td>{el.description[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

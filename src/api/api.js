@@ -1,12 +1,13 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://ha-neighbors-operates-instructor.trycloudflare.com/api/v1",
+    baseURL: "https://miller-versions-browser-entirely.trycloudflare.com/api/v1",
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         "ngrok-skip-browser-warning": "true",
     },
+
     validateStatus: (status) => {
         return status >= 200 && status < 300 || status === 204;
     },
@@ -72,7 +73,7 @@ api.interceptors.response.use(
                 }
 
                 const { data } = await axios.post(
-                    "https://ha-neighbors-operates-instructor.trycloudflare.com/v1/refresh",
+                    "https://miller-versions-browser-entirely.trycloudflare.com/api/v1/refresh",
                     { refresh_token: refreshToken },
                     {
                         headers: {

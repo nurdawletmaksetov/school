@@ -5,12 +5,15 @@ import { api } from "../../api/api";
 import CreateNews from "../futures/AdminNews/Create";
 import UpdateNews from "../futures/AdminNews/Update";
 import DeleteNews from "../futures/AdminNews/Delete";
+import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 function AdminNews() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
+  const { t } = useTranslation();
   const currentLang = "ru";
 
   async function getNews(page = 1) {
@@ -21,7 +24,11 @@ function AdminNews() {
       setLastPage(data.data.pagination?.last_page || 1);
     } catch (error) {
       console.error("Error fetching news:", error);
-      alert("❌ Could not fetch news");
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch news!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }
@@ -43,17 +50,24 @@ function AdminNews() {
     });
   }
 
-  function deleteFn(id) {
+  const deleteFn = (id) => {
     modals.open({
-      children: <DeleteNews id={id} getNews={() => getNews(page)} />,
+      children: (
+        <DeleteNews
+          id={id}
+          news={news}
+          setNews={setNews}
+          getNews={getNews}
+        />
+      ),
     });
-  }
+  };
 
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
-        <Title>News</Title>
-        <Button onClick={createFn}>Create</Button>
+        <Title>{t("sidebar.news")}</Title>
+        <Button onClick={createFn}>{t("actions.create")}</Button>
       </Flex>
 
       {loading ? (
@@ -61,11 +75,7 @@ function AdminNews() {
           <Loader variant="dots" />
         </Flex>
       ) : (
-        <Table
-          highlightOnHover
-          withTableBorder
-          withColumnBorders
-        >
+        <Table highlightOnHover withTableBorder withColumnBorders>
           <Table.Thead>
             <Table.Tr>
               <Table.Th>Id</Table.Th>
@@ -74,6 +84,7 @@ function AdminNews() {
               <Table.Th>Short Content</Table.Th>
               <Table.Th>Content</Table.Th>
               <Table.Th>Author</Table.Th>
+              <Table.Th>Tags</Table.Th>
               <Table.Th>Actions</Table.Th>
             </Table.Tr>
           </Table.Thead>
@@ -92,30 +103,43 @@ function AdminNews() {
                 <Table.Td>{el.short_content?.[currentLang]}</Table.Td>
                 <Table.Td
                   style={{
-                    maxWidth: "300px",
+                    maxWidth: "250px",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                   }}
-                >{el.content?.[currentLang]}</Table.Td>
-                <Table.Td>{el.author?.full_name?.[currentLang]}</Table.Td>
+                >
+                  {el.content?.[currentLang]}
+                </Table.Td>
+                <Table.Td>
+                  <div style={{ borderBottom: "1px solid black" }}>Name: {el.author?.full_name?.[currentLang]}</div>
+                  <div style={{ borderBottom: "1px solid black" }}>Phone: {el.author?.phone}</div>
+                  <div>Birth Date: {el.author?.birth_date}</div>
+                </Table.Td>
+                <Table.Td>
+                  {el.tags?.map(tag => tag.name).join(", ")}
+                </Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
                     <Button color="red" onClick={() => deleteFn(el.id)}>
-                      Delete
+                      {t("actions.delete")}
                     </Button>
-                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>
             ))}
           </Table.Tbody>
         </Table>
-      )}
+      )
+      }
 
       <Flex justify="center" mt="md">
         <Pagination total={lastPage} value={page} onChange={setPage} />
       </Flex>
-    </Stack>
+    </Stack >
   );
 }
 

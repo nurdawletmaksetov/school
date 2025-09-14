@@ -22,6 +22,11 @@ const Album = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching albums:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch news!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }
@@ -54,8 +59,8 @@ const Album = () => {
   return (
     <Stack p={20}>
       <Flex justify="space-between" align="center">
-        <Title>{t("logout")}</Title>
-        <Button onClick={createFn}>Create</Button>
+        <Title>{t("sidebar.album")}</Title>
+        <Button onClick={createFn}>{t("actions.create")}</Button>
       </Flex>
 
       {loading ? (
@@ -106,9 +111,9 @@ const Album = () => {
                   <Table.Td>
                     <Group>
                       <Button onClick={() => deleteFn(album.id)}>
-                        Delete
+                        {t("actions.delete")}
                       </Button>
-                      <Button onClick={() => updateFn(album.id)}>Update</Button>
+                      <Button onClick={() => updateFn(album.id)}>{t("actions.update")}</Button>
                     </Group>
                   </Table.Td>
                 </Table.Tr>

@@ -6,6 +6,7 @@ import CreateClub from "../futures/Club/Create";
 import UpdateClub from "../futures/Club/Update";
 import DeleteClub from "../futures/Club/Delete";
 import { modals } from "@mantine/modals";
+import { useTranslation } from "react-i18next";
 
 const Club = () => {
   const [club, setClub] = useState([]);
@@ -13,6 +14,7 @@ const Club = () => {
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const currentLang = "ru";
+  const { t } = useTranslation();
 
   const getClubs = async (page = 1) => {
     setLoading(true);
@@ -22,6 +24,11 @@ const Club = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching FAQ:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch news!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }
@@ -59,8 +66,8 @@ const Club = () => {
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
-        <Title>Club</Title>
-        <Button onClick={createFn}>Create</Button>
+        <Title>{t("sidebar.club")}</Title>
+        <Button onClick={createFn}>{t("actions.create")}</Button>
       </Flex>
 
       {loading ? (
@@ -93,8 +100,8 @@ const Club = () => {
                 <Table.Td>{el.photo.path}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

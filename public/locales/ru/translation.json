@@ -1,4 +1,5 @@
 {
+    "politechnicum": "Политехникум",
     "home": "Дом",
     "about": "О школе",
     "education": "Обучение",
@@ -6,5 +7,30 @@
     "news": "Новости",
     "support": "Поддержка",
     "contact": "Связаться с нами",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "sidebar": {
+        "album": "Альбом",
+        "schedule": "Расписание",
+        "club": "Клуб",
+        "history": "История",
+        "information": "Информация",
+        "school": "Школа",
+        "schoolhours": "Часы работы",
+        "target": "Цель",
+        "vacancy": "Вакансия",
+        "value": "Ценность",
+        "position": "Должность",
+        "user": "Пользователь",
+        "employee": "Сотрудник",
+        "news": "Новости",
+        "document": "Документ",
+        "rules": "Правила"
+    },
+    "actions": {
+        "create": "Создать",
+        "update": "Обновить",
+        "delete": "Удалить",
+        "upload": "Загрузить",
+        "download": "Скачать"
+    }
 }

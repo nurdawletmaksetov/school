@@ -5,6 +5,7 @@ import { api } from "../../api/api";
 import DeleteValue from "../futures/Value/Delete";
 import UpdateValue from "../futures/Value/Update";
 import CreateValue from "../futures/Value/Create";
+import { useTranslation } from "react-i18next";
 
 const Value = () => {
   const [value, setValue] = useState([]);
@@ -12,6 +13,7 @@ const Value = () => {
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const currentLang = "ru";
+  const { t } = useTranslation();
 
   const getValue = async (page = 1) => {
     setLoading(true);
@@ -57,8 +59,8 @@ const Value = () => {
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
-        <Title>Value</Title>
-        <Button onClick={createFn}>Create</Button>
+        <Title>{t("sidebar.value")}</Title>
+        <Button onClick={createFn}>{t("actions.create")}</Button>
       </Flex>
 
       {loading ? (
@@ -89,8 +91,8 @@ const Value = () => {
                 <Table.Td>{el.photo.path}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

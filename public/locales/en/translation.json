@@ -1,4 +1,5 @@
 {
+    "politechnicum": "Polytechnicum",
     "home": "Home",
     "about": "About",
     "education": "Education",
@@ -6,5 +7,30 @@
     "news": "News",
     "support": "Support",
     "contact": "Contact",
-    "logout": "Log Out"
+    "logout": "Log Out",
+    "sidebar": {
+        "album": "Album",
+        "schedule": "Schedule",
+        "club": "Club",
+        "history": "History",
+        "information": "Information",
+        "school": "School",
+        "schoolhours": "School Hours",
+        "target": "Target",
+        "vacancy": "Vacancy",
+        "value": "Value",
+        "position": "Position",
+        "user": "User",
+        "employee": "Employee",
+        "news": "News",
+        "document": "Document",
+        "rules": "Rules"
+    },
+    "actions": {
+        "create": "Create",
+        "update": "Update",
+        "delete": "Delete",
+        "upload": "Upload",
+        "download": "Download"
+    }
 }

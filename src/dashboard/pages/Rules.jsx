@@ -5,12 +5,14 @@ import CreateRules from "../futures/Rules/Create";
 import DeleteRules from "../futures/Rules/Delete";
 import UpdateRules from "../futures/Rules/Update";
 import { api } from "../../api/api";
+import { useTranslation } from "react-i18next";
 
 function AdminRules() {
   const [rules, setRules] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
+  const { t } = useTranslation();
   const currentLang = "ru";
 
   async function getRules() {
@@ -57,8 +59,8 @@ function AdminRules() {
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
-        <Title>Rules</Title>
-        <Button onClick={createFn}>Create</Button>
+        <Title>{t("sidebar.rules")}</Title>
+        <Button onClick={createFn}>{t("actions.create")}</Button>
       </Flex>
       {loading ? (
         <Flex justify="center" align="center" style={{ height: "200px" }}>
@@ -82,8 +84,8 @@ function AdminRules() {
                 <Table.Td>{el.text[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

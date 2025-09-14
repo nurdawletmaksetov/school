@@ -1,10 +1,36 @@
 {
-    "home": "Home",
-    "about": "About",
-    "education": "Education",
-    "rules": "Rules",
-    "news": "News",
-    "support": "Support",
-    "contact": "Contact",
-    "logout": "Shiqish"
+    "politechnicum": "Politexnikum",
+    "home": "Uy",
+    "about": "Biz haqimizda",
+    "education": "Ta'lim",
+    "rules": "Qoidalar",
+    "news": "Yangiliklar",
+    "support": "Qo'llab-quvvatlash",
+    "contact": "Aloqa",
+    "logout": "Chiqish",
+    "sidebar": {
+        "album": "Album",
+        "schedule": "Jadval",
+        "club": "Klub",
+        "history": "Tarix",
+        "information": "Ma'lumot",
+        "school": "Maktab",
+        "schoolhours": "Maktab soatlari",
+        "target": "Maqsad",
+        "vacancy": "Vakansiya",
+        "value": "Qiymat",
+        "position": "Lavozim",
+        "user": "Foydalanuvchi",
+        "employee": "Xodim",
+        "news": "Yangiliklar",
+        "document": "Hujjat",
+        "rules": "Qoidalar"
+    },
+    "actions": {
+        "create": "Yaratish",
+        "update": "Yangilash",
+        "delete": "O'chirish",
+        "upload": "Yuklash",
+        "download": "Yuklab olish"
+    }
 }

@@ -27,7 +27,7 @@ export function LanguagePicker() {
     const items = data.map((item) => (
         <Menu.Item
             key={item.value}
-            leftSection={<Image src={item.image} width={18} height={18} />}
+            leftSection={<Image src={item.image} w={22} h={22} radius={"100%"} />}
             onClick={() => handleSelect(item)}
         >
             {item.label}
@@ -44,8 +44,8 @@ export function LanguagePicker() {
         >
             <Menu.Target>
                 <UnstyledButton className={classes.control} data-expanded={opened || undefined}>
-                    <Flex gap="xs">
-                        <Image src={selected.image} width={22} height={22} />
+                    <Flex gap="xs" align={"center"}>
+                        <Image src={selected.image} w={22} h={22} radius={"100%"} />
                         <span className={classes.label}>{selected.label}</span>
                     </Flex>
                     <IconChevronDown size={16} className={classes.icon} stroke={1.5} />

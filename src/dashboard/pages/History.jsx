@@ -6,11 +6,13 @@ import { api } from "../../api/api";
 import DeleteHistory from '../futures/History/Delete';
 import UpdateHistory from '../futures/History/Update';
 import CreateHistory from '../futures/History/Create';
+import { useTranslation } from 'react-i18next';
 const History = () => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
+  const { t } = useTranslation();
   const currentLang = "ru";
 
   const getHistory = async (page = 1) => {
@@ -59,8 +61,8 @@ const History = () => {
     <>
       <Stack p={20} w="100%">
         <Flex justify="space-between" align="center">
-          <Title>History</Title>
-          <Button onClick={createFn}>Create</Button>
+          <Title>{t("sidebar.history")}</Title>
+          <Button onClick={createFn}>{t("actions.create")}</Button>
         </Flex>
 
         {loading ? (
@@ -89,8 +91,8 @@ const History = () => {
                   <Table.Td>{el.text[currentLang]}</Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
-                      <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                      <Button onClick={() => updateFn(el.id)}>Update</Button>
+                      <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                      <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                     </Flex>
                   </Table.Td>
                 </Table.Tr>

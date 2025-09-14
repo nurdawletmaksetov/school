@@ -1,4 +1,5 @@
 {
+    "politechnicum": "Politexnikum",
     "home": "U'y",
     "about": "Mektep haqqinda",
     "education": "Ta'lim",
@@ -6,5 +7,30 @@
     "news": "Jan'aliqlar",
     "support": "Qollaw",
     "contact": "Baylanis",
-    "logout": "Shig'iw"
+    "logout": "Shig'iw",
+    "sidebar": {
+        "album": "Albom",
+        "schedule": "Raspisanie",
+        "club": "Klub",
+        "history": "Tariyx",
+        "information": "Mag'lumat",
+        "school": "Mekteb",
+        "schoolhours": "Mekteb saatlari",
+        "target": "Maqset",
+        "vacancy": "Vakansiya",
+        "value": "Qiymet",
+        "position": "Lawazim",
+        "user": "Paydalanuwshi",
+        "employee": "Jumisshi",
+        "news": "Jan'aliqlar",
+        "document": "Hu'jjet",
+        "rules": "Qag'iydalar"
+    },
+    "actions": {
+        "create": "Jaratiw",
+        "update": "Jan'artiw",
+        "delete": "O'shiriw",
+        "upload": "Juklew",
+        "download": "Juklew"
+    }
 }

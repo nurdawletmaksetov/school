@@ -5,6 +5,7 @@ import CreateEmployee from '../futures/Employee/Create';
 import UpdateEmployee from '../futures/Employee/Update';
 import DeleteEmployee from '../futures/Employee/Delete';
 import { modals } from '@mantine/modals';
+import { useTranslation } from 'react-i18next';
 
 const Employee = () => {
   const currentLang = "ru";
@@ -12,6 +13,7 @@ const Employee = () => {
   const [loading, setLoading] = useState(false);
   const [lastPage, setLastPage] = useState(1);
   const [page, setPage] = useState(1);
+  const { t } = useTranslation();
 
   const getEmployee = async (page = 1) => {
     setLoading(true);
@@ -32,36 +34,40 @@ const Employee = () => {
 
   const createFn = () => {
     modals.open({
-      children:
-        <CreateEmployee getEmployee={getEmployee} />,
+      children: <CreateEmployee getEmployee={getEmployee} />,
     })
   }
 
   const updateFn = (id) => {
     modals.open({
-      children:
+      children: (
         <UpdateEmployee
           id={id}
           getEmployee={getEmployee}
         />
+      ),
     })
   }
+
   const deleteFn = (id) => {
     modals.open({
-      children:
+      children: (
         <DeleteEmployee
           id={id}
           employee={employee}
           setEmployee={setEmployee}
         />
+      ),
     });
   }
+
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
-        <Title>Employee</Title>
-        <Button onClick={createFn}>Create</Button>
+        <Title>{t("sidebar.employee")}</Title>
+        <Button onClick={createFn}>{t("actions.create")}</Button>
       </Flex>
+
       {loading ? (
         <Flex justify="center" align="center" style={{ height: "200px" }}>
           <Loader variant="dots" />
@@ -75,8 +81,8 @@ const Employee = () => {
               <Table.Th>Name</Table.Th>
               <Table.Th>Phone</Table.Th>
               <Table.Th>Email</Table.Th>
-              {/* <Table.Th>Position</Table.Th> */}
-              {/* <Table.Th>Description</Table.Th> */}
+              <Table.Th>Position</Table.Th>
+              <Table.Th>Description</Table.Th>
               <Table.Th>Birth Date</Table.Th>
               <Table.Th>Actions</Table.Th>
             </Table.Tr>
@@ -85,21 +91,27 @@ const Employee = () => {
             {employee.map((el) => (
               <Table.Tr key={el.id}>
                 <Table.Td>{el.id}</Table.Td>
-                <Table.Td><img style={{
-                  width: "50px",
-                  height: "50px",
-                  borderRadius: "50%"
-                }} src={el.photo?.path} alt={el.full_name[currentLang]} /></Table.Td>
+                <Table.Td>
+                  <img
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "50%"
+                    }}
+                    src={el.photo?.path}
+                    alt={el.full_name[currentLang]}
+                  />
+                </Table.Td>
                 <Table.Td>{el.full_name[currentLang]}</Table.Td>
                 <Table.Td>{el.phone}</Table.Td>
                 <Table.Td>{el.email}</Table.Td>
-                {/* <Table.Td>{el.position.name[currentLang]}</Table.Td> */}
-                {/* <Table.Td>{el.position.description[currentLang]}</Table.Td> */}
+                <Table.Td>{el.position?.name[currentLang]}</Table.Td>
+                <Table.Td>{el.position?.description[currentLang]}</Table.Td>
                 <Table.Td>{el.birth_date}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                    <Button onClick={() => updateFn(el.id)}>Update</Button>
+                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>
@@ -107,6 +119,7 @@ const Employee = () => {
           </Table.Tbody>
         </Table>
       )}
+
       <Flex justify="center" mt="md">
         <Pagination total={lastPage} value={page} onChange={setPage} />
       </Flex>

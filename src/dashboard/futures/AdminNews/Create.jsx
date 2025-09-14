@@ -13,24 +13,18 @@ const CreateNews = ({ getNews }) => {
         try {
             const formData = new FormData();
 
-            Object.keys(body.title).forEach((lang) => {
+            ["kk", "uz", "ru", "en"].forEach((lang) => {
                 formData.append(`title[${lang}]`, body.title[lang] || "");
-            });
-
-            Object.keys(body.short_content).forEach((lang) => {
                 formData.append(`short_content[${lang}]`, body.short_content[lang] || "");
-            });
-
-            Object.keys(body.content).forEach((lang) => {
                 formData.append(`content[${lang}]`, body.content[lang] || "");
             });
 
             if (body.author_id) {
-                formData.append("author_id", body.author_id);
+                formData.append("author_id", Number(body.author_id));
             }
 
             if (body.tags?.length) {
-                body.tags.forEach((tag) => formData.append("tags[]", tag));
+                body.tags.forEach((tag) => formData.append("tags[]", Number(tag)));
             }
 
             if (body.cover_image) {

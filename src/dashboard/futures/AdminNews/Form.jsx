@@ -56,6 +56,8 @@ const FormNews = ({ submitFn, initialValues }) => {
     const handleSubmit = async (values) => {
         await submitFn({
             ...values,
+            author_id: values.author_id ? Number(values.author_id) : null,
+            tags: values.tags?.map((t) => Number(t)) || [],
             cover_image: file,
         });
     };
@@ -63,56 +65,22 @@ const FormNews = ({ submitFn, initialValues }) => {
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
-                <TextInput
-                    label="Title (kk)"
-                    {...form.getInputProps("title.kk")}
-                />
-                <TextInput
-                    label="Title (uz)"
-                    {...form.getInputProps("title.uz")}
-                />
-                <TextInput
-                    label="Title (ru)"
-                    {...form.getInputProps("title.ru")}
-                />
-                <TextInput
-                    label="Title (en)"
-                    {...form.getInputProps("title.en")}
-                />
+                {/* Titles */}
+                <TextInput label="Title (kk)" {...form.getInputProps("title.kk")} />
+                <TextInput label="Title (uz)" {...form.getInputProps("title.uz")} />
+                <TextInput label="Title (ru)" {...form.getInputProps("title.ru")} />
+                <TextInput label="Title (en)" {...form.getInputProps("title.en")} />
 
-                <Textarea
-                    label="Short Content (kk)"
-                    {...form.getInputProps("short_content.kk")}
-                />
-                <Textarea
-                    label="Short Content (uz)"
-                    {...form.getInputProps("short_content.uz")}
-                />
-                <Textarea
-                    label="Short Content (ru)"
-                    {...form.getInputProps("short_content.ru")}
-                />
-                <Textarea
-                    label="Short Content (en)"
-                    {...form.getInputProps("short_content.en")}
-                />
+                {/* Short content */}
+                <Textarea label="Short Content (kk)" {...form.getInputProps("short_content.kk")} />
+                <Textarea label="Short Content (uz)" {...form.getInputProps("short_content.uz")} />
+                <Textarea label="Short Content (ru)" {...form.getInputProps("short_content.ru")} />
+                <Textarea label="Short Content (en)" {...form.getInputProps("short_content.en")} />
 
-                <Textarea
-                    label="Content (kk)"
-                    {...form.getInputProps("content.kk")}
-                />
-                <Textarea
-                    label="Content (uz)"
-                    {...form.getInputProps("content.uz")}
-                />
-                <Textarea
-                    label="Content (ru)"
-                    {...form.getInputProps("content.ru")}
-                />
-                <Textarea
-                    label="Content (en)"
-                    {...form.getInputProps("content.en")}
-                />
+                <Textarea label="Content (kk)" {...form.getInputProps("content.kk")} />
+                <Textarea label="Content (uz)" {...form.getInputProps("content.uz")} />
+                <Textarea label="Content (ru)" {...form.getInputProps("content.ru")} />
+                <Textarea label="Content (en)" {...form.getInputProps("content.en")} />
 
                 <Select
                     label="Author"
@@ -125,6 +93,7 @@ const FormNews = ({ submitFn, initialValues }) => {
                     label="Tags"
                     placeholder="Select tags"
                     data={tags}
+                    getCreateLabel={(query) => `+ Create "${query}"`}
                     {...form.getInputProps("tags")}
                 />
 
@@ -135,10 +104,9 @@ const FormNews = ({ submitFn, initialValues }) => {
                     onChange={setFile}
                 />
 
+                {/* Buttons */}
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()} variant="outline">
-                        Cancel
-                    </Button>
+                    <Button onClick={() => modals.closeAll()}>Cancel</Button>
                     <Button type="submit">Save</Button>
                 </Flex>
             </Stack>

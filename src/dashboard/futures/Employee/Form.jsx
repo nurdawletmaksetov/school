@@ -77,28 +77,6 @@ const FormEmployee = ({ submitFn, initialValues }) => {
                     placeholder="YYYY-MM-DD"
                     {...form.getInputProps("birth_date")}
                 />
-
-                <TextInput
-                    label="Description (kk)"
-                    placeholder="Description"
-                    {...form.getInputProps("position.description.kk")}
-                />
-                <TextInput
-                    label="Description (uz)"
-                    placeholder="Description"
-                    {...form.getInputProps("position.description.uz")}
-                />
-                <TextInput
-                    label="Description (ru)"
-                    placeholder="Description"
-                    {...form.getInputProps("position.description.ru")}
-                />
-                <TextInput
-                    label="Description (en)"
-                    placeholder="Description"
-                    {...form.getInputProps("position.description.en")}
-                />
-
                 <Flex justify="end" gap={10}>
                     <Button onClick={() => { form.reset(); modals.closeAll(); }}>Cancel</Button>
                     <Button type="submit">Save</Button>

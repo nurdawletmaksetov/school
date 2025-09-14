@@ -4,11 +4,9 @@ import { Sidebar } from "./components/sidebar/Sidebar";
 import { Header } from "./components/header/Header";
 import { Container, Flex, Loader, Stack } from "@mantine/core";
 import { AuthContext } from "../context/auth-context";
-import { useTranslation } from "react-i18next";
 
 const AdminLayout = () => {
     const { isAuth, loading } = useContext(AuthContext);
-    const { t } = useTranslation();
 
     if (loading) {
         return (
@@ -18,13 +16,13 @@ const AdminLayout = () => {
         );
     }
 
-    if (!isAuth) {
-        return <Navigate to="/login" replace />;
-    }
+    // if (!isAuth) {
+    // return <Navigate to="/login" />;
+    // }
 
     return (
         <Flex>
-            <Sidebar style={{ width: 250, minWidth: 250, maxWidth: 250 }} />
+            <Sidebar />
 
             <Stack style={{ flex: 1, height: "100vh" }}>
                 <Header />
@@ -33,7 +31,7 @@ const AdminLayout = () => {
                     style={{
                         height: "calc(100vh - 62px)",
                         overflowY: "auto",
-                        width: "100%"
+                        width: "100%",
                     }}
                     p={20}
                 >
@@ -42,7 +40,6 @@ const AdminLayout = () => {
             </Stack>
         </Flex>
     );
-
 };
 
 export default AdminLayout;

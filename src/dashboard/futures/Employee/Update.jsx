@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import FormEmployee from './Form';
-import { api } from '../../../api/api';
-import { Flex, Loader, Stack } from '@mantine/core';
-import { notifications } from '@mantine/notifications';
-import { modals } from '@mantine/modals';
+import React, { useEffect, useState } from "react";
+import FormEmployee from "./Form";
+import { api } from "../../../api/api";
+import { notifications } from "@mantine/notifications";
+import { Flex, Loader, Stack } from "@mantine/core";
 import { Check, X } from "lucide-react";
+import { modals } from "@mantine/modals";
 
 const UpdateEmployee = ({ id, getEmployee }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const fetchEmployee = async () => {
+    const fetchEmployeeById = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/employees/${id}`);
-            setData(data.data.items);
+            const response = await api.get(`/employees/${id}`);
+            setData(response.data.data);
         } catch (error) {
             console.error("Error fetching employee:", error);
             notifications.show({
@@ -29,19 +29,39 @@ const UpdateEmployee = ({ id, getEmployee }) => {
     };
 
     useEffect(() => {
-        fetchEmployee();
+        fetchEmployeeById();
     }, [id]);
 
-    const updateFn = async (body) => {
+    const updateFn = async (values) => {
         setLoading(true);
         try {
-            await api.put(`/employees/update/${id}`, body);
+            const formData = new FormData();
+            formData.append("full_name[kk]", values.full_name.kk);
+            formData.append("full_name[uz]", values.full_name.uz);
+            formData.append("full_name[ru]", values.full_name.ru);
+            formData.append("full_name[en]", values.full_name.en);
+
+            formData.append("phone", values.phone);
+            formData.append("email", values.email);
+            formData.append("position_id", Number(values.position_id));
+            formData.append("birth_date", values.birth_date);
+
+            if (values.photo instanceof File) {
+                formData.append("photo", values.photo);
+            }
+
+            formData.append("_method", "PUT");
+
+            await api.post(`/employees/update/${id}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
 
             if (getEmployee) {
                 await getEmployee();
+                modals.closeAll();
             }
-
-            modals.closeAll();
 
             notifications.show({
                 title: "Success",
@@ -53,7 +73,7 @@ const UpdateEmployee = ({ id, getEmployee }) => {
             console.error("Error updating Employee:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Employee!",
+                message: error.response?.data?.message || "Failed to update Employee!",
                 color: "red",
                 icon: <X />,
             });
@@ -65,38 +85,32 @@ const UpdateEmployee = ({ id, getEmployee }) => {
     if (loading || !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
-                <Stack align="center">
-                    <Loader variant="dots" size="lg" />
-                </Stack>
+                <Loader variant="dots" size="lg" />
             </Flex>
         );
     }
 
+    // Form
     return (
-        <FormEmployee
-            key={id}
-            submitFn={updateFn}
-            initialValues={{
-                full_name: {
-                    ru: data.full_name?.ru,
-                    uz: data.full_name?.uz,
-                    en: data.full_name?.en,
-                    kk: data.full_name?.kk,
-                },
-                phone: data.phone,
-                photo: data.photo,
-                email: data.email,
-                position: data.position_id,
-                birth_date: data.birth_date,
-                description: {
-                    ru: data.description?.ru,
-                    uz: data.description?.uz,
-                    en: data.description?.en,
-                    kk: data.description?.kk,
-                }
-            }}
-        />
+        <Stack>
+            <FormEmployee
+                submitFn={updateFn}
+                initialValues={{
+                    full_name: {
+                        kk: data.full_name?.kk || "",
+                        uz: data.full_name?.uz || "",
+                        ru: data.full_name?.ru || "",
+                        en: data.full_name?.en || "",
+                    },
+                    phone: data.phone || "",
+                    photo: null, 
+                    email: data.email || "",
+                    position_id: data.position?.id || "", 
+                    birth_date: data.birth_date || "",
+                }}
+            />
+        </Stack>
     );
-}
+};
 
-export default UpdateEmployee
+export default UpdateEmployee;

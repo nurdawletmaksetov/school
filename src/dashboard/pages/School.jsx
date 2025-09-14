@@ -3,11 +3,13 @@ import { Flex, Loader, Stack, Table, Title, Button, Group } from '@mantine/core'
 import { modals } from '@mantine/modals';
 import UpdateSchool from '../futures/School/Update';
 import { api } from '../../api/api';
+import { useTranslation } from 'react-i18next';
 
 const School = () => {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(false);
   const currentLang = 'en';
+  const { t } = useTranslation();
 
   async function getSchools() {
     setLoading(true);
@@ -35,7 +37,7 @@ const School = () => {
   return (
     <Stack p={20}>
       <Flex justify="left" align="center">
-        <Title>School</Title>
+        <Title>{t("sidebar.school")}</Title>
       </Flex>
 
       {loading ? (
@@ -69,7 +71,7 @@ const School = () => {
                   <Table.Td>{school.description?.[currentLang] || "No description"}</Table.Td>
                   <Table.Td>
                     <Group>
-                      <Button onClick={() => updateFn(school.id)}>Update</Button>
+                      <Button onClick={() => updateFn(school.id)}>{t("actions.update")}</Button>
                     </Group>
                   </Table.Td>
                 </Table.Tr>

@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreateSchedule from "../futures/Schedule/Create";
 import UpdateSchedule from "../futures/Schedule/Update";
 import DeleteSchedule from "../futures/Schedule/Delete";
+import { useTranslation } from "react-i18next";
 
 
 const AdminSchedule = () => {
@@ -12,6 +13,7 @@ const AdminSchedule = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
+  const { t } = useTranslation();
 
   const getAdminSchedule = async (page = 1) => {
     setLoading(true);
@@ -21,6 +23,11 @@ const AdminSchedule = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching Schedule:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch news!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }
@@ -80,8 +87,8 @@ const AdminSchedule = () => {
     <>
       <Stack p={20} w="100%">
         <Flex justify="space-between" align="center">
-          <Title>Schedule</Title>
-          <Button onClick={() => createFn()}>Create</Button>
+          <Title>{t("sidebar.schedule")}</Title>
+          <Button onClick={() => createFn()}>{t("actions.create")}</Button>
         </Flex>
 
         {loading ? (
@@ -112,8 +119,8 @@ const AdminSchedule = () => {
                   </Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
-                      <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                      <Button onClick={() => updateFn(el.id)}>Update</Button>
+                      <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                      <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                     </Flex>
                   </Table.Td>
                 </Table.Tr>

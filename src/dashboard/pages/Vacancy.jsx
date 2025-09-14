@@ -5,12 +5,14 @@ import { api } from "../../api/api";
 import CreateVacancy from "../futures/Vacancy/Create";
 import UpdateVacancy from "../futures/Vacancy/Update";
 import DeleteVacancy from "../futures/Vacancy/Delete";
+import { useTranslation } from "react-i18next";
 
 const Vacancy = () => {
   const [vacancy, setVacancy] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
+  const { t } = useTranslation();
   const currentLang = "ru";
 
   const getVacancy = async (page = 1) => {
@@ -58,8 +60,8 @@ const Vacancy = () => {
     <>
       <Stack p={20} w="100%">
         <Flex justify="space-between" align="center">
-          <Title>Vacancy</Title>
-          <Button onClick={() => createFn()}>Create</Button>
+          <Title>{t("sidebar.vacancy")}</Title>
+          <Button onClick={() => createFn()}>{t("actions.create")}</Button>
         </Flex>
 
         {loading ? (
@@ -98,8 +100,8 @@ const Vacancy = () => {
                   <Table.Td>{el.salary}</Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
-                      <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                      <Button onClick={() => updateFn(el.id)}>Update</Button>
+                      <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                      <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                     </Flex>
                   </Table.Td>
                 </Table.Tr>
