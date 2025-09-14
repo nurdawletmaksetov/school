@@ -17,7 +17,7 @@ export const AllNews = ({ darkMode }) => {
         getNews();
     }, [])
 
-    const paginatedNews = (news || []).slice(
+    const paginatedNews = news.slice(
         (activePage - 1) * ITEMS_PER_PAGE,
         activePage * ITEMS_PER_PAGE
     );
@@ -32,18 +32,18 @@ export const AllNews = ({ darkMode }) => {
                         <OneNews
                             darkMode={darkMode}
                             id={item.id}
-                            image={item.cover_news}
+                            image={item.cover_image?.path}
                             date={item.created_at}
-                            title={item.title}
-                            body={item.short_content}
+                            title={item.title?.uz}
+                            body={item.short_content?.uz}
                         />
                     </Grid.Col>
                 ))}
             </Grid>
 
-            <Flex justify={'center'}>
+            <Flex justify="center">
                 <Pagination
-                    color={darkMode ? "dark" : "#EFF6FF"}
+                    color={darkMode ? "dark" : "blue"}
                     total={Math.ceil(news.length / ITEMS_PER_PAGE)}
                     value={activePage}
                     onChange={setActivePage}

@@ -44,8 +44,14 @@ export const Sidebar = () => {
             to: "employee", label: t("sidebar.employee"), icon: <Check size={16} />,
             //  icon: <Users size={18} /> 
         },
-        { to: "news", label: t("sidebar.news"), icon: <Newspaper size={16} /> },
-        { to: "document", label: t("sidebar.document"), icon: <FileText size={16} /> },
+        {
+            to: "news", label: t("sidebar.news"), icon: <Check size={16} />,
+            //  icon: <Newspaper size={16} /> 
+        },
+        {
+            to: "document", label: t("sidebar.document"), icon: <Check size={16} />,
+            // icon: <FileText size={16} />
+        },
         // { to: "main", label: "Main", icon: <Home size={18} /> },
         {
             to: "rules", label: t("sidebar.rules"), icon: <Check size={16} />,

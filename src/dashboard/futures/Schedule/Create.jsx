@@ -11,7 +11,18 @@ const CreateSchedule = ({ getAdminSchedule }) => {
     const createFn = async (body) => {
         setLoading(true);
         try {
-            await api.post("/schedules/create", body);
+
+            const formData = new FormData();
+            formData.append("description", body.description);
+
+            if (body.file) {
+                formData.append("file", body.file);
+            }
+            await api.post("/schedules/create", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
 
             notifications.show({
                 title: "Success",

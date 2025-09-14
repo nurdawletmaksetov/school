@@ -16,7 +16,7 @@ const UpdateNews = ({ id, getNews }) => {
             const response = await api.get(`/news/${id}`);
             setData(response.data.data);
         } catch (error) {
-            console.error("Error fetching news:", error);
+            not("Error fetching news:", error);
             notifications.show({
                 title: "Error",
                 message: "Failed to fetch news!",
@@ -32,53 +32,44 @@ const UpdateNews = ({ id, getNews }) => {
         fetchNewsById();
     }, [id]);
 
-    const updateFn = async (values) => {
+    const updateFn = async (body) => {
         setLoading(true);
         try {
             const formData = new FormData();
+            formData.append("name", body.name?.trim() || "");
+            formData.append("description", body.description?.trim() || "");
 
-            ["en", "ru", "uz", "kk"].forEach((lang) => {
-                formData.append(`title[${lang}]`, values.title[lang]);
-                formData.append(`short_content[${lang}]`, values.short_content[lang]);
-                formData.append(`content[${lang}]`, values.content[lang]);
-            });
-
-            if (values.cover_image instanceof File) {
-                formData.append("cover_image", values.cover_image);
-            }
-
-            if (values.author_id) {
-                formData.append("author_id", Number(values.author_id));
-            }
-
-            if (values.tags?.length) {
-                values.tags.forEach((tagId) =>
-                    formData.append("tags[]", Number(tagId))
-                );
+            if (body.file instanceof File) {
+                // yangi fayl bo‘lsa yuboramiz
+                formData.append("file", body.file);
+            } else if (data?.path) {
+                // agar yangi fayl yuborilmagan bo‘lsa, eski faylni saqlaymiz
+                formData.append("existing_file", data.path);
             }
 
             formData.append("_method", "PUT");
 
-            await api.post(`/news/update/${id}`, formData, {
+            await api.post(`/documents/update/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
-            if (getNews) {
-                await getNews();
-                modals.closeAll();
+            if (getDocuments) {
+                await getDocuments();
             }
+
+            modals.closeAll();
 
             notifications.show({
                 title: "Success",
-                message: "News updated successfully!",
+                message: "Document updated successfully!",
                 color: "teal",
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating news:", error);
+            console.error("Error updating Document:", error);
             notifications.show({
                 title: "Error",
-                message: error.response?.data?.message || "Failed to update news!",
+                message: "Failed to update Document!",
                 color: "red",
                 icon: <X />,
             });
@@ -86,6 +77,7 @@ const UpdateNews = ({ id, getNews }) => {
             setLoading(false);
         }
     };
+
 
     if (loading || !data) {
         return (
@@ -118,7 +110,7 @@ const UpdateNews = ({ id, getNews }) => {
                         uz: data.content?.uz || "",
                         kk: data.content?.kk || "",
                     },
-                    cover_image: null, // yangi fayl tanlansa
+                    cover_image: null,
                     author_id: data.author?.id?.toString() || "",
                     tags: data.tags?.map((t) => t.id.toString()) || [],
                 }}

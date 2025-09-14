@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://miller-versions-browser-entirely.trycloudflare.com/api/v1",
+    baseURL: "https://catalogue-automobiles-obviously-tank.trycloudflare.com/api/v1",
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -73,7 +73,7 @@ api.interceptors.response.use(
                 }
 
                 const { data } = await axios.post(
-                    "https://miller-versions-browser-entirely.trycloudflare.com/api/v1/refresh",
+                    "https://catalogue-automobiles-obviously-tank.trycloudflare.com/api/v1/refresh",
                     { refresh_token: refreshToken },
                     {
                         headers: {

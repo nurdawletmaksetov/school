@@ -13,8 +13,8 @@ const UpdateDocument = ({ id, getDocuments }) => {
     const getDocument = async () => {
         setLoading(true);
         try {
-            const { data } = await api.get(`/documents/${id}`);
-            setData(data.data);
+            const response = await api.get(`/documents/show/${id}`);
+            setData(response.data.data);
         } catch (error) {
             console.error("Error fetching Document:", error);
             notifications.show({
@@ -41,16 +41,16 @@ const UpdateDocument = ({ id, getDocuments }) => {
 
             if (body.file instanceof File) {
                 formData.append("file", body.file);
+            } else if (data?.file) {
+                formData.append("file", data.file);
             }
 
-            // Laravel method spoofing
             formData.append("_method", "PUT");
-
-            console.log("Update id:", id);
 
             await api.post(`/documents/update/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
+
 
             if (getDocuments) {
                 await getDocuments();
@@ -76,6 +76,7 @@ const UpdateDocument = ({ id, getDocuments }) => {
             setLoading(false);
         }
     };
+
 
     if (loading || !data) {
         return (
