@@ -38,26 +38,29 @@ const AdminSchedule = () => {
   }, [page]);
 
   const handleDownload = async (id, fileName) => {
-    try {
-      const response = await api.get(`/schedules/download/${id}`, {
-        responseType: "blob",
-      });
+  try {
+    const response = await api.get(`/schedules/download/${id}`, {
+      responseType: "blob",
+    });
 
-      const blob = new Blob([response.data]);
-      const url = window.URL.createObjectURL(blob);
+    console.log("Download response:", response);
 
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", fileName || "document");
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
+    const blob = new Blob([response.data]);
+    const url = window.URL.createObjectURL(blob);
 
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Download failed:", error);
-    }
-  };
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", fileName || "document.pdf");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Download failed:", error);
+    console.error("Backend response:", error.response?.data);
+  }
+};   
 
   const createFn = () => {
     modals.open({

@@ -35,7 +35,19 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
     const updateFn = async (body) => {
         setLoading(true);
         try {
-            await api.put(`/schedules/update/${id}`, body);
+            const formData = new FormData();
+            formData.append("description", body.description?.trim() || "");
+
+            // Faqat yangi fayl tanlangan bo‘lsa yuboramiz
+            if (body.file instanceof File) {
+                formData.append("file_pdf", body.file);
+            }
+
+            formData.append("_method", "PUT");
+
+            await api.post(`/schedules/update/${id}`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
 
             if (getAdminSchedule) {
                 await getAdminSchedule();
@@ -53,7 +65,7 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
             console.error("Error updating Schedule:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Schedule!",
+                message: error.response?.data?.message || "Failed to update Schedule!",
                 color: "red",
                 icon: <X />,
             });
@@ -61,6 +73,7 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
             setLoading(false);
         }
     };
+
 
     if (loading || !data) {
         return (
@@ -77,7 +90,7 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
             submitFn={updateFn}
             initialValues={{
                 description: data.description,
-                file: data.file,
+                file: null,
             }}
         />
     );

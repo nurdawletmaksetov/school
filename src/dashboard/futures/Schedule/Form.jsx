@@ -3,13 +3,17 @@ import { useForm } from "@mantine/form";
 import { Button, Textarea, Stack, Flex, FileInput } from "@mantine/core";
 import { modals } from "@mantine/modals";
 
-const FormSchedule = ({ submitFn, initialValues }) => {
-
+const FormSchedule = ({ submitFn, initialValues, loading }) => {
     const form = useForm({
-        initialValues,
+        initialValues: {
+            name: initialValues?.name || "",
+            description: initialValues?.description || "",
+            file: initialValues?.file || null,
+        },
     });
 
     const handleSubmit = async (values) => {
+        console.log("Form values:", values);
         await submitFn(values);
     };
 
@@ -24,17 +28,22 @@ const FormSchedule = ({ submitFn, initialValues }) => {
                 />
 
                 <FileInput
-                    label="PDF or XLSX fail"
-                    placeholder="Upload PDF or XLSX"
-                    accept=".pdf,.xlsx,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    {...form.getInputProps("file")}
+                    label="File"
+                    placeholder="Upload file"
+                    clearable
+                    onChange={(file) => {
+
+                        console.log("Selected file:", file);
+                        form.setFieldValue("file", file)
+                    }}
                 />
+
 
                 <Flex justify="end" gap={10}>
                     <Button type="button" onClick={() => modals.closeAll()}>
                         Отмена
                     </Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button type="submit" loading={loading}>Сохранить</Button>
                 </Flex>
             </Stack>
         </form>

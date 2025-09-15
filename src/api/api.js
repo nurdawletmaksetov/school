@@ -3,15 +3,14 @@ import axios from "axios";
 export const api = axios.create({
     baseURL: "https://santa-areas-review-disaster.trycloudflare.com/api/v1",
     headers: {
-        "Content-Type": "application/json",
         Accept: "application/json",
         "ngrok-skip-browser-warning": "true",
     },
-
     validateStatus: (status) => {
-        return status >= 200 && status < 300 || status === 204;
+        return (status >= 200 && status < 300) || status === 204;
     },
 });
+
 
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem("access_token");

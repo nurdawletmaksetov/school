@@ -17,7 +17,7 @@ const UploadDocument = ({ getDocuments }) => {
             formData.append("description", body.description);
 
             if (body.file) {
-                formData.append("file", body.file);
+                formData.append("file_pdf", body.file);
             }
 
             await api.post("/documents/upload", formData, {
@@ -55,22 +55,17 @@ const UploadDocument = ({ getDocuments }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormDocument
-                        submitFn={createFn}
-                        initialValues={{
-                            name: '',
-                            description: '',
-                            file: null,
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormDocument
+                    submitFn={createFn}
+                    initialValues={{
+                        name: '',
+                        description: '',
+                        file: null,
+                    }}
+                    loading={loading}
+                />
+            </Stack>
         </div>
     );
 };

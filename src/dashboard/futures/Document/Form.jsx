@@ -2,7 +2,7 @@ import { Button, FileInput, Flex, Stack, Textarea, TextInput } from "@mantine/co
 import { useForm } from "@mantine/form";
 import { modals } from "@mantine/modals";
 
-const FormDocument = ({ submitFn, initialValues }) => {
+const FormDocument = ({ submitFn, initialValues, loading }) => {
     const form = useForm({
         initialValues: {
             name: initialValues?.name || "",
@@ -40,10 +40,10 @@ const FormDocument = ({ submitFn, initialValues }) => {
                 />
 
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()} variant="default">
+                    <Button onClick={() => modals.closeAll()} variant="default" >
                         Отмена
                     </Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button type="submit" loading={loading}>Сохранить</Button>
                 </Flex>
             </Stack>
         </form>

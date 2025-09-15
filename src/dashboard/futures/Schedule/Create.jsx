@@ -3,6 +3,7 @@ import { api } from "../../../api/api";
 import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
+import { modals } from "@mantine/modals";
 import FormSchedule from "./Form";
 
 const CreateSchedule = ({ getAdminSchedule }) => {
@@ -11,17 +12,15 @@ const CreateSchedule = ({ getAdminSchedule }) => {
     const createFn = async (body) => {
         setLoading(true);
         try {
-
             const formData = new FormData();
             formData.append("description", body.description);
 
             if (body.file) {
-                formData.append("file", body.file);
+                formData.append("file_pdf", body.file);
             }
+
             await api.post("/schedules/create", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
+                headers: { "Content-Type": "multipart/form-data" },
             });
 
             notifications.show({
@@ -37,10 +36,11 @@ const CreateSchedule = ({ getAdminSchedule }) => {
             }
         } catch (error) {
             console.error("Error creating Schedule:", error);
+            console.log("Backend response:", error.response?.data);
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create Schedule!",
+                message: error.response?.data?.message || "Failed to create Schedule!",
                 color: "red",
                 icon: <X />,
             });
@@ -51,21 +51,17 @@ const CreateSchedule = ({ getAdminSchedule }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormSchedule
-                        submitFn={createFn}
-                        initialValues={{
-                            description: "",
-                            file: null,
-                        }}
-                    />
-                </Stack>
-            )}
+
+            <Stack>
+                <FormSchedule
+                    submitFn={createFn}
+                    initialValues={{
+                        description: "",
+                        file: null,
+                    }}
+                    loading={loading}
+                />
+            </Stack>
         </div>
     );
 };
