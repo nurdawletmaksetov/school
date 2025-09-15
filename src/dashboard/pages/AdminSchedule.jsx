@@ -97,6 +97,10 @@ const AdminSchedule = () => {
           </Flex>
         ) : (
           <Table
+            style={{
+              fontSize: '12px',
+              tableLayout: 'auto',
+            }}
             highlightOnHover
             withTableBorder
             withColumnBorders
@@ -115,12 +119,12 @@ const AdminSchedule = () => {
                   <Table.Td>{el.id}</Table.Td>
                   <Table.Td>{el.description}</Table.Td>
                   <Table.Td>
-                    <Button onClick={() => handleDownload(el.id, el.name)}>Download</Button>
+                    <Button size="xs" variant="outline" onClick={() => handleDownload(el.id, el.name)}>Download</Button>
                   </Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
-                      <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
-                      <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
+                      <Button size="xs" color="red" onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                      <Button size="xs" onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                     </Flex>
                   </Table.Td>
                 </Table.Tr>
@@ -131,7 +135,7 @@ const AdminSchedule = () => {
         <Flex justify="center" mt="md">
           <Pagination total={lastPage} value={page} onChange={setPage} />
         </Flex>
-      </Stack>
+      </Stack >
     </>
   )
 }

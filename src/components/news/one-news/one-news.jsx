@@ -30,7 +30,7 @@ export const OneNews = ({ id, image, title, body, date, darkMode }) => {
                             radius="md"
                             width={366}
                             height={192}
-                            src={image || `https://picsum.photos/366/192?random=${id}`}
+                            src={image.path || `https://picsum.photos/366/192?random=${id}`}
                             alt={title}
                         />
                     </Flex>

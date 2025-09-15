@@ -58,7 +58,7 @@ function Position() {
   return (
     <Stack p={20} w="100%">
       <Flex justify="space-between" align="center">
-        <Title>{t("sidebar.positions")}</Title>
+        <Title>{t("sidebar.position")}</Title>
         <Button onClick={createFn}>{t("actions.create")}</Button>
       </Flex>
 
@@ -68,6 +68,10 @@ function Position() {
         </Flex>
       ) : (
         <Table
+          style={{
+            fontSize: '12px',
+            tableLayout: 'auto',
+          }}
           highlightOnHover
           withTableBorder
           withColumnBorders
@@ -95,8 +99,8 @@ function Position() {
                 >{el.description[currentLang]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
-                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
+                    <Button size="xs" color="red" onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button size="xs" onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

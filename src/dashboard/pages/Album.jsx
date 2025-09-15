@@ -69,6 +69,10 @@ const Album = () => {
         </Flex>
       ) : (
         <Table
+          style={{
+            fontSize: '12px',
+            tableLayout: 'auto',
+          }}
           highlightOnHover
           withTableBorder
           withColumnBorders
@@ -110,10 +114,10 @@ const Album = () => {
                   <Table.Td>{album.description?.ru || "No description"}</Table.Td>
                   <Table.Td>
                     <Group>
-                      <Button onClick={() => deleteFn(album.id)}>
+                      <Button size="xs" color="red" onClick={() => deleteFn(album.id)}>
                         {t("actions.delete")}
                       </Button>
-                      <Button onClick={() => updateFn(album.id)}>{t("actions.update")}</Button>
+                      <Button size="xs" onClick={() => updateFn(album.id)}>{t("actions.update")}</Button>
                     </Group>
                   </Table.Td>
                 </Table.Tr>

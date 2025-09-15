@@ -13,8 +13,8 @@ function AdminNews() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
-  const { t } = useTranslation();
-  const currentLang = "ru";
+  const { t, i18n } = useTranslation(); // faqat bitta joydan
+  const language = i18n.language;
 
   async function getNews(page = 1) {
     setLoading(true);
@@ -75,7 +75,15 @@ function AdminNews() {
           <Loader variant="dots" />
         </Flex>
       ) : (
-        <Table highlightOnHover withTableBorder withColumnBorders>
+        <Table
+          style={{
+            fontSize: "12px",
+            tableLayout: "auto",
+          }}
+          highlightOnHover
+          withTableBorder
+          withColumnBorders
+        >
           <Table.Thead>
             <Table.Tr>
               <Table.Th>Id</Table.Th>
@@ -99,8 +107,8 @@ function AdminNews() {
                     style={{ width: "100px", borderRadius: "8px" }}
                   />
                 </Table.Td>
-                <Table.Td>{el.title?.[currentLang]}</Table.Td>
-                <Table.Td>{el.short_content?.[currentLang]}</Table.Td>
+                <Table.Td>{el.title?.[language]}</Table.Td>
+                <Table.Td>{el.short_content?.[language]}</Table.Td>
                 <Table.Td
                   style={{
                     maxWidth: "250px",
@@ -111,35 +119,40 @@ function AdminNews() {
                     textOverflow: "ellipsis",
                   }}
                 >
-                  {el.content?.[currentLang]}
+                  {el.content?.[language]}
                 </Table.Td>
                 <Table.Td>
-                  <div style={{ borderBottom: "1px solid black" }}>Name: {el.author?.full_name?.[currentLang]}</div>
-                  <div style={{ borderBottom: "1px solid black" }}>Phone: {el.author?.phone}</div>
+                  <div style={{ borderBottom: "1px solid black" }}>
+                    Name: {el.author?.full_name?.[language]}
+                  </div>
+                  <div style={{ borderBottom: "1px solid black" }}>
+                    Phone: {el.author?.phone}
+                  </div>
                   <div>Birth Date: {el.author?.birth_date}</div>
                 </Table.Td>
                 <Table.Td>
-                  {el.tags?.map(tag => tag.name).join(", ")}
+                  {el.tags?.map((tag) => tag.name).join(", ")}
                 </Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button color="red" onClick={() => deleteFn(el.id)}>
+                    <Button size="xs" color="red" onClick={() => deleteFn(el.id)}>
                       {t("actions.delete")}
                     </Button>
-                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
+                    <Button size="xs" onClick={() => updateFn(el.id)}>
+                      {t("actions.update")}
+                    </Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>
             ))}
           </Table.Tbody>
         </Table>
-      )
-      }
+      )}
 
       <Flex justify="center" mt="md">
         <Pagination total={lastPage} value={page} onChange={setPage} />
       </Flex>
-    </Stack >
+    </Stack>
   );
 }
 

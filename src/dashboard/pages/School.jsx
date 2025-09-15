@@ -46,6 +46,10 @@ const School = () => {
         </Flex>
       ) : (
         <Table
+          style={{
+            fontSize: '12px',
+            tableLayout: 'auto',
+          }}
           highlightOnHover
           withTableBorder
           withColumnBorders
@@ -71,7 +75,7 @@ const School = () => {
                   <Table.Td>{school.description?.[currentLang] || "No description"}</Table.Td>
                   <Table.Td>
                     <Group>
-                      <Button onClick={() => updateFn(school.id)}>{t("actions.update")}</Button>
+                      <Button size='xs' onClick={() => updateFn(school.id)}>{t("actions.update")}</Button>
                     </Group>
                   </Table.Td>
                 </Table.Tr>

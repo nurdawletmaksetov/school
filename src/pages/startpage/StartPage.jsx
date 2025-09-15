@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './startpage.scss'
-import { ArrowRight, BookOpen, Calendar, Clock, File, MapPin, Users } from 'lucide-react'
+import { Album, ArrowRight, BookOpen, Calendar, Clock, File, MapPin, Users } from 'lucide-react'
 import { Link, useOutletContext } from 'react-router-dom'
 import { Container } from '../../components/container/container'
 import { Button, Modal } from '@mantine/core'
@@ -195,11 +195,17 @@ const StartPage = () => {
                     </div>
                     <p>Наши учителя</p>
                   </ScrollLink>
-                  <Link className="lnews-righ-btm-list">
+                  <Link to="education" onClick={handleClick} className="lnews-righ-btm-list">
                     <div className="lnews-icons">
                       <BookOpen />
                     </div>
                     <p>Доступные курсы</p>
+                  </Link>
+                  <Link to="education" onClick={handleClick} className="lnews-righ-btm-list">
+                    <div className="lnews-icons">
+                      <Album />
+                    </div>
+                    <p>Фотогалерея</p>
                   </Link>
                 </div>
               </div>

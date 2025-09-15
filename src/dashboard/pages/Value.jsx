@@ -69,6 +69,10 @@ const Value = () => {
         </Flex>
       ) : (
         <Table
+          style={{
+            fontSize: '12px',
+            tableLayout: 'auto',
+          }}
           highlightOnHover
           withTableBorder
           withColumnBorders
@@ -91,8 +95,8 @@ const Value = () => {
                 <Table.Td>{el.photo.path}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
-                    <Button onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
+                    <Button size="xs" color="red" onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button size="xs" onClick={() => updateFn(el.id)}>{t("actions.update")}</Button>
                   </Flex>
                 </Table.Td>
               </Table.Tr>

@@ -94,7 +94,15 @@ function Document() {
           <Loader variant="dots" />
         </Flex>
       ) : (
-        <Table highlightOnHover withTableBorder withColumnBorders>
+        <Table
+          style={{
+            fontSize: '12px',
+            tableLayout: 'auto',
+          }}
+          highlightOnHover
+          withTableBorder
+          withColumnBorders
+        >
           <Table.Thead>
             <Table.Tr>
               <Table.Th>Id</Table.Th>
@@ -111,12 +119,13 @@ function Document() {
                 <Table.Td>{el.name}</Table.Td>
                 <Table.Td>{el.description}</Table.Td>
                 <Table.Td>
-                  <Button onClick={() => handleDownload(el.id, el.name)}>Download</Button>
+                  <Button size="xs" variant="outline" onClick={() => handleDownload(el.id, el.name)}>Download</Button>
                 </Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
-                    <Button onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
+                    <Button size="xs" color="red" onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>
                     <Button
+                      size="xs"
                       onClick={() => {
                         console.log("Update clicked, id:", el.id);
                         updateFn(el.id);

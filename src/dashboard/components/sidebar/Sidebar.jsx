@@ -25,70 +25,69 @@ export const Sidebar = () => {
     const { t } = useTranslation();
     const links = [
         {
-            to: "school", label: t("sidebar.school"), icon: <Check size={16} />,
-            // icon: <Building size={18} />
+            to: "school", label: t("sidebar.school"),
+            icon: <Building size={16} />
         },
         {
-            to: "position", label: t("sidebar.position"), icon: <Check size={16} />,
-            //  icon: <Briefcase size={18} />
+            to: "position", label: t("sidebar.position"),
+            icon: <Briefcase size={16} />
         },
         {
-            to: "album", label: t("sidebar.album"), icon: <Check size={16} />,
-            //  icon: <ImageIcon size={18} /> 
+            to: "album", label: t("sidebar.album"),
+            icon: <ImageIcon size={16} />
         },
         {
-            to: "user", label: t("sidebar.user"), icon: <Check size={16} />,
-            // icon: <User size={18} />
+            to: "user", label: t("sidebar.user"),
+            icon: <User size={16} />
         },
         {
-            to: "employee", label: t("sidebar.employee"), icon: <Check size={16} />,
-            //  icon: <Users size={18} /> 
+            to: "employee", label: t("sidebar.employee"),
+            icon: <Users size={16} />
         },
         {
-            to: "news", label: t("sidebar.news"), icon: <Check size={16} />,
-            //  icon: <Newspaper size={16} /> 
+            to: "news", label: t("sidebar.news"),
+            icon: <Newspaper size={16} />
         },
         {
-            to: "document", label: t("sidebar.document"), icon: <Check size={16} />,
-            // icon: <FileText size={16} />
-        },
-        // { to: "main", label: "Main", icon: <Home size={18} /> },
-        {
-            to: "rules", label: t("sidebar.rules"), icon: <Check size={16} />,
-            //  icon: <BookOpen size={18} /> 
+            to: "document", label: t("sidebar.document"),
+            icon: <FileText size={16} />
         },
         {
-            to: "club", label: t("sidebar.club"), icon: <Check size={16} />,
-            // icon: <Users size={18} />
+            to: "rules", label: t("sidebar.rules"),
+            icon: <BookOpen size={16} />
         },
         {
-            to: "value", label: t("sidebar.value"), icon: <Check size={16} />,
-            // icon: <Star size={18} />
+            to: "club", label: t("sidebar.club"),
+            icon: <Users size={16} />
         },
         {
-            to: "faq", label: "FAQ", icon: <Check size={16} />,
-            // icon: <IconFlagQuestion size={18} />
+            to: "value", label: t("sidebar.value"),
+            icon: <Star size={16} />
         },
         {
-            to: "hours", label: t("sidebar.schoolhours"), icon: <Check size={16} />,
-            // icon:<Clock size={18} />
+            to: "faq", label: "FAQ",
+            icon: <IconFlagQuestion size={16} />
         },
         {
-            to: "target", label: t("sidebar.target"), icon: <Check size={16} />,
-            //  icon: <Target size={18} /> 
+            to: "hours", label: t("sidebar.schoolhours"),
+            icon: <Clock size={16} />
         },
         {
-            to: "history", label: t("sidebar.history"), icon: <Check size={16} />,
-            //  icon: <BookOpen size={18} />
+            to: "target", label: t("sidebar.target"),
+            icon: <Target size={16} />
         },
         {
-            to: "information", label: t("sidebar.information"), icon: <Check size={16} />,
-            // icon: <File size={18} />
+            to: "history", label: t("sidebar.history"),
+            icon: <BookOpen size={16} />
+        },
+        {
+            to: "information", label: t("sidebar.information"),
+            icon: <File size={16} />
         },
         {
 
-            to: "vacancy", label: t("sidebar.vacancy"), icon: <Check size={16} />,
-            // icon: <FileText size={18} />
+            to: "vacancy", label: t("sidebar.vacancy"),
+            icon: <FileText size={16} />
         },
         {
             to: "admin-schedule", label: t("sidebar.schedule"),

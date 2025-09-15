@@ -197,10 +197,10 @@ export const Header = ({ darkMode, setDarkMode }) => {
                     <option className={"value"} value="ru">
                       Russian
                     </option>
-                    <option className={"value"} value="eng">
+                    <option className={"value"} value="en">
                       English
                     </option>
-                    <option className={"value"} value="qr">
+                    <option className={"value"} value="kk">
                       Qaraqalpaq
                     </option>
                     <option className={"value"} value="uz">

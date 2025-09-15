@@ -5,7 +5,7 @@ import classes from './LanguagePicker.module.scss';
 import { useTranslation } from 'react-i18next';
 
 const data = [
-    { label: 'Karakalpak', image: 'https://kkmi.uz/wp-content/uploads/2024/08/qq.jpg', value: 'qr' },
+    { label: 'Karakalpak', image: 'https://kkmi.uz/wp-content/uploads/2024/08/qq.jpg', value: 'kk' },
     { label: 'Uzbek', image: 'https://flagcdn.com/uz.svg', value: 'uz' },
     { label: 'Russian', image: 'https://flagcdn.com/ru.svg', value: 'ru' },
     { label: 'English', image: 'https://flagcdn.com/us.svg', value: 'en' },
@@ -43,7 +43,7 @@ export function LanguagePicker() {
             withinPortal
         >
             <Menu.Target>
-                <UnstyledButton className={classes.control} data-expanded={opened || undefined}>
+                <UnstyledButton onChange={(e) => i18n.changeLanguage(e.target.value)} className={classes.control} data-expanded={opened || undefined}>
                     <Flex gap="xs" align={"center"}>
                         <Image src={selected.image} w={22} h={22} radius={"100%"} />
                         <span className={classes.label}>{selected.label}</span>

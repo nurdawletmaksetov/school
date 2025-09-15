@@ -2,11 +2,14 @@ import { Flex, Grid, Pagination } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { OneNews } from '../one-news/one-news'
 import { api } from '../../../api/api';
+import { useTranslation } from 'react-i18next';
 
 export const AllNews = ({ darkMode }) => {
     const [news, setNews] = useState([]);
-    const [activePage, setActivePage] = useState(1)
+    const [activePage, setActivePage] = useState(1);
     const ITEMS_PER_PAGE = 8;
+    const { i18n } = useTranslation();
+    const language = i18n.language;
 
     async function getNews() {
         const { data } = await api.get('/news');
@@ -15,7 +18,7 @@ export const AllNews = ({ darkMode }) => {
 
     useEffect(() => {
         getNews();
-    }, [])
+    }, []);
 
     const paginatedNews = news.slice(
         (activePage - 1) * ITEMS_PER_PAGE,
@@ -28,14 +31,15 @@ export const AllNews = ({ darkMode }) => {
                 {paginatedNews.map((item) => (
                     <Grid.Col
                         span={{ base: 12, sm: 6, md: 4, lg: 3 }}
-                        key={item.id}>
+                        key={item.id}
+                    >
                         <OneNews
                             darkMode={darkMode}
                             id={item.id}
                             image={item.cover_image?.path}
                             date={item.created_at}
-                            title={item.title?.uz}
-                            body={item.short_content?.uz}
+                            title={item.title?.[language] ?? ""}
+                            body={item.short_content?.[language] ?? ""}
                         />
                     </Grid.Col>
                 ))}
