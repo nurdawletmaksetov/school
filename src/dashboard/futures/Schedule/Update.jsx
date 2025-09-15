@@ -38,9 +38,9 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
             const formData = new FormData();
             formData.append("description", body.description?.trim() || "");
 
-            // Faqat yangi fayl tanlangan bo‘lsa yuboramiz
+            // faqat yangi fayl tanlangan bo‘lsa yuboramiz
             if (body.file instanceof File) {
-                formData.append("file_pdf", body.file);
+                formData.append("file", body.file);
             }
 
             formData.append("_method", "PUT");
@@ -73,6 +73,7 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
             setLoading(false);
         }
     };
+
 
 
     if (loading || !data) {
