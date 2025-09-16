@@ -52,7 +52,7 @@ const UpdateFaq = ({ id, getFaqs }) => {
             console.error("Error updating FAQ:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update FAQ!",
+                message: error.response?.data?.message || "Failed to update FAQ!",
                 color: "red",
                 icon: <X />,
             });
@@ -61,7 +61,7 @@ const UpdateFaq = ({ id, getFaqs }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -73,19 +73,20 @@ const UpdateFaq = ({ id, getFaqs }) => {
 
     return (
         <FormFaq
+            loading={loading}
             submitFn={updateFn}
             initialValues={{
                 question: {
-                    ru: data.question.ru,
-                    uz: data.question.uz,
-                    en: data.question.en,
-                    kk: data.question.kk,
+                    ru: data?.question.ru,
+                    uz: data?.question.uz,
+                    en: data?.question.en,
+                    kk: data?.question.kk,
                 },
                 answer: {
-                    ru: data.answer.ru,
-                    uz: data.answer.uz,
-                    en: data.answer.en,
-                    kk: data.answer.kk,
+                    ru: data?.answer.ru,
+                    uz: data?.answer.uz,
+                    en: data?.answer.en,
+                    kk: data?.answer.kk,
                 },
             }}
         />

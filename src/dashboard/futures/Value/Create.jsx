@@ -66,22 +66,17 @@ const CreateValue = ({ getValue }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormValue
-                        submitFn={createFn}
-                        initialValues={{
-                            name: { kk: "", uz: "", ru: "", en: "" },
-                            text: { kk: "", uz: "", ru: "", en: "" },
-                            photo: [],
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormValue
+                    submitFn={createFn}
+                    loading={loading}
+                    initialValues={{
+                        name: { kk: "", uz: "", ru: "", en: "" },
+                        text: { kk: "", uz: "", ru: "", en: "" },
+                        photo: [],
+                    }}
+                />
+            </Stack>
         </div>
     );
 };

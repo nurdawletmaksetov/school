@@ -30,7 +30,7 @@ const CreateFaqs = ({ getFaqs }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create FAQ!",
+                message: error.response?.data?.message || "Failed to create FAQ!",
                 color: "red",
                 icon: <X />,
             });
@@ -41,21 +41,16 @@ const CreateFaqs = ({ getFaqs }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormFaq
-                        submitFn={createFn}
-                        initialValues={{
-                            question: { kk: "", uz: "", ru: "", en: "" },
-                            answer: { kk: "", uz: "", ru: "", en: "" },
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormFaq
+                    loading={loading}
+                    submitFn={createFn}
+                    initialValues={{
+                        question: { kk: "", uz: "", ru: "", en: "" },
+                        answer: { kk: "", uz: "", ru: "", en: "" },
+                    }}
+                />
+            </Stack>
         </div>
     );
 };

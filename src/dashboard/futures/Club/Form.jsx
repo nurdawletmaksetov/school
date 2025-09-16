@@ -1,63 +1,94 @@
 import { useForm } from "@mantine/form";
 import { Button, TextInput, Textarea, FileInput, Stack, Flex } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { useTranslation } from "react-i18next";
 
-const FormClub = ({ submitFn, initialValues }) => {
+const FormClub = ({ submitFn, initialValues, loading }) => {
+    const { t } = useTranslation();
     const form = useForm({
-        initialValues,
+        initialValues: {
+            name: { kk: "", uz: "", ru: "", en: "", ...initialValues.name },
+            text: { kk: "", uz: "", ru: "", en: "", ...initialValues.text },
+            schedule: { kk: "", uz: "", ru: "", en: "", ...initialValues.schedule },
+            photo: initialValues.photo || null,
+        }
     });
 
     const handleSubmit = async (values) => {
-        // Frontend validation: barcha majburiy fieldlarni tekshirish
-        const fields = ["name", "text", "schedule"];
-        const langs = ["kk", "uz", "ru", "en"];
-
-        for (let field of fields) {
-            for (let lang of langs) {
-                if (!values[field]?.[lang]) {
-                    alert(`${field}[${lang}] is required!`);
-                    return;
-                }
-            }
-        }
-
         await submitFn(values);
     };
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
-                {/* Name fields */}
-                {["kk", "uz", "ru", "en"].map((lang) => (
-                    <TextInput
-                        key={`name-${lang}`}
-                        label={`Name (${lang})`}
-                        placeholder="Name"
-                        {...form.getInputProps(`name.${lang}`)}
-                    />
-                ))}
+                <TextInput
+                    label={`Name (kk)`}
+                    placeholder="Name"
+                    {...form.getInputProps(`name.kk`)}
+                />
+                <TextInput
+                    label={`Name (uz)`}
+                    placeholder="Name"
+                    {...form.getInputProps(`name.uz`)}
+                />
+                <TextInput
+                    label={`Name (ru)`}
+                    placeholder="Name"
+                    {...form.getInputProps(`name.ru`)}
+                />
+                <TextInput
+                    label={`Name (en)`}
+                    placeholder="Name"
+                    {...form.getInputProps(`name.en`)}
+                />
 
-                {/* Text fields */}
-                {["kk", "uz", "ru", "en"].map((lang) => (
-                    <Textarea
-                        key={`text-${lang}`}
-                        label={`Text (${lang})`}
-                        placeholder="Text"
-                        {...form.getInputProps(`text.${lang}`)}
-                    />
-                ))}
+                <Textarea
+                    label={`Text (kk)`}
+                    placeholder="Text"
+                    {...form.getInputProps(`text.kk`)}
+                />
+                <Textarea
+                    label={`Text (uz)`}
+                    placeholder="Text"
+                    {...form.getInputProps(`text.uz`)}
+                />
+                <Textarea
+                    label={`Text (ru)`}
+                    placeholder="Text"
+                    {...form.getInputProps(`text.ru`)}
+                />
+                <Textarea
+                    label={`Text (en)`}
+                    placeholder="Text"
+                    {...form.getInputProps(`text.en`)}
+                />
+                <Textarea
+                    label={`Text (kk)`}
+                    placeholder="Text"
+                    {...form.getInputProps(`text.kk`)}
+                />
 
-                {/* Schedule fields */}
-                {["kk", "uz", "ru", "en"].map((lang) => (
-                    <Textarea
-                        key={`schedule-${lang}`}
-                        label={`Schedule (${lang})`}
-                        placeholder="Schedule"
-                        {...form.getInputProps(`schedule.${lang}`)}
-                    />
-                ))}
+                <Textarea
+                    label={`Schedule (kk)`}
+                    placeholder="Schedule"
+                    {...form.getInputProps(`schedule.kk`)}
+                />
+                <Textarea
+                    label={`Schedule (uz)`}
+                    placeholder="Schedule"
+                    {...form.getInputProps(`schedule.uz`)}
+                />
+                <Textarea
+                    label={`Schedule (ru)`}
+                    placeholder="Schedule"
+                    {...form.getInputProps(`schedule.ru`)}
+                />
+                <Textarea
+                    label={`Schedule (en)`}
+                    placeholder="Schedule"
+                    {...form.getInputProps(`schedule.en`)}
+                />
 
-                {/* Photo */}
                 <FileInput
                     label="Upload photo"
                     placeholder="Upload photo"
@@ -67,8 +98,8 @@ const FormClub = ({ submitFn, initialValues }) => {
                 />
 
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()}>Cancel</Button>
-                    <Button type="submit">Save</Button>
+                    <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
+                    <Button type="submit" loading={loading}>{t("actions.save")}</Button>
                 </Flex>
             </Stack>
         </form>

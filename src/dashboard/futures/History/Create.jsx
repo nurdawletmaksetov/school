@@ -31,7 +31,7 @@ const CreateHistory = ({ getHistory }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create History!",
+                message: error.response?.data?.message || "Failed to create History!",
                 color: "red",
                 icon: <X />,
             });

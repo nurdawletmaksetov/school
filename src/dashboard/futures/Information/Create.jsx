@@ -31,7 +31,7 @@ const CreateInformation = ({ getInformation }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create Information!",
+                message: error.response?.data?.message || "Failed to create Information!",
                 color: "red",
                 icon: <X />,
             });

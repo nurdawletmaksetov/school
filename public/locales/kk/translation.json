@@ -26,14 +26,6 @@
         "document": "Hu'jjet",
         "rules": "Qag'iydalar"
     },
-    "table": {
-        "title": "Atawı",
-        "content": "Cantent",
-        "salary": "Ayliq",
-        "active": "Aktive",
-        "inactive": "Aktive emes",
-        "actions": "Ameller"
-    },
     "actions": {
         "create": "Jaratiw",
         "update": "Jan'artiw",
@@ -49,11 +41,7 @@
         "ru": "Ruskiy",
         "en": "Angliyskiy"
     },
-    "vacancy": {
-        "title": "Valamsiya ati",
-        "content": "Valamsiya mazmuni",
-        "salary": "Ayliq",
-        "active": "Valamsiya aktive",
-        "inactive": "Valamsiya aktive emes"
+    "messages": {
+        "confirmDelete": "Siz bul elementti o'shiriwge isenimlisizba?"
     }
 }

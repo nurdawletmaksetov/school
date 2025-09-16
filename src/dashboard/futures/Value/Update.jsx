@@ -81,7 +81,7 @@ const UpdateValue = ({ id, getValue }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -94,18 +94,19 @@ const UpdateValue = ({ id, getValue }) => {
     return (
         <FormValue
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
                 name: {
-                    kk: data?.name?.kk || "",
-                    uz: data?.name?.uz || "",
-                    ru: data?.name?.ru || "",
-                    en: data?.name?.en || "",
+                    kk: data?.name?.kk,
+                    uz: data?.name?.uz,
+                    ru: data?.name?.ru,
+                    en: data?.name?.en,
                 },
                 text: {
-                    kk: data?.text?.kk || "",
-                    uz: data?.text?.uz || "",
-                    ru: data?.text?.ru || "",
-                    en: data?.text?.en || "",
+                    kk: data?.text?.kk,
+                    uz: data?.text?.uz,
+                    ru: data?.text?.ru,
+                    en: data?.text?.en,
                 },
                 photo: null,
             }}

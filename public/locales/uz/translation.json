@@ -26,14 +26,6 @@
         "document": "Hujjat",
         "rules": "Qoidalar"
     },
-    "table": {
-        "title": "Title",
-        "content": "Content",
-        "salary": "Maosh",
-        "active": "Faol",
-        "inactive": "Faol emas",
-        "actions": "Amallar"
-    },
     "actions": {
         "create": "Yaratish",
         "update": "Yangilash",
@@ -43,11 +35,7 @@
         "save": "Saqlash",
         "cancel": "Bekor qilish"
     },
-    "vacancy": {
-        "title": "Valamsiya nomi",
-        "content": "Valamsiya mazmuni",
-        "salary": "Maosh",
-        "active": "Valamsiya faol",
-        "inactive": "Valamsiya faol emas"
+    "messages": {
+        "confirmDelete": "Haqiqatdan ham ushbu elementni o'chirmoqchimisiz?"
     }
 }

@@ -53,7 +53,7 @@ const UpdateHistory = ({ id, getHistory }) => {
             console.error("Error updating History:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update History!",
+                message: error.response?.data?.message || "Failed to update History!",
                 color: "red",
                 icon: <X />,
             });

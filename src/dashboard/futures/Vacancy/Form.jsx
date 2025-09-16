@@ -18,55 +18,55 @@ const FormVacancy = ({ submitFn, initialValues, loading }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label={t("vacancy.title") + " (kk)"}
-                    placeholder={t("vacancy.title")}
+                    label="Job title (kk)"
+                    placeholder="Job title"
                     {...form.getInputProps("title.kk")}
                 />
                 <TextInput
-                    label={t("vacancy.title") + " (uz)"}
-                    placeholder={t("vacancy.title")}
+                    label="Job title (uz)"
+                    placeholder="Job title"
                     {...form.getInputProps("title.uz")}
                 />
                 <TextInput
-                    label={t("vacancy.title") + " (ru)"}
-                    placeholder={t("vacancy.title")}
+                    label="Job title (ru)"
+                    placeholder="job title"
                     {...form.getInputProps("title.ru")}
                 />
                 <TextInput
-                    label={t("vacancy.title") + " (en)"}
-                    placeholder={t("vacancy.title")}
+                    label="Job title (en)"
+                    placeholder="Job title"
                     {...form.getInputProps("title.en")}
                 />
 
                 <Textarea
-                    label={t("vacancy.content") + " (kk)"}
-                    placeholder={t("vacancy.content")}
+                    label="Job content (kk)"
+                    placeholder="Job content"
                     minRows={2}
                     {...form.getInputProps("content.kk")}
                 />
                 <Textarea
-                    label={t("vacancy.content") + " (uz)"}
-                    placeholder={t("vacancy.content")}
+                    label="Job content (uz)"
+                    placeholder="Job content"
                     minRows={2}
                     {...form.getInputProps("content.uz")}
                 />
                 <Textarea
-                    label={t("vacancy.content") + " (ru)"}
-                    placeholder={t("vacancy.content")}
+                    label="Job content (ru)"
+                    placeholder="Job content"
                     minRows={2}
                     {...form.getInputProps("content.ru")}
                 />
                 <Textarea
-                    label={t("vacancy.content") + " (en)"}
-                    placeholder={t("vacancy.content")}
+                    label="Job content (en)"
+                    placeholder="Job content"
                     minRows={2}
                     {...form.getInputProps("content.en")}
                 />
                 <Switch
                     label={
                         form.values.active
-                            ? t("vacancy.active")
-                            : t("vacancy.inactive")
+                            ? "Vacancy is active"
+                            : "Vacancy is not active"
                     }
                     checked={form.values.active}
                     onChange={(event) =>
@@ -75,14 +75,14 @@ const FormVacancy = ({ submitFn, initialValues, loading }) => {
                 />
 
                 <TextInput
-                    label={t("vacancy.salary")}
-                    placeholder={t("vacancy.salary")}
+                    label="Salary"
+                    placeholder="Salary"
                     {...form.getInputProps("salary")}
                 />
 
                 <Flex justify="end" gap={10}>
                     <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
-                    <Button type="submit" loading={loading}>{t("save")}</Button>
+                    <Button type="submit" loading={loading}>{t("actions.save")}</Button>
                 </Flex>
             </Stack>
         </form>

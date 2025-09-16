@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
+import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea, Image } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import DeleteValue from "../futures/Value/Delete";
@@ -98,7 +98,16 @@ const Value = () => {
                 <Table.Td>{el.id}</Table.Td>
                 <Table.Td>{el.name[currentLang]}</Table.Td>
                 <Table.Td>{el.text[currentLang]}</Table.Td>
-                <Table.Td>{el.photo.path}</Table.Td>
+                <Table.Td>
+                  <Image
+                    src={el.photo?.path}
+                    alt={el.photo?.name || "photo"}
+                    width={80}
+                    height={60}
+                    radius="md"
+                    fit="cover"
+                  />
+                </Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
                     <Button size="xs" color="red" onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>

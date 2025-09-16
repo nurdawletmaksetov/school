@@ -53,7 +53,7 @@ const UpdateSchoolHourse = ({ id, getSchoolHours }) => {
             console.error("Error updating School Hourse:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update School Hourse!",
+                message: error.response?.data?.message || "Failed to update School Hourse!",
                 color: "red",
                 icon: <X />,
             });
@@ -62,7 +62,7 @@ const UpdateSchoolHourse = ({ id, getSchoolHours }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -75,24 +75,25 @@ const UpdateSchoolHourse = ({ id, getSchoolHours }) => {
     return (
         <FormSchoolHours
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
                 title: {
-                    ru: data.title.ru,
-                    uz: data.title.uz,
-                    en: data.title.en,
-                    kk: data.title.kk,
+                    ru: data?.title.ru,
+                    uz: data?.title.uz,
+                    en: data?.title.en,
+                    kk: data?.title.kk,
                 },
                 workday: {
-                    ru: data.workday.ru,
-                    uz: data.workday.uz,
-                    en: data.workday.en,
-                    kk: data.workday.kk,
+                    ru: data?.workday.ru,
+                    uz: data?.workday.uz,
+                    en: data?.workday.en,
+                    kk: data?.workday.kk,
                 },
                 holiday: {
-                    ru: data.holiday.ru,
-                    uz: data.holiday.uz,
-                    en: data.holiday.en,
-                    kk: data.holiday.kk,
+                    ru: data?.holiday.ru,
+                    uz: data?.holiday.uz,
+                    en: data?.holiday.en,
+                    kk: data?.holiday.kk,
                 },
             }}
         />

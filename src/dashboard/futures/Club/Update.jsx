@@ -36,25 +36,24 @@ const UpdateClub = ({ id, getClubs }) => {
         setLoading(true);
         try {
             const formData = new FormData();
+            formData.append("name[kk]", values.name.kk);
+            formData.append("name[uz]", values.name.uz);
+            formData.append("name[ru]", values.name.ru);
+            formData.append("name[en]", values.name.en);
 
-            const fields = ["name", "text", "schedule"];
-            const langs = ["kk", "uz", "ru", "en"];
+            formData.append("text[kk]", values.text.kk);
+            formData.append("text[uz]", values.text.uz);
+            formData.append("text[ru]", values.text.ru);
+            formData.append("text[en]", values.text.en);
 
-            fields.forEach(field => {
-                langs.forEach(lang => {
-                    formData.append(`${field}[${lang}]`, values[field]?.[lang] || "");
-                });
-            });
+            formData.append("schedule[kk]", values.schedule.kk);
+            formData.append("schedule[uz]", values.schedule.uz);
+            formData.append("schedule[ru]", values.schedule.ru);
+            formData.append("schedule[en]", values.schedule.en);
+            if (values.photo instanceof File) {
+                formData.append("photo", values.photo);
+            }
 
-            if (values.photo) formData.append("photo", values.photo);
-
-            // Barcha boshqa required fieldlar
-            formData.append("status", values.status || "active");
-            formData.append("category", values.category || "");
-            formData.append("teacher_id", values.teacher_id || "");
-            formData.append("price", values.price || 0);
-
-            // PUT methodni POST orqali yuborish
             formData.append("_method", "PUT");
 
             await api.post(`/clubs/update/${id}`, formData, {
@@ -84,7 +83,7 @@ const UpdateClub = ({ id, getClubs }) => {
     };
 
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "100%" }}>
                 <Stack align="center">
@@ -97,11 +96,27 @@ const UpdateClub = ({ id, getClubs }) => {
     return (
         <FormClub
             key={id}
+            loading={loading}
             submitFn={updateFn}
             initialValues={{
-                name: data.name || { kk: "", uz: "", ru: "", en: "" },
-                text: data.text || { kk: "", uz: "", ru: "", en: "" },
-                schedule: data.schedule || { kk: "", uz: "", ru: "", en: "" },
+                name: {
+                kk: data?.name.kk,
+                    uz: data?.name.uz,
+                    ru: data?.name.ru,
+                    en: data?.name.en,
+                },
+                text: {
+                    kk: data?.text.kk,
+                    uz: data?.text.uz,
+                    ru: data?.text.ru,
+                    en: data?.text.en,
+                },
+                schedule: {
+                    kk: data?.schedule.kk,
+                    uz: data?.schedule.uz,
+                    ru: data?.schedule.ru,
+                    en: data?.schedule.en,
+                },
                 photo: null,
             }}
         />

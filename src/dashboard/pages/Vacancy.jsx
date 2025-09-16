@@ -87,11 +87,11 @@ const Vacancy = () => {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Id</Table.Th>
-                <Table.Th>{t("table.title")}</Table.Th>
-                <Table.Th>{t("table.content")}</Table.Th>
-                <Table.Th>{t("table.active")}</Table.Th>
-                <Table.Th>{t("table.salary")}</Table.Th>
-                <Table.Th>{t("table.actions")}</Table.Th>
+                <Table.Th>Title</Table.Th>
+                <Table.Th>Content</Table.Th>
+                <Table.Th>Active</Table.Th>
+                <Table.Th>Salary(sum)</Table.Th>
+                <Table.Th>Actions</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -102,9 +102,9 @@ const Vacancy = () => {
                   <Table.Td>{el.content[currentLang]}</Table.Td>
                   <Table.Td>
                     {el.active ? (
-                      <Badge variant="light" color="green">{t("table.active")}</Badge>
+                      <Badge variant="light" color="green">Active</Badge>
                     ) : (
-                      <Badge variant="light" color="red">{t("table.inactive")}</Badge>
+                      <Badge variant="light" color="red">Inactive</Badge>
                     )}
                   </Table.Td>
                   <Table.Td>{el.salary}</Table.Td>

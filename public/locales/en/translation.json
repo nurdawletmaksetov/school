@@ -26,14 +26,6 @@
         "document": "Document",
         "rules": "Rules"
     },
-    "table": {
-        "title": "Title",
-        "content": "Content",
-        "salary": "Salary",
-        "active": "Active",
-        "actions": "Actions",
-        "inactive": "Inactive"
-    },
     "actions": {
         "create": "Create",
         "update": "Update",
@@ -49,11 +41,7 @@
         "ru": "Russian",
         "en": "English"
     },
-    "vacancy": {
-        "title": "Job title",
-        "content": "Job content",
-        "salary": "Salary",
-        "active": "Vacancy is active",
-        "inactive": "Vacancy is not active"
+    "messages": {
+        "confirmDelete": "Are you sure you want to delete this item?"
     }
 }

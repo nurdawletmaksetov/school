@@ -53,8 +53,7 @@ const UpdateInformation = ({ id, getInformation }) => {
             console.error("Error updating Information:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Information!",
-                // message: error.response?.data?.message 
+                message: error.response?.data?.message || "Failed to update Information!",
                 color: "red",
                 icon: <X />,
             });

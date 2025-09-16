@@ -59,7 +59,7 @@ const CreateClub = ({ getClubs }) => {
             console.error("Error creating club:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to create club!",
+                message: error.response?.data?.message || "Failed to create club!",
                 color: "red",
                 icon: <X />,
             });
@@ -68,19 +68,10 @@ const CreateClub = ({ getClubs }) => {
         }
     };
 
-    if (loading) {
-        return (
-            <Flex justify="center" align="center" style={{ height: "200px" }}>
-                <Stack align="center">
-                    <Loader variant="dots" size="lg" />
-                </Stack>
-            </Flex>
-        );
-    }
-
     return (
         <FormClub
             submitFn={createFn}
+            loading={loading}
             initialValues={{
                 name: { kk: "", uz: "", ru: "", en: "" },
                 text: { kk: "", uz: "", ru: "", en: "" },
