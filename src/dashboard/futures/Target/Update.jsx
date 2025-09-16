@@ -16,10 +16,10 @@ const UpdateTarget = ({ id, getTarget }) => {
             const { data } = await api.get(`/targets/${id}`);
             setData(data.data);
         } catch (error) {
-            console.error("Error fetching position:", error);
+            console.error("Error fetching target:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to fetch position!",
+                message: "Failed to fetch target!",
                 color: "red",
                 icon: <X />,
             });
@@ -50,10 +50,10 @@ const UpdateTarget = ({ id, getTarget }) => {
                 icon: <Check />,
             });
         } catch (error) {
-            console.error("Error updating position:", error);
+            console.error("Error updating target:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update position!",
+                message: error.response?.data?.message || "Failed to update target!",
                 color: "red",
                 icon: <X />,
             });
@@ -62,7 +62,7 @@ const UpdateTarget = ({ id, getTarget }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -75,18 +75,19 @@ const UpdateTarget = ({ id, getTarget }) => {
     return (
         <FormPosition
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
                 name: {
-                    ru: data.name.ru,
-                    uz: data.name.uz,
-                    en: data.name.en,
-                    kk: data.name.kk,
+                    ru: data?.name.ru,
+                    uz: data?.name.uz,
+                    en: data?.name.en,
+                    kk: data?.name.kk,
                 },
                 description: {
-                    ru: data.description.ru,
-                    uz: data.description.uz,
-                    en: data.description.en,
-                    kk: data.description.kk,
+                    ru: data?.description.ru,
+                    uz: data?.description.uz,
+                    en: data?.description.en,
+                    kk: data?.description.kk,
                 },
             }}
         />

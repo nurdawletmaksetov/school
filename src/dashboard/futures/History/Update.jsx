@@ -62,7 +62,7 @@ const UpdateHistory = ({ id, getHistory }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -75,13 +75,14 @@ const UpdateHistory = ({ id, getHistory }) => {
     return (
         <FormHistory
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
-                year: data.year,
+                year: data?.year,
                 text: {
-                    ru: data.text.ru,
-                    uz: data.text.uz,
-                    en: data.text.en,
-                    kk: data.text.kk,
+                    ru: data?.text.ru,
+                    uz: data?.text.uz,
+                    en: data?.text.en,
+                    kk: data?.text.kk,
                 },
             }}
         />

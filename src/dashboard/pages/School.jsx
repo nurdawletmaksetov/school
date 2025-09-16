@@ -4,6 +4,7 @@ import { modals } from '@mantine/modals';
 import UpdateSchool from '../futures/School/Update';
 import { api } from '../../api/api';
 import { useTranslation } from 'react-i18next';
+import { notifications } from '@mantine/notifications';
 
 const School = () => {
   const [schools, setSchools] = useState([]);
@@ -18,6 +19,11 @@ const School = () => {
       setSchools(Array.isArray(data.data) ? data.data : [data.data]);
     } catch (error) {
       console.error("Error fetching schools:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch schools!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

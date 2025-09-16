@@ -6,6 +6,7 @@ import DeleteRules from "../futures/Rules/Delete";
 import UpdateRules from "../futures/Rules/Update";
 import { api } from "../../api/api";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 function AdminRules() {
   const [rules, setRules] = useState([]);
@@ -23,6 +24,11 @@ function AdminRules() {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching rules:", error)
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch rules!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

@@ -72,7 +72,7 @@ const UpdateValue = ({ id, getValue }) => {
             console.error("Error updating value:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update value!",
+                message: error.response?.data?.message || "Failed to update value!",
                 color: "red",
                 icon: <X />,
             });
@@ -107,7 +107,7 @@ const UpdateValue = ({ id, getValue }) => {
                     ru: data?.text?.ru || "",
                     en: data?.text?.en || "",
                 },
-                photo: null, 
+                photo: null,
             }}
         />
     );

@@ -6,6 +6,7 @@ import DeleteInformation from "../futures/Information/Delete";
 import UpdateInformation from "../futures/Information/Update";
 import CreateInformation from "../futures/Information/Create";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 const Information = () => {
   const [information, setInformation] = useState([]);
@@ -22,7 +23,12 @@ const Information = () => {
       setInformation(data.data.items);
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
-      console.error("Error fetching information:", error);
+      console.error("Error fetching information:", error)
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch information!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

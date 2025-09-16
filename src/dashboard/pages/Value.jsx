@@ -6,6 +6,7 @@ import DeleteValue from "../futures/Value/Delete";
 import UpdateValue from "../futures/Value/Update";
 import CreateValue from "../futures/Value/Create";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 const Value = () => {
   const [value, setValue] = useState([]);
@@ -23,6 +24,11 @@ const Value = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching Value:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch value!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

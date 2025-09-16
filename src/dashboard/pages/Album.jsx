@@ -6,6 +6,7 @@ import UpdateAlbum from "../futures/Album/Update";
 import CreateAlbum from "../futures/Album/Create";
 import DeleteALbum from "../futures/Album/Delete";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 const Album = () => {
   const [albums, setAlbums] = useState([]);
@@ -24,7 +25,7 @@ const Album = () => {
       console.error("Error fetching albums:", error);
       notifications.show({
         title: "Error",
-        message: "Failed to fetch news!",
+        message: "Failed to fetch albums!",
         color: "red",
       });
     } finally {

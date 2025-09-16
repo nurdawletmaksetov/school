@@ -54,6 +54,7 @@ const UpdateInformation = ({ id, getInformation }) => {
             notifications.show({
                 title: "Error",
                 message: "Failed to update Information!",
+                // message: error.response?.data?.message 
                 color: "red",
                 icon: <X />,
             });
@@ -62,7 +63,7 @@ const UpdateInformation = ({ id, getInformation }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -74,20 +75,21 @@ const UpdateInformation = ({ id, getInformation }) => {
 
     return (
         <FormPosition
+            loading={loading}
             submitFn={updateFn}
             initialValues={{
                 title: {
-                    ru: data.title.ru,
-                    uz: data.title.uz,
-                    en: data.title.en,
-                    kk: data.title.kk,
+                    ru: data?.title?.ru || "",
+                    uz: data?.title?.uz || "",
+                    en: data?.title?.en || "",
+                    kk: data?.title?.kk || "",
                 },
-                count: data.count,
+                count: data?.count || 0,
                 description: {
-                    ru: data.description.ru,
-                    uz: data.description.uz,
-                    en: data.description.en,
-                    kk: data.description.kk,
+                    ru: data?.description?.ru || "",
+                    uz: data?.description?.uz || "",
+                    en: data?.description?.en || "",
+                    kk: data?.description?.kk || "",
                 },
             }}
         />

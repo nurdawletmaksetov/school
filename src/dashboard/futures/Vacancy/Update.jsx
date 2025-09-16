@@ -49,7 +49,7 @@ const UpdateVacancy = ({ id, getVacancy }) => {
             console.error("Error updating Vacancy:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Vacancy!",
+                message: error.response?.data?.message || "Failed to update Vacancy!",
                 color: "red",
                 icon: <X />,
             });
@@ -58,7 +58,7 @@ const UpdateVacancy = ({ id, getVacancy }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -71,21 +71,22 @@ const UpdateVacancy = ({ id, getVacancy }) => {
     return (
         <FormVacancy
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
                 title: {
-                    ru: data.title.ru,
-                    uz: data.title.uz,
-                    en: data.title.en,
-                    kk: data.title.kk,
+                    ru: data?.title?.ru || "",
+                    uz: data?.title?.uz || "",
+                    en: data?.title?.en || "",
+                    kk: data?.title?.kk || "",
                 },
                 content: {
-                    ru: data.content.ru,
-                    uz: data.content.uz,
-                    en: data.content.en,
-                    kk: data.content.kk,
+                    ru: data?.content?.ru || "",
+                    uz: data?.content?.uz || "",
+                    en: data?.content?.en || "",
+                    kk: data?.content?.kk || "",
                 },
-                active: data.active,
-                salary: data.salary,
+                active: data?.active || false,
+                salary: data?.salary || "",
             }}
         />
     );

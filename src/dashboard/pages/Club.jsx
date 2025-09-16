@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button, Flex, Stack, Table, Title, Loader, Text, Pagination, Textarea } from "@mantine/core";
-// import { modals } from "@mantine/modals";
+import { modals } from "@mantine/modals";
 import { api } from "../../api/api";
 import CreateClub from "../futures/Club/Create";
 import UpdateClub from "../futures/Club/Update";
 import DeleteClub from "../futures/Club/Delete";
 import { modals } from "@mantine/modals";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 const Club = () => {
   const [club, setClub] = useState([]);
@@ -26,7 +27,7 @@ const Club = () => {
       console.error("Error fetching FAQ:", error);
       notifications.show({
         title: "Error",
-        message: "Failed to fetch news!",
+        message: "Failed to fetch clubs!",
         color: "red",
       });
     } finally {

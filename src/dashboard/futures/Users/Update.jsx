@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Flex, Loader } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { notifications } from "@mantine/notifications"; 
+import { notifications } from "@mantine/notifications";
 import FormUsers from "./Form";
 import { api } from "../../../api/api";
 
@@ -18,7 +18,7 @@ const UpdateUsers = ({ id, getUsers }) => {
             console.error(error);
             notifications.show({
                 title: "Error",
-                message: "❌ Could not fetch user",
+                message: "Could not fetch user",
                 color: "red",
             });
         } finally {
@@ -37,7 +37,7 @@ const UpdateUsers = ({ id, getUsers }) => {
 
             notifications.show({
                 title: "Success",
-                message: "✅ User updated successfully",
+                message: "User updated successfully",
                 color: "teal",
             });
 
@@ -47,7 +47,7 @@ const UpdateUsers = ({ id, getUsers }) => {
             console.error(error);
             notifications.show({
                 title: "Error",
-                message: "❌ Could not update user",
+                message: error.response?.data?.message || "Could not update user",
                 color: "red",
             });
         } finally {

@@ -23,7 +23,8 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
                 color: "red",
                 icon: <X />,
             });
-        } finally {
+        }
+        finally {
             setLoading(false);
         }
     };
@@ -32,13 +33,13 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
         getSchedules();
     }, [id]);
 
+
     const updateFn = async (body) => {
         setLoading(true);
         try {
             const formData = new FormData();
             formData.append("description", body.description?.trim() || "");
 
-            // faqat yangi fayl tanlangan bo‘lsa yuboramiz
             if (body.file instanceof File) {
                 formData.append("file", body.file);
             }
@@ -74,25 +75,23 @@ const UpdateSchedule = ({ id, getAdminSchedule }) => {
         }
     };
 
-
-
-    if (loading || !data) {
+    if (loading && !data) {
         return (
-            <Flex justify="center" align="center" style={{ height: "200px" }}>
-                <Stack align="center">
-                    <Loader variant="dots" size="lg" />
-                </Stack>
+            <Flex justify="center" align="center" style={{ height: "100%" }}>
+                <Loader />
             </Flex>
         );
     }
+
 
     return (
         <FormSchedule
             submitFn={updateFn}
             initialValues={{
-                description: data.description,
+                description: data?.description,
                 file: null,
             }}
+            loading={loading}
         />
     );
 };

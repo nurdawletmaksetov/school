@@ -6,6 +6,7 @@ import UpdateEmployee from '../futures/Employee/Update';
 import DeleteEmployee from '../futures/Employee/Delete';
 import { modals } from '@mantine/modals';
 import { useTranslation } from 'react-i18next';
+import { notifications } from '@mantine/notifications';
 
 const Employee = () => {
   const currentLang = "ru";
@@ -23,6 +24,11 @@ const Employee = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching Employee:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch employee!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

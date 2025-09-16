@@ -7,6 +7,7 @@ import CreateSchoolHours from '../futures/SchoolHours/Create';
 import DeleteSchoolHourse from '../futures/SchoolHours/Delete';
 import UpdateSchoolHourse from '../futures/SchoolHours/Update';
 import { useTranslation } from 'react-i18next';
+import { notifications } from '@mantine/notifications';
 const SchoolHours = () => {
   const [schoolhours, setSchoolHours] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,11 @@ const SchoolHours = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching schoolhours:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch school hours!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

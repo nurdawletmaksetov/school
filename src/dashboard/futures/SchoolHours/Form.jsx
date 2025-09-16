@@ -2,7 +2,7 @@ import { useForm } from "@mantine/form";
 import { Button, Textarea, Stack, Flex, TextInput } from "@mantine/core";
 import { modals } from "@mantine/modals";
 
-const FormSchoolHours = ({ submitFn, initialValues }) => {
+const FormSchoolHours = ({ submitFn, initialValues, loading }) => {
     const form = useForm({
         initialValues,
     });
@@ -86,7 +86,7 @@ const FormSchoolHours = ({ submitFn, initialValues }) => {
                 />
                 <Flex justify="end" gap={10}>
                     <Button onClick={() => modals.closeAll()}>Отмена</Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button type="submit" loading={loading}>Сохранить</Button>
                 </Flex>
             </Stack>
         </form>

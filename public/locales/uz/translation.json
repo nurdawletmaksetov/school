@@ -26,11 +26,28 @@
         "document": "Hujjat",
         "rules": "Qoidalar"
     },
+    "table": {
+        "title": "Title",
+        "content": "Content",
+        "salary": "Maosh",
+        "active": "Faol",
+        "inactive": "Faol emas",
+        "actions": "Amallar"
+    },
     "actions": {
         "create": "Yaratish",
         "update": "Yangilash",
         "delete": "O'chirish",
         "upload": "Yuklash",
-        "download": "Yuklab olish"
+        "download": "Yuklab olish",
+        "save": "Saqlash",
+        "cancel": "Bekor qilish"
+    },
+    "vacancy": {
+        "title": "Valamsiya nomi",
+        "content": "Valamsiya mazmuni",
+        "salary": "Maosh",
+        "active": "Valamsiya faol",
+        "inactive": "Valamsiya faol emas"
     }
 }

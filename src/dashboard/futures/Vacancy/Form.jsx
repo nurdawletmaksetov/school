@@ -1,8 +1,11 @@
 import { useForm } from "@mantine/form";
 import { Button, TextInput, Textarea, Stack, Flex, Select, Switch } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { useTranslation } from "react-i18next";
 
-const FormVacancy = ({ submitFn, initialValues }) => {
+const FormVacancy = ({ submitFn, initialValues, loading }) => {
+    const { t } = useTranslation();
+
     const form = useForm({
         initialValues,
     });
@@ -15,55 +18,55 @@ const FormVacancy = ({ submitFn, initialValues }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label="Job title (kk)"
-                    placeholder="Job title"
+                    label={t("vacancy.title") + " (kk)"}
+                    placeholder={t("vacancy.title")}
                     {...form.getInputProps("title.kk")}
                 />
                 <TextInput
-                    label="Job title (uz)"
-                    placeholder="Job title"
+                    label={t("vacancy.title") + " (uz)"}
+                    placeholder={t("vacancy.title")}
                     {...form.getInputProps("title.uz")}
                 />
                 <TextInput
-                    label="Job title (ru)"
-                    placeholder="job title"
+                    label={t("vacancy.title") + " (ru)"}
+                    placeholder={t("vacancy.title")}
                     {...form.getInputProps("title.ru")}
                 />
                 <TextInput
-                    label="Job title (en)"
-                    placeholder="Job title"
+                    label={t("vacancy.title") + " (en)"}
+                    placeholder={t("vacancy.title")}
                     {...form.getInputProps("title.en")}
                 />
 
                 <Textarea
-                    label="Job content (kk)"
-                    placeholder="Job content"
+                    label={t("vacancy.content") + " (kk)"}
+                    placeholder={t("vacancy.content")}
                     minRows={2}
                     {...form.getInputProps("content.kk")}
                 />
                 <Textarea
-                    label="Job content (uz)"
-                    placeholder="Job content"
+                    label={t("vacancy.content") + " (uz)"}
+                    placeholder={t("vacancy.content")}
                     minRows={2}
                     {...form.getInputProps("content.uz")}
                 />
                 <Textarea
-                    label="Job content (ru)"
-                    placeholder="Job content"
+                    label={t("vacancy.content") + " (ru)"}
+                    placeholder={t("vacancy.content")}
                     minRows={2}
                     {...form.getInputProps("content.ru")}
                 />
                 <Textarea
-                    label="Job content (en)"
-                    placeholder="Job content"
+                    label={t("vacancy.content") + " (en)"}
+                    placeholder={t("vacancy.content")}
                     minRows={2}
                     {...form.getInputProps("content.en")}
                 />
                 <Switch
                     label={
                         form.values.active
-                            ? "Vacancy is active"
-                            : "Vacancy is not active"
+                            ? t("vacancy.active")
+                            : t("vacancy.inactive")
                     }
                     checked={form.values.active}
                     onChange={(event) =>
@@ -72,14 +75,14 @@ const FormVacancy = ({ submitFn, initialValues }) => {
                 />
 
                 <TextInput
-                    label="Salary"
-                    placeholder="Salary"
+                    label={t("vacancy.salary")}
+                    placeholder={t("vacancy.salary")}
                     {...form.getInputProps("salary")}
                 />
 
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()}>Отмена</Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
+                    <Button type="submit" loading={loading}>{t("save")}</Button>
                 </Flex>
             </Stack>
         </form>

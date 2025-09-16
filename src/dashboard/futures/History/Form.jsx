@@ -2,7 +2,7 @@ import { useForm } from "@mantine/form";
 import { Button, TextInput, Textarea, Stack, Flex } from "@mantine/core";
 import { modals } from "@mantine/modals";
 
-const FormHistory = ({ submitFn, initialValues }) => {
+const FormHistory = ({ submitFn, initialValues, loading }) => {
     const form = useForm({
         initialValues,
     });
@@ -46,7 +46,7 @@ const FormHistory = ({ submitFn, initialValues }) => {
 
                 <Flex justify="end" gap={10}>
                     <Button onClick={() => modals.closeAll()}>Отмена</Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button loading={loading} type="submit">Сохранить</Button>
                 </Flex>
             </Stack>
         </form>

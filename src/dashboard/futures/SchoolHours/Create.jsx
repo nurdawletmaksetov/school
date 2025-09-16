@@ -30,7 +30,7 @@ const CreateSchoolHours = ({ getSchoolHours }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create SchoolHours!",
+                message: error.response?.data?.message || "Failed to create SchoolHours!",
                 color: "red",
                 icon: <X />,
             });
@@ -41,22 +41,17 @@ const CreateSchoolHours = ({ getSchoolHours }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormSchoolHours
-                        submitFn={createFn}
-                        initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
-                            workday: { kk: "", uz: "", ru: "", en: "" },
-                            holiday: { kk: "", uz: "", ru: "", en: "" },
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormSchoolHours
+                    submitFn={createFn}
+                    loading={loading}
+                    initialValues={{
+                        title: { kk: "", uz: "", ru: "", en: "" },
+                        workday: { kk: "", uz: "", ru: "", en: "" },
+                        holiday: { kk: "", uz: "", ru: "", en: "" },
+                    }}
+                />
+            </Stack>
         </div>
     );
 };

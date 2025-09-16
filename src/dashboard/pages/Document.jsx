@@ -6,6 +6,7 @@ import UploadDocument from "../futures/Document/Upload";
 import DeleteDocument from "../futures/Document/Delete";
 import UpdateDocument from "../futures/Document/Update";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 function Document() {
   const [documents, setDocuments] = useState([]);
@@ -25,7 +26,7 @@ function Document() {
       console.error("Error fetching news:", error)
       notifications.show({
         title: "Error",
-        message: "Failed to fetch news!",
+        message: "Failed to fetch documents!",
         color: "red",
       });
     } finally {

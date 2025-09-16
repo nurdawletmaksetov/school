@@ -17,7 +17,7 @@ const UploadDocument = ({ getDocuments }) => {
             formData.append("description", body.description);
 
             if (body.file) {
-                formData.append("file_pdf", body.file);
+                formData.append("file", body.file);
             }
 
             await api.post("/documents/upload", formData, {

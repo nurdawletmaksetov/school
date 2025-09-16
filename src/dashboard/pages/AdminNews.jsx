@@ -13,7 +13,7 @@ function AdminNews() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
-  const { t, i18n } = useTranslation(); // faqat bitta joydan
+  const { t, i18n } = useTranslation();
   const language = i18n.language;
 
   async function getNews(page = 1) {

@@ -28,7 +28,7 @@ const CreateUsers = ({ getUsers }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Could not create user",
+                message: error.response?.data?.message || "Could not create user",
                 color: "red",
             });
         } finally {

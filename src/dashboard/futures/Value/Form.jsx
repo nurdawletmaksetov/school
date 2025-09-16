@@ -63,7 +63,7 @@ const FormValue = ({ submitFn, initialValues }) => {
 
 
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()}>Отмена</Button>
+                    <Button color="gray" onClick={() => modals.closeAll()}>Отмена</Button>
                     <Button type="submit">Сохранить</Button>
                 </Flex>
             </Stack>

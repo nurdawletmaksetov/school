@@ -26,11 +26,34 @@
         "document": "Document",
         "rules": "Rules"
     },
+    "table": {
+        "title": "Title",
+        "content": "Content",
+        "salary": "Salary",
+        "active": "Active",
+        "actions": "Actions",
+        "inactive": "Inactive"
+    },
     "actions": {
         "create": "Create",
         "update": "Update",
         "delete": "Delete",
         "upload": "Upload",
-        "download": "Download"
+        "download": "Download",
+        "save": "Save",
+        "cancel": "Cancel"
+    },
+    "languages": {
+        "kk": "Karakalpak",
+        "uz": "Uzbek",
+        "ru": "Russian",
+        "en": "English"
+    },
+    "vacancy": {
+        "title": "Job title",
+        "content": "Job content",
+        "salary": "Salary",
+        "active": "Vacancy is active",
+        "inactive": "Vacancy is not active"
     }
 }

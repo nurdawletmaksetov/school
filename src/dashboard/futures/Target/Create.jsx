@@ -29,7 +29,7 @@ const CreateTarget = ({ getTarget }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create position!",
+                message: error.response?.data?.message || "Failed to create position!",
                 color: "red",
                 icon: <X />,
             });
@@ -40,21 +40,16 @@ const CreateTarget = ({ getTarget }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormTarget
-                        submitFn={createFn}
-                        initialValues={{
-                            name: { kk: "", uz: "", ru: "", en: "" },
-                            description: { kk: "", uz: "", ru: "", en: "" },
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormTarget
+                    submitFn={createFn}
+                    loading={loading}
+                    initialValues={{
+                        name: { kk: "", uz: "", ru: "", en: "" },
+                        description: { kk: "", uz: "", ru: "", en: "" },
+                    }}
+                />
+            </Stack>
         </div>
     );
 };

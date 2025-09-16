@@ -38,20 +38,12 @@ const DeleteTarget = ({ id, target, setTarget, getTarget }) => {
         }
     };
 
-    if (loading) {
-        return (
-            <Flex justify="center" align="center" style={{ height: "150px" }}>
-                <Loader variant="dots" />
-            </Flex>
-        );
-    }
-
     return (
         <Stack>
             <Text>Are you sure you want to delete this position?</Text>
             <Flex gap={10} justify="flex-end">
                 <Button onClick={() => modals.closeAll()}>Cancel</Button>
-                <Button color="red" onClick={deleteFn}>
+                <Button loading={loading} color="red" onClick={deleteFn}>
                     Delete
                 </Button>
             </Flex>

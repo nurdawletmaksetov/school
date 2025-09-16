@@ -6,6 +6,7 @@ import CreatePosition from "../futures/Position/Create";
 import DeletePosition from "../futures/Position/Delete";
 import UpdatePosition from "../futures/Position/Update";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 function Position() {
   const [positions, setPositions] = useState([]);
@@ -22,6 +23,11 @@ function Position() {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching positions:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch positions!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

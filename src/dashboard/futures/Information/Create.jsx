@@ -42,22 +42,17 @@ const CreateInformation = ({ getInformation }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormInformation
-                        submitFn={createFn}
-                        initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
-                            count: null,
-                            description: { kk: "", uz: "", ru: "", en: "" },
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormInformation
+                    submitFn={createFn}
+                    initialValues={{
+                        title: { kk: "", uz: "", ru: "", en: "" },
+                        count: null,
+                        description: { kk: "", uz: "", ru: "", en: "" },
+                    }}
+                    loading={loading}
+                />
+            </Stack>
         </div>
     );
 };

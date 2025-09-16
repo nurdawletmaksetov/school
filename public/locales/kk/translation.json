@@ -26,11 +26,34 @@
         "document": "Hu'jjet",
         "rules": "Qag'iydalar"
     },
+    "table": {
+        "title": "Atawı",
+        "content": "Cantent",
+        "salary": "Ayliq",
+        "active": "Aktive",
+        "inactive": "Aktive emes",
+        "actions": "Ameller"
+    },
     "actions": {
         "create": "Jaratiw",
         "update": "Jan'artiw",
         "delete": "O'shiriw",
         "upload": "Juklew",
-        "download": "Juklew"
+        "download": "Juklew",
+        "save": "Saqlaw",
+        "cancel": "Bas tartiw"
+    },
+    "languages": {
+        "kk": "Qaraqalpaq",
+        "uz": "Uzbek",
+        "ru": "Ruskiy",
+        "en": "Angliyskiy"
+    },
+    "vacancy": {
+        "title": "Valamsiya ati",
+        "content": "Valamsiya mazmuni",
+        "salary": "Ayliq",
+        "active": "Valamsiya aktive",
+        "inactive": "Valamsiya aktive emes"
     }
 }

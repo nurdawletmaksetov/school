@@ -37,20 +37,12 @@ const DeleteVacancy = ({ id, vacancy, setVacancy, getVacancy }) => {
         }
     };
 
-    if (loading) {
-        return (
-            <Flex justify="center" align="center" style={{ height: "150px" }}>
-                <Loader variant="dots" />
-            </Flex>
-        );
-    }
-
     return (
         <Stack>
             <Text>Are you sure you want to delete this Vacancy?</Text>
             <Flex gap={10} justify="flex-end">
-                <Button onClick={() => modals.closeAll()}>Cancel</Button>
-                <Button color="red" onClick={deleteFn}>
+                <Button color="gray" onClick={() => modals.closeAll()}>Cancel</Button>
+                <Button color="red" loading={loading} onClick={deleteFn}>
                     Delete
                 </Button>
             </Flex>

@@ -6,6 +6,7 @@ import CreateTarget from "../futures/Target/Create";
 import UpdateTarget from "../futures/Target/Update";
 import DeleteTarget from "../futures/Target/Delete";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 
 const Target = () => {
   const [target, setTarget] = useState([]);
@@ -23,6 +24,11 @@ const Target = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching target:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch target!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

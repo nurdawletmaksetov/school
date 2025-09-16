@@ -6,6 +6,7 @@ import CreateFaqs from "../futures/FAQ/Create";
 import DeleteFaqs from "../futures/FAQ/Delete";
 import UpdateFaq from "../futures/FAQ/Update";
 import { useTranslation } from "react-i18next";
+import { notifications } from "@mantine/notifications";
 const FAQ = () => {
   const [faqs, setFaqs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,11 @@ const FAQ = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching FAQ:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch FAQ!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

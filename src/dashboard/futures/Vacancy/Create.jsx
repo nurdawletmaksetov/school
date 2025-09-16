@@ -30,7 +30,7 @@ const CreateVacancy = ({ getVacancy }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create position!",
+                message: error.response?.data?.message || "Failed to create position!",
                 color: "red",
                 icon: <X />,
             });
@@ -41,22 +41,18 @@ const CreateVacancy = ({ getVacancy }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormVacancy
-                        submitFn={createFn}
-                        initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
-                            content: { kk: "", uz: "", ru: "", en: "" },
-                            salary: null,
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormVacancy
+                    submitFn={createFn}
+                    initialValues={{
+                        title: { kk: "", uz: "", ru: "", en: "" },
+                        content: { kk: "", uz: "", ru: "", en: "" },
+                        active: false,
+                        salary: null,
+                    }}
+                    loading={loading}
+                />
+            </Stack>
         </div>
     );
 };

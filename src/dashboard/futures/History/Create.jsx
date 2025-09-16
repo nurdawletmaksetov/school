@@ -42,21 +42,16 @@ const CreateHistory = ({ getHistory }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormHistory
-                        submitFn={createFn}
-                        initialValues={{
-                            year: null,
-                            text: { kk: "", uz: "", ru: "", en: "" },
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormHistory
+                    submitFn={createFn}
+                    loading={loading}
+                    initialValues={{
+                        year: null,
+                        text: { kk: "", uz: "", ru: "", en: "" },
+                    }}
+                />
+            </Stack>
         </div>
     );
 };

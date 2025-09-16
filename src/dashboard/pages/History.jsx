@@ -7,6 +7,7 @@ import DeleteHistory from '../futures/History/Delete';
 import UpdateHistory from '../futures/History/Update';
 import CreateHistory from '../futures/History/Create';
 import { useTranslation } from 'react-i18next';
+import { notifications } from '@mantine/notifications';
 const History = () => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,11 @@ const History = () => {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error("Error fetching history:", error);
+      notifications.show({
+        title: "Error",
+        message: "Failed to fetch history!",
+        color: "red",
+      });
     } finally {
       setLoading(false);
     }

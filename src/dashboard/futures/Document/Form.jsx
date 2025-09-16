@@ -43,7 +43,7 @@ const FormDocument = ({ submitFn, initialValues, loading }) => {
                     <Button onClick={() => modals.closeAll()} variant="default" >
                         Отмена
                     </Button>
-                    <Button type="submit" loading={loading}>Сохранить</Button>
+                    <Button type="submit">Сохранить</Button>
                 </Flex>
             </Stack>
         </form>

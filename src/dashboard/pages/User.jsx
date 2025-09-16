@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Flex, Pagination, Stack, Table, Title, Loader } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { showNotification } from '@mantine/notifications';
+import { notifications } from '@mantine/notifications';
 import { api } from "../../api/api";
 import CreateUsers from "../futures/Users/Create";
 import DeleteUsers from "../futures/Users/Delete";
@@ -24,9 +24,9 @@ function Users() {
       setLastPage(data.data.pagination.last_page);
     } catch (error) {
       console.error(error);
-      showNotification({
+      notifications.show({
         title: "Error",
-        message: "Users could not be loaded",
+        message: "Failed to fetch users!",
         color: "red",
       });
     } finally {
