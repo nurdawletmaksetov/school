@@ -37,5 +37,9 @@
     },
     "messages": {
         "confirmDelete": "Haqiqatdan ham ushbu elementni o'chirmoqchimisiz?"
+    },
+    "gallery": {
+        "gallery": "Galleriya",
+        "gallery-p": "Tadbirlar, xonalar va talabalar faoliyati fotosuratlari orqali maktab hayotimizni o'rganing."
     }
 }

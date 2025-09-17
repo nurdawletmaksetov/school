@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './startpage.scss'
 import { Album, ArrowRight, BookOpen, Calendar, Clock, File, MapPin, Users } from 'lucide-react'
 import { Link, useOutletContext } from 'react-router-dom'
@@ -6,11 +6,28 @@ import { Container } from '../../components/container/container'
 import { Button, Modal } from '@mantine/core'
 import { Element, Link as ScrollLink } from 'react-scroll'
 import { useDisclosure } from '@mantine/hooks'
+import { api } from '../../api/api'
 
 
 const StartPage = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const { darkMode } = useOutletContext();
+  const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAlbums = async () => {
+      try {
+        const { data } = await api.get('/albums');
+        setAlbums(data.data.items ?? []);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAlbums();
+  }, []);
 
   const handleClick = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
@@ -358,13 +375,39 @@ const StartPage = () => {
                   </button>
                 </Link>
               </div>
+
               <div className="photo-gallery-main">
-                <img src="/engine.jpg" />
-                <img src="/military.jpg" />
-                <img src="/nawriz.jpg" />
-                <img src="/win2.jpg" />
-                <img src="/jol-hareketi.jpg" />
-                <img src="/sport-girls.jpg" />
+                {loading ? (
+                  Array.from({ length: 8 }).map((_, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        width: '100%',
+                        height: '150px',
+                        borderRadius: '16px',
+                        background: '#334155',
+                        opacity: 0.3,
+                      }}
+                    />
+                  ))
+                ) : (
+                  albums
+                    .flatMap(album => album.photos ?? [])
+                    .slice(0, 6)
+                    .map(photo => (
+                      <img
+                        key={photo.id}
+                        src={photo.path}
+                        alt={photo.name}
+                        style={{
+                          width: '100%',
+                          height: '250px',
+                          objectFit: 'cover',
+                          borderRadius: '16px',
+                        }}
+                      />
+                    ))
+                )}
               </div>
             </div>
           </Container>

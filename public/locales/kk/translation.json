@@ -43,5 +43,9 @@
     },
     "messages": {
         "confirmDelete": "Siz bul elementti o'shiriwge isenimlisizba?"
+    },
+    "gallery": {
+        "gallery": "Galleriya",
+        "gallery-p": "Bayramlar, xanalar ham oqiwshilar aktivligi fotosuwretleri arqali mekteb o'mirimizdi u'yrening."
     }
 }

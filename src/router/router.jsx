@@ -12,6 +12,7 @@ const Support = lazy(() => import("../pages/support/Support"));
 const News = lazy(() => import("../pages/news/News"));
 const ReadNews = lazy(() => import("../pages/news/ReadNews"));
 const Gallery = lazy(() => import("../pages/gallery/Gallery"));
+const SeeGallery = lazy(() => import("../pages/gallery/SeeGallery"));
 
 const AdminLayout = lazy(() => import("../dashboard/AdminLayout"));
 const User = lazy(() => import("../dashboard/pages/User"));
@@ -116,6 +117,14 @@ export const router = createBrowserRouter([
                     </Suspense>
                 ),
             },
+            {
+                path: "gallery/:id",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <SeeGallery />
+                    </Suspense>
+                )
+            }
         ],
     },
     {

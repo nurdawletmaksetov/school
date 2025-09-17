@@ -43,5 +43,9 @@
     },
     "messages": {
         "confirmDelete": "Are you sure you want to delete this item?"
+    },
+    "gallery": {
+        "gallery": "Gallery",
+        "gallery-p": "Explore our school life through photos of events, rooms, and student activities."
     }
 }
