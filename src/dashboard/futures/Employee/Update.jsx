@@ -73,7 +73,8 @@ const UpdateEmployee = ({ id, getEmployee }) => {
             console.error("Error updating Employee:", error);
             notifications.show({
                 title: "Error",
-                message: error.response?.data?.message || "Failed to update Employee!",
+                message:
+                    error.response?.data?.message || "Failed to update Employee!",
                 color: "red",
                 icon: <X />,
             });
@@ -82,7 +83,7 @@ const UpdateEmployee = ({ id, getEmployee }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Loader variant="dots" size="lg" />
@@ -90,25 +91,27 @@ const UpdateEmployee = ({ id, getEmployee }) => {
         );
     }
 
-    // Form
     return (
         <Stack>
-            <FormEmployee
-                submitFn={updateFn}
-                initialValues={{
-                    full_name: {
-                        kk: data.full_name?.kk || "",
-                        uz: data.full_name?.uz || "",
-                        ru: data.full_name?.ru || "",
-                        en: data.full_name?.en || "",
-                    },
-                    phone: data.phone || "",
-                    photo: null, 
-                    email: data.email || "",
-                    position_id: data.position?.id || "", 
-                    birth_date: data.birth_date || "",
-                }}
-            />
+            {data && (
+                <FormEmployee
+                    submitFn={updateFn}
+                    loading={loading}
+                    initialValues={{
+                        full_name: {
+                            kk: data?.full_name?.kk || "",
+                            uz: data?.full_name?.uz || "",
+                            ru: data?.full_name?.ru || "",
+                            en: data?.full_name?.en || "",
+                        },
+                        phone: data?.phone || "",
+                        photo: null,
+                        email: data?.email || "",
+                        position_id: data?.position?.id || "",
+                        birth_date: data?.birth_date || "",
+                    }}
+                />
+            )}
         </Stack>
     );
 };

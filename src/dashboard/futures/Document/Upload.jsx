@@ -41,7 +41,7 @@ const UploadDocument = ({ getDocuments }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Failed to upload document!",
+                message: error.response?.data?.message || "Failed to upload document!",
                 color: "red",
                 icon: <X />,
             });

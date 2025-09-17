@@ -1,25 +1,58 @@
-import { Button, FileInput, Flex, Stack, TextInput } from '@mantine/core'
-import { useForm } from '@mantine/form'
-import { modals } from '@mantine/modals';
-import { IconAt } from '@tabler/icons-react';
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Button, FileInput, Flex, Select, Stack, TextInput } from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { modals } from "@mantine/modals";
+import { IconAt } from "@tabler/icons-react";
+import { useTranslation } from "react-i18next";
+import { api } from "../../../api/api";
 
-const FormEmployee = ({ submitFn, initialValues }) => {
+const FormEmployee = ({ submitFn, initialValues, loading }) => {
+    const { t } = useTranslation();
+    const [positions, setPositions] = useState([]);
+    const [posLoading, setPosLoading] = useState(true);
+
     const form = useForm({
         initialValues: {
             full_name: { kk: "", uz: "", ru: "", en: "", ...initialValues.full_name },
             phone: initialValues.phone || "",
             photo: initialValues.photo || null,
             email: initialValues.email || "",
-            position_id: initialValues.position_id || "",
+            position_id: initialValues.position_id ? String(initialValues.position_id) : "",
             birth_date: initialValues.birth_date || "",
             description: { kk: "", uz: "", ru: "", en: "", ...initialValues.description },
         },
     });
 
+    useEffect(() => {
+        api
+            .get("/positions/list")
+            .then((res) => {
+                console.log("Positions API response:", res.data);
+
+                const list = Array.isArray(res.data)
+                    ? res.data
+                    : res.data?.data || [];
+
+                const options = list.map((pos) => ({
+                    value: String(pos.id),
+                    label: pos.name,
+                }));
+
+                setPositions(options);
+            })
+            .catch((err) => {
+                console.error("Positions fetch error:", err);
+            })
+            .finally(() => setPosLoading(false));
+    }, []);
+
+
     const handleSubmit = async (values) => {
-        await submitFn(values);
-    }
+        await submitFn({
+            ...values,
+            position_id: Number(values.position_id),
+        });
+    };
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -55,7 +88,6 @@ const FormEmployee = ({ submitFn, initialValues }) => {
                     label="Your Photo"
                     placeholder="Upload your photo"
                     accept="image/png,image/jpeg"
-
                     {...form.getInputProps("photo")}
                 />
 
@@ -66,10 +98,16 @@ const FormEmployee = ({ submitFn, initialValues }) => {
                     {...form.getInputProps("email")}
                 />
 
-                <TextInput
-                    label="Position id"
-                    placeholder="Position id"
-                    {...form.getInputProps("position_id")}
+                <Select
+                    label="Position"
+                    placeholder="Select position"
+                    data={positions}
+                    searchable
+                    nothingFound="No positions"
+                    disabled={posLoading}
+                    value={form.values.position_id}
+                    onChange={(value) => form.setFieldValue("position_id", value)}
+                    error={form.errors.position_id}
                 />
 
                 <TextInput
@@ -77,13 +115,18 @@ const FormEmployee = ({ submitFn, initialValues }) => {
                     placeholder="YYYY-MM-DD"
                     {...form.getInputProps("birth_date")}
                 />
+
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => { form.reset(); modals.closeAll(); }}>Cancel</Button>
-                    <Button type="submit">Save</Button>
+                    <Button color="gray" onClick={() => modals.closeAll()}>
+                        {t("actions.cancel")}
+                    </Button>
+                    <Button loading={loading} type="submit">
+                        {t("actions.save")}
+                    </Button>
                 </Flex>
             </Stack>
         </form>
-    )
-}
+    );
+};
 
-export default FormEmployee
+export default FormEmployee;

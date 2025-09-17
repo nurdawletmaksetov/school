@@ -40,13 +40,13 @@ function AdminNews() {
 
   function createFn() {
     modals.open({
-      children: <CreateNews getNews={() => getNews(page)} />,
+      children: <CreateNews getNews={getNews} />,
     });
   }
 
   function updateFn(id) {
     modals.open({
-      children: <UpdateNews id={id} getNews={() => getNews(page)} />,
+      children: <UpdateNews id={id} getNews={getNews} />,
     });
   }
 
@@ -131,7 +131,8 @@ function AdminNews() {
                   <div>Birth Date: {el.author?.birth_date}</div>
                 </Table.Td>
                 <Table.Td>
-                  {el.tags?.map((tag) => tag.name).join(", ")}
+                  <div>Name: {el.tags?.[0]?.name}</div>
+                  <div>Description: {el.tags?.[0]?.description}</div>
                 </Table.Td>
                 <Table.Td>
                   <Flex gap={10}>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormEmployee from "./Form";
 import { api } from "../../../api/api";
 import { notifications } from "@mantine/notifications";
-import { Flex, Loader, Stack } from "@mantine/core";
+import { Stack } from "@mantine/core";
 import { Check, X } from "lucide-react";
 import { modals } from "@mantine/modals";
 
@@ -20,7 +20,9 @@ const CreateEmployee = ({ getEmployee }) => {
 
             formData.append("phone", values.phone);
             formData.append("email", values.email);
-            formData.append("position_id", values.position_id);
+
+            formData.append("position_id", Number(values.position_id));
+
             formData.append("birth_date", values.birth_date);
 
             if (values.photo) {
@@ -44,7 +46,6 @@ const CreateEmployee = ({ getEmployee }) => {
                 color: "teal",
                 icon: <Check />,
             });
-
         } catch (error) {
             console.error("Error creating Employee:", error);
 
@@ -59,29 +60,22 @@ const CreateEmployee = ({ getEmployee }) => {
         }
     };
 
-
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormEmployee
-                        submitFn={createFn}
-                        initialValues={{
-                            full_name: { kk: "", uz: "", ru: "", en: "" },
-                            phone: "",
-                            photo: null,
-                            email: "",
-                            position_id: "",
-                            birth_date: "",
-                        }}
-                    />
-
-                </Stack>
-            )}
+            <Stack>
+                <FormEmployee
+                    submitFn={createFn}
+                    loading={loading}
+                    initialValues={{
+                        full_name: { kk: "", uz: "", ru: "", en: "" },
+                        phone: "",
+                        photo: null,
+                        email: "",
+                        position_id: "",
+                        birth_date: "",
+                    }}
+                />
+            </Stack>
         </div>
     );
 };

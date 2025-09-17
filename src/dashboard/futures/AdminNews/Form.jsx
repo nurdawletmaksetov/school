@@ -12,10 +12,12 @@ import {
 import { useState, useEffect } from "react";
 import { api } from "../../../api/api";
 import { modals } from "@mantine/modals";
+import { useTranslation } from "react-i18next";
 
-const FormNews = ({ submitFn, initialValues }) => {
+const FormNews = ({ submitFn, initialValues, loading }) => {
     const [file, setFile] = useState(null);
     const [authors, setAuthors] = useState([]);
+    const { t } = useTranslation();
     const [tags, setTags] = useState([]);
 
     const form = useForm({ initialValues });
@@ -65,13 +67,11 @@ const FormNews = ({ submitFn, initialValues }) => {
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
-                {/* Titles */}
                 <TextInput label="Title (kk)" {...form.getInputProps("title.kk")} />
                 <TextInput label="Title (uz)" {...form.getInputProps("title.uz")} />
                 <TextInput label="Title (ru)" {...form.getInputProps("title.ru")} />
                 <TextInput label="Title (en)" {...form.getInputProps("title.en")} />
 
-                {/* Short content */}
                 <Textarea label="Short Content (kk)" {...form.getInputProps("short_content.kk")} />
                 <Textarea label="Short Content (uz)" {...form.getInputProps("short_content.uz")} />
                 <Textarea label="Short Content (ru)" {...form.getInputProps("short_content.ru")} />
@@ -104,10 +104,9 @@ const FormNews = ({ submitFn, initialValues }) => {
                     onChange={setFile}
                 />
 
-                {/* Buttons */}
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()}>Cancel</Button>
-                    <Button type="submit">Save</Button>
+                    <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
+                    <Button type="submit" loading={loading}>{t("actions.save")}</Button>
                 </Flex>
             </Stack>
         </form>

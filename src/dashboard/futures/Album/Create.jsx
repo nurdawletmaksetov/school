@@ -30,7 +30,7 @@ const CreateAlbum = ({ getAlbums }) => {
 
             notifications.show({
                 title: "Success",
-                message: "✅ Album created successfully",
+                message: "Album created successfully",
                 color: "teal",
                 icon: <Check />,
             });
@@ -41,7 +41,7 @@ const CreateAlbum = ({ getAlbums }) => {
             console.error(error);
             notifications.show({
                 title: "Error",
-                message: "❌ Could not create album",
+                message: error.response?.data?.message || "Could not create album",
                 color: "red",
                 icon: <X />,
             });
@@ -52,16 +52,11 @@ const CreateAlbum = ({ getAlbums }) => {
 
     return (
         <Stack style={{ minHeight: "300px", justifyContent: "center" }}>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <FormAlbum
-                    submitFn={createFn}
-                    initialValues={{ kk: "", uz: "", ru: "", en: "", photos: [] }}
-                />
-            )}
+            <FormAlbum
+                loading={loading}
+                submitFn={createFn}
+                initialValues={{ kk: "", uz: "", ru: "", en: "", photos: [] }}
+            />
         </Stack>
     );
 };

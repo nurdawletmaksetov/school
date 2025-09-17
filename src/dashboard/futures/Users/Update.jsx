@@ -55,7 +55,7 @@ const UpdateUsers = ({ id, getUsers }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Loader variant="dots" />
@@ -66,15 +66,16 @@ const UpdateUsers = ({ id, getUsers }) => {
     return (
         <FormUsers
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
                 full_name: {
-                    ru: data.full_name?.ru,
-                    uz: data.full_name?.uz,
-                    en: data.full_name?.en,
-                    kk: data.full_name?.kk,
+                    ru: data?.full_name?.ru,
+                    uz: data?.full_name?.uz,
+                    en: data?.full_name?.en,
+                    kk: data?.full_name?.kk,
                 },
-                birth_date: data.birth_date,
-                phone: data.phone,
+                birth_date: data?.birth_date,
+                phone: data?.phone,
             }}
         />
     );

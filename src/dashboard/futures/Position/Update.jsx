@@ -53,7 +53,7 @@ const UpdatePosition = ({ id, getPositions }) => {
             console.error("Error updating position:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update position!",
+                message: error.response?.data?.message || "Failed to update position!",
                 color: "red",
                 icon: <X />,
             });
@@ -62,7 +62,7 @@ const UpdatePosition = ({ id, getPositions }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -75,18 +75,19 @@ const UpdatePosition = ({ id, getPositions }) => {
     return (
         <FormPosition
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
                 name: {
-                    ru: data.name.ru,
-                    uz: data.name.uz,
-                    en: data.name.en,
-                    kk: data.name.kk,
+                    ru: data?.name?.ru,
+                    uz: data?.name?.uz,
+                    en: data?.name?.en,
+                    kk: data?.name?.kk,
                 },
                 description: {
-                    ru: data.description.ru,
-                    uz: data.description.uz,
-                    en: data.description.en,
-                    kk: data.description.kk,
+                    ru: data?.description?.ru,
+                    uz: data?.description?.uz,
+                    en: data?.description?.en,
+                    kk: data?.description?.kk,
                 },
             }}
         />

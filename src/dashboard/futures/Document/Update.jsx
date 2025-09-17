@@ -68,7 +68,7 @@ const UpdateDocument = ({ id, getDocuments }) => {
             console.error("Error updating Document:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Document!",
+                message: error.response?.data?.message || "Failed to update Document!",
                 color: "red",
                 icon: <X />,
             });
@@ -78,7 +78,7 @@ const UpdateDocument = ({ id, getDocuments }) => {
     };
 
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -91,9 +91,10 @@ const UpdateDocument = ({ id, getDocuments }) => {
     return (
         <FormDocument
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
-                name: data.name || "",
-                description: data.description || "",
+                name: data?.name,
+                description: data?.description,
                 file: null,
             }}
         />

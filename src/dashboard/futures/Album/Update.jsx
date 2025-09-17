@@ -57,7 +57,7 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
 
             notifications.show({
                 title: "Success",
-                message: "✅ Album updated successfully",
+                message: "Album updated successfully",
                 color: "teal",
                 icon: <Check />,
             });
@@ -67,7 +67,7 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
             console.error(error);
             notifications.show({
                 title: "Error",
-                message: "❌ Could not update album",
+                message: error.response?.data?.message || "Could not update album",
                 color: "red",
                 icon: <X />,
             });
@@ -76,7 +76,7 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
         }
     };
 
-    if (loading || !album) {
+    if (loading && !album) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -89,11 +89,12 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
     return (
         <FormAlbum
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
-                kk: album.title.kk,
-                uz: album.title.uz,
-                ru: album.title.ru,
-                en: album.title.en,
+                kk: album?.title?.kk,
+                uz: album?.title?.uz,
+                ru: album?.title?.ru,
+                en: album?.title?.en,
                 photos: [],
             }}
         />

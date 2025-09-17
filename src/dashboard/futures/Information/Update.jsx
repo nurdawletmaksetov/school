@@ -41,6 +41,9 @@ const UpdateInformation = ({ id, getInformation }) => {
                 await getInformation();
             }
 
+            if (getInformation) {
+                await getInformation();
+            }
             modals.closeAll();
 
             notifications.show({

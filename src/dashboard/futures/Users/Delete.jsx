@@ -3,6 +3,7 @@ import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
 import React, { useState } from "react";
 import { api } from "../../../api/api";
+import { t } from "i18next";
 
 const DeleteUsers = ({ id, getUsers }) => {
     const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ const DeleteUsers = ({ id, getUsers }) => {
                 color: "teal",
             });
 
-            if (getUsers) await getUsers(); 
+            if (getUsers) await getUsers();
             modals.closeAll();
         } catch (error) {
             console.error(error);
@@ -35,19 +36,13 @@ const DeleteUsers = ({ id, getUsers }) => {
 
     return (
         <Stack>
-            <Text>Вы действительно хотите удалить?</Text>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "50px" }}>
-                    <Loader variant="dots" />
-                </Flex>
-            ) : (
-                <Flex gap={10} justify="flex-end">
-                    <Button onClick={() => modals.closeAll()}>Отмена</Button>
-                    <Button color="red" onClick={deleteFn}>
-                        Удалить
-                    </Button>
-                </Flex>
-            )}
+            <Text>{t("messages.confirmDelete")}</Text>
+            <Flex gap={10} justify="flex-end">
+                <Button onClick={() => modals.closeAll()} color="gray">{t("actions.cancel")}</Button>
+                <Button loading={loading} color="red" onClick={deleteFn}>
+                    {t("actions.delete")}
+                </Button>
+            </Flex>
         </Stack>
     );
 };

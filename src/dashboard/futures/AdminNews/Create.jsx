@@ -12,12 +12,22 @@ const CreateNews = ({ getNews }) => {
         setLoading(true);
         try {
             const formData = new FormData();
+            formData.append("name[kk]", values.name.kk);
+            formData.append("name[uz]", values.name.uz);
+            formData.append("name[ru]", values.name.ru);
+            formData.append("name[en]", values.name.en);
 
-            ["kk", "uz", "ru", "en"].forEach((lang) => {
-                formData.append(`title[${lang}]`, body.title[lang] || "");
-                formData.append(`short_content[${lang}]`, body.short_content[lang] || "");
-                formData.append(`content[${lang}]`, body.content[lang] || "");
-            });
+            formData.append("text[kk]", values.text.kk);
+            formData.append("text[uz]", values.text.uz);
+            formData.append("text[ru]", values.text.ru);
+            formData.append("text[en]", values.text.en);
+
+            formData.append("schedule[kk]", values.schedule.kk);
+            formData.append("schedule[uz]", values.schedule.uz);
+            formData.append("schedule[ru]", values.schedule.ru);
+            formData.append("schedule[en]", values.schedule.en);
+
+            formData.append("photo", values.photo);
 
             if (body.author_id) {
                 formData.append("author_id", Number(body.author_id));
@@ -36,7 +46,7 @@ const CreateNews = ({ getNews }) => {
             });
 
             notifications.show({
-                title: "✅ Success",
+                title: "Success",
                 message: "News created successfully",
                 color: "green",
             });
@@ -46,8 +56,8 @@ const CreateNews = ({ getNews }) => {
         } catch (error) {
             console.error("Error creating news:", error);
             notifications.show({
-                title: "❌ Error",
-                message: "Could not create news",
+                title: "Error",
+                message: error.response?.data?.message || "Could not create news",
                 color: "red",
             });
         } finally {
@@ -64,6 +74,7 @@ const CreateNews = ({ getNews }) => {
             ) : (
                 <FormNews
                     submitFn={createFn}
+                    loading={loading}
                     initialValues={{
                         title: { kk: "", uz: "", ru: "", en: "" },
                         short_content: { kk: "", uz: "", ru: "", en: "" },

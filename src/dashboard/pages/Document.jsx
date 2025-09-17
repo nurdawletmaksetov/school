@@ -15,6 +15,7 @@ function Document() {
   const [lastPage, setLastPage] = useState(1);
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [downloadingId, setDownloadingId] = useState(null);
 
   async function getDocuments() {
     setLoading(true);
@@ -63,6 +64,7 @@ function Document() {
   };
 
   const handleDownload = async (id, fileName) => {
+    setDownloadingId(id);
     try {
       const response = await api.get(`/documents/download/${id}`, {
         responseType: "blob",
@@ -80,7 +82,13 @@ function Document() {
 
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Download failed:", error);
+      notifications.show({
+        title: "Error",
+        message: error.response.data.message || "Failed to download document!",
+        color: "red",
+      });
+    } finally {
+      setDownloadingId(null);
     }
   };
 
@@ -120,7 +128,9 @@ function Document() {
                 <Table.Td>{el.name}</Table.Td>
                 <Table.Td>{el.description}</Table.Td>
                 <Table.Td>
-                  <Button size="xs" variant="outline" onClick={() => handleDownload(el.id, el.name)}>Download</Button>
+                  <Button size="xs" w={100} variant="outline" onClick={() => handleDownload(el.id, el.name)}>
+                    {downloadingId === el.id ? <Flex p={18}><Loader size="xs" /></Flex> : t("actions.download")}
+                  </Button>
                 </Table.Td>
                 <Table.Td>
                   <Flex gap={10}>

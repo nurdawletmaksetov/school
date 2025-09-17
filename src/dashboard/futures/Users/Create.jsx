@@ -38,20 +38,15 @@ const CreateUsers = ({ getUsers }) => {
 
     return (
         <Stack style={{ minHeight: "300px", justifyContent: "center" }}>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <FormUsers
-                    submitFn={createFn}
-                    initialValues={{
-                        full_name: { kk: "", uz: "", ru: "", en: "" },
-                        birth_date: "",
-                        phone: "",
-                    }}
-                />
-            )}
+            <FormUsers
+                submitFn={createFn}
+                loading={loading}
+                initialValues={{
+                    full_name: { kk: "", uz: "", ru: "", en: "" },
+                    birth_date: "",
+                    phone: "",
+                }}
+            />
         </Stack>
     );
 };

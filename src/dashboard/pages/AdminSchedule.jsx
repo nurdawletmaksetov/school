@@ -10,8 +10,8 @@ import { useTranslation } from "react-i18next";
 
 const AdminSchedule = () => {
   const [AdminSchedule, setAdminSchedule] = useState([]);
-  const [loading, setLoading] = useState(false); // jadval uchun
-  const [downloadingId, setDownloadingId] = useState(null); // faqat yuklab olish uchun
+  const [loading, setLoading] = useState(false);
+  const [downloadingId, setDownloadingId] = useState(null);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const { t } = useTranslation();
@@ -125,10 +125,11 @@ const AdminSchedule = () => {
                 <Table.Td>
                   <Button
                     size="xs"
+                    w={100}
                     variant="outline"
                     onClick={() => handleDownload(el.id, el.name)}
                   >
-                    {downloadingId === el.id ? <Flex p={18}><Loader size="xs" /></Flex> : "Download"}
+                    {downloadingId === el.id ? <Flex p={18}><Loader size="xs" /></Flex> : t("actions.download")}
                   </Button>
                 </Table.Td>
                 <Table.Td>

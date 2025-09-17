@@ -54,7 +54,7 @@ const UpdateRules = ({ id, getRules }) => {
             console.error("Error updating Rule:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Rule!",
+                message: error.response?.data?.message || "Failed to update Rule!",
                 color: "red",
                 icon: <X />,
             });
@@ -63,7 +63,7 @@ const UpdateRules = ({ id, getRules }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -76,18 +76,19 @@ const UpdateRules = ({ id, getRules }) => {
     return (
         <FormPosition
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
                 title: {
-                    ru: data.title.ru,
-                    uz: data.title.uz,
-                    en: data.title.en,
-                    kk: data.title.kk,
+                    ru: data?.title.ru,
+                    uz: data?.title.uz,
+                    en: data?.title.en,
+                    kk: data?.title.kk,
                 },
                 text: {
-                    ru: data.text.ru,
-                    uz: data.text.uz,
-                    en: data.text.en,
-                    kk: data.text.kk,
+                    ru: data?.text.ru,
+                    uz: data?.text.uz,
+                    en: data?.text.en,
+                    kk: data?.text.kk,
                 },
             }}
         />

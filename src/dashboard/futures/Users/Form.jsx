@@ -2,8 +2,11 @@ import { Button, FileInput, Flex, Stack, Textarea, TextInput } from '@mantine/co
 import { useForm } from '@mantine/form'
 import { modals } from '@mantine/modals';
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
-const FormUsers = ({ submitFn, initialValues }) => {
+const FormUsers = ({ submitFn, initialValues, loading }) => {
+    const { t } = useTranslation();
+
     const form = useForm({
         initialValues,
     });
@@ -15,22 +18,22 @@ const FormUsers = ({ submitFn, initialValues }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label="Kazakh (kk)"
+                    label="Name (kk)"
                     placeholder="name"
                     {...form.getInputProps("full_name.kk")}
                 />
                 <TextInput
-                    label="Uzbek (uz)"
+                    label="Name (uz)"
                     placeholder="name"
                     {...form.getInputProps("full_name.uz")}
                 />
                 <TextInput
-                    label="Russian (ru)"
+                    label="Name (ru)"
                     placeholder="name"
                     {...form.getInputProps("full_name.ru")}
                 />
                 <TextInput
-                    label="English (en)"
+                    label="Name (en)"
                     placeholder="name"
                     {...form.getInputProps("full_name.en")}
                 />
@@ -55,8 +58,8 @@ const FormUsers = ({ submitFn, initialValues }) => {
                     {...form.getInputProps("phone")}
                 />
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()}>Отмена</Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button color='gray' onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
+                    <Button type="submit" loading={loading}>{t("actions.save")}</Button>
                 </Flex>
             </Stack>
         </form>

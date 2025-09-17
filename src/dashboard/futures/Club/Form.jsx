@@ -62,11 +62,6 @@ const FormClub = ({ submitFn, initialValues, loading }) => {
                     placeholder="Text"
                     {...form.getInputProps(`text.en`)}
                 />
-                <Textarea
-                    label={`Text (kk)`}
-                    placeholder="Text"
-                    {...form.getInputProps(`text.kk`)}
-                />
 
                 <Textarea
                     label={`Schedule (kk)`}

@@ -4,8 +4,10 @@ import { modals } from "@mantine/modals";
 import { api } from "../../../api/api";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const DeleteEmployee = ({ id, employee, setEmployee, getEmployees }) => {
+    const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
 
     const deleteFn = async () => {
@@ -41,21 +43,13 @@ const DeleteEmployee = ({ id, employee, setEmployee, getEmployees }) => {
         }
     };
 
-    if (loading) {
-        return (
-            <Flex justify="center" align="center" style={{ height: "150px" }}>
-                <Loader variant="dots" />
-            </Flex>
-        );
-    }
-
     return (
         <Stack>
-            <Text>Are you sure you want to delete this employee?</Text>
+            <Text>{t("messages.confirmDelete")}</Text>
             <Flex gap={10} justify="flex-end">
-                <Button onClick={() => modals.closeAll()}>Cancel</Button>
-                <Button color="red" onClick={deleteFn}>
-                    Delete
+                <Button onClick={() => modals.closeAll()} color="gray">{t("actions.cancel")}</Button>
+                <Button color="red" onClick={deleteFn} loading={loading}>
+                    {t("actions.delete")}
                 </Button>
             </Flex>
         </Stack>

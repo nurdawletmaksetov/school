@@ -64,7 +64,7 @@ const UpdateSchool = ({ id, getSchools }) => {
         }
     };
 
-    if (loading || !data) {
+    if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Stack align="center">
@@ -77,26 +77,27 @@ const UpdateSchool = ({ id, getSchools }) => {
     return (
         <FormSchool
             submitFn={updateFn}
+            loading={loading}
             initialValues={{
                 name: {
-                    ru: data.name?.ru || "",
-                    uz: data.name?.uz || "",
-                    en: data.name?.en || "",
-                    kk: data.name?.kk || "",
+                    ru: data?.name?.ru || "",
+                    uz: data?.name?.uz || "",
+                    en: data?.name?.en || "",
+                    kk: data?.name?.kk || "",
                 },
                 history: {
-                    ru: data.history?.ru || "",
-                    uz: data.history?.uz || "",
-                    en: data.history?.en || "",
-                    kk: data.history?.kk || "",
+                    ru: data?.history?.ru || "",
+                    uz: data?.history?.uz || "",
+                    en: data?.history?.en || "",
+                    kk: data?.history?.kk || "",
                 },
-                phone: data.phone || "",
-                location: data.location || "",
+                phone: data?.phone || "",
+                location: data?.location || "",
                 description: {
-                    ru: data.description?.ru || "",
-                    uz: data.description?.uz || "",
-                    en: data.description?.en || "",
-                    kk: data.description?.kk || "",
+                    ru: data?.description?.ru || "",
+                    uz: data?.description?.uz || "",
+                    en: data?.description?.en || "",
+                    kk: data?.description?.kk || "",
                 },
             }}
         />

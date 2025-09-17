@@ -32,7 +32,7 @@ const CreateRules = ({ getRules }) => {
 
             notifications.show({
                 title: "Error",
-                message: "Failed to create Rules!",
+                message: error.response?.data?.message || "Failed to create Rules!",
                 color: "red",
                 icon: <X />,
             });
@@ -43,21 +43,16 @@ const CreateRules = ({ getRules }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormRules
-                        submitFn={createFn}
-                        initialValues={{
-                            title: { kk: "", uz: "", ru: "", en: "" },
-                            text: { kk: "", uz: "", ru: "", en: "" },
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormRules
+                    loading={loading}
+                    submitFn={createFn}
+                    initialValues={{
+                        title: { kk: "", uz: "", ru: "", en: "" },
+                        text: { kk: "", uz: "", ru: "", en: "" },
+                    }}
+                />
+            </Stack>
         </div>
     );
 };

@@ -41,21 +41,16 @@ const CreatePosition = ({ getPositions }) => {
 
     return (
         <div>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <Stack>
-                    <FormPosition
-                        submitFn={createFn}
-                        initialValues={{
-                            name: { kk: "", uz: "", ru: "", en: "" },
-                            description: { kk: "", uz: "", ru: "", en: "" },
-                        }}
-                    />
-                </Stack>
-            )}
+            <Stack>
+                <FormPosition
+                    submitFn={createFn}
+                    loading={loading}
+                    initialValues={{
+                        name: { kk: "", uz: "", ru: "", en: "" },
+                        description: { kk: "", uz: "", ru: "", en: "" },
+                    }}
+                />
+            </Stack>
         </div>
     );
 };

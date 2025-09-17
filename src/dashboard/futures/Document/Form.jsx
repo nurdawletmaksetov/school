@@ -1,8 +1,10 @@
 import { Button, FileInput, Flex, Stack, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { modals } from "@mantine/modals";
+import { useTranslation } from "react-i18next";
 
 const FormDocument = ({ submitFn, initialValues, loading }) => {
+    const { t } = useTranslation();
     const form = useForm({
         initialValues: {
             name: initialValues?.name || "",
@@ -40,10 +42,10 @@ const FormDocument = ({ submitFn, initialValues, loading }) => {
                 />
 
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()} variant="default" >
-                        Отмена
+                    <Button onClick={() => modals.closeAll()} color="gray">
+                        {t("actions.cancel")}
                     </Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button type="submit" loading={loading}>{t("actions.save")}</Button>
                 </Flex>
             </Stack>
         </form>

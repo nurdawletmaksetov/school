@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Button, Flex, Stack, Text, Loader } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
-import { Check, X } from "tabler-icons-react"; 
+import { Check, X } from "tabler-icons-react";
 import { api } from "../../../api/api";
+import { useTranslation } from "react-i18next";
 
 const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
+    const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
 
     const deleteFn = async () => {
@@ -15,7 +17,7 @@ const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
 
             notifications.show({
                 title: "Success",
-                message: "✅ Album deleted successfully",
+                message: "Album deleted successfully",
                 color: "teal",
                 icon: <Check />,
             });
@@ -27,7 +29,7 @@ const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
             console.error(error);
             notifications.show({
                 title: "Error",
-                message: "❌ Could not delete album",
+                message: "Could not delete album",
                 color: "red",
                 icon: <X />,
             });
@@ -38,16 +40,16 @@ const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
 
     return (
         <Stack>
-            <Text>Вы действительно хотите удалить?</Text>
+            <Text>{t("messages.confirmDelete")}</Text>
             {loading ? (
                 <Flex justify="center" align="center" style={{ height: "50px" }}>
                     <Loader variant="dots" />
                 </Flex>
             ) : (
                 <Flex gap={10} justify="flex-end">
-                    <Button onClick={() => modals.closeAll()}>Отмена</Button>
-                    <Button color="red" onClick={deleteFn}>
-                        Удалить
+                    <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
+                    <Button color="red" loading={loading} onClick={deleteFn}>
+                        {t("actions.delete")}
                     </Button>
                 </Flex>
             )}

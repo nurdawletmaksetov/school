@@ -1,85 +1,87 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../../api/api";
+import { Loader, Flex, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import { Flex, Loader, Stack } from "@mantine/core";
-import { Check, X } from "lucide-react";
+import { Check, X } from "tabler-icons-react";
 import { modals } from "@mantine/modals";
 import FormNews from "./Form";
 
 const UpdateNews = ({ id, getNews }) => {
-    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(null);
 
-    const fetchNewsById = async () => {
-        setLoading(true);
+    const getData = async () => {
         try {
-            const response = await api.get(`/news/${id}`);
-            setData(response.data.data);
+            const res = await api.get(`/news/${id}`);
+            setData(res.data.data);
         } catch (error) {
-            not("Error fetching news:", error);
-            notifications.show({
-                title: "Error",
-                message: "Failed to fetch news!",
-                color: "red",
-                icon: <X />,
-            });
-        } finally {
-            setLoading(false);
+            console.error("Error fetching data:", error);
         }
     };
 
     useEffect(() => {
-        fetchNewsById();
-    }, [id]);
+        getData();
+    }, []);
 
-    const updateFn = async (body) => {
+    const updateFn = async (values) => {
         setLoading(true);
         try {
             const formData = new FormData();
-            formData.append("name", body.name?.trim() || "");
-            formData.append("description", body.description?.trim() || "");
+            formData.append("title[en]", values.title.en);
+            formData.append("title[ru]", values.title.ru);
+            formData.append("title[uz]", values.title.uz);
+            formData.append("title[kk]", values.title.kk);
 
-            if (body.file instanceof File) {
-                // yangi fayl bo‘lsa yuboramiz
-                formData.append("file", body.file);
-            } else if (data?.path) {
-                // agar yangi fayl yuborilmagan bo‘lsa, eski faylni saqlaymiz
-                formData.append("existing_file", data.path);
+            formData.append("short_content[en]", values.short_content.en);
+            formData.append("short_content[ru]", values.short_content.ru);
+            formData.append("short_content[uz]", values.short_content.uz);
+            formData.append("short_content[kk]", values.short_content.kk);
+
+            formData.append("content[en]", values.content.en);
+            formData.append("content[ru]", values.content.ru);
+            formData.append("content[uz]", values.content.uz);
+            formData.append("content[kk]", values.content.kk);
+
+            if (values.cover_image) {
+                formData.append("cover_image", values.cover_image);
             }
+
+            if (values.file) {
+                formData.append("file", values.file);
+            }
+
+            formData.append("author_id", values.author_id);
+
 
             formData.append("_method", "PUT");
 
-            await api.post(`/documents/update/${id}`, formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
-
-            if (getDocuments) {
-                await getDocuments();
-            }
-
-            modals.closeAll();
+            await api.post(`/news/update/${id}`, formData);
 
             notifications.show({
                 title: "Success",
-                message: "Document updated successfully!",
+                message: "News updated successfully",
                 color: "teal",
                 icon: <Check />,
             });
+
+            if (getNews) {
+                await getNews();
+            }
+            modals.closeAll();
         } catch (error) {
-            console.error("Error updating Document:", error);
             notifications.show({
                 title: "Error",
-                message: "Failed to update Document!",
+                message: "Something went wrong while updating",
                 color: "red",
                 icon: <X />,
             });
+            console.error("Update error:", error);
         } finally {
             setLoading(false);
         }
     };
 
-
-    if (loading || !data) {
+    if (!loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Loader variant="dots" size="lg" />
@@ -91,30 +93,32 @@ const UpdateNews = ({ id, getNews }) => {
         <Stack>
             <FormNews
                 submitFn={updateFn}
+                loading={loading}
                 initialValues={{
                     title: {
-                        en: data.title?.en || "",
-                        ru: data.title?.ru || "",
-                        uz: data.title?.uz || "",
-                        kk: data.title?.kk || "",
+                        kk: data?.title?.kk || "",
+                        uz: data?.title?.uz || "",
+                        ru: data?.title?.ru || "",
+                        en: data?.title?.en || "",
                     },
                     short_content: {
-                        en: data.short_content?.en || "",
-                        ru: data.short_content?.ru || "",
-                        uz: data.short_content?.uz || "",
-                        kk: data.short_content?.kk || "",
+                        kk: data?.short_content?.kk || "",
+                        uz: data?.short_content?.uz || "",
+                        ru: data?.short_content?.ru || "",
+                        en: data?.short_content?.en || "",
                     },
                     content: {
-                        en: data.content?.en || "",
-                        ru: data.content?.ru || "",
-                        uz: data.content?.uz || "",
-                        kk: data.content?.kk || "",
+                        kk: data?.content?.kk || "",
+                        uz: data?.content?.uz || "",
+                        ru: data?.content?.ru || "",
+                        en: data?.content?.en || "",
                     },
-                    cover_image: null,
-                    author_id: data.author?.id?.toString() || "",
-                    tags: data.tags?.map((t) => t.id.toString()) || [],
+                    author_id: data?.author?.id?.toString() || null,
+                    tags_name: data?.tags?.name || "",
+                    tags_description: data?.tags?.description || "",
                 }}
             />
+
         </Stack>
     );
 };

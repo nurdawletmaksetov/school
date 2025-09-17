@@ -1,8 +1,10 @@
 import { useForm } from "@mantine/form";
 import { Button, TextInput, Textarea, Stack, Flex } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { useTranslation } from "react-i18next";
 
-const FormRules = ({ submitFn, initialValues }) => {
+const FormRules = ({ submitFn, initialValues, loading }) => {
+    const { t } = useTranslation();
     const form = useForm({
         initialValues,
     });
@@ -61,8 +63,8 @@ const FormRules = ({ submitFn, initialValues }) => {
                 />
 
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()}>Отмена</Button>
-                    <Button type="submit">Сохранить</Button>
+                    <Button onClick={() => modals.closeAll()} color="gray">{t("actions.cancel")}</Button>
+                    <Button type="submit" loading={loading}>{t("actions.save")}</Button>
                 </Flex>
             </Stack>
         </form>
