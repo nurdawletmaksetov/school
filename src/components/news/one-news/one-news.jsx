@@ -9,6 +9,8 @@ function formatDate(dateString) {
 }
 
 export const OneNews = ({ id, image, title, body, date, darkMode }) => {
+    console.log('Image prop:', image);
+
     return (
         <div className={`one-news${darkMode ? ' dark' : ''}`}>
             <Card

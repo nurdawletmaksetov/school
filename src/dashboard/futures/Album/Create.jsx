@@ -18,6 +18,11 @@ const CreateAlbum = ({ getAlbums }) => {
             formData.set("title[ru]", body.ru);
             formData.set("title[en]", body.en);
 
+            formData.set("description[kk]", body.description.kk);
+            formData.set("description[uz]", body.description.uz);
+            formData.set("description[ru]", body.description.ru);
+            formData.set("description[en]", body.description.en);
+
             if (Array.isArray(body.photos)) {
                 body.photos.forEach((file) => {
                     formData.append("photos[]", file);
@@ -55,7 +60,11 @@ const CreateAlbum = ({ getAlbums }) => {
             <FormAlbum
                 loading={loading}
                 submitFn={createFn}
-                initialValues={{ kk: "", uz: "", ru: "", en: "", photos: [] }}
+                initialValues={{
+                    kk: "", uz: "", ru: "", en: "",
+                    description: { kk: "", uz: "", ru: "", en: "" },
+                    photos: []
+                }}
             />
         </Stack>
     );

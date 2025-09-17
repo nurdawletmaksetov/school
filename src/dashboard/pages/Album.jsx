@@ -47,13 +47,13 @@ const Album = () => {
   function updateFn(id) {
     modals.open({
       title: "Update",
-      children: <UpdateAlbum id={id} albums={albums} setAlbums={setAlbums} />,
+      children: <UpdateAlbum id={id} albums={albums} setAlbums={setAlbums} getAlbums={getAlbums} />,
     });
   }
 
   function deleteFn(id) {
     modals.open({
-      children: <DeleteALbum id={id} albums={albums} setAlbums={setAlbums} />,
+      children: <DeleteALbum id={id} albums={albums} setAlbums={setAlbums} getAlbums={getAlbums} />,
     });
   }
 
@@ -95,9 +95,9 @@ const Album = () => {
                   <Table.Td>{album.id}</Table.Td>
                   <Table.Td>{album.title?.ru || "No title"}</Table.Td>
                   <Table.Td>
-                    {album.photos_url && album.photos_url.length > 0 ? (
+                    {album.photos && album.photos.length > 0 ? (
                       <div style={{ display: "flex", gap: "10px" }}>
-                        {album.photos_url.map((photo, index) => (
+                        {album.photos.map((photo, index) => (
                           <img
                             key={index}
                             src={photo.path}

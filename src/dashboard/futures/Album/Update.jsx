@@ -6,7 +6,7 @@ import { Check, X } from "tabler-icons-react";
 import FormAlbum from "./Form";
 import { api } from "../../../api/api";
 
-const UpdateAlbum = ({ id, albums, setAlbums }) => {
+const UpdateAlbum = ({ id, albums, setAlbums, getAlbums }) => {
     const [album, setAlbum] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
             console.error(error);
             notifications.show({
                 title: "Error",
-                message: "❌ Could not fetch album",
+                message: "Could not fetch album",
                 color: "red",
                 icon: <X />,
             });
@@ -40,6 +40,11 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
             formData.set("title[uz]", body.uz);
             formData.set("title[ru]", body.ru);
             formData.set("title[en]", body.en);
+
+            formData.set("description[kk]", body.description.kk);
+            formData.set("description[uz]", body.description.uz);
+            formData.set("description[ru]", body.description.ru);
+            formData.set("description[en]", body.description.en);
 
             if (Array.isArray(body.photos)) {
                 body.photos.forEach((file) => {
@@ -62,6 +67,9 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
                 icon: <Check />,
             });
 
+            if (getAlbums) {
+                await getAlbums();
+            }
             modals.closeAll();
         } catch (error) {
             console.error(error);
@@ -95,6 +103,7 @@ const UpdateAlbum = ({ id, albums, setAlbums }) => {
                 uz: album?.title?.uz,
                 ru: album?.title?.ru,
                 en: album?.title?.en,
+                description: album?.description,
                 photos: [],
             }}
         />

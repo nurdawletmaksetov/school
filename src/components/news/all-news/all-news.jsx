@@ -36,7 +36,7 @@ export const AllNews = ({ darkMode }) => {
                         <OneNews
                             darkMode={darkMode}
                             id={item.id}
-                            image={item.cover_image?.path}
+                            image={item.cover_image}
                             date={item.created_at}
                             title={item.title?.[language] ?? ""}
                             body={item.short_content?.[language] ?? ""}

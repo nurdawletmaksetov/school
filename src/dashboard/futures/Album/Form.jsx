@@ -1,4 +1,4 @@
-import { Button, FileInput, Flex, Group, Stack, TextInput } from "@mantine/core";
+import { Button, FileInput, Flex, Group, Stack, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { modals } from "@mantine/modals";
 import { t } from "i18next";
@@ -43,6 +43,26 @@ const FormAlbum = ({ submitFn, initialValues, loading }) => {
                     label="Title (kk)"
                     placeholder="title (kk)"
                     {...form.getInputProps("kk")}
+                />
+                <Textarea
+                    label="Description (kk)"
+                    placeholder="description (kk)"
+                    {...form.getInputProps("description.kk")}
+                />
+                <Textarea
+                    label="Description (uz)"
+                    placeholder="description (uz)"
+                    {...form.getInputProps("description.uz")}
+                />
+                <Textarea
+                    label="Description (ru)"
+                    placeholder="description (ru)"
+                    {...form.getInputProps("description.ru")}
+                />
+                <Textarea
+                    label="Description (en)"
+                    placeholder="description (en)"
+                    {...form.getInputProps("description.en")}
                 />
                 <FileInput
                     label="Photos"
