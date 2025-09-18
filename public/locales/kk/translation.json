@@ -47,5 +47,15 @@
     "gallery": {
         "gallery": "Galleriya",
         "gallery-p": "Bayramlar, xanalar ham oqiwshilar aktivligi fotosuwretleri arqali mekteb o'mirimizdi u'yrening."
+    },
+    "news-page": {
+        "news-title": "Mekteb Jan'aliqlari",
+        "news-p": "Mektepmiz jámiyetshiliginiń sońǵı jańalıqları, waqıyaları hám daǵazalarınan xabarlı bolıń.",
+        "back-btn": "Jan'aliqlarga qaytuw"
+    },
+    "rules-documents": {
+        "rules-documents-title": "Mekteb Qag'iydaları ham Hu'jjetleri",
+        "rules-documents-p": "Biziń mektepmiz barlıq studentler ushın qawipsiz, húrmetli hám nátiyjeli tálim ortalıǵın támiyinlew ushın anıq qaǵıydalar hám siyasatlardı qollap-quwatlaydı.",
+        "rules-title": "Mekteb Qag'iydaları"
     }
 }

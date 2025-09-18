@@ -2,8 +2,27 @@ import { ChevronDown, CircleQuestionMark, MapPin, Phone } from 'lucide-react';
 import { Container } from '../../components/container/container';
 import '../support/support.scss'
 import { useOutletContext } from 'react-router-dom';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 const Support = () => {
     const { darkMode } = useOutletContext();
+    const [faq, setFaq] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { t, i18n } = useTranslation();
+    const language = i18n.language || 'ru';
+
+    async function getFaq() {
+        setLoading(true);
+        try {
+            const { data } = await api.get('/faqs');
+            setFaq(data.data.items);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <>
             <main className={`support-dark${darkMode ? ' dark' : ''}`}>
@@ -22,118 +41,22 @@ const Support = () => {
                                         </h4>
                                     </div>
                                     <div className="support-bottom">
-                                        <details name='support'>
-                                            <summary>
-                                                <p>
-                                                    What are the school hours?
-                                                </p>
-                                                <ChevronDown size={16} />
-                                            </summary>
-                                            <div className="detail">
-                                                <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
-                                                    voluptatibus beatae accusantium minima!
-                                                </p>
-                                            </div>
-                                        </details>
-                                        <details name='support'>
-                                            <summary>
-                                                <p>
-                                                    How do I enroll my child in the school?
-                                                </p>
-                                                <ChevronDown size={16} />
-                                            </summary>
-                                            <div className="detail">
-                                                <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
-                                                    voluptatibus beatae accusantium minima!
-                                                </p>
-                                            </div>
-                                        </details>
-                                        <details name='support'>
-                                            <summary>
-                                                <p>
-                                                    What is the school's attendance policy?
-                                                </p>
-                                                <ChevronDown size={16} />
-                                            </summary>
-                                            <div className="detail">
-                                                <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
-                                                    voluptatibus beatae accusantium minima!
-                                                </p>
-                                            </div>
-                                        </details>
-                                        <details name='support'>
-                                            <summary>
-                                                <p>
-                                                    How can parents get involved in the school?
-                                                </p>
-                                                <ChevronDown size={16} />
-                                            </summary>
-                                            <div className="detail">
-                                                <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
-                                                    voluptatibus beatae accusantium minima!
-                                                </p>
-                                            </div>
-                                        </details>
-                                        <details name='support'>
-                                            <summary>
-                                                <p>
-                                                    What extracurricular activities are available?
-                                                </p>
-                                                <ChevronDown size={16} />
-                                            </summary>
-                                            <div className="detail">
-                                                <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
-                                                    voluptatibus beatae accusantium minima!
-                                                </p>
-                                            </div>
-                                        </details>
-                                        <details name='support'>
-                                            <summary>
-                                                <p>
-                                                    How does the school handle bullying?
-                                                </p>
-                                                <ChevronDown size={16} />
-                                            </summary>
-                                            <div className="detail">
-                                                <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
-                                                    voluptatibus beatae accusantium minima!
-                                                </p>
-                                            </div>
-                                        </details>
-                                        <details name='support'>
-                                            <summary>
-                                                <p>
-                                                    What technology resources are available to students?
-                                                </p>
-                                                <ChevronDown size={16} />
-                                            </summary>
-                                            <div className="detail">
-                                                <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
-                                                    voluptatibus beatae accusantium minima!
-                                                </p>
-                                            </div>
-                                        </details>
-                                        <details name='support'>
-                                            <summary>
-                                                <p>
-                                                    How are students assessed and graded?
-                                                </p>
-                                                <ChevronDown size={16} />
-                                            </summary>
-                                            <div className="detail">
-                                                <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
-                                                    voluptatibus beatae accusantium minima!
-                                                </p>
-                                            </div>
-                                        </details>
+                                        {faq.map((el) => {
+                                            <details name='support'>
+                                                <summary>
+                                                    <p>
+                                                        What are the school hours?
+                                                    </p>
+                                                    <ChevronDown size={16} />
+                                                </summary>
+                                                <div className="detail">
+                                                    <p>
+                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, ad sapiente
+                                                        voluptatibus beatae accusantium minima!
+                                                    </p>
+                                                </div>
+                                            </details>
+                                        })}
                                     </div>
                                 </div>
                                 <div className="support-contact-us">

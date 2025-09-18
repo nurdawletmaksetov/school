@@ -218,7 +218,7 @@ const StartPage = () => {
                     </div>
                     <p>Доступные курсы</p>
                   </Link>
-                  <Link to="education" onClick={handleClick} className="lnews-righ-btm-list">
+                  <Link to="gallery" onClick={handleClick} className="lnews-righ-btm-list">
                     <div className="lnews-icons">
                       <Album />
                     </div>

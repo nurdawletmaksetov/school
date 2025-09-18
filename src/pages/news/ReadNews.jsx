@@ -12,6 +12,7 @@ const ReadNews = () => {
     const [news, setNews] = useState(null);
     const { id } = useParams();
     const { darkMode } = useOutletContext();
+    const { t } = useTranslation();
     const { i18n } = useTranslation();
     const language = i18n.language || 'ru';
 
@@ -40,7 +41,7 @@ const ReadNews = () => {
                     <div className="read-news">
                         <div className="back-btn">
                             <button onClick={goBack} className='back-btn'>
-                                <ArrowLeft size={14} /> Назад к новостям
+                                <ArrowLeft size={14} /> {t("news-page.back-btn")}
                             </button>
                         </div>
                         <div className="news-main">

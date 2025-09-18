@@ -34,6 +34,7 @@ const UpdateDocument = ({ id, getDocuments }) => {
 
     const updateFn = async (body) => {
         setLoading(true);
+        setData(null);
         try {
             const formData = new FormData();
             formData.append("name", body.name?.trim() || "");

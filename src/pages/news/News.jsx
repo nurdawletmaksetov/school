@@ -5,11 +5,13 @@ import { SearchInput } from '../../components/search-input/SearchInput'
 import { SearchResultsList } from '../../components/search-input/SearchResultsList'
 import { AllNews } from '../../components/news/all-news/all-news'
 import { Link, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const News = () => {
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
   const { darkMode } = useOutletContext();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -18,8 +20,8 @@ const News = () => {
           <Container>
             <div className="school-news">
               <div className="school-news-headline">
-                <h1>School News</h1>
-                <p>Stay updated with the latest news, events, and announcements from our school community.</p>
+                <h1>{t("news-page.news-title")}</h1>
+                <p>{t("news-page.news-p")}</p>
               </div>
               <div className="news-search">
                 <div className="news-search">

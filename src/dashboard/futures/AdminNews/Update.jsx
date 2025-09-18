@@ -11,11 +11,20 @@ const UpdateNews = ({ id, getNews }) => {
     const [data, setData] = useState(null);
 
     const getData = async () => {
+        setLoading(true);
         try {
             const res = await api.get(`/news/${id}`);
             setData(res.data.data);
         } catch (error) {
             console.error("Error fetching data:", error);
+            notifications.show({
+                title: "Error",
+                message: "Failed to fetch data!",
+                color: "red",
+                icon: <X />,
+            })
+        } finally {
+            setLoading(false);
         }
     };
 

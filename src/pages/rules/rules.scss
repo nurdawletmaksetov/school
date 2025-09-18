@@ -128,6 +128,7 @@
     display: flex;
     flex-direction: column;
     gap: 48px;
+    padding: 50px 0;
 
     .rules-documents-heading {
         display: flex;
@@ -197,6 +198,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 1;
+                height: 100%;
 
                 summary {
                     width: 100%;
@@ -215,7 +217,7 @@
                         font-style: Medium;
                         font-size: 18px;
                         line-height: 28px;
-                        text-align: center;
+                        text-align: left;
                         vertical-align: middle;
                         color: #020817;
                     }
@@ -226,6 +228,7 @@
                     height: auto;
                     padding: 10px 0;
                     border-bottom: 1px solid #DBEAFE;
+                    background-color: rgba(173, 173, 173, 0.082);
 
                     p {
                         font-family: Inter;
@@ -322,31 +325,22 @@
             flex-direction: column;
             gap: 24px;
 
-            @media (min-width: 768px) {
-                flex-direction: row;
-            }
-
-            @media (min-width: 1440px) {
-                flex-direction: column;
-            }
-
-            .documents-left,
-            .documents-right {
-                display: flex;
-                flex-direction: column;
+            .documents-left {
+                display: grid;
                 gap: 24px;
-                width: 100%;
+                grid-template-columns: repeat(auto-fit, minmax(384px, 1fr));
 
-                @media (min-width: 1440px) {
-                    flex-direction: row;
+                @media (max-width: 450px) {
+                    grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
                 }
 
                 .documents-box {
                     width: 100%;
                     height: auto;
                     display: flex;
-                    gap: 16px;
-                    padding: 25px;
+                    overflow: hidden;
+                    gap: 14px;
+                    padding: 20px;
                     border-radius: 16px;
                     border: 1px solid #DBEAFE;
                     background: #FFF;
@@ -375,6 +369,14 @@
                             display: flex;
                             flex-direction: column;
                             gap: 4px;
+                            padding: 0 20px 0 0;
+                            max-width: 300px;
+
+                            h4,
+                            p {
+                                word-wrap: break-word;
+                                overflow: break-word;
+                            }
 
                             h4 {
                                 font-family: Inter;
@@ -410,8 +412,10 @@
                             }
 
                             button {
-                                width: 121px;
-                                height: 36px;
+                                cursor: pointer;
+                                width: auto;
+                                height: auto;
+                                padding: 5px 15px;
                                 display: flex;
                                 gap: 12px;
                                 align-items: center;

@@ -7,6 +7,7 @@ import DeleteDocument from "../futures/Document/Delete";
 import UpdateDocument from "../futures/Document/Update";
 import { useTranslation } from "react-i18next";
 import { notifications } from "@mantine/notifications";
+import axios from "axios";
 
 function Document() {
   const [documents, setDocuments] = useState([]);
@@ -63,32 +64,23 @@ function Document() {
     });
   };
 
-  const handleDownload = async (id, fileName) => {
-    setDownloadingId(id);
+  const handleDownload = async (downloadUrl, fileName) => {
     try {
-      const response = await api.get(`/documents/download/${id}`, {
-        responseType: "blob",
-      });
+      const response = await axios.get(downloadUrl, { responseType: 'blob' });
+      const blob = new Blob([response.data], { type: 'application/pdf' });
 
-      const blob = new Blob([response.data]);
       const url = window.URL.createObjectURL(blob);
 
-      const link = document.createElement("a");
+      const link = document.createElement('a');
       link.href = url;
-      link.setAttribute("download", fileName || "document");
+      link.setAttribute('download', fileName || 'document');
       document.body.appendChild(link);
       link.click();
       link.remove();
 
-      window.URL.revokeObjectURL(url);
+      setTimeout(() => window.URL.revokeObjectURL(url), 1000);
     } catch (error) {
-      notifications.show({
-        title: "Error",
-        message: error.response.data.message || "Failed to download document!",
-        color: "red",
-      });
-    } finally {
-      setDownloadingId(null);
+      console.error(error);
     }
   };
 
@@ -128,7 +120,7 @@ function Document() {
                 <Table.Td>{el.name}</Table.Td>
                 <Table.Td>{el.description}</Table.Td>
                 <Table.Td>
-                  <Button size="xs" w={100} variant="outline" onClick={() => handleDownload(el.id, el.name)}>
+                  <Button size="xs" w={100} variant="outline" onClick={() => handleDownload(el.download_url, el.name)}>
                     {downloadingId === el.id ? <Flex p={18}><Loader size="xs" /></Flex> : t("actions.download")}
                   </Button>
                 </Table.Td>

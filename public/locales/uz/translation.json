@@ -41,5 +41,15 @@
     "gallery": {
         "gallery": "Galleriya",
         "gallery-p": "Tadbirlar, xonalar va talabalar faoliyati fotosuratlari orqali maktab hayotimizni o'rganing."
+    },
+    "news-page": {
+        "news-title": "Maktab Yangiliklari",
+        "news-p": "Maktabimiz hamjamiyatining so'nggi yangiliklari, voqealari va e'lonlaridan xabardor bo'ling.",
+        "back-btn": "Yangiliklarga qaytish"
+    },
+    "rules-documents": {
+        "rules-documents-title": "Maktab Qoidalari va Hujjatlari",
+        "rules-documents-p": "Bizning maktabimiz barcha talabalar uchun xavfsiz, hurmatli va samarali ta'lim muhitini ta'minlash uchun aniq qoidalar va siyosatlarni qo'llab-quvvatlaydi",
+        "rules-title": "Maktab Qoidalari"
     }
 }

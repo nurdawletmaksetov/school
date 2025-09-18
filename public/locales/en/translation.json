@@ -45,7 +45,17 @@
         "confirmDelete": "Are you sure you want to delete this item?"
     },
     "gallery": {
-        "gallery": "Gallery",
+        "gallery-title": "Gallery",
         "gallery-p": "Explore our school life through photos of events, rooms, and student activities."
+    },
+    "news-page": {
+        "news-title": "School News",
+        "news-p": "Stay updated with the latest news, events, and announcements from our school community.",
+        "back-btn": "Back to News"
+    },
+    "rules-documents": {
+        "rules-documents-title": "School Rules and Documents",
+        "rules-documents-p": "Our school maintains clear rules and policies to ensure a safe, respectful, and productive learning environment for all students.",
+        "rules-title": "School Rules"
     }
 }
