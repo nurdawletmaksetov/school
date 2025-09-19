@@ -94,6 +94,13 @@ export const Header = ({ darkMode, setDarkMode }) => {
                         {t("education")}
                       </NavLink>
                       <NavLink
+                        onClick={handleClick}
+                        className={"nav-link"}
+                        to="/schedule"
+                      >
+                        {t("schedule")}
+                      </NavLink>
+                      <NavLink
                         className={"nav-link-phone"}
                         onClick={handleClick}
                         to="/rules"
@@ -122,11 +129,11 @@ export const Header = ({ darkMode, setDarkMode }) => {
                 <NavLink onClick={handleClick} to="/"
                   className="logo-icon"
                 >
-                  N
+                  23
                   {/* <img src="/logo.png" className="icon-header" /> */}
                 </NavLink>
                 <NavLink onClick={handleClick} to="/" className="logo-text">
-                  Nurdawlet's School
+                  23-School of Kanlykul
                 </NavLink>
               </div>
             </div>
@@ -153,6 +160,15 @@ export const Header = ({ darkMode, setDarkMode }) => {
                     to="/education"
                   >
                     {t("education")}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    onClick={handleClick}
+                    className={"nav-link"}
+                    to="/schedule"
+                  >
+                    {t("schedule")}
                   </NavLink>
                 </li>
                 <li>

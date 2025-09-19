@@ -49,11 +49,6 @@ const Rules = () => {
       setDocuments(data.data.items);
     } catch (error) {
       console.error('Error fetching documents:', error);
-      notifications.show({
-        title: 'Error',
-        message: 'Failed to fetch documents!',
-        color: 'red',
-      })
     } finally {
       setLoading(false);
     }
@@ -140,7 +135,7 @@ const Rules = () => {
                   <div className="rules-right-heading">
                     <h3>
                       <Clock size={24} className='rules-icon' />
-                      School Hours
+                      {t("rules-documents.shoolhours-title")}
                     </h3>
                   </div>
                   {loading ? (
@@ -170,7 +165,7 @@ const Rules = () => {
               </div>
               <div className="school-documents">
                 <div className="documents-heading">
-                  <h3>School Documents</h3>
+                  <h3>{t("rules-documents.documents-title")}</h3>
                 </div>
                 <div className="documents-boxes">
                   {loading ? (

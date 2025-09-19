@@ -18,8 +18,8 @@ const Education = () => {
   async function getEducation() {
     setLoading(true);
     try {
-      const { data } = await api.get('/clubs');
-      setEducation(data.data.items);
+      const { data } = await api.get('/main/education');
+      setEducation(data.data);
     } catch (err) {
       console.error(err);
     } finally {
@@ -38,16 +38,14 @@ const Education = () => {
           <Container>
             <div className="education">
               <div className="education-headline">
-                <h1>Образование</h1>
+                <h1>{t("education-page.education-title")}</h1>
                 <p>
-                  Наша школа предлагает комплексную образовательную программу,
-                  разработанную для развития всесторонне развитых учеников с прочной
-                  академической основой и практическими навыками.
+                  {t("education-page.education-p")}
                 </p>
               </div>
               <div className="education-activities">
                 <div className="edu-activity-heading">
-                  <h3>Внеклассные активности</h3>
+                  <h3>{t("education-page.other-activities")}</h3>
                 </div>
                 {loading ? (
                   <Flex justify="center" align="center" style={{ height: "200px" }}>
@@ -55,11 +53,11 @@ const Education = () => {
                   </Flex>
                 ) : (
                   <div className="edu-activity-main">
-                    {education.map((el) => (
+                    {education.activities?.map((el) => (
                       <div className="activities-box">
                         <img
                           className="actities-img"
-                          src={el.photo.path}
+                          src={el.photo.url}
                           alt={el.photo.name}
                         />
                         <div className="activities-box-right">

@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "About",
     "education": "Education",
+    "schedule": "Schedule",
     "rules": "Rules",
     "news": "News",
     "support": "Support",
@@ -56,6 +57,20 @@
     "rules-documents": {
         "rules-documents-title": "School Rules and Documents",
         "rules-documents-p": "Our school maintains clear rules and policies to ensure a safe, respectful, and productive learning environment for all students.",
-        "rules-title": "School Rules"
+        "rules-title": "School Rules",
+        "shoolhours-title": "School Hours",
+        "documents-title": "Documents"
+    },
+    "support-faq": {
+        "support-faq-title": "Support and FAQ",
+        "support-faq-p": "Find answers to frequently asked questions and get the information you need about our school.",
+        "support-title": "Frequently Asked Questions",
+        "faq-title": "Contact information",
+        "work-hours": "Opening hours"
+    },
+    "education-page": {
+        "education-title": "Education",
+        "education-p": "Our school offers a comprehensive educational program designed to develop well-rounded students with a strong academic foundation and practical skills.",
+        "other-activities": "Extracurricular activities"
     }
 }

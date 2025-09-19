@@ -3,30 +3,35 @@ import './startpage.scss'
 import { Album, ArrowRight, BookOpen, Calendar, Clock, File, MapPin, Users } from 'lucide-react'
 import { Link, useOutletContext } from 'react-router-dom'
 import { Container } from '../../components/container/container'
-import { Button, Modal } from '@mantine/core'
+import { Button, Flex, Loader, Modal } from '@mantine/core'
 import { Element, Link as ScrollLink } from 'react-scroll'
 import { useDisclosure } from '@mantine/hooks'
 import { api } from '../../api/api'
+import { useTranslation } from 'react-i18next'
 
 
 const StartPage = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [home, setHome] = useState({});
   const { darkMode } = useOutletContext();
-  const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
+
+  async function getHome() {
+    setLoading(true);
+    try {
+      const { data } = await api.get('/');
+      setHome(data.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    const fetchAlbums = async () => {
-      try {
-        const { data } = await api.get('/albums');
-        setAlbums(data.data.items ?? []);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchAlbums();
+    getHome();
   }, []);
 
   const handleClick = () => {
@@ -97,94 +102,35 @@ const StartPage = () => {
                   </Link>
                 </div>
                 <div className="lnews-main">
-                  <div className="lnews-box">
-                    <img src="/win.jpg" />
-                    <div className="lnews-box-right">
-                      <div className="lnews-inf-top">
-                        <div className='inf-top'>
-                          <div className="lnews-date">
-                            <p>
-                              <Calendar size={14} /> 5 мая 2025
-                            </p>
+                  {loading ? (
+                    <Flex justify="center" align="center">
+                      <Loader size={50} color="blue" />
+                    </Flex>
+                  ) : (
+                    home.last_news?.slice(0, 3).map((el) => (
+                      <div className="lnews-box" key={el.id}>
+                        <img src={el.cover_image.path} alt={el.title[language]} />
+                        <div className="lnews-box-right">
+                          <div className="lnews-inf-top">
+                            <div className='inf-top'>
+                              <div className="lnews-date">
+                                <p><Calendar size={14} /> {el.created_at}</p>
+                              </div>
+                              <div className="lnews-texts">
+                                <h3>{el.title[language]}</h3>
+                                <p>{el.short_content[language]}</p>
+                              </div>
+                            </div>
+                            <div className="lnews-read-more">
+                              <Link to={`/news/${el.id}`} onClick={handleClick} className='lnews-link'>
+                                Читать далее <ArrowRight size={14} />
+                              </Link>
+                            </div>
                           </div>
-                          <div className="lnews-texts">
-                            <h3>
-                              Объявлены победители школьной олимпиады
-                            </h3>
-                            <p>
-                              Поздравляем всех участников и
-                              победителей нашей ежегодной
-                              школьной олимпиады.
-                            </p>
-                          </div>
-                        </div>
-                        <div className="lnews-read-more">
-                          <Link to="/" className='lnews-link'>
-                            Читать далее <ArrowRight size={14} />
-                          </Link>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="lnews-box">
-                    <img src="/pc-class.jpg" />
-                    <div className="lnews-box-right">
-                      <div className="lnews-inf-top">
-                        <div className='inf-top'>
-                          <div className="lnews-date">
-                            <p>
-                              <Calendar color="#6B7280" size={14} /> 28 апреля 2025
-                            </p>
-                          </div>
-                          <div className="lnews-texts">
-                            <h3>
-                              Открытие нового
-                              компьютерного класса
-                            </h3>
-                            <p>
-                              Мы рады сообщить об открытии нашей
-                              новой современной компьютерной
-                              лаборатории.
-                            </p>
-                          </div>
-                        </div>
-                        <div className="lnews-read-more">
-                          <Link to="/" className='lnews-link'>
-                            Читать далее <ArrowRight size={14} />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lnews-box">
-                    <img src="/education-png.png" />
-                    <div className="lnews-box-right">
-                      <div className="lnews-inf-top">
-                        <div className='inf-top'>
-                          <div className="lnews-date">
-                            <p>
-                              <Calendar size={14} /> 15 апреля 2025
-                            </p>
-                          </div>
-                          <div className="lnews-texts">
-                            <h3>
-                              Расписание родительских
-                              собраний
-                            </h3>
-                            <p>
-                              Опубликовано расписание
-                              предстоящих родительских собраний.
-                            </p>
-                          </div>
-                        </div>
-                        <div className="lnews-read-more">
-                          <Link to="/" className='lnews-link'>
-                            Читать далее <ArrowRight size={14} />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    ))
+                  )}
                 </div>
               </div>
               <div className="lnews-right">
@@ -241,38 +187,23 @@ const StartPage = () => {
                   </p>
                 </div>
                 <div className="our-teachers-bottom">
-                  <div className="our-teachers-left">
-                    <div className="teacher-card">
-                      <img src="/sarah.png" />
-                      <div className="teacher-info">
-                        <h3>Dr. Sarah Johnson</h3>
-                        <p>Principal</p>
-                      </div>
+                  {loading ? (
+                    <Flex justify="center" align="center">
+                      <Loader size={50} color="blue" />
+                    </Flex>
+                  ) : (
+                    <div className="our-teachers-left">
+                      {home.teachers?.slice(0, 4).map((el, idx) => (
+                        <div className="teacher-card" key={idx}>
+                          <img src={el.photo} alt={el.full_name} />
+                          <div className="teacher-info">
+                            <h3>{el.full_name}</h3>
+                            <p>{el.position}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="teacher-card">
-                      <img src="/michael.png" />
-                      <div className="teacher-info">
-                        <h3>Prof. Michael Chen</h3>
-                        <p>Mathematics</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="our-teachers-right">
-                    <div className="teacher-card">
-                      <img src="/emily.png" />
-                      <div className="teacher-info">
-                        <h3>Dr. Emily Rodriguez</h3>
-                        <p>Science</p>
-                      </div>
-                    </div>
-                    <div className="teacher-card">
-                      <img src="/david.png" />
-                      <div className="teacher-info">
-                        <h3>Prof. David Kim</h3>
-                        <p>Literature</p>
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </Container>
@@ -303,24 +234,12 @@ const StartPage = () => {
                     </div>
                     <div className="ourshcool-btm-info2">
                       <div className="info-box-top">
-                        <div className="howmany-students school-info-boxes">
-                          <h3>500+</h3>
-                          <p>Учеников</p>
-                        </div>
-                        <div className="howmany-teachers school-info-boxes">
-                          <h3>50+</h3>
-                          <p>Учителей</p>
-                        </div>
-                      </div>
-                      <div className="info-box-btm">
-                        <div className="howmant-class school-info-boxes">
-                          <h3>20+</h3>
-                          <p>Классов</p>
-                        </div>
-                        <div className="our-school-stage school-info-boxes">
-                          <h3>25+</h3>
-                          <p>Лет опыта</p>
-                        </div>
+                        {home.informations?.map((el) => (
+                          <div className="howmany-students school-info-boxes" key={el.id}>
+                            <h3>{el.count}</h3>
+                            <p>{el.title[language]}</p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -378,21 +297,14 @@ const StartPage = () => {
 
               <div className="photo-gallery-main">
                 {loading ? (
-                  Array.from({ length: 8 }).map((_, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        width: '100%',
-                        height: '150px',
-                        borderRadius: '16px',
-                        background: '#334155',
-                        opacity: 0.3,
-                      }}
-                    />
+                  Array.from({ length: 8 }).map((el) => (
+                    <Flex key={el} align="center" justify="center" style={{ width: '250px', height: '250px', borderRadius: '16px' }}>
+                      <Loader size={50} color="blue" />
+                    </Flex>
                   ))
                 ) : (
-                  albums
-                    .flatMap(album => album.photos ?? [])
+                  home.albums
+                    ?.flatMap(album => album.photos ?? [])
                     .slice(0, 6)
                     .map(photo => (
                       <img

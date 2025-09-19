@@ -37,12 +37,28 @@
         border: 1px solid #334155;
         background: #1E293B;
 
+
+
         &.active {
             h3 {
                 color: #F1F5F9;
             }
 
             .tab-content-ph {
+                .about-history {
+                    border-left: 2px solid #cbd5e1de;
+
+                    .history-year {
+                        p {
+                            color: #CBD5E1;
+                        }
+                    }
+
+                    .history-text {
+                        color: #cbd5e1a6;
+                    }
+                }
+
                 span {
                     color: #CBD5E1;
                 }
@@ -269,6 +285,34 @@ main {
             flex-direction: column;
             gap: 20px;
 
+            .about-history {
+                border-left: 2px solid #4B5563;
+                padding-left: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                .history-year {
+                    p {
+                        font-family: Inter;
+                        font-weight: 700;
+                        font-style: Bold;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #4B5563;
+                    }
+                }
+
+                .history-text {
+                    font-family: Inter;
+                    font-weight: 500;
+                    font-style: Regular;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #4B5563;
+                }
+            }
+
             span {
                 font-family: Inter;
                 font-weight: 700;
@@ -465,5 +509,69 @@ main {
             }
         }
     }
+}
 
+.our-history {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: flex;
+    padding: 48px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    background: linear-gradient(135deg, #2563EB 0%, #4338CA 100%);
+
+    h4 {
+        color: #FFF;
+        font-family: Inter;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    // .our-history-cards {
+    //     width: 100%;
+    //     display: flex;
+    //     flex-direction: column;
+    //     gap: 24px;
+
+    //     .about-history {
+    //         width: 100%;
+    //         height: auto;
+    //         padding: 24px;
+    //         display: flex;
+    //         align-items: center;
+    //         border-radius: 12px;
+    //         gap: 16px;
+    //         background: rgba(255, 255, 255, 0.10);
+    //         backdrop-filter: blur(2px);
+
+    //         .history-text {
+    //             color: #FFF;
+    //             font-family: Inter;
+    //             font-size: 16px;
+    //             font-style: normal;
+    //             font-weight: 400;
+    //         }
+
+    //         .history-year {
+    //             width: auto;
+    //             height: auto;
+    //             padding: 6px 28px;
+    //             border-radius: 9999px;
+    //             background: rgba(255, 255, 255, 0.20);
+
+    //             p {
+    //                 color: #FFF;
+    //                 text-align: center;
+    //                 font-family: Inter;
+    //                 font-size: 16px;
+    //                 font-style: normal;
+    //                 font-weight: 700;
+    //             }
+    //         }
+    //     }
+    // }
 }

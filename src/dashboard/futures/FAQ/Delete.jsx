@@ -21,6 +21,7 @@ const DeleteFaqs = ({ id, setFaqs, getFaqs }) => {
                 setFaqs(setFaqs.filter((u) => u.id !== id));
             }
 
+            if (getFaqs) await getFaqs();
             modals.closeAll();
 
             notifications.show({

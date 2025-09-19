@@ -41,7 +41,7 @@
                         border-bottom: 1px solid #334155;
 
                         p {
-                            color: #CBD5E1;
+                            color: #cbd5e1ac;
                         }
                     }
                 }
@@ -202,7 +202,8 @@
 
                 summary {
                     width: 100%;
-                    height: 60px;
+                    height: auto;
+                    padding: 15px 10px;
                     position: relative;
                     display: flex;
                     justify-content: space-between;
@@ -226,7 +227,7 @@
                 .detail {
                     width: 100%;
                     height: auto;
-                    padding: 10px 0;
+                    padding: 10px 10px;
                     border-bottom: 1px solid #DBEAFE;
                     background-color: rgba(173, 173, 173, 0.082);
 
@@ -234,7 +235,7 @@
                         font-family: Inter;
                         font-weight: 500;
                         font-style: Medium;
-                        font-size: 18px;
+                        font-size: 16px;
                         line-height: 28px;
                         vertical-align: middle;
                         color: #64748B;

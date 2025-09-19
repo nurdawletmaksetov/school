@@ -222,7 +222,7 @@
         .desktop-menu {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 22px;
 
             .nav-link {
                 font-family: Inter;
@@ -326,7 +326,7 @@
 
 .admin {
     display: none;
-    z-index: 999999999999999999;
+    z-index: 999;
 
     @media (min-width: 768px) {
         display: flex;

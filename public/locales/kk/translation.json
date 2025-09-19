@@ -3,6 +3,7 @@
     "home": "U'y",
     "about": "Mektep haqqinda",
     "education": "Ta'lim",
+    "schedule": "Raspisanie",
     "rules": "Qag'iydalar",
     "news": "Jan'aliqlar",
     "support": "Qollaw",
@@ -56,6 +57,20 @@
     "rules-documents": {
         "rules-documents-title": "Mekteb Qag'iydaları ham Hu'jjetleri",
         "rules-documents-p": "Biziń mektepmiz barlıq studentler ushın qawipsiz, húrmetli hám nátiyjeli tálim ortalıǵın támiyinlew ushın anıq qaǵıydalar hám siyasatlardı qollap-quwatlaydı.",
-        "rules-title": "Mekteb Qag'iydaları"
+        "rules-title": "Mekteb Qag'iydaları",
+        "shoolhours-title": "Mekteb saatlari",
+        "documents-title": "Hu'jjetler"
+    },
+    "support-faq": {
+        "support-faq-title": "Ja'rdem ha'm FAQ",
+        "support-faq-p": "Tez-tez beriletuǵın sorawlarǵa juwap tabıń hám mektebmiz haqqında kerekli maǵlıwmatlardı alın'.",
+        "support-title": "Tez-tez soralatug'in sorawlar",
+        "faq-title": "Baylanisiw ushin mag'liwmat",
+        "work-hours": "Jumis waqti"
+    },
+    "education-page": {
+        "education-title": "Ta'lim",
+        "education-p": "Biziń mektepmiz kúshli ilimiy tıykarǵa hám ámeliy kónlikpelerge iye bolǵan hár tárepleme rawajlanǵan studentlerdi rawajlandırıw ushın arnalǵan keń qamtılǵan tálim programmasın usınıs etedi.",
+        "other-activities": "Klasstan tısqarı ilajlar "
     }
 }

@@ -109,6 +109,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    padding: 50px 0;
 
     .support-heading {
         display: flex;
@@ -180,9 +181,12 @@
                     cursor: pointer;
                     border-bottom: 1px solid #DBEAFE;
                     padding: 20px 0;
+                    overflow: hidden;
 
                     p {
                         font-family: Inter;
+                        word-wrap: break-word;
+                        overflow: break-word;
                         font-weight: 500;
                         font-style: Medium;
                         font-size: 18px;
@@ -207,6 +211,8 @@
                     p {
                         font-family: Inter;
                         font-weight: 400;
+                        word-wrap: break-word;
+                        overflow: break-word;
                         font-size: 18px;
                         line-height: 28px;
                         color: #64748B;

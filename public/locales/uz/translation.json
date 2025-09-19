@@ -3,6 +3,7 @@
     "home": "Uy",
     "about": "Biz haqimizda",
     "education": "Ta'lim",
+    "schedule": "Jadval",
     "rules": "Qoidalar",
     "news": "Yangiliklar",
     "support": "Qo'llab-quvvatlash",
@@ -50,6 +51,20 @@
     "rules-documents": {
         "rules-documents-title": "Maktab Qoidalari va Hujjatlari",
         "rules-documents-p": "Bizning maktabimiz barcha talabalar uchun xavfsiz, hurmatli va samarali ta'lim muhitini ta'minlash uchun aniq qoidalar va siyosatlarni qo'llab-quvvatlaydi",
-        "rules-title": "Maktab Qoidalari"
+        "rules-title": "Maktab Qoidalari",
+        "shoolhours-title": "Maktab soatlari",
+        "documents-title": "Hujjatlar"
+    },
+    "support-faq": {
+        "support-faq-title": "Yordam va FAQ",
+        "support-faq-p": "Tez-tez beriladigan savollarga javob toping va maktabimiz haqida kerakli ma'lumotlarni oling.",
+        "support-title": "Tez-tez so'raladigan savollar",
+        "faq-title": "Bog'lanish uchun ma'lumot",
+        "work-hours": "Ish vaqti"
+    },
+    "education-page": {
+        "education-title": "Ta'lim",
+        "education-p": "Bizning maktabimiz kuchli ilmiy asosga va amaliy ko'nikmalarga ega bo'lgan har tomonlama rivojlangan talabalarni rivojlantirish uchun mo'ljallangan keng qamrovli ta'lim dasturini taklif etadi.",
+        "other-activities": "Sinfdan tashqari tadbirlar"
     }
 }

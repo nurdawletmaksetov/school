@@ -442,9 +442,15 @@ main {
         display: flex;
         flex-direction: column;
         gap: 32px;
+        width: 100%;
 
         @media (min-width: 768px) {
             gap: 36px;
+            width: 100%;
+        }
+
+        @media (min-width: 1440px) {
+            width: 70%;
         }
 
         .lnews-topic {
@@ -482,7 +488,7 @@ main {
 
 
             .lnews-box {
-                width: auto;
+                width: 100%;
                 height: auto;
                 border-radius: 16px;
                 display: flex;
@@ -691,46 +697,50 @@ main {
     }
 
     .our-teachers-bottom {
-        display: flex;
-        flex-direction: column;
         gap: 32px;
 
-        @media (min-width: 768px) {
-            flex-direction: row;
-            justify-content: center;
-        }
-
-
         .our-teachers-left {
-            display: flex;
-            flex-direction: column;
+            display: grid;
             gap: 32px;
 
+
+            @media (min-width: 600px) {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            @media (min-width: 768px) {
+                grid-template-columns: repeat(auto-fit, minmax(342px, 1fr));
+            }
+
+            @media (min-width: 1024px) {
+                grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            }
+
             @media (min-width: 1440px) {
-                flex-direction: row;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
 
             .teacher-card {
                 width: auto;
-                height: auto;
+                height: 420px;
                 border-radius: 16px;
                 background: #FFF;
                 box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 
 
                 @media (min-width: 1440px) {
-                    width: 280px;
+                    // width: 280px;
                     height: 380px;
                 }
 
                 img {
                     width: 100%;
-                    height: auto;
+                    height: 300px;
                     border-top-left-radius: 16px;
                     border-top-right-radius: 16px;
 
                     @media (min-width: 1440px) {
-                        width: 280px;
+                        // width: 280px;
                         height: 280px;
                     }
                 }
@@ -844,7 +854,7 @@ main {
         flex-direction: column;
         gap: 32px;
         width: auto;
-        height: auto;
+        height: 100%;
         border-radius: 24px;
         background: #FFF;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -909,13 +919,18 @@ main {
                 gap: 16px;
 
                 .info-box-top {
-                    display: flex;
+                    display: grid;
                     gap: 16px;
-                }
+                    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
 
-                .info-box-btm {
-                    display: flex;
-                    gap: 16px;
+                    @media (max-width: 767px) {
+                        grid-template-columns: repeat(auto-fit, minmax(222px, 1fr));
+
+                    }
+
+                    @media (min-width: 768px) and (max-width: 1439px) {
+                        grid-template-columns: repeat(auto-fit, minmax(372px, 1fr));
+                    }
                 }
 
                 .school-info-boxes {
