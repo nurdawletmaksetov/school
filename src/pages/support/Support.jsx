@@ -9,7 +9,6 @@ import { Flex, Loader } from '@mantine/core';
 const Support = () => {
     const { darkMode } = useOutletContext();
     const [faqs, setFaqs] = useState([]);
-    const [schools, setSchools] = useState([]);
     const [loading, setLoading] = useState(true);
     const { t, i18n } = useTranslation();
     const language = i18n.language || 'ru';
@@ -17,20 +16,8 @@ const Support = () => {
     async function getFaqs() {
         setLoading(true);
         try {
-            const { data } = await api.get('/faqs');
-            setFaqs(data.data.items);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    async function getSchools() {
-        setLoading(true);
-        try {
-            const { data } = await api.get('/schools/1');
-            setSchools(Array.isArray(data.data) ? data.data : [data.data]);
+            const { data } = await api.get('/main/faqs');
+            setFaqs(data.data);
         } catch (error) {
             console.error(error);
         } finally {
@@ -40,7 +27,6 @@ const Support = () => {
 
     useEffect(() => {
         getFaqs();
-        getSchools();
     }, [])
 
     return (
@@ -62,22 +48,18 @@ const Support = () => {
                                     </div>
                                     {loading ? (
                                         <Flex justify="center" align="center" h={200}>
-                                            <Loader />
+                                            <Loader size={50} />
                                         </Flex>
                                     ) : (
                                         <div className="support-bottom">
-                                            {faqs.map((el) => (
+                                            {faqs.faqs?.map((el) => (
                                                 <details name='support' key={el.id}>
                                                     <summary>
-                                                        <p>
-                                                            {el.question[language]}
-                                                        </p>
+                                                        <p>{el.question[language]}</p>
                                                         <ChevronDown size={16} />
                                                     </summary>
                                                     <div className="detail">
-                                                        <p>
-                                                            {el.answer[language]}
-                                                        </p>
+                                                        <p>{el.answer[language]}</p>
                                                     </div>
                                                 </details>
                                             ))}
@@ -90,78 +72,81 @@ const Support = () => {
                                             {t("support-faq.faq-title")}
                                         </h3>
                                     </div>
-                                    <div className="support-contact-us-main">
-                                        {schools.map((el) => (
-                                            <div className="support-contact-main-top">
-                                                <div className="support-map support-boxes">
-                                                    <div className="support-box-icon">
-                                                        <MapPin size={40} />
+                                    {loading ? (
+                                        <Flex justify="center" align="center" h={200}>
+                                            <Loader size={50} />
+                                        </Flex>
+                                    ) : (
+
+                                        <div className="support-contact-us-main">
+                                            {faqs.contanct_info && (
+                                                <div className="support-contact-main-top">
+                                                    <div className="support-map support-boxes">
+                                                        <div className="support-box-icon">
+                                                            <MapPin size={40} />
+                                                        </div>
+                                                        <div className="support-box-info">
+                                                            <h4>Адрес</h4>
+                                                            <p>{faqs.contanct_info.location}</p>
+                                                        </div>
                                                     </div>
-                                                    <div className="support-box-info">
-                                                        <h4>Адрес</h4>
-                                                        <p>{el.location}</p>
+                                                    <div className="support-phone support-boxes">
+                                                        <div className="support-box-icon">
+                                                            <Phone size={40} />
+                                                        </div>
+                                                        <div className="support-box-info">
+                                                            <h4>Телефон</h4>
+                                                            <p>{faqs.contanct_info.phone}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="support-phone support-boxes">
-                                                    <div className="support-box-icon">
-                                                        <Phone size={40} />
-                                                    </div>
-                                                    <div className="support-box-info">
-                                                        <h4>Телефон</h4>
-                                                        <p>
-                                                            {el.phone}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div className="support-email support-boxes">
-                                                    <div className="support-box-icon">
-                                                        <Mail size={40} />
-                                                    </div>
-                                                    <div className="support-box-info">
-                                                        <h4>Email</h4>
-                                                        <p>
-                                                            support@politechnicum.edu
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                        <div className="support-contact-main-btm">
-                                            <div className="support-work-hour-headline">
-                                                <h4>
-                                                    {t("support-faq.work-hours")}
-                                                </h4>
-                                            </div>
-                                            <div className="support-work-hour-btm">
-                                                <div className="swork-hour-left">
-                                                    <h5>
-                                                        Администрация
-                                                    </h5>
-                                                    <div className="swork-hour-ph">
-                                                        <p>
-                                                            Понедельник - Пятница: 8:00 - 17:00
-                                                        </p>
-                                                        <p>
-                                                            Суббота - Воскресенье: Закрыто
-                                                        </p>
+                                                    <div className="support-email support-boxes">
+                                                        <div className="support-box-icon">
+                                                            <Mail size={40} />
+                                                        </div>
+                                                        <div className="support-box-info">
+                                                            <h4>Email</h4>
+                                                            <p>support@politechnicum.edu</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div className="swork-hour-right">
-                                                    <h5>
-                                                        Учебные часы
-                                                    </h5>
-                                                    <div className="swork-hour-ph">
-                                                        <p>
-                                                            Понедельник - Пятница: 8:00 - 15:30
-                                                        </p>
-                                                        <p>
-                                                            Суббота - Воскресенье: Закрыто
-                                                        </p>
+                                            )}
+                                            <div className="support-contact-main-btm">
+                                                <div className="support-work-hour-headline">
+                                                    <h4>
+                                                        {t("support-faq.work-hours")}
+                                                    </h4>
+                                                </div>
+                                                <div className="support-work-hour-btm">
+                                                    <div className="swork-hour-left">
+                                                        <h5>
+                                                            Администрация
+                                                        </h5>
+                                                        <div className="swork-hour-ph">
+                                                            <p>
+                                                                Понедельник - Пятница: 8:00 - 17:00
+                                                            </p>
+                                                            <p>
+                                                                Суббота - Воскресенье: Закрыто
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="swork-hour-right">
+                                                        <h5>
+                                                            Учебные часы
+                                                        </h5>
+                                                        <div className="swork-hour-ph">
+                                                            <p>
+                                                                Понедельник - Пятница: 8:00 - 15:30
+                                                            </p>
+                                                            <p>
+                                                                Суббота - Воскресенье: Закрыто
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    )}
                                 </div>
                             </div>
                         </div>

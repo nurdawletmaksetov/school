@@ -1,0 +1,29 @@
+.h1 {
+    font-size: 100px;
+
+    @media (min-width: 768px) {
+        font-size: 200px;
+    }
+}
+
+.p {
+    font-size: 30px;
+
+    @media (min-width: 768px) {
+        font-size: 70px;
+    }
+}
+
+.button {
+    margin-top: 20px;
+    border: 1px solid #000;
+    background-color: whitesmoke;
+    border-radius: 9999px;
+    padding: 5px 10px;
+    font-size: 20px;
+
+    @media (min-width: 768px) {
+        padding: 10px 20px;
+        font-size: 30px;
+    }
+}

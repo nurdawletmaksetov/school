@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import './startpage.scss'
 import { Album, ArrowRight, BookOpen, Calendar, Clock, File, MapPin, Users } from 'lucide-react'
-import { Link, useOutletContext } from 'react-router-dom'
+import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import { Container } from '../../components/container/container'
 import { Button, Flex, Loader, Modal } from '@mantine/core'
 import { Element, Link as ScrollLink } from 'react-scroll'
@@ -17,6 +17,11 @@ const StartPage = () => {
   const [loading, setLoading] = useState(true);
   const { t, i18n } = useTranslation();
   const language = i18n.language;
+  const navigation = useNavigate();
+
+  const navClick = () => {
+    navigation('/support');
+  }
 
   async function getHome() {
     setLoading(true);
@@ -29,6 +34,8 @@ const StartPage = () => {
       setLoading(false);
     }
   }
+
+  
 
   useEffect(() => {
     getHome();
@@ -48,35 +55,18 @@ const StartPage = () => {
                 <div className="welcome-left">
                   <div className="welcome-headings">
                     <h1 className="welcome-headline">
-                      Добро пожаловать в нашу школу
+                      {t("home-page.welcome")}
                     </h1>
                     <p className='welcome-pharaghrap'>
-                      Место, где знания
-                      встречаются с инновациями,
-                      а ученики готовятся к
-                      вызовам завтрашнего дня.
+                      {t("home-page.welcome-text")}
                     </p>
                   </div>
                   <div className="welcome-buttons">
-                    <Modal.Root opened={opened} onClose={close}>
-                      <Modal.Overlay />
-                      <Modal.Content>
-                        <Modal.Header>
-                          <Modal.Title>Phone Numb</Modal.Title>
-                          <Modal.CloseButton />
-                        </Modal.Header>
-                        <Modal.Body>+998 (00) 000-00-00</Modal.Body>
-                        <Modal.Header>
-                          <Modal.Title>Email</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>example@mail.com</Modal.Body>
-                      </Modal.Content>
-                    </Modal.Root>
-                    <button onClick={open} className='connect-withus-btn'>
-                      Связаться с нами <ArrowRight color='#FFFFFF' width={16} />
+                    <button onClick={navClick} className='connect-withus-btn'>
+                      {t("home-page.contact-us")} <ArrowRight color='#FFFFFF' width={16} />
                     </button>
                     <Link to={"/about"} onClick={handleClick} className='welcome-others-btn'>
-                      Узнать больше
+                      {t("actions.find-more")}
                     </Link>
                   </div>
                 </div>
@@ -93,11 +83,11 @@ const StartPage = () => {
               <div className="latest-news-left">
                 <div className="lnews-topic">
                   <h3>
-                    Последние новости
+                    {t("home-page.last-news")}
                   </h3>
                   <Link to={"/news"} onClick={handleClick}>
                     <button>
-                      Смотреть все <ArrowRight size={14} />
+                      {t("actions.see-all")} <ArrowRight size={14} />
                     </button>
                   </Link>
                 </div>
@@ -136,7 +126,7 @@ const StartPage = () => {
               <div className="lnews-right">
                 <div className="lnews-right-top">
                   <h3>
-                    Быстрые ссылки
+                    {t("home-page.fast-links")}
                   </h3>
                 </div>
                 <div className="lnews-right-bottom">
@@ -244,9 +234,7 @@ const StartPage = () => {
                     </div>
                   </div>
                   <Link to="/about" onClick={handleClick} className="info-read-more-link">
-                    <p>
-                      Узнать больше о нас <ArrowRight color='#FFFFFF' size={14} />
-                    </p>
+                    Узнать больше о нас <ArrowRight color='#FFFFFF' size={14} />
                   </Link>
                 </div>
                 <div className="our-school-right">

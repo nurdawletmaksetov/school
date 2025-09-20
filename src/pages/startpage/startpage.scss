@@ -378,11 +378,12 @@ main {
     .connect-withus-btn {
         max-width: 210px;
         height: auto;
-        padding: 13px 30px;
+        padding: 13px 20px;
         border: none;
         border-radius: 9999px;
         display: flex;
         gap: 7px;
+        justify-content: center;
         align-items: center;
         font-family: Inter;
         font-weight: 500;
@@ -397,14 +398,14 @@ main {
     .welcome-others-btn {
         max-width: 168px;
         border: 1px solid #111827;
-        padding: 13px 31px;
+        padding: 13px 20px;
         font-family: Inter;
         font-weight: 500;
-        font-style: Medium;
         font-size: 14px;
         line-height: 20px;
-        text-align: center;
-        vertical-align: middle;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: transparent;
         border-radius: 9999px;
     }
@@ -467,15 +468,15 @@ main {
             }
 
             button {
-                width: 155px;
+                max-width: 200px;
                 height: 40px;
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                padding: 0 12px;
+                justify-content: space-between;
                 gap: 7px;
                 color: #130428;
                 border-radius: 9999px;
-                max-width: 168px;
                 border: 1px solid #E2E8F0;
                 background: #FFF;
             }

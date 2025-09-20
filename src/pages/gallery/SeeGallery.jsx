@@ -47,7 +47,11 @@ const SeeGallery = () => {
     }
 
     if (!album) {
-        return <p>Album not found</p>;
+        return (
+            <Flex justify="center" align="center" style={{ height: "200px" }}>
+                <Loader variant="dots" size="lg" />
+            </Flex>
+        )
     }
 
     return (

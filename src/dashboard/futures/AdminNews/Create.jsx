@@ -12,29 +12,28 @@ const CreateNews = ({ getNews }) => {
         setLoading(true);
         try {
             const formData = new FormData();
-            formData.append("name[kk]", values.name.kk);
-            formData.append("name[uz]", values.name.uz);
-            formData.append("name[ru]", values.name.ru);
-            formData.append("name[en]", values.name.en);
 
-            formData.append("text[kk]", values.text.kk);
-            formData.append("text[uz]", values.text.uz);
-            formData.append("text[ru]", values.text.ru);
-            formData.append("text[en]", values.text.en);
+            formData.append("title[kk]", body.title.kk);
+            formData.append("title[uz]", body.title.uz);
+            formData.append("title[ru]", body.title.ru);
+            formData.append("title[en]", body.title.en);
 
-            formData.append("schedule[kk]", values.schedule.kk);
-            formData.append("schedule[uz]", values.schedule.uz);
-            formData.append("schedule[ru]", values.schedule.ru);
-            formData.append("schedule[en]", values.schedule.en);
+            formData.append("short_content[kk]", body.short_content.kk);
+            formData.append("short_content[uz]", body.short_content.uz);
+            formData.append("short_content[ru]", body.short_content.ru);
+            formData.append("short_content[en]", body.short_content.en);
 
-            formData.append("photo", values.photo);
+            formData.append("content[kk]", body.content.kk);
+            formData.append("content[uz]", body.content.uz);
+            formData.append("content[ru]", body.content.ru);
+            formData.append("content[en]", body.content.en);
 
             if (body.author_id) {
-                formData.append("author_id", Number(body.author_id));
+                formData.append("author_id", body.author_id);
             }
 
             if (body.tags?.length) {
-                body.tags.forEach((tag) => formData.append("tags[]", Number(tag)));
+                body.tags.forEach((tag) => formData.append("tags[]", tag));
             }
 
             if (body.cover_image) {
@@ -65,26 +64,21 @@ const CreateNews = ({ getNews }) => {
         }
     }
 
+
     return (
         <Stack style={{ minHeight: "300px", justifyContent: "center" }}>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "200px" }}>
-                    <Loader variant="dots" size="lg" />
-                </Flex>
-            ) : (
-                <FormNews
-                    submitFn={createFn}
-                    loading={loading}
-                    initialValues={{
-                        title: { kk: "", uz: "", ru: "", en: "" },
-                        short_content: { kk: "", uz: "", ru: "", en: "" },
-                        content: { kk: "", uz: "", ru: "", en: "" },
-                        author_id: "",
-                        tags: [],
-                        cover_image: null,
-                    }}
-                />
-            )}
+            <FormNews
+                submitFn={createFn}
+                loading={loading}
+                initialValues={{
+                    title: { kk: "", uz: "", ru: "", en: "" },
+                    short_content: { kk: "", uz: "", ru: "", en: "" },
+                    content: { kk: "", uz: "", ru: "", en: "" },
+                    author_id: "",
+                    tags: [],
+                    cover_image: null,
+                }}
+            />
         </Stack>
     );
 };

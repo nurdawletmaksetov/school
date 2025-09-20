@@ -114,12 +114,12 @@ const Album = () => {
                   </Table.Td>
                   <Table.Td>{album.description?.ru || "No description"}</Table.Td>
                   <Table.Td>
-                    <Group>
+                    <Flex gap={10}>
                       <Button size="xs" color="red" onClick={() => deleteFn(album.id)}>
                         {t("actions.delete")}
                       </Button>
                       <Button size="xs" onClick={() => updateFn(album.id)}>{t("actions.update")}</Button>
-                    </Group>
+                    </Flex>
                   </Table.Td>
                 </Table.Tr>
               ))}

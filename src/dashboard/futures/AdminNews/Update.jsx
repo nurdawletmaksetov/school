@@ -22,7 +22,7 @@ const UpdateNews = ({ id, getNews }) => {
                 message: "Failed to fetch data!",
                 color: "red",
                 icon: <X />,
-            })
+            });
         } finally {
             setLoading(false);
         }
@@ -60,8 +60,6 @@ const UpdateNews = ({ id, getNews }) => {
             }
 
             formData.append("author_id", values.author_id);
-
-
             formData.append("_method", "PUT");
 
             await api.post(`/news/update/${id}`, formData);
@@ -90,7 +88,7 @@ const UpdateNews = ({ id, getNews }) => {
         }
     };
 
-    if (!loading && !data) {
+    if (!data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
                 <Loader variant="dots" size="lg" />
@@ -123,11 +121,9 @@ const UpdateNews = ({ id, getNews }) => {
                         en: data?.content?.en || "",
                     },
                     author_id: data?.author?.id?.toString() || null,
-                    tags_name: data?.tags?.name || "",
-                    tags_description: data?.tags?.description || "",
+                    tags: data?.tags?.map((t) => t.id.toString()) || [],
                 }}
             />
-
         </Stack>
     );
 };

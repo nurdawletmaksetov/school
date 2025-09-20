@@ -8,6 +8,7 @@ import {
     FileInput,
     Select,
     MultiSelect,
+    Image,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { api } from "../../../api/api";
@@ -16,11 +17,21 @@ import { useTranslation } from "react-i18next";
 
 const FormNews = ({ submitFn, initialValues, loading }) => {
     const [file, setFile] = useState(null);
+    const [preview, setPreview] = useState(initialValues?.cover_image || null);
     const [authors, setAuthors] = useState([]);
-    const { t } = useTranslation();
     const [tags, setTags] = useState([]);
+    const { t } = useTranslation();
 
-    const form = useForm({ initialValues });
+    const form = useForm({
+        initialValues,
+    });
+
+    useEffect(() => {
+        if (initialValues) {
+            form.setValues(initialValues);
+            setPreview(initialValues.cover_image || null);
+        }
+    }, [initialValues]);
 
     useEffect(() => {
         async function fetchAuthors() {
@@ -60,7 +71,7 @@ const FormNews = ({ submitFn, initialValues, loading }) => {
             ...values,
             author_id: values.author_id ? Number(values.author_id) : null,
             tags: values.tags?.map((t) => Number(t)) || [],
-            cover_image: file,
+            cover_image: file || preview,
         });
     };
 
@@ -72,10 +83,22 @@ const FormNews = ({ submitFn, initialValues, loading }) => {
                 <TextInput label="Title (ru)" {...form.getInputProps("title.ru")} />
                 <TextInput label="Title (en)" {...form.getInputProps("title.en")} />
 
-                <Textarea label="Short Content (kk)" {...form.getInputProps("short_content.kk")} />
-                <Textarea label="Short Content (uz)" {...form.getInputProps("short_content.uz")} />
-                <Textarea label="Short Content (ru)" {...form.getInputProps("short_content.ru")} />
-                <Textarea label="Short Content (en)" {...form.getInputProps("short_content.en")} />
+                <Textarea
+                    label="Short Content (kk)"
+                    {...form.getInputProps("short_content.kk")}
+                />
+                <Textarea
+                    label="Short Content (uz)"
+                    {...form.getInputProps("short_content.uz")}
+                />
+                <Textarea
+                    label="Short Content (ru)"
+                    {...form.getInputProps("short_content.ru")}
+                />
+                <Textarea
+                    label="Short Content (en)"
+                    {...form.getInputProps("short_content.en")}
+                />
 
                 <Textarea label="Content (kk)" {...form.getInputProps("content.kk")} />
                 <Textarea label="Content (uz)" {...form.getInputProps("content.uz")} />
@@ -97,6 +120,15 @@ const FormNews = ({ submitFn, initialValues, loading }) => {
                     {...form.getInputProps("tags")}
                 />
 
+                {preview && !file && (
+                    <Image
+                        src={typeof preview === "string" ? preview : URL.createObjectURL(preview)}
+                        alt="cover preview"
+                        width={200}
+                        radius="md"
+                    />
+                )}
+
                 <FileInput
                     label="Cover Image"
                     accept="image/png,image/jpeg"
@@ -105,8 +137,12 @@ const FormNews = ({ submitFn, initialValues, loading }) => {
                 />
 
                 <Flex justify="end" gap={10}>
-                    <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
-                    <Button type="submit" loading={loading}>{t("actions.save")}</Button>
+                    <Button color="gray" onClick={() => modals.closeAll()}>
+                        {t("actions.cancel")}
+                    </Button>
+                    <Button type="submit" loading={loading}>
+                        {t("actions.save")}
+                    </Button>
                 </Flex>
             </Stack>
         </form>

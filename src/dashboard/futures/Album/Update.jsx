@@ -48,7 +48,11 @@ const UpdateAlbum = ({ id, albums, setAlbums, getAlbums }) => {
 
             if (Array.isArray(body.photos)) {
                 body.photos.forEach((file) => {
-                    formData.append("photos[]", file);
+                    if (file instanceof File) {
+                        formData.append("photos[]", file);
+                    } else {
+                        formData.append("existing_photos[]", file.id || file);
+                    }
                 });
             }
 
@@ -104,7 +108,7 @@ const UpdateAlbum = ({ id, albums, setAlbums, getAlbums }) => {
                 ru: album?.title?.ru,
                 en: album?.title?.en,
                 description: album?.description,
-                photos: [],
+                photos: album?.photos || [],
             }}
         />
     );

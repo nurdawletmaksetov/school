@@ -34,7 +34,9 @@
         "upload": "Yuklash",
         "download": "Yuklab olish",
         "save": "Saqlash",
-        "cancel": "Bekor qilish"
+        "cancel": "Bekor qilish",
+        "find-more": "Ko'proq olish",
+        "see-all": "Barchasini ko'rish"
     },
     "messages": {
         "confirmDelete": "Haqiqatdan ham ushbu elementni o'chirmoqchimisiz?"
@@ -66,5 +68,12 @@
         "education-title": "Ta'lim",
         "education-p": "Bizning maktabimiz kuchli ilmiy asosga va amaliy ko'nikmalarga ega bo'lgan har tomonlama rivojlangan talabalarni rivojlantirish uchun mo'ljallangan keng qamrovli ta'lim dasturini taklif etadi.",
         "other-activities": "Sinfdan tashqari tadbirlar"
+    },
+    "home-page": {
+        "welcome": "Maktabimizga xush kelibsiz",
+        "welcome-text": "Bilim innovatsiyalar bilan uchrashadigan va talabalar ertangi kunning qiyinchiliklariga tayyorgarlik ko'radigan joy.",
+        "contact-us": "Biz bilan bog'lanish",
+        "last-news": "So'ngi yangiliklar",
+        "fast-links": "Tez havolalar"
     }
 }

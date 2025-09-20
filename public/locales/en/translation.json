@@ -34,7 +34,9 @@
         "upload": "Upload",
         "download": "Download",
         "save": "Save",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "find-more": "Find out more",
+        "see-all": "See all"
     },
     "languages": {
         "kk": "Karakalpak",
@@ -72,5 +74,12 @@
         "education-title": "Education",
         "education-p": "Our school offers a comprehensive educational program designed to develop well-rounded students with a strong academic foundation and practical skills.",
         "other-activities": "Extracurricular activities"
+    },
+    "home-page": {
+        "welcome": "Welcome to our school",
+        "welcome-text": "A place where knowledge meets innovation and students prepare for the challenges of tomorrow.",
+        "contact-us": "Contact us",
+        "last-news": "Latest news",
+        "fast-links": "Quick links"
     }
 }

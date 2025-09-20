@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://lots-ind-efficiency-indicating.trycloudflare.com/api/v1",
+    baseURL: "https://snowboard-organized-size-descending.trycloudflare.com//api/v1",
     headers: {
         Accept: "application/json",
         "ngrok-skip-browser-warning": "true",
@@ -72,7 +72,7 @@ api.interceptors.response.use(
                 }
 
                 const { data } = await axios.post(
-                    "https://lots-ind-efficiency-indicating.trycloudflare.com/api/v1/refresh",
+                    "https://snowboard-organized-size-descending.trycloudflare.com//api/v1/refresh",
                     { refresh_token: refreshToken },
                     {
                         headers: {

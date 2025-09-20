@@ -41,18 +41,12 @@ const DeleteAlbum = ({ id, albums, setAlbums, getAlbums }) => {
     return (
         <Stack>
             <Text>{t("messages.confirmDelete")}</Text>
-            {loading ? (
-                <Flex justify="center" align="center" style={{ height: "50px" }}>
-                    <Loader variant="dots" />
-                </Flex>
-            ) : (
-                <Flex gap={10} justify="flex-end">
-                    <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
-                    <Button color="red" loading={loading} onClick={deleteFn}>
-                        {t("actions.delete")}
-                    </Button>
-                </Flex>
-            )}
+            <Flex gap={10} justify="flex-end">
+                <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
+                <Button color="red" loading={loading} onClick={deleteFn}>
+                    {t("actions.delete")}
+                </Button>
+            </Flex>
         </Stack>
     );
 };

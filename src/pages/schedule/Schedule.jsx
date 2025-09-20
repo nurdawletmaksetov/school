@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container } from '../../components/container/container'
 import '../schedule/schedule.scss'
 import { FileSpreadsheet } from 'lucide-react'
-import { Button, Flex, Select, Text } from '@mantine/core'
+import { Button, Flex, Loader, Select, Text } from '@mantine/core'
 import { IconDownload } from '@tabler/icons-react'
 import { useOutletContext } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -141,21 +141,27 @@ const Schedule = () => {
                                         <h3>Доступные расписания</h3>
                                         <p>Список всех доступных для скачивания расписаний</p>
                                     </div>
-                                    <div className="dostupniy-schedule-main">
-                                        {schedule.schedules?.map((el) => (
-                                            <div
-                                                className="schedule-class-box"
-                                                key={el.id}
-                                                onClick={() => handleDownload(el.download_url, `${el.name}.pdf`)}
-                                            >
-                                                <h4>
-                                                    <FileSpreadsheet size={20} className='doc-icons' />
-                                                    {el.name}
-                                                </h4>
-                                                <p>Нажмите для скачивания</p>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    {loading ? (
+                                        <Flex justify={'center'} align={'center'} h={'100%'}>
+                                            <Loader size={50} />
+                                        </Flex>
+                                    ) : (
+                                        <div className="dostupniy-schedule-main">
+                                            {schedule.schedules?.map((el) => (
+                                                <div
+                                                    className="schedule-class-box"
+                                                    key={el.id}
+                                                    onClick={() => handleDownload(el.download_url, `${el.name}.pdf`)}
+                                                >
+                                                    <h4>
+                                                        <FileSpreadsheet size={20} className='doc-icons' />
+                                                        {el.name}
+                                                    </h4>
+                                                    <p>Нажмите для скачивания</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>

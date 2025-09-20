@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import PageLoader from "../components/loader/PageLoader";
+import NotFound from "../pages/NotFound/NotFound";
 
 const Layout = lazy(() => import("../pages/Layout"));
 const StartPage = lazy(() => import("../pages/startpage/StartPage"));
@@ -126,6 +127,12 @@ export const router = createBrowserRouter([
                 )
             }
         ],
+    },
+    {
+        path: "*",
+        element: (
+            <NotFound />
+        )
     },
     {
         path: "login",

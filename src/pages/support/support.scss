@@ -35,7 +35,7 @@
                     border-bottom: 1px solid #334155;
 
                     p {
-                        color: #CBD5E1;
+                        color: #cbd5e1c2;
                     }
                 }
             }
@@ -180,7 +180,7 @@
                     background-color: transparent;
                     cursor: pointer;
                     border-bottom: 1px solid #DBEAFE;
-                    padding: 20px 0;
+                    padding: 20px 10px;
                     overflow: hidden;
 
                     p {
@@ -204,7 +204,7 @@
                 .detail {
                     width: 100%;
                     height: auto;
-                    padding: 20px 0;
+                    padding: 20px 10px;
                     border-bottom: 1px solid #64748B;
                     background-color: rgba(173, 173, 173, 0.082);
 
@@ -213,7 +213,7 @@
                         font-weight: 400;
                         word-wrap: break-word;
                         overflow: break-word;
-                        font-size: 18px;
+                        font-size: 16px;
                         line-height: 28px;
                         color: #64748B;
                     }

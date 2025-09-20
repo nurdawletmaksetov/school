@@ -34,7 +34,9 @@
         "upload": "Juklew",
         "download": "Juklew",
         "save": "Saqlaw",
-        "cancel": "Bas tartiw"
+        "cancel": "Bas tartiw",
+        "find-more": "Ko'brek tabiw",
+        "see-all": "Barin ko'riw"
     },
     "languages": {
         "kk": "Qaraqalpaq",
@@ -72,5 +74,19 @@
         "education-title": "Ta'lim",
         "education-p": "Biziń mektepmiz kúshli ilimiy tıykarǵa hám ámeliy kónlikpelerge iye bolǵan hár tárepleme rawajlanǵan studentlerdi rawajlandırıw ushın arnalǵan keń qamtılǵan tálim programmasın usınıs etedi.",
         "other-activities": "Klasstan tısqarı ilajlar "
+    },
+    "home-page": {
+        "welcome": "Mektepmizge xosh kelipsiz",
+        "welcome-text": "Bilim innovatsiyalar menen ushrasatuǵın hám studentler ertangi kúnniń qıyınshılıqlarına tayarlıq kóretuǵın jay.",
+        "contact-us": "Biz menen baylanısıw",
+        "last-news": "Son'g'i jan'aliqlar",
+        "fast-links": "Tez linkler",
+        "quick-links": {
+            "schedule": "Расписание уроков",
+            "documents": "Школьные документы",
+            "teachers": "Наши учителя",
+            "course": "Доступные курсы",
+            "gallery": "Фотогалерея"
+        }
     }
 }

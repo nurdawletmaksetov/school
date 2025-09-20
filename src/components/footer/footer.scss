@@ -67,32 +67,6 @@ footer {
                     }
                 }
             }
-
-            .footer-newsletter {
-                h3 {
-                    color: #F1F5F9;
-                }
-
-                .subscribe-foot {
-                    p {
-                        color: #F1F5F9;
-                    }
-
-                    .sent-email {
-                        .email {
-                            background-color: #1E293B;
-                            border: 1px solid #D1D5DB;
-                            color: #F1F5F9;
-                        }
-
-                        .submit {
-                            background: #1E293B;
-                            color: #FFFFFF;
-                            border: 1px solid #4B5563;
-                        }
-                    }
-                }
-            }
         }
 
         .footer-bottom {
@@ -254,66 +228,6 @@ footer {
                     font-size: 16px;
                     line-height: 24px;
                     color: #4B5563;
-                }
-            }
-        }
-
-        .footer-newsletter {
-            display: flex;
-            flex-direction: column;
-            gap: 26px;
-
-            h3 {
-                font-family: Inter;
-                font-weight: 700;
-                font-style: Bold;
-                font-size: 18px;
-                line-height: 28px;
-                color: #111827;
-            }
-
-            .subscribe-foot {
-                display: flex;
-                flex-direction: column;
-                gap: 18px;
-
-                p {
-                    font-family: Inter;
-                    font-weight: 400;
-                    font-style: Regular;
-                    font-size: 16px;
-                    line-height: 24px;
-                    color: #4B5563;
-                }
-
-                .sent-email {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 12px;
-
-                    .email {
-                        width: 100%;
-                        height: 40px;
-                        border-radius: 50px;
-                        background-color: #FFFFFF;
-                        border: 1px solid #D1D5DB;
-                        padding: 0 13px;
-                        font-family: Inter;
-                        font-weight: 400;
-                        font-style: Regular;
-                        font-size: 16px;
-                        line-height: 100%;
-                        outline: none;
-                    }
-
-                    .submit {
-                        width: 100%;
-                        height: 40px;
-                        background: #2563EB;
-                        color: #FFFFFF;
-                        border-radius: 50px;
-                        border: none;
-                    }
                 }
             }
         }

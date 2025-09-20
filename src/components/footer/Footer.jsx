@@ -76,19 +76,6 @@ export const Footer = ({ darkMode }) => {
                   </p>
                 </div>
               </div>
-              <div className="footer-newsletter">
-                <h3>Newsletter</h3>
-                <div className="subscribe-foot">
-                  <p>
-                    Subscribe to our newsletter to
-                    receive updates and news.
-                  </p>
-                  <div className="sent-email">
-                    <input className='email' type="e-mail" placeholder='Your email address' />
-                    <input className='submit' type="submit" value="Subscribe" />
-                  </div>
-                </div>
-              </div>
             </div>
             <div className="footer-bottom">
               <p>© 2025 1-POLITECHNIKUM. Developer: Nurdawlet Maksetov.</p>

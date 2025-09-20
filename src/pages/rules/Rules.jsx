@@ -14,15 +14,13 @@ const Rules = () => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
   const [rules, setRules] = useState([]);
-  const [schoolhours, setSchoolHours] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [documents, setDocuments] = useState([]);
 
   async function fetchRules() {
     setLoading(true);
     try {
-      const { data } = await api.get('/rules');
-      setRules(data.data.items);
+      const { data } = await api.get('/main/rules');
+      setRules(data.data);
     } catch (error) {
       console.error(error);
     } finally {
@@ -30,34 +28,8 @@ const Rules = () => {
     }
   }
 
-  async function fetchSchoolHours() {
-    setLoading(true);
-    try {
-      const { data } = await api.get('/school-hours');
-      setSchoolHours(data.data.items);
-    } catch (error) {
-      console.error('Error fetching school hours:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function fetchDocument() {
-    setLoading(true);
-    try {
-      const { data } = await api.get('/documents');
-      setDocuments(data.data.items);
-    } catch (error) {
-      console.error('Error fetching documents:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
     fetchRules();
-    fetchSchoolHours();
-    fetchDocument();
   }, []);
 
   const handleDownload = async (downloadUrl, fileName) => {
@@ -111,7 +83,7 @@ const Rules = () => {
                   ) : (
                     <div className="rules-left-details">
                       {
-                        rules.map((el) => (
+                        rules.rules?.map((el) => (
                           <details name='rules'>
                             <summary>
                               <p>
@@ -144,18 +116,18 @@ const Rules = () => {
                     </Flex>
                   ) : (
                     <div className="rules-main">
-                      {schoolhours.map((el) => (
+                      {rules.school_hours?.map((el) => (
                         <div className="school-times">
                           <h4>
-                            {el.title[language]}
+                            {el.title}
                           </h4>
                           <h4>Workday</h4>
                           <p>
-                            {el.workday[language]}
+                            {el.workday}
                           </p>
                           <h4>Holiday</h4>
                           <p>
-                            {el.holiday[language]}
+                            {el.holiday}
                           </p>
                         </div>
                       ))}
@@ -175,7 +147,7 @@ const Rules = () => {
                   ) : (
 
                     <div className="documents-left">
-                      {documents.map((el) => (
+                      {rules.documents?.map((el) => (
                         <div className="documents-box">
                           <div className="doc-box-icon">
                             <div className="icon-doc">
