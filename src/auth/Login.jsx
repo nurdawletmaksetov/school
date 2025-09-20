@@ -10,6 +10,7 @@ import {
     PasswordInput,
     Text,
     Loader,
+    Group,
 } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { Check, X } from "tabler-icons-react";
@@ -75,10 +76,12 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Button fullWidth onClick={handleSubmit} disabled={loading}>
-                        {loading ? <Loader size="xs" /> : "Login"}
-                    </Button>
-                    <Link to="/">Back Home</Link>
+                    <Group gap={5}>
+                        <Button fullWidth onClick={handleSubmit} disabled={loading}>
+                            {loading ? <Loader size="xs" /> : "Login"}
+                        </Button>
+                        <Button fullWidth variant="subtle" onClick={() => nav("/")}>Back Home</Button>
+                    </Group>
                 </Stack>
             </Card>
         </Container>

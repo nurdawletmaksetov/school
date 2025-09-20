@@ -456,9 +456,11 @@ main {
 
         .lnews-topic {
             display: flex;
+            align-items: center;
             justify-content: space-between;
 
             h3 {
+                width: 50%;
                 font-family: Inter;
                 font-weight: 700;
                 font-style: Bold;
@@ -673,27 +675,48 @@ main {
 
     .our-teachers-top {
         display: flex;
-        flex-direction: column;
-        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
 
-        h1 {
-            font-family: Inter;
-            font-weight: 700;
-            font-style: Bold;
-            font-size: 30px;
-            line-height: 36px;
-            text-align: center;
-            color: #111827;
+        .teachers-top-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 50%;
+
+            h1 {
+                font-family: Inter;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 30px;
+                line-height: 36px;
+                text-align: left;
+                color: #111827;
+            }
+
+            p {
+                font-family: Inter;
+                font-weight: 400;
+                font-style: Regular;
+                font-size: 16px;
+                line-height: 24px;
+                text-align: left;
+                color: #4B5563;
+            }
         }
 
-        p {
-            font-family: Inter;
-            font-weight: 400;
-            font-style: Regular;
-            font-size: 16px;
-            line-height: 24px;
-            text-align: center;
-            color: #4B5563;
+        .teachers-top-button {
+            width: auto;
+            max-width: 200px;
+            height: 40px;
+            display: flex;
+            gap: 7px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 12px;
+            border-radius: 9999px;
+            border: 1px solid #E2E8F0;
+            background-color: #FFF;
         }
     }
 

@@ -9,6 +9,7 @@ const About = lazy(() => import("../pages/about/About"));
 const Education = lazy(() => import("../pages/education/Education"));
 const Schedule = lazy(() => import("../pages/schedule/Schedule"));
 const Rules = lazy(() => import("../pages/rules/Rules"));
+const Teachers = lazy(() => import("../pages/Teachers/Teachers"));
 const Support = lazy(() => import("../pages/support/Support"));
 const News = lazy(() => import("../pages/news/News"));
 const ReadNews = lazy(() => import("../pages/news/ReadNews"));
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
                 element: (
                     <Suspense fallback={<PageLoader />}>
                         <StartPage />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/teachers",
+                element: (
+                    <Suspense fallback={<PageLoader />}>
+                        <Teachers />
                     </Suspense>
                 ),
             },

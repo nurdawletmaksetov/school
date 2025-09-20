@@ -8,6 +8,7 @@ import { notifications } from '@mantine/notifications';
 import { api } from '../../api/api';
 import { Flex, Loader, Skeleton } from '@mantine/core';
 import axios from 'axios';
+import { Element } from 'react-scroll';
 
 const Rules = () => {
   const { darkMode } = useOutletContext();
@@ -135,47 +136,49 @@ const Rules = () => {
                   )}
                 </div>
               </div>
-              <div className="school-documents">
-                <div className="documents-heading">
-                  <h3>{t("rules-documents.documents-title")}</h3>
-                </div>
-                <div className="documents-boxes">
-                  {loading ? (
-                    <Flex justify="center" align="center" style={{ height: "200px" }}>
-                      <Loader variant="dots" />
-                    </Flex>
-                  ) : (
+              <Element name='documents'>
+                <div className="school-documents">
+                  <div className="documents-heading">
+                    <h3>{t("rules-documents.documents-title")}</h3>
+                  </div>
+                  <div className="documents-boxes">
+                    {loading ? (
+                      <Flex justify="center" align="center" style={{ height: "200px" }}>
+                        <Loader variant="dots" />
+                      </Flex>
+                    ) : (
 
-                    <div className="documents-left">
-                      {rules.documents?.map((el) => (
-                        <div className="documents-box">
-                          <div className="doc-box-icon">
-                            <div className="icon-doc">
-                              <FileText size={32} />
+                      <div className="documents-left">
+                        {rules.documents?.map((el) => (
+                          <div className="documents-box">
+                            <div className="doc-box-icon">
+                              <div className="icon-doc">
+                                <FileText size={32} />
+                              </div>
+                            </div>
+                            <div className="doc-right">
+                              <div className="doc-right-name">
+                                <h4>{el.name}</h4>
+                                <p>
+                                  {el.description}
+                                </p>
+                              </div>
+                              <div className="doc-downlowad">
+                                <p className='doc-size'>
+                                  {el.size} • {el.type}
+                                </p>
+                                <button onClick={() => handleDownload(el.download_url, el.name)}>
+                                  <Download size={16} />{t("actions.download")}
+                                </button>
+                              </div>
                             </div>
                           </div>
-                          <div className="doc-right">
-                            <div className="doc-right-name">
-                              <h4>{el.name}</h4>
-                              <p>
-                                {el.description}
-                              </p>
-                            </div>
-                            <div className="doc-downlowad">
-                              <p className='doc-size'>
-                                {el.size} • {el.type}
-                              </p>
-                              <button onClick={() => handleDownload(el.download_url, el.name)}>
-                                <Download size={16} />{t("actions.download")}
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </Element>
             </div>
           </Container>
         </section>

@@ -276,10 +276,10 @@
     .language {
         display: flex;
         align-items: center;
-        // background-color: white;
-        // padding: 5px;
-        // border-radius: 6px;
-        // border: 1px solid #616161;
+        background: #F5F5F5;
+        padding: 4px 8px;
+        border-radius: 8px;
+        border: 1px solid #E5E7EB;
 
         @media (max-width: 768px) {
             background: transparent;
@@ -301,14 +301,15 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            padding: 2px 6px;
 
             option {
-                color: black;
+                color: #000;
             }
 
             @media (max-width: 768px) {
-                // color: transparent;
                 width: 20px;
+                padding: 0;
             }
         }
     }

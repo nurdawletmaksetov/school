@@ -80,6 +80,13 @@
         "welcome-text": "A place where knowledge meets innovation and students prepare for the challenges of tomorrow.",
         "contact-us": "Contact us",
         "last-news": "Latest news",
-        "fast-links": "Quick links"
+        "fast-links": "Quick links",
+        "quick-links": {
+            "schedule": "Class schedule",
+            "documents": "School documents",
+            "teachers": "Our teachers",
+            "course": "Available courses",
+            "gallery": "Photo gallery"
+        }
     }
 }

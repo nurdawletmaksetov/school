@@ -48,7 +48,7 @@
         "confirmDelete": "Siz bul elementti o'shiriwge isenimlisizba?"
     },
     "gallery": {
-        "gallery": "Galleriya",
+        "gallery-title": "Galleriya",
         "gallery-p": "Bayramlar, xanalar ham oqiwshilar aktivligi fotosuwretleri arqali mekteb o'mirimizdi u'yrening."
     },
     "news-page": {
@@ -82,11 +82,11 @@
         "last-news": "Son'g'i jan'aliqlar",
         "fast-links": "Tez linkler",
         "quick-links": {
-            "schedule": "Расписание уроков",
-            "documents": "Школьные документы",
-            "teachers": "Наши учителя",
-            "course": "Доступные курсы",
-            "gallery": "Фотогалерея"
+            "schedule": "Klass kestesi",
+            "documents": "Mektep hújjetleri",
+            "teachers": "Biziń muǵallimler",
+            "course": "Bar kurslar",
+            "gallery": "Photo galleriya"
         }
     }
 }

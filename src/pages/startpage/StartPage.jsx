@@ -19,8 +19,17 @@ const StartPage = () => {
   const language = i18n.language;
   const navigation = useNavigate();
 
+
+  const teacherClick = () => {
+    navigation('/teachers');
+  }
+
   const navClick = () => {
     navigation('/support');
+  }
+
+  const docClick = () => {
+    navigation('/rules');
   }
 
   async function getHome() {
@@ -35,7 +44,7 @@ const StartPage = () => {
     }
   }
 
-  
+
 
   useEffect(() => {
     getHome();
@@ -134,31 +143,31 @@ const StartPage = () => {
                     <div className="lnews-icons">
                       <Calendar />
                     </div>
-                    <p>Расписание уроков</p>
+                    <p>{t("home-page.quick-links.schedule")}</p>
                   </Link>
-                  <ScrollLink className="lnews-righ-btm-list" to="our-school" smooth={true} duration={500}>
+                  <ScrollLink className="lnews-righ-btm-list" onClick={docClick} to="documents" smooth={true} duration={500}>
                     <div className="lnews-icons">
                       <File />
                     </div>
-                    <p>Школьные документы</p>
+                    <p>{t("home-page.quick-links.documents")}</p>
                   </ScrollLink>
-                  <ScrollLink to='our-teachers' smooth={true} duration={500} className="lnews-righ-btm-list">
+                  <Link to='/teachers' smooth={true} duration={500} className="lnews-righ-btm-list">
                     <div className="lnews-icons">
                       <Users />
                     </div>
-                    <p>Наши учителя</p>
-                  </ScrollLink>
+                    <p>{t("home-page.quick-links.teachers")}</p>
+                  </Link>
                   <Link to="education" onClick={handleClick} className="lnews-righ-btm-list">
                     <div className="lnews-icons">
                       <BookOpen />
                     </div>
-                    <p>Доступные курсы</p>
+                    <p>{t("home-page.quick-links.course")}</p>
                   </Link>
                   <Link to="gallery" onClick={handleClick} className="lnews-righ-btm-list">
                     <div className="lnews-icons">
                       <Album />
                     </div>
-                    <p>Фотогалерея</p>
+                    <p>{t("home-page.quick-links.gallery")}</p>
                   </Link>
                 </div>
               </div>
@@ -170,11 +179,16 @@ const StartPage = () => {
             <Container>
               <div className="our-teachers">
                 <div className="our-teachers-top">
-                  <h1>Our Teachers</h1>
-                  <p>
-                    Meet our dedicated team of educators committed to providing the highest quality
-                    education and support for our students.
-                  </p>
+                  <div className="teachers-top-heading">
+                    <h1>Our Teachers</h1>
+                    <p>
+                      Meet our dedicated team of educators committed to providing the highest quality
+                      education and support for our students.
+                    </p>
+                  </div>
+                  <Link to={'/teachers'}>
+                    <button onClick={handleClick} className='teachers-top-button'>{t("actions.see-all")} <ArrowRight size={14} /></button>
+                  </Link>
                 </div>
                 <div className="our-teachers-bottom">
                   {loading ? (

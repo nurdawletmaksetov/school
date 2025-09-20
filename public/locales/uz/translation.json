@@ -42,7 +42,7 @@
         "confirmDelete": "Haqiqatdan ham ushbu elementni o'chirmoqchimisiz?"
     },
     "gallery": {
-        "gallery": "Galleriya",
+        "gallery-title": "Galleriya",
         "gallery-p": "Tadbirlar, xonalar va talabalar faoliyati fotosuratlari orqali maktab hayotimizni o'rganing."
     },
     "news-page": {
@@ -74,6 +74,13 @@
         "welcome-text": "Bilim innovatsiyalar bilan uchrashadigan va talabalar ertangi kunning qiyinchiliklariga tayyorgarlik ko'radigan joy.",
         "contact-us": "Biz bilan bog'lanish",
         "last-news": "So'ngi yangiliklar",
-        "fast-links": "Tez havolalar"
+        "fast-links": "Tez havolalar",
+        "quick-links": {
+            "schedule": "Sinf jadvali",
+            "documents": "Maktab hujjatlari",
+            "teachers": "Bizning o'qituvchilar",
+            "course": "Mavjud kurslar",
+            "gallery": "Photo galleriya"
+        }
     }
 }
