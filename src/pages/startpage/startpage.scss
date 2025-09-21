@@ -135,6 +135,12 @@
             p {
                 color: #CBD5E1;
             }
+
+            .teachers-top-button {
+                color: #CBD5E1;
+                border: 1px solid #334155;
+                background-color: #1E293B;
+            }
         }
 
         .our-teachers-bottom {
@@ -993,8 +999,9 @@ main {
 
         .info-read-more-link {
             margin: 0 32px 32px 32px;
-            width: 215px;
-            height: 40px;
+            width: fit-content;
+            padding: 10px 20px;
+            height: auto;
             border-radius: 9999px;
             background-color: #2563EB;
             border: none;
@@ -1138,8 +1145,9 @@ main {
         }
 
         button {
-            width: 162px;
+            width: auto;
             height: 40px;
+            padding: 0 15px;
             border-radius: 9999px;
             border: 1px solid #E2E8F0;
             background: #FFF;

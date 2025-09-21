@@ -43,12 +43,29 @@
     },
     "gallery": {
         "gallery-title": "Galleriya",
-        "gallery-p": "Tadbirlar, xonalar va talabalar faoliyati fotosuratlari orqali maktab hayotimizni o'rganing."
+        "gallery-p": "Tadbirlar, xonalar va talabalar faoliyati fotosuratlari orqali maktab hayotimizni o'rganing.",
+        "view-all-photos": "Barcha fotosuratlarni ko'rish"
     },
     "news-page": {
         "news-title": "Maktab Yangiliklari",
         "news-p": "Maktabimiz hamjamiyatining so'nggi yangiliklari, voqealari va e'lonlaridan xabardor bo'ling.",
-        "back-btn": "Yangiliklarga qaytish"
+        "back-btn": "Yangiliklarga qaytish",
+        "read-more": "Ko'proq o'qish"
+    },
+    "schedule-page": {
+        "schedule-title": "Dars jadvali",
+        "schedule-text": "Kerakli sinf uchun dars jadvalini qulay formatda (PDF, Excel, CSV yoki JSON) yuklab oling.",
+        "download-schedule-title": "Dars jadvalini yuklab oling",
+        "download-schedule-text": "Jadvalni yuklab olish uchun sinf va formatni tanlang",
+        "select-class": "Sinfni tanlang:",
+        "selected-class": "Tanlangan sinf:",
+        "not-selected": "tanlanmagan",
+        "download-schedule": "Jadvalni yuklash",
+        "last-update": "So'nggi jadval yangilanishi:",
+        "errors": "Agar biron bir xato topsangiz, akademik bo'limga murojaat qiling.",
+        "available-schedules": "Mavjud jadvallar",
+        "available-schedules-p": "Yuklab olish mumkin bo'lgan barcha jadvallar ro'yxati",
+        "click-to-download": "Yuklash uchun bosing"
     },
     "rules-documents": {
         "rules-documents-title": "Maktab Qoidalari va Hujjatlari",
@@ -73,8 +90,11 @@
         "welcome": "Maktabimizga xush kelibsiz",
         "welcome-text": "Bilim innovatsiyalar bilan uchrashadigan va talabalar ertangi kunning qiyinchiliklariga tayyorgarlik ko'radigan joy.",
         "contact-us": "Biz bilan bog'lanish",
+        "upcoming-events": "Kelgusi voqiyalar",
         "last-news": "So'ngi yangiliklar",
         "fast-links": "Tez havolalar",
+        "find-more-about-us": "Biz haqimizda ko'proq bilib oling",
+        "teachers-text": "Talabalarimizga eng yuqori sifatli ta'lim va qo'llab-quvvatlashni ta'minlashga intilgan bizning fidoyi o'qituvchilar jamoasi bilan tanishing.",
         "quick-links": {
             "schedule": "Sinf jadvali",
             "documents": "Maktab hujjatlari",
@@ -82,5 +102,14 @@
             "course": "Mavjud kurslar",
             "gallery": "Photo galleriya"
         }
+    },
+    "about-page": {
+        "about-title": "Bizning maktabimiz haqida",
+        "our-history": "Bizning tariximiz",
+        "core-values": "Asosiy qadriyatlar",
+        "mission-vision": "Missiya & Tasvirlash",
+        "our-mission": "Bizlarning Missiyamiz & Tasvirlashimiz",
+        "school-lidership": "Maktab rahbariyati",
+        "our-facilities": "Bizning imkonyatlar"
     }
 }

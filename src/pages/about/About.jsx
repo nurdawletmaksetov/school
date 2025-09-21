@@ -38,7 +38,7 @@ const About = () => {
           <Container>
             <div className="about-our-school">
               <div className="about-school-left">
-                <h1>About Our School</h1>
+                <h1>{t("about-page.about-title")}</h1>
                 <div className="school-inf-ph">
                   <p>
                     Our school has been providing quality education since 1998. We
@@ -66,23 +66,23 @@ const About = () => {
                   className={`tab ${active === "mission" ? "active" : ""}`}
                   onClick={() => setActive("mission")}
                 >
-                  Mission & Vision
+                  {t("about-page.mission-vision")}
                 </button>
                 <button
                   className={`tab ${active === "history" ? "active" : ""}`}
                   onClick={() => setActive("history")}
                 >
-                  Our History
+                  {t("about-page.our-history")}
                 </button>
                 <button
                   className={`tab ${active === "values" ? "active" : ""}`}
                   onClick={() => setActive("values")}
                 >
-                  Core Values
+                  {t("about-page.core-values")}
                 </button>
               </div>
               <div className={`tab-content ${active === "mission" ? "active" : ""}`}>
-                <h3>Our Mission & Vision</h3>
+                <h3>{t("about-page.our-mission")}</h3>
                 {loading ? (
                   <Flex justify="center" align="center" style={{ height: "200px" }}>
                     <Loader size={50} color="blue" />
@@ -110,7 +110,7 @@ const About = () => {
                 </div>
               </div>
               <div className={`tab-content ${active === "history" ? "active" : ""}`}>
-                <h3>Our History</h3>
+                <h3>{t("about-page.our-history")}</h3>
                 {loading ? (
                   <Flex justify="center" align="center" style={{ height: "200px" }}>
                     <Loader size={50} color="blue" />
@@ -129,7 +129,7 @@ const About = () => {
                 )}
               </div>
               <div className={`tab-content ${active === "values" ? "active" : ""}`}>
-                <h3>Core Values</h3>
+                <h3>{t("about-page.core-values")}</h3>
                 {loading ? (
                   <Flex justify="center" align="center" style={{ height: "200px" }}>
                     <Loader size={50} color="blue" />
@@ -153,7 +153,7 @@ const About = () => {
           <Container>
             <div className="leadership">
               <div className="leadership-headline">
-                <h1>School Leadership</h1>
+                <h1>{t("about-page.school-lidership")}</h1>
               </div>
               <div className="leadership-cards">
                 <div className="principal-leadership leader-card">
@@ -220,7 +220,7 @@ const About = () => {
           <Container>
             <div className="facilityes">
               <div className="facilyties-top">
-                <h1>Our Facilities</h1>
+                <h1>{t("about-page.our-facilities")}</h1>
               </div>
               <div className="facilyties-bottom">
                 <div className="facilyties-cards-top">

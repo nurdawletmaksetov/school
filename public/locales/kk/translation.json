@@ -49,12 +49,29 @@
     },
     "gallery": {
         "gallery-title": "Galleriya",
-        "gallery-p": "Bayramlar, xanalar ham oqiwshilar aktivligi fotosuwretleri arqali mekteb o'mirimizdi u'yrening."
+        "gallery-p": "Bayramlar, xanalar ham oqiwshilar aktivligi fotosuwretleri arqali mekteb o'mirimizdi u'yrening.",
+        "view-all-photos": "Barliq fotosuwretleri ko'riw"
     },
     "news-page": {
         "news-title": "Mekteb Jan'aliqlari",
         "news-p": "Mektepmiz jámiyetshiliginiń sońǵı jańalıqları, waqıyaları hám daǵazalarınan xabarlı bolıń.",
-        "back-btn": "Jan'aliqlarga qaytuw"
+        "back-btn": "Jan'aliqlarga qaytuw",
+        "read-more": "Kóbirek oqıw"
+    },
+    "schedule-page": {
+        "schedule-title": "Sabaq kestesi",
+        "schedule-text": "Kerekli klass ushin sabaq kestesin qolaylı formatta (PDF, Excel, CSV yaki JSON) júklep alıń.",
+        "download-schedule-title": "Sabaq kesteni júklep alıń",
+        "download-schedule-text": "Kesteni júklep alıw ushın klass hám formattı tańlań",
+        "select-class": "Klassti tanlan':",
+        "selected-class": "Tan'lang'an klass:",
+        "not-selected": "tanlanbag'an",
+        "download-schedule": "Kesteni juklew",
+        "last-update": "Son'g'i keste jan'artiliwi:",
+        "errors": "Eger qandayda bir qátelik tapsańız, akademiyalıq bólimge xabarlasıń.",
+        "available-schedules": "Bar kesteler",
+        "available-schedules-p": "Júklep alıw múmkin bolǵan barlıq kesteler dizimi",
+        "click-to-download": "Ju'klew ushin basin'"
     },
     "rules-documents": {
         "rules-documents-title": "Mekteb Qag'iydaları ham Hu'jjetleri",
@@ -80,7 +97,10 @@
         "welcome-text": "Bilim innovatsiyalar menen ushrasatuǵın hám studentler ertangi kúnniń qıyınshılıqlarına tayarlıq kóretuǵın jay.",
         "contact-us": "Biz menen baylanısıw",
         "last-news": "Son'g'i jan'aliqlar",
+        "find-more-about-us": "Biz haqqimizda ko'birek bilib alin'",
         "fast-links": "Tez linkler",
+        "upcoming-events": "Kelesi waqıyalar",
+        "teachers-text": "Studentlerimizge eń joqarı sapalı bilim hám qollap-quwatlawdı támiyinlewge umtılıp atırǵan pidayı oqıtıwshılarımız jámááti menen tanısıń.",
         "quick-links": {
             "schedule": "Klass kestesi",
             "documents": "Mektep hújjetleri",
@@ -88,5 +108,14 @@
             "course": "Bar kurslar",
             "gallery": "Photo galleriya"
         }
+    },
+    "about-page": {
+        "about-title": "Bizlerdin' mektebimiz haqqinda",
+        "our-history": "Bizlerdin' tariximiz",
+        "core-values": "Asasiy qadriyatlar",
+        "mission-vision": "Missiya & Kózqaras",
+        "our-mission": "Bizlerdin' Missiyamiz & Kózqarasımız",
+        "school-lidership": "Mektep administraciyası",
+        "our-facilities": "Bizlerdin' imkanyatlarimiz"
     }
 }

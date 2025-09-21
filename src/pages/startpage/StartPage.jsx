@@ -122,7 +122,7 @@ const StartPage = () => {
                             </div>
                             <div className="lnews-read-more">
                               <Link to={`/news/${el.id}`} onClick={handleClick} className='lnews-link'>
-                                Читать далее <ArrowRight size={14} />
+                                {t("news-page.read-more")} <ArrowRight size={14} />
                               </Link>
                             </div>
                           </div>
@@ -151,7 +151,7 @@ const StartPage = () => {
                     </div>
                     <p>{t("home-page.quick-links.documents")}</p>
                   </ScrollLink>
-                  <Link to='/teachers' smooth={true} duration={500} className="lnews-righ-btm-list">
+                  <Link to='/teachers' onClick={handleClick} className="lnews-righ-btm-list">
                     <div className="lnews-icons">
                       <Users />
                     </div>
@@ -180,10 +180,9 @@ const StartPage = () => {
               <div className="our-teachers">
                 <div className="our-teachers-top">
                   <div className="teachers-top-heading">
-                    <h1>Our Teachers</h1>
+                    <h1>{t("home-page.quick-links.teachers")}</h1>
                     <p>
-                      Meet our dedicated team of educators committed to providing the highest quality
-                      education and support for our students.
+                      {t("home-page.teachers-text")}
                     </p>
                   </div>
                   <Link to={'/teachers'}>
@@ -224,7 +223,7 @@ const StartPage = () => {
                   <div className="our-school-bottom">
                     <div className="ourschool-btm-info">
                       <h3>
-                        О нашей школе
+                        {t("about-page.about-title")}
                       </h3>
                       <p>
                         Наша школа предоставляет
@@ -248,12 +247,12 @@ const StartPage = () => {
                     </div>
                   </div>
                   <Link to="/about" onClick={handleClick} className="info-read-more-link">
-                    Узнать больше о нас <ArrowRight color='#FFFFFF' size={14} />
+                    {t("home-page.find-more-about-us")} <ArrowRight color='#FFFFFF' size={14} />
                   </Link>
                 </div>
                 <div className="our-school-right">
                   <div className="ourschool-right-top">
-                    <h3>Upcoming Events</h3>
+                    <h3>{t("home-page.upcoming-events")}</h3>
                   </div>
                   <div className="ourschool-btm">
                     <div className="teacher-conferience events-boxes border-bottom">
@@ -289,10 +288,10 @@ const StartPage = () => {
           <Container>
             <div className="photo-gallery">
               <div className="photo-gallery-top">
-                <h1>Photo Gallery</h1>
+                <h1>{t("home-page.quick-links.gallery")}</h1>
                 <Link onClick={handleClick} to={"/gallery"}>
                   <button>
-                    View All Photos <ArrowRight size={14} color='#CBD5E1' />
+                    {t("gallery.view-all-photos")} <ArrowRight size={14} color='#CBD5E1' />
                   </button>
                 </Link>
               </div>

@@ -61,9 +61,9 @@ const Schedule = () => {
                     <Container>
                         <div className="schedule">
                             <div className="schedule-headline">
-                                <h1>Расписание занятий</h1>
+                                <h1>{t("schedule-page.schedule-title")}</h1>
                                 <p>
-                                    Скачайте расписание занятий для нужного класса в удобном формате (PDF, Excel, CSV или JSON).
+                                    {t("schedule-page.schedule-text")}
                                 </p>
                             </div>
                             <div className="schedule-bottom">
@@ -71,16 +71,16 @@ const Schedule = () => {
                                     <div className="download-schedule">
                                         <div className="download-schedule-heading">
                                             <h1>
-                                                <FileSpreadsheet size={17} className='doc-icons' /> Скачать расписание занятий
+                                                <FileSpreadsheet size={17} className='doc-icons' /> {t("schedule-page.download-schedule-title")}
                                             </h1>
                                             <p>
-                                                Выберите класс и формат для скачивания расписания
+                                                {t("schedule-page.download-schedule-text")}
                                             </p>
                                         </div>
                                         <div className="schedule-select">
                                             <Flex gap={7} align={'center'} justify={"center"}>
                                                 <label className='select-label' htmlFor="select-class">
-                                                    Выберите класс:
+                                                    {t("schedule-page.select-class")}
                                                 </label>
                                                 <Select
                                                     id='select-class'
@@ -103,7 +103,7 @@ const Schedule = () => {
                                                 fontWeight: '500',
                                                 color: darkMode ? "#CBD5E1" : '#020817'
                                             }}>
-                                                Выбран класс: {schedule.schedules?.find(s => s.download_url === selectedClass)?.name || 'не выбран'}
+                                                {t("schedule-page.selected-class")} {schedule.schedules?.find(s => s.download_url === selectedClass)?.name || t("schedule-page.not-selected")}
                                             </Text>
                                             <Button
                                                 onClick={() => {
@@ -122,24 +122,24 @@ const Schedule = () => {
                                                 style={{ background: darkMode ? '#121f36' : '#2563EB' }}
                                                 leftSection={<IconDownload size={14} />}
                                             >
-                                                Скачать расписание
+                                                {t("schedule-page.download-schedule")}
                                             </Button>
                                         </div>
                                     </div>
                                     <div className="schedule-inf">
                                         <p>
-                                            Последнее обновление расписаний: {new Date(date).toLocaleDateString()}
+                                            {t("schedule-page.last-update")} {new Date(date).toLocaleDateString()}
                                         </p>
                                         <p>
-                                            При обнаружении ошибок обращайтесь в учебную часть
+                                            {t("schedule-page.errors")}
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className="dostupniy-schedule">
                                     <div className="dostupniy-schedule-heading">
-                                        <h3>Доступные расписания</h3>
-                                        <p>Список всех доступных для скачивания расписаний</p>
+                                        <h3>{t("schedule-page.available-schedules")}</h3>
+                                        <p>{t("schedule-page.available-schedules-p")}</p>
                                     </div>
                                     {loading ? (
                                         <Flex justify={'center'} align={'center'} h={'100%'}>
@@ -157,7 +157,7 @@ const Schedule = () => {
                                                         <FileSpreadsheet size={20} className='doc-icons' />
                                                         {el.name}
                                                     </h4>
-                                                    <p>Нажмите для скачивания</p>
+                                                    <p>{t("schedule-page.click-to-download")}</p>
                                                 </div>
                                             ))}
                                         </div>

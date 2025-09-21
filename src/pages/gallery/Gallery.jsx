@@ -43,7 +43,7 @@ const Gallery = () => {
                     <Container>
                         <div className="gallery">
                             <div className="gallery-heading">
-                                <h2>{t("gallery.gallery")}</h2>
+                                <h2>{t("gallery.gallery-title")}</h2>
                                 <p>
                                     {t("gallery.gallery-p")}
                                 </p>

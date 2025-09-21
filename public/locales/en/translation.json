@@ -49,12 +49,29 @@
     },
     "gallery": {
         "gallery-title": "Gallery",
-        "gallery-p": "Explore our school life through photos of events, rooms, and student activities."
+        "gallery-p": "Explore our school life through photos of events, rooms, and student activities.",
+        "view-all-photos": "View all photos"
     },
     "news-page": {
         "news-title": "School News",
         "news-p": "Stay updated with the latest news, events, and announcements from our school community.",
-        "back-btn": "Back to News"
+        "back-btn": "Back to News",
+        "read-more": "Read more"
+    },
+    "schedule-page": {
+        "schedule-title": "Class schedule",
+        "schedule-text": "Download the class schedule for the desired class in a convenient format (PDF, Excel, CSV, or JSON).",
+        "download-schedule-title": "Download the class schedule",
+        "download-schedule-text": "Select a class and format to download the schedule",
+        "select-class": "Select a class:",
+        "selected-class": "Class selected:",
+        "not-selected": "not selected",
+        "download-schedule": "Download schedule",
+        "last-update": "Latest schedule update:",
+        "errors": "If you find any errors, please contact the academic department.",
+        "available-schedules": "Available schedules",
+        "available-schedules-p": "List of all schedules available for download",
+        "click-to-download": "Click to download"
     },
     "rules-documents": {
         "rules-documents-title": "School Rules and Documents",
@@ -80,7 +97,10 @@
         "welcome-text": "A place where knowledge meets innovation and students prepare for the challenges of tomorrow.",
         "contact-us": "Contact us",
         "last-news": "Latest news",
+        "upcoming-events": "Upcoming Events",
+        "find-more-about-us": "Find out more about us",
         "fast-links": "Quick links",
+        "teachers-text": "Meet our dedicated team of educators committed to providing the highest quality education and support for our students.",
         "quick-links": {
             "schedule": "Class schedule",
             "documents": "School documents",
@@ -88,5 +108,14 @@
             "course": "Available courses",
             "gallery": "Photo gallery"
         }
+    },
+    "about-page": {
+        "about-title": "About our school",
+        "our-history": "Our history",
+        "core-values": "Core values",
+        "mission-vision": "Mission & Vision",
+        "our-mission": "Our Mission & Vision",
+        "school-lidership": "School Leadership",
+        "our-facilities": "Our Facilities"
     }
 }

@@ -213,7 +213,8 @@ main {
 }
 
 .tabs {
-    max-width: 348px;
+    width: fit-content;
+    max-width: 100%;
     height: 40px;
     display: flex;
     background: #EFF6FF;
