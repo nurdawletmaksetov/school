@@ -1,0 +1,72 @@
+{
+    "facilities": {
+        "top": [
+            {
+                "id": 1,
+                "icon": "School",
+                "name": {
+                    "kk": "Zamanagóy klass xanaları",
+                    "uz": "Zamonaviy sinf xonalari",
+                    "ru": "Современные классы",
+                    "en": "Modern Classrooms"
+                },
+                "description": {
+                    "kk": "Bilimlendiriw tájiriybesin arttırıw ushın eń jańa texnologiyalar menen úskenelengen.",
+                    "uz": "Ta'lim tajribasini oshirish uchun eng yangi texnologiyalar bilan jihozlangan.",
+                    "ru": "Оснащено новейшими технологиями для улучшения процесса обучения.",
+                    "en": "Equipped with the latest technology to enhance the learning experience."
+                }
+            },
+            {
+                "id": 2,
+                "icon": "Book",
+                "name": {
+                    "kk": "Kitapxana",
+                    "uz": "Kutubxona",
+                    "ru": "Библиотека",
+                    "en": "Library"
+                },
+                "description": {
+                    "kk": "Kitaplar, cifrlı derekler hám tınısh oqıw orınlarınıń keń toplamı.",
+                    "uz": "Kitoblar, raqamli manbalar va sokin o'quv joylarining keng to'plami.",
+                    "ru": "Огромная коллекция книг, цифровых ресурсов и тихие места для учебы.",
+                    "en": "A vast collection of books, digital resources, and quiet study spaces."
+                }
+            }
+        ],
+        "bottom": [
+            {
+                "id": 1,
+                "icon": "Monitor",
+                "name": {
+                    "kk": "Kompyuter laboratoriyaları",
+                    "uz": "Kompyuter laboratoriyalari",
+                    "ru": "Компьютерные лаборатории",
+                    "en": "Computer Labs"
+                },
+                "description": {
+                    "kk": "Eń sońǵı programmalıq támiynat hám texnikalıq qurallar menen úskenelengen zamanagóy kompyuter laboratoriyaları.",
+                    "uz": "Eng so'nggi dasturiy ta'minot va texnik vositalar bilan jihozlangan zamonaviy kompyuter laboratoriyalari.",
+                    "ru": "Современные компьютерные классы с новейшим программным и аппаратным обеспечением.",
+                    "en": "State-of-the-art computer labs with the latest software and hardware."
+                }
+            },
+            {
+                "id": 2,
+                "icon": "Command",
+                "name": {
+                    "kk": "Sport imaratları",
+                    "uz": "Sport inshootlari",
+                    "ru": "Спортивные сооружения",
+                    "en": "Sports Facilities"
+                },
+                "description": {
+                    "kk": "Hár qıylı ilajlar hám fizikalıq tárbiya ushın jabıq hám ashıq sport imaratları.",
+                    "uz": "Turli tadbirlar va jismoniy tarbiya uchun yopiq va ochiq sport inshootlari.",
+                    "ru": "Крытые и открытые спортивные сооружения для различных видов деятельности и занятий физкультурой.",
+                    "en": "Indoor and outdoor sports facilities for various activities and physical education."
+                }
+            }
+        ]
+    }
+}

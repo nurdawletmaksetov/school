@@ -1,0 +1,48 @@
+{
+    "admin": [
+        {
+            "id": 1,
+            "title": {
+                "kk": "Administrator",
+                "uz": "Administrator",
+                "ru": "Администратор",
+                "en": "Administrator"
+            },
+            "workday": {
+                "kk": "Dúyshembi - Shiyshembi: 8:00 - 17:00",
+                "uz": "Dushanba - Seshanba: 8:00 - 17:00",
+                "ru": "Понедельник - Пятница: 8:00 - 17:00",
+                "en": "Monday - Friday: 8:00 - 17:00"
+            },
+            "holiday": {
+                "kk": "Ekshembi",
+                "uz": "Yakshanba",
+                "ru": "Воскресенье",
+                "en": "Sunday"
+            }
+        }
+    ],
+    "teacher": [
+        {
+            "id": 1,
+            "title": {
+                "kk": "Sabaq saatları",
+                "uz": "Dars soatlari",
+                "ru": "Учебные часы",
+                "en": "Class hours"
+            },
+            "workday": {
+                "kk": "Dúyshembi - Shiyshembi: 8:00 - 17:00",
+                "uz": "Dushanba - Seshanba: 8:00 - 17:00",
+                "ru": "Понедельник - Пятница: 8:00 - 17:00",
+                "en": "Monday - Friday: 8:00 - 17:00"
+            },
+            "holiday": {
+                "kk": "Shembi - Ekshembi: Jabıq",
+                "uz": "Shanba - Yakshanba: Yopiq",
+                "ru": "Суббота - Воскресенье: Закрыто",
+                "en": "Saturday - Sunday: Closed"
+            }
+        }
+    ]
+}

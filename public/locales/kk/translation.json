@@ -9,6 +9,16 @@
     "support": "Qollaw",
     "contact": "Baylanis",
     "logout": "Shig'iw",
+    "footer": {
+        "about-us": "Biz haqqimizda",
+        "education": "Ta'lim",
+        "teachers": "Oqituwshilar",
+        "gallery": "Galleriya",
+        "news-and-events": "Jan'aliqlar & Waqiyalar",
+        "support": "Qollap-quwatlaw",
+        "rules-and-documents": "Qag'iydalar & Hu'jjetler",
+        "about-us-p": "1998-jildan baslap sapalı bilim beriw. Bilim, dóretiwshilik hám xarakterdi rawajlandırıw."
+    },
     "sidebar": {
         "album": "Albom",
         "schedule": "Raspisanie",
@@ -99,6 +109,8 @@
         "last-news": "Son'g'i jan'aliqlar",
         "find-more-about-us": "Biz haqqimizda ko'birek bilib alin'",
         "fast-links": "Tez linkler",
+        "view-all-events": "Barcha waqıyaları ko'riw",
+        "events": "Ata-Analar jiynalisi",
         "upcoming-events": "Kelesi waqıyalar",
         "teachers-text": "Studentlerimizge eń joqarı sapalı bilim hám qollap-quwatlawdı támiyinlewge umtılıp atırǵan pidayı oqıtıwshılarımız jámááti menen tanısıń.",
         "quick-links": {
@@ -117,5 +129,8 @@
         "our-mission": "Bizlerdin' Missiyamiz & Kózqarasımız",
         "school-lidership": "Mektep administraciyası",
         "our-facilities": "Bizlerdin' imkanyatlarimiz"
+    },
+    "teachers-page": {
+        "teachers-title": "Jamiyetimiz Benen Tanisin'"
     }
 }

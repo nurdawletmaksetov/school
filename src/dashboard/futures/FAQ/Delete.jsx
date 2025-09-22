@@ -17,11 +17,10 @@ const DeleteFaqs = ({ id, setFaqs, getFaqs }) => {
 
             if (getFaqs) {
                 await getFaqs();
-            } else if (Array.isArray(setFaqs) && setFaqs) {
-                setFaqs(setFaqs.filter((u) => u.id !== id));
+            } else if (setFaqs) {
+                setFaqs((prevFaqs) => prevFaqs.filter((u) => u.id !== id));
             }
 
-            if (getFaqs) await getFaqs();
             modals.closeAll();
 
             notifications.show({
@@ -43,6 +42,7 @@ const DeleteFaqs = ({ id, setFaqs, getFaqs }) => {
             setLoading(false);
         }
     };
+
 
     return (
         <Stack>

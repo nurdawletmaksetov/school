@@ -5,6 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api } from '../../api/api';
+import hoursData from "../../data/hours.json";
 import { Flex, Loader } from '@mantine/core';
 const Support = () => {
     const { darkMode } = useOutletContext();
@@ -119,27 +120,27 @@ const Support = () => {
                                                 <div className="support-work-hour-btm">
                                                     <div className="swork-hour-left">
                                                         <h5>
-                                                            Администрация
+                                                            {hoursData.admin[0].title[language]}
                                                         </h5>
                                                         <div className="swork-hour-ph">
                                                             <p>
-                                                                Понедельник - Пятница: 8:00 - 17:00
+                                                                {hoursData.admin[0].workday[language]}
                                                             </p>
                                                             <p>
-                                                                Суббота - Воскресенье: Закрыто
+                                                                {hoursData.admin[0].holiday[language]}
                                                             </p>
                                                         </div>
                                                     </div>
                                                     <div className="swork-hour-right">
                                                         <h5>
-                                                            Учебные часы
+                                                            {hoursData.teacher[0].title[language]}
                                                         </h5>
                                                         <div className="swork-hour-ph">
                                                             <p>
-                                                                Понедельник - Пятница: 8:00 - 15:30
+                                                                {hoursData.teacher[0].workday[language]}
                                                             </p>
                                                             <p>
-                                                                Суббота - Воскресенье: Закрыто
+                                                                {hoursData.teacher[0].holiday[language]}
                                                             </p>
                                                         </div>
                                                     </div>

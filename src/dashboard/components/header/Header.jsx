@@ -24,7 +24,7 @@ export const Header = ({ sidebarWidth = 180 }) => {
             <LanguagePicker />
 
             <Button
-                onClick={() => logout(() => navigate("/", { replace: true }))}
+                onClick={() => logout(() => navigate("/login", { replace: true }))}
                 variant="default"
                 style={{ border: "1px solid gray", background: "whitesmoke" }}
                 size="md"

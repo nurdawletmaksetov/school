@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { api } from "../api/api";
-
+import * as apiRoutes from '../constants/apiRoutes'
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
     async function login({ phone, password }) {
         try {
-            const { data, status } = await api.post("/auth/login", { phone, password });
+            const { data, status } = await api.post(apiRoutes.AUTH_LOGIN_API, { phone, password });
             if (status === 200) {
                 localStorage.setItem("access_token", data.data.access_token);
                 localStorage.setItem("refresh_token", data.data.refresh_token);
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
     async function logout(callback) {
         try {
-            await api.post("/auth/logout");
+            await api.post(apiRoutes.AUTH_LOGOUT_API);
         } catch (error) {
             console.error("Logout error:", error);
         }

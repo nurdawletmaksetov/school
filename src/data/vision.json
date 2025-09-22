@@ -1,0 +1,49 @@
+{
+    "vision": [
+        {
+            "id": 1,
+            "name": {
+                "kk": "Vision",
+                "uz": "Vision",
+                "ru": "Vision",
+                "en": "Vision"
+            },
+            "text": {
+                "kk": "Studentlerdi tez ózgeriwsheń dúnyada rawajlanıwǵa hám jámietke unamlı úles qosıwǵa tayarlaytuǵın jetik bilimlendiriw orayı sıpatında tán alınıwı.",
+                "uz": "Talabalarni tez o'zgaruvchan dunyoda rivojlanishga va jamiyatga ijobiy hissa qo'shishga tayyorlaydigan mukammal ta'lim markazi sifatida tan olinish.",
+                "ru": "Быть признанным центром образовательного совершенства, готовящим студентов к успеху в быстро меняющемся мире и вносящим позитивный вклад в развитие общества.",
+                "en": "To be recognized as a center of educational excellence that prepares students to thrive in a rapidly changing world and make positive contributions to society."
+            }
+        },
+        {
+            "id": 2,
+            "name": {
+                "kk": "Vision",
+                "uz": "Vision",
+                "ru": "Vision",
+                "en": "Vision"
+            },
+            "text": {
+                "kk": "Studentlerdi tez ózgeriwsheń dúnyada rawajlanıwǵa hám jámietke unamlı úles qosıwǵa tayarlaytuǵın jetik bilimlendiriw orayı sıpatında tán alınıwı.",
+                "uz": "Talabalarni tez o'zgaruvchan dunyoda rivojlanishga va jamiyatga ijobiy hissa qo'shishga tayyorlaydigan mukammal ta'lim markazi sifatida tan olinish.",
+                "ru": "Быть признанным центром образовательного совершенства, готовящим студентов к успеху в быстро меняющемся мире и вносящим позитивный вклад в развитие общества.",
+                "en": "To be recognized as a center of educational excellence that prepares students to thrive in a rapidly changing world and make positive contributions to society."
+            }
+        },
+        {
+            "id": 3,
+            "name": {
+                "kk": "Vision",
+                "uz": "Vision",
+                "ru": "Vision",
+                "en": "Vision"
+            },
+            "text": {
+                "kk": "Studentlerdi tez ózgeriwsheń dúnyada rawajlanıwǵa hám jámietke unamlı úles qosıwǵa tayarlaytuǵın jetik bilimlendiriw orayı sıpatında tán alınıwı.",
+                "uz": "Talabalarni tez o'zgaruvchan dunyoda rivojlanishga va jamiyatga ijobiy hissa qo'shishga tayyorlaydigan mukammal ta'lim markazi sifatida tan olinish.",
+                "ru": "Быть признанным центром образовательного совершенства, готовящим студентов к успеху в быстро меняющемся мире и вносящим позитивный вклад в развитие общества.",
+                "en": "To be recognized as a center of educational excellence that prepares students to thrive in a rapidly changing world and make positive contributions to society."
+            }
+        }
+    ]
+}

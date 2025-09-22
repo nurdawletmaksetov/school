@@ -1,0 +1,70 @@
+{
+    "events": [
+        {
+            "id": 1,
+            "name": {
+                "kk": "Ata-analar jiynalisi",
+                "uz": "Ota-onalar konferensiyasi",
+                "ru": "Родитель-Учительский конференция",
+                "en": "Parent-Teacher Conference"
+            },
+            "date": {
+                "kk": "15 May, 2025",
+                "uz": "15 May, 2025",
+                "ru": "15 Май, 2025",
+                "en": "15 May, 2025"
+            },
+            "time": "4:00 PM - 7:00 PM",
+            "location": {
+                "kk": "Asasiy bina, Etaj 2",
+                "uz": "Asosiy bino, Qavat 2",
+                "ru": "Главное здание, Етаж 2",
+                "en": "Главное здание, Floor 2"
+            }
+        },
+        {
+            "id": 2,
+            "name": {
+                "kk": "Ata-analar jiynalisi",
+                "uz": "Ota-onalar konferensiyasi",
+                "ru": "Родитель-Учительский конференция",
+                "en": "Parent-Teacher Conference"
+            },
+            "date": {
+                "kk": "20 May, 2025",
+                "uz": "20 May, 2025",
+                "ru": "20 Май, 2025",
+                "en": "20 May, 2025"
+            },
+            "time": "6:00 PM - 9:00 PM",
+            "location": {
+                "kk": "Asasiy bina, Etaj 2",
+                "uz": "Asosiy bino, Qavat 2",
+                "ru": "Главное здание, Етаж 2",
+                "en": "Главное здание, Floor 2"
+            }
+        },
+        {
+            "id": 3,
+            "name": {
+                "kk": "Ata-analar jiynalisi",
+                "uz": "Ota-onalar konferensiyasi",
+                "ru": "Родитель-Учительский конференция",
+                "en": "Parent-Teacher Conference"
+            },
+            "date": {
+                "kk": "30 May, 2025",
+                "uz": "30 May, 2025",
+                "ru": "30 Май, 2025",
+                "en": "30 May, 2025"
+            },
+            "time": "4:00 PM - 7:00 PM",
+            "location": {
+                "kk": "Asasiy bina, Etaj 2",
+                "uz": "Asosiy bino, Qavat 2",
+                "ru": "Главное здание, Етаж 2",
+                "en": "Главное здание, Floor 2"
+            }
+        }
+    ]
+}

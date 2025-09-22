@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './index.scss'
 import App from './App.jsx'
-import '@mantine/core/styles.css';
 
 import './i18next/index.js';
 import { MantineProvider } from '@mantine/core';
@@ -19,3 +18,8 @@ createRoot(document.getElementById('root')).render(
     </ModalsProvider>
   </MantineProvider>
 )
+
+const preloader = document.getElementById("preloader");
+if (preloader) {
+  preloader.style.display = "none";
+}

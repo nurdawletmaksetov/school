@@ -1,0 +1,70 @@
+{
+    "lidership": [
+        {
+            "id": 1,
+            "icon": "Users",
+            "name": {
+                "kk": "Jon Smit",
+                "uz": "Jon Smit",
+                "ru": "Джон Смит",
+                "en": "John Smith"
+            },
+            "position": {
+                "kk": "Bas direktor",
+                "uz": "Bosh direktor",
+                "ru": "Главный",
+                "en": "Principal"
+            },
+            "description": {
+                "kk": "20 jıldan artıq tájiriybege ie bilimlendiriw, mırza Smit biziń mektepti basqaradı kóre alıwshılıq hám pidayılıq.",
+                "uz": "20 yildan ortiq tajribaga ega ta'lim, janob Smit bizning maktabni boshqaradi ko'rish va fidoyilik.",
+                "ru": "Имея более чем 20-летний опыт работы в сфере образования, г-н Смит руководит нашей школой с целеустремленностью и преданностью своему делу.",
+                "en": "With over 20 years of experience in education, Mr. Smith leads our school with vision and dedication."
+            }
+        },
+        {
+            "id": 2,
+            "icon": "BookOpen",
+            "name": {
+                "kk": "Mariya Jonson",
+                "uz": "Mariya Jonson",
+                "ru": "Мария Джонсон",
+                "en": "Maria Johnson"
+            },
+            "position": {
+                "kk": "Akademiyalıq direktor",
+                "uz": "Akademik direktor",
+                "ru": "Академический директор",
+                "en": "Academic Director"
+            },
+            "description": {
+                "kk": "Doktor Jonson joqarı standartlar hám innovaciyalıq oqıtıw usılların támiyinlep, akademiyalıq baǵdarlamalarımızdı qadaǵalaydı.",
+                "uz": "Doktor Jonson yuqori standartlar va innovatsion o'qitish usullarini ta'minlab, akademik dasturlarimizni nazorat qiladi.",
+                "ru": "Доктор Джонсон курирует наши академические программы, обеспечивая высокие стандарты и инновационные методы обучения.",
+                "en": "Dr. Johnson oversees our academic programs, ensuring high standards and innovative teaching methods."
+            }
+        },
+        {
+            "id": 3,
+            "icon": "Award",
+            "name": {
+                "kk": "Robert Devis",
+                "uz": "Robert Devis",
+                "ru": "Роберт Дэвис",
+                "en": "Robert Davis"
+            },
+            "position": {
+                "kk": "Student jumısları",
+                "uz": "Talabalar ishlari",
+                "ru": "Студенческие дела",
+                "en": "Student Affairs"
+            },
+            "description": {
+                "kk": "Mırza Devis studentlerdiń jumısın muwapıqlastıradı hám barlıq studentler ushın qolaylı ortalıqtı támiyinleydi.",
+                "uz": "Janob Devis talabalar faoliyatini muvofiqlashtiradi va barcha talabalar uchun qulay muhitni ta'minlaydi.",
+                "ru": "Г-н Дэвис координирует студенческую деятельность и обеспечивает благоприятную среду для всех студентов.",
+                "en": "Mr. Davis coordinates student activities and ensures a supportive environment for all students."
+            }
+        }
+    ]
+}

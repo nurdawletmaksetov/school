@@ -23,14 +23,12 @@ const FormDocument = ({ submitFn, initialValues, loading }) => {
                 <TextInput
                     label="Name"
                     placeholder="Name"
-                    required
                     {...form.getInputProps("name")}
                 />
 
                 <Textarea
                     label="Description"
                     placeholder="Description"
-                    required
                     {...form.getInputProps("description")}
                 />
 

@@ -64,13 +64,13 @@ function Document() {
     });
   };
 
-  const handleDownload = async (downloadUrl, fileName) => {
+  const handleDownload = async (downloadUrl, fileName, id) => {
+    setDownloadingId(id);
     try {
       const response = await axios.get(downloadUrl, { responseType: 'blob' });
       const blob = new Blob([response.data], { type: 'application/pdf' });
 
       const url = window.URL.createObjectURL(blob);
-
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', fileName || 'document');
@@ -81,8 +81,11 @@ function Document() {
       setTimeout(() => window.URL.revokeObjectURL(url), 1000);
     } catch (error) {
       console.error(error);
+    } finally {
+      setDownloadingId(null);
     }
   };
+
 
   return (
     <Stack p={20} w="100%">
@@ -120,8 +123,13 @@ function Document() {
                 <Table.Td>{el.name}</Table.Td>
                 <Table.Td>{el.description}</Table.Td>
                 <Table.Td>
-                  <Button size="xs" w={100} variant="outline" onClick={() => handleDownload(el.download_url, el.name)}>
-                    {downloadingId === el.id ? <Flex p={18}><Loader size="xs" /></Flex> : t("actions.download")}
+                  <Button
+                    size="xs"
+                    w={100}
+                    variant="outline"
+                    onClick={() => handleDownload(el.download_url, el.name, el.id)}
+                  >
+                    {downloadingId === el.id ? <Loader size="xs" /> : t("actions.download")}
                   </Button>
                 </Table.Td>
                 <Table.Td>

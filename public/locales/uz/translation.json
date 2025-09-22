@@ -9,6 +9,16 @@
     "support": "Qo'llab-quvvatlash",
     "contact": "Aloqa",
     "logout": "Chiqish",
+    "footer": {
+        "about-us": "Biz haqimizda",
+        "education": "Ta'lim",
+        "teachers": "O'qituvchilar",
+        "gallery": "Galleriya",
+        "news-and-events": "Yangiliklar & Voqiyalar",
+        "support": "Qo'llab-quvvatlash",
+        "rules-and-documents": "Qoidalar & Hujjatlar",
+        "about-us-p": "1998 yildan beri sifatli ta'lim berish. Bilim, ijodkorlik va xarakterni rivojlantirish."
+    },
     "sidebar": {
         "album": "Album",
         "schedule": "Jadval",
@@ -93,6 +103,8 @@
         "upcoming-events": "Kelgusi voqiyalar",
         "last-news": "So'ngi yangiliklar",
         "fast-links": "Tez havolalar",
+        "events": "O'qituvchilar konferensiyasi",
+        "view-all-events": "Barcha voqiyalarni ko'rish",
         "find-more-about-us": "Biz haqimizda ko'proq bilib oling",
         "teachers-text": "Talabalarimizga eng yuqori sifatli ta'lim va qo'llab-quvvatlashni ta'minlashga intilgan bizning fidoyi o'qituvchilar jamoasi bilan tanishing.",
         "quick-links": {
@@ -111,5 +123,8 @@
         "our-mission": "Bizlarning Missiyamiz & Tasvirlashimiz",
         "school-lidership": "Maktab rahbariyati",
         "our-facilities": "Bizning imkonyatlar"
+    },
+    "teachers-page": {
+        "teachers-title": "Jamiyatimiz Bilan Tanishing"
     }
 }

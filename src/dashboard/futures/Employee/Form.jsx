@@ -58,22 +58,22 @@ const FormEmployee = ({ submitFn, initialValues, loading }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label="Karakalpak (kk)"
+                    label="Full Name (kk)"
                     placeholder="Full Name"
                     {...form.getInputProps("full_name.kk")}
                 />
                 <TextInput
-                    label="Uzbek (uz)"
+                    label="Full Name (uz)"
                     placeholder="Full Name"
                     {...form.getInputProps("full_name.uz")}
                 />
                 <TextInput
-                    label="Russian (ru)"
+                    label="Full Name (ru)"
                     placeholder="Full Name"
                     {...form.getInputProps("full_name.ru")}
                 />
                 <TextInput
-                    label="English (en)"
+                    label="Full Name (en)"
                     placeholder="Full Name"
                     {...form.getInputProps("full_name.en")}
                 />

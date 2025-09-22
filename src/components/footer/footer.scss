@@ -99,6 +99,10 @@ footer {
             flex-direction: column;
             gap: 26px;
 
+            @media (min-width: 768px) {
+                width: 35%;
+            }
+
             .footer-logo {
                 display: flex;
                 align-items: center;
@@ -163,6 +167,10 @@ footer {
             flex-direction: column;
             gap: 24px;
 
+            @media (min-width: 768px) {
+                width: 35%;
+            }
+
             h3 {
                 font-family: Inter;
                 font-weight: 700;
@@ -176,7 +184,7 @@ footer {
                 .nav-ul {
                     display: flex;
                     flex-direction: column;
-                    gap: 20px;
+                    gap: 10px;
 
                     @media (min-width: 1440px) {
                         width: 268px;

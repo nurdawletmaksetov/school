@@ -9,6 +9,16 @@
     "support": "Support",
     "contact": "Contact",
     "logout": "Log Out",
+    "footer": {
+        "about-us": "About us",
+        "education": "Education",
+        "teachers": "Our teachers",
+        "gallery": "Photo gallery",
+        "news-and-events": "News & Events",
+        "support": "Support",
+        "rules-and-documents": "Rules & Documents",
+        "about-us-p": "Providing quality education since 1998. Developing knowledge, creativity, and character."
+    },
     "sidebar": {
         "album": "Album",
         "schedule": "Schedule",
@@ -99,7 +109,9 @@
         "last-news": "Latest news",
         "upcoming-events": "Upcoming Events",
         "find-more-about-us": "Find out more about us",
+        "view-all-events": "View all events",
         "fast-links": "Quick links",
+        "events": "Parent-Teacher Conference",
         "teachers-text": "Meet our dedicated team of educators committed to providing the highest quality education and support for our students.",
         "quick-links": {
             "schedule": "Class schedule",
@@ -117,5 +129,8 @@
         "our-mission": "Our Mission & Vision",
         "school-lidership": "School Leadership",
         "our-facilities": "Our Facilities"
+    },
+    "teachers-page": {
+        "teachers-title": "Meet Our community"
     }
 }

@@ -67,7 +67,7 @@ const FormInformation = ({ submitFn, initialValues, loading }) => {
                 />
 
                 <Flex justify="end" gap={10}>
-                    <Button onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
+                    <Button color="gray" onClick={() => modals.closeAll()}>{t("actions.cancel")}</Button>
                     <Button loading={loading} type="submit">{t("actions.save")}</Button>
                 </Flex>
             </Stack>

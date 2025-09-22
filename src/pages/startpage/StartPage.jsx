@@ -1,13 +1,15 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './startpage.scss'
 import { Album, ArrowRight, BookOpen, Calendar, Clock, File, MapPin, Users } from 'lucide-react'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import { Container } from '../../components/container/container'
 import { Button, Flex, Loader, Modal } from '@mantine/core'
 import { Element, Link as ScrollLink } from 'react-scroll'
-import { useDisclosure } from '@mantine/hooks'
-import { api } from '../../api/api'
-import { useTranslation } from 'react-i18next'
+import { useDisclosure } from '@mantine/hooks';
+import { api } from '../../api/api';
+import { useTranslation } from 'react-i18next';
+import eventsData from "../../data/events.json";
+import aboutData from "../../data/about.json"
 
 
 const StartPage = () => {
@@ -18,11 +20,6 @@ const StartPage = () => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
   const navigation = useNavigate();
-
-
-  const teacherClick = () => {
-    navigation('/teachers');
-  }
 
   const navClick = () => {
     navigation('/support');
@@ -106,7 +103,7 @@ const StartPage = () => {
                       <Loader size={50} color="blue" />
                     </Flex>
                   ) : (
-                    home.last_news?.slice(0, 3).map((el) => (
+                    home.last_news?.map((el) => (
                       <div className="lnews-box" key={el.id}>
                         <img src={el.cover_image.path} alt={el.title[language]} />
                         <div className="lnews-box-right">
@@ -226,13 +223,8 @@ const StartPage = () => {
                         {t("about-page.about-title")}
                       </h3>
                       <p>
-                        Наша школа предоставляет
-                        качественное образование с 1998
-                        года. Мы фокусируемся на развитии
-                        не только академических знаний, но и
-                        критического мышления, творчества
-                        и социальных навыков у наших
-                        учеников.
+                        {aboutData.about[0].history[language]}
+                        {aboutData.about[0].description[language]}
                       </p>
                     </div>
                     <div className="ourshcool-btm-info2">
@@ -255,28 +247,18 @@ const StartPage = () => {
                     <h3>{t("home-page.upcoming-events")}</h3>
                   </div>
                   <div className="ourschool-btm">
-                    <div className="teacher-conferience events-boxes border-bottom">
-                      <h3>Parent-Teacher Conference</h3>
-                      <p><Calendar color='#CBD5E1' size={14} /> May 15, 2025</p>
-                      <p><Clock color='#CBD5E1' size={14} /> 4:00 PM - 7:00 PM</p>
-                      <p><MapPin color='#CBD5E1' size={14} /> Main Building, Floor 2</p>
-                    </div>
-                    <div className="sciens-fair events-boxes border-bottom">
-                      <h3>Parent-Teacher Conference</h3>
-                      <p><Calendar color='#CBD5E1' size={14} /> May 20, 2025</p>
-                      <p><Clock color='#CBD5E1' size={14} /> 10:00 AM - 3:00 PM</p>
-                      <p><MapPin color='#CBD5E1' size={14} /> School Gymnasium</p>
-                    </div>
-                    <div className="end-year-consepts">
-                      <h3>Parent-Teacher Conference</h3>
-                      <p><Calendar color='#CBD5E1' size={14} /> June 5, 2025</p>
-                      <p><Clock color='#CBD5E1' size={14} /> 6:00 PM - 8:00 PM</p>
-                      <p><MapPin color='#CBD5E1' size={14} /> School Auditorium</p>
-                    </div>
+                    {eventsData.events.map((el, index) => (
+                      <div key={index} className="teacher-conferience events-boxes border-bottom">
+                        <h3>{el.name[language]}</h3>
+                        <p><Calendar color="#CBD5E1" size={14} /> {el.date[language]}</p>
+                        <p><Clock color="#CBD5E1" size={14} /> {el.time}</p>
+                        <p><MapPin color="#CBD5E1" size={14} /> {el.location[language]}</p>
+                      </div>
+                    ))}
                   </div>
                   <div className="events-btm-div">
                     <Link to="/education" onClick={handleClick} className="all-events-link">
-                      View All Events <ArrowRight size={14} color='#CBD5E1' />
+                      {t("home-page.view-all-events")} <ArrowRight size={14} color='#CBD5E1' />
                     </Link>
                   </div>
                 </div>
@@ -291,7 +273,7 @@ const StartPage = () => {
                 <h1>{t("home-page.quick-links.gallery")}</h1>
                 <Link onClick={handleClick} to={"/gallery"}>
                   <button>
-                    {t("gallery.view-all-photos")} <ArrowRight size={14} color='#CBD5E1' />
+                    {t("actions.see-all")} <ArrowRight size={14} color='#CBD5E1' />
                   </button>
                 </Link>
               </div>

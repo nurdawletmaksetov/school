@@ -38,7 +38,7 @@ const Teachers = () => {
                 <section>
                     <Container>
                         <div className="teachers-page">
-                            <h1>Meet Our Community</h1>
+                            <h1>{t("teachers-page.teachers-title")}</h1>
                             {loading ? (
                                 <Flex justify="center" align="center" h={200}>
                                     <Loader size={50} color="blue" />
