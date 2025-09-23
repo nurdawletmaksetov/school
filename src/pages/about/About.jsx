@@ -34,6 +34,7 @@ const About = () => {
 
   useEffect(() => {
     getAbout();
+
   }, []);
 
   return (
@@ -45,8 +46,8 @@ const About = () => {
               <div className="about-school-left">
                 <h1>{t("about-page.about-title")}</h1>
                 <div className="school-inf-ph">
-                  <p>{aboutData.about[0].history[language]}</p>
-                  <p>{aboutData.about[0].description[language]}</p>
+                  <p>{about?.about?.history[language]}</p>
+                  <p>{about?.about?.description[language]}</p>
                 </div>
               </div>
               <div className="about-school-right">
@@ -135,10 +136,12 @@ const About = () => {
                 ) : (
                   <div className="tab-content-ph">
                     {about.values?.map((el) => (
-                      <div className='our-target about-history' key={el.id}>
-                        <div className="target-name history-year">
+                      <div className='about-history' key={el.id}>
+                        <img src={el.photo.path} className='values-img' />
+                        <div className="history-year">
                           <p>{el.name[language]}</p>
                         </div>
+                        <p className='history-text'>{el.text[language]}</p>
                       </div>
                     ))}
                   </div>

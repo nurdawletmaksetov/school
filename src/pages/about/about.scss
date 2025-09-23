@@ -293,6 +293,15 @@ main {
                 flex-direction: column;
                 gap: 5px;
 
+                .values-img {
+                    width: 30px;
+                    height: 30px;
+                    border: 1px solid #2563EB;
+                    border-radius: 9999px;
+                    background: #DBEAFE;
+                    color: #2563EB;
+                }
+
                 .history-year {
                     p {
                         font-family: Inter;

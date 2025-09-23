@@ -13,8 +13,16 @@ const UploadDocument = ({ getDocuments }) => {
         setLoading(true);
         try {
             const formData = new FormData();
-            formData.append("name", body.name);
-            formData.append("description", body.description);
+
+            formData.append("name[kk]", body.name.kk);
+            formData.append("name[uz]", body.name.uz);
+            formData.append("name[ru]", body.name.ru);
+            formData.append("name[en]", body.name.en);
+
+            formData.append("description[kk]", body.description.kk);
+            formData.append("description[uz]", body.description.uz);
+            formData.append("description[ru]", body.description.ru);
+            formData.append("description[en]", body.description.en);
 
             if (body.file) {
                 formData.append("file", body.file);
@@ -38,7 +46,6 @@ const UploadDocument = ({ getDocuments }) => {
 
         } catch (error) {
             console.error("Error uploading document:", error);
-
             notifications.show({
                 title: "Error",
                 message: error.response?.data?.message || "Failed to upload document!",
@@ -53,14 +60,25 @@ const UploadDocument = ({ getDocuments }) => {
 
 
 
+
     return (
         <div>
             <Stack>
                 <FormDocument
                     submitFn={createFn}
                     initialValues={{
-                        name: '',
-                        description: '',
+                        name: {
+                            kk: "",
+                            uz: "",
+                            ru: "",
+                            en: "",
+                        },
+                        description: {
+                            kk: "",
+                            uz: "",
+                            ru: "",
+                            en: "",
+                        },
                         file: null,
                     }}
                     loading={loading}

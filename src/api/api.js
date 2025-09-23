@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://variations-memphis-easy-nick.trycloudflare.com/api/v1",
+    baseURL: "https://platforms-starts-velvet-rosa.trycloudflare.com/api/v1",
     headers: {
         Accept: "application/json",
         "ngrok-skip-browser-warning": "true",
@@ -72,7 +72,7 @@ api.interceptors.response.use(
                 }
 
                 const { data } = await axios.post(
-                    "https://variations-memphis-easy-nick.trycloudflare.com/api/v1/refresh",
+                    "https://platforms-starts-velvet-rosa.trycloudflare.com/api/v1/refresh",
                     { refresh_token: refreshToken },
                     {
                         headers: {

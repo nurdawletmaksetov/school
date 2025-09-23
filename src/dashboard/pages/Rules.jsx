@@ -13,8 +13,8 @@ function AdminRules() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
-  const { t } = useTranslation();
-  const currentLang = "ru";
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || 'ru';
 
   async function getRules() {
     setLoading(true);
@@ -94,8 +94,8 @@ function AdminRules() {
             {rules.map((el) => (
               <Table.Tr key={el.id}>
                 <Table.Td>{el.id}</Table.Td>
-                <Table.Td>{el.title[currentLang]}</Table.Td>
-                <Table.Td>{el.text[currentLang]}</Table.Td>
+                <Table.Td>{el.title[language]}</Table.Td>
+                <Table.Td>{el.text[language]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
                     <Button color="red" size="xs" onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>

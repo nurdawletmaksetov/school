@@ -13,9 +13,8 @@ const Club = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
-  const currentLang = "ru";
-  const { t } = useTranslation();
-
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || 'ru';
   const getClubs = async (page = 1) => {
     setLoading(true);
     try {
@@ -98,9 +97,9 @@ const Club = () => {
             {club.map((el) => (
               <Table.Tr key={el.id}>
                 <Table.Td>{el.id}</Table.Td>
-                <Table.Td>{el.name[currentLang]}</Table.Td>
-                <Table.Td>{el.text[currentLang]}</Table.Td>
-                <Table.Td>{el.schedule[currentLang]}</Table.Td>
+                <Table.Td>{el.name[language]}</Table.Td>
+                <Table.Td>{el.text[language]}</Table.Td>
+                <Table.Td>{el.schedule[language]}</Table.Td>
                 <Table.Td>
                   <Image
                     src={el.photo?.path}

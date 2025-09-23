@@ -2,6 +2,7 @@ import { useForm } from "@mantine/form";
 import { Button, TextInput, Textarea, Stack, Flex } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { useTranslation } from "react-i18next";
+import { IconAt } from "@tabler/icons-react";
 
 const FormSchool = ({ submitFn, initialValues, loading }) => {
     const { t } = useTranslation()
@@ -73,6 +74,13 @@ const FormSchool = ({ submitFn, initialValues, loading }) => {
                     label="Location"
                     placeholder="Location"
                     {...form.getInputProps("location")}
+                />
+
+                <TextInput
+                    label="Email"
+                    placeholder="Your email"
+                    leftSection={<IconAt size={16} />}
+                    {...form.getInputProps("email")}
                 />
 
                 <Textarea

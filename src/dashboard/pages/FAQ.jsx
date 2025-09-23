@@ -12,8 +12,8 @@ const FAQ = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
-  const currentLang = "ru";
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || 'ru';
 
   const getFaqs = async (page = 1) => {
     setLoading(true);
@@ -94,8 +94,8 @@ const FAQ = () => {
             {faqs.map((el) => (
               <Table.Tr key={el.id}>
                 <Table.Td>{el.id}</Table.Td>
-                <Table.Td>{el.question[currentLang]}</Table.Td>
-                <Table.Td>{el.answer[currentLang]}</Table.Td>
+                <Table.Td>{el.question[language]}</Table.Td>
+                <Table.Td>{el.answer[language]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
                     <Button size="xs" color="red" onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>

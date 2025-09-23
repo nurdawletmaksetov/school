@@ -13,8 +13,8 @@ function Position() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
-  const { t } = useTranslation();
-  const currentLang = "ru";
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || 'ru';
   const getPositions = async (page = 1) => {
     setLoading(true);
     try {
@@ -94,7 +94,7 @@ function Position() {
             {positions.map((el) => (
               <Table.Tr key={el.id}>
                 <Table.Td>{el.id}</Table.Td>
-                <Table.Td>{el.name[currentLang]}</Table.Td>
+                <Table.Td>{el.name[language]}</Table.Td>
                 <Table.Td
                   style={{
                     maxWidth: "300px",
@@ -102,7 +102,7 @@ function Position() {
                     wordBreak: "break-word",
                     overflowWrap: "anywhere",
                   }}
-                >{el.description[currentLang]}</Table.Td>
+                >{el.description[language]}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>
                     <Button size="xs" color="red" onClick={() => deleteFn(el.id)}>{t("actions.delete")}</Button>

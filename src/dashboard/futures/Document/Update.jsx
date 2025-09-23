@@ -36,13 +36,19 @@ const UpdateDocument = ({ id, getDocuments }) => {
         setLoading(true);
         try {
             const formData = new FormData();
-            formData.append("name", body.name?.trim() || "");
-            formData.append("description", body.description?.trim() || "");
+
+            formData.append("name[kk]", body.name.kk || "");
+            formData.append("name[uz]", body.name.uz || "");
+            formData.append("name[ru]", body.name.ru || "");
+            formData.append("name[en]", body.name.en || "");
+
+            formData.append("description[kk]", body.description.kk || "");
+            formData.append("description[uz]", body.description.uz || "");
+            formData.append("description[ru]", body.description.ru || "");
+            formData.append("description[en]", body.description.en || "");
 
             if (body.file instanceof File) {
                 formData.append("file", body.file);
-            } else if (data?.file) {
-                formData.append("file", data.file);
             }
 
             formData.append("_method", "PUT");
@@ -50,7 +56,6 @@ const UpdateDocument = ({ id, getDocuments }) => {
             await api.post(`/documents/update/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
-
 
             if (getDocuments) {
                 await getDocuments();
@@ -78,6 +83,7 @@ const UpdateDocument = ({ id, getDocuments }) => {
     };
 
 
+
     if (loading && !data) {
         return (
             <Flex justify="center" align="center" style={{ height: "200px" }}>
@@ -93,8 +99,18 @@ const UpdateDocument = ({ id, getDocuments }) => {
             submitFn={updateFn}
             loading={loading}
             initialValues={{
-                name: data?.name,
-                description: data?.description,
+                name: {
+                    kk: data?.name?.kk || "",
+                    uz: data?.name?.uz || "",
+                    ru: data?.name?.ru || "",
+                    en: data?.name?.en || "",
+                },
+                description: {
+                    kk: data?.description?.kk || "",
+                    uz: data?.description?.uz || "",
+                    ru: data?.description?.ru || "",
+                    en: data?.description?.en || "",
+                },
                 file: null,
             }}
         />

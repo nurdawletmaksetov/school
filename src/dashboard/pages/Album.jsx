@@ -13,7 +13,8 @@ const Album = () => {
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || 'ru';
 
   async function getAlbums(page = 1) {
     setLoading(true);
@@ -93,7 +94,7 @@ const Album = () => {
               .map((album) => (
                 <Table.Tr key={album.id}>
                   <Table.Td>{album.id}</Table.Td>
-                  <Table.Td>{album.title?.ru || "No title"}</Table.Td>
+                  <Table.Td>{album.title[language]}</Table.Td>
                   <Table.Td>
                     {album.photos && album.photos.length > 0 ? (
                       <div style={{ display: "flex", gap: "10px" }}>
@@ -112,7 +113,7 @@ const Album = () => {
                       <span>No photos</span>
                     )}
                   </Table.Td>
-                  <Table.Td>{album.description?.ru || "No description"}</Table.Td>
+                  <Table.Td>{album.description[language]}</Table.Td>
                   <Table.Td>
                     <Flex gap={10}>
                       <Button size="xs" color="red" onClick={() => deleteFn(album.id)}>

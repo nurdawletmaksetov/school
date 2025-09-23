@@ -93,6 +93,7 @@ const UpdateSchool = ({ id, getSchools }) => {
                 },
                 phone: data?.phone || "",
                 location: data?.location || "",
+                email: data?.email || "",
                 description: {
                     ru: data?.description?.ru || "",
                     uz: data?.description?.uz || "",

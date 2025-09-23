@@ -11,10 +11,10 @@ import axios from "axios";
 
 function Document() {
   const [documents, setDocuments] = useState([]);
-  const currentLang = "ru";
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || 'ru';
   const [loading, setLoading] = useState(false);
   const [downloadingId, setDownloadingId] = useState(null);
 
@@ -120,8 +120,8 @@ function Document() {
             {documents.map((el) => (
               <Table.Tr key={el.id}>
                 <Table.Td>{el.id}</Table.Td>
-                <Table.Td>{el.name}</Table.Td>
-                <Table.Td>{el.description}</Table.Td>
+                <Table.Td>{el.name[language]}</Table.Td>
+                <Table.Td>{el.description[language]}</Table.Td>
                 <Table.Td>
                   <Button
                     size="xs"

@@ -9,12 +9,12 @@ import { useTranslation } from 'react-i18next';
 import { notifications } from '@mantine/notifications';
 
 const Employee = () => {
-  const currentLang = "ru";
   const [employee, setEmployee] = useState([]);
   const [loading, setLoading] = useState(false);
   const [lastPage, setLastPage] = useState(1);
   const [page, setPage] = useState(1);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || 'ru';
 
   const getEmployee = async (page = 1) => {
     setLoading(true);
@@ -113,14 +113,14 @@ const Employee = () => {
                       borderRadius: "50%"
                     }}
                     src={el.photo?.path}
-                    alt={el.full_name[currentLang]}
+                    alt={el.full_name[language]}
                   />
                 </Table.Td>
-                <Table.Td>{el.full_name[currentLang]}</Table.Td>
+                <Table.Td>{el.full_name[language]}</Table.Td>
                 <Table.Td>{el.phone}</Table.Td>
                 <Table.Td>{el.email}</Table.Td>
-                <Table.Td>{el.position?.name[currentLang]}</Table.Td>
-                <Table.Td>{el.position?.description[currentLang]}</Table.Td>
+                <Table.Td>{el.position?.name[language]}</Table.Td>
+                <Table.Td>{el.position?.description[language]}</Table.Td>
                 <Table.Td>{el.birth_date}</Table.Td>
                 <Table.Td>
                   <Flex gap={10}>

@@ -7,11 +7,22 @@ const FormDocument = ({ submitFn, initialValues, loading }) => {
     const { t } = useTranslation();
     const form = useForm({
         initialValues: {
-            name: initialValues?.name || "",
-            description: initialValues?.description || "",
+            name: {
+                kk: initialValues?.name?.kk || "",
+                uz: initialValues?.name?.uz || "",
+                ru: initialValues?.name?.ru || "",
+                en: initialValues?.name?.en || "",
+            },
+            description: {
+                kk: initialValues?.description?.kk || "",
+                uz: initialValues?.description?.uz || "",
+                ru: initialValues?.description?.ru || "",
+                en: initialValues?.description?.en || "",
+            },
             file: initialValues?.file || null,
         },
     });
+
 
     async function handleSubmit(values) {
         await submitFn(values);
@@ -21,15 +32,51 @@ const FormDocument = ({ submitFn, initialValues, loading }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label="Name"
+                    label="Name (kk)"
                     placeholder="Name"
-                    {...form.getInputProps("name")}
+                    {...form.getInputProps("name.kk")}
+                />
+
+                <TextInput
+                    label="Name (uz)"
+                    placeholder="Name"
+                    {...form.getInputProps("name.uz")}
+                />
+
+                <TextInput
+                    label="Name (ru)"
+                    placeholder="Name (ru)"
+                    {...form.getInputProps("name.ru")}
+                />
+
+                <TextInput
+                    label="Name (en)"
+                    placeholder="Name (en)"
+                    {...form.getInputProps("name.en")}
                 />
 
                 <Textarea
-                    label="Description"
-                    placeholder="Description"
-                    {...form.getInputProps("description")}
+                    label="Description (kk)"
+                    placeholder="Description (kk)"
+                    {...form.getInputProps("description.kk")}
+                />
+
+                <Textarea
+                    label="Description (uz)"
+                    placeholder="Description (uz)"
+                    {...form.getInputProps("description.uz")}
+                />
+
+                <Textarea
+                    label="Description (ru)"
+                    placeholder="Description (ru)"
+                    {...form.getInputProps("description.ru")}
+                />
+
+                <Textarea
+                    label="Description (en)"
+                    placeholder="Description (en)"
+                    {...form.getInputProps("description.en")}
                 />
 
                 <FileInput

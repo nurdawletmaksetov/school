@@ -10,7 +10,8 @@ const School = () => {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(false);
   const currentLang = 'en';
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || 'ru';
 
   async function getSchools() {
     setLoading(true);
@@ -74,11 +75,11 @@ const School = () => {
             {schools
               .map((school) => (
                 <Table.Tr key={school.id}>
-                  <Table.Td>{school.name?.[currentLang] || "No name"}</Table.Td>
-                  <Table.Td>{school.history?.[currentLang] || "No history"}</Table.Td>
+                  <Table.Td>{school.name?.[language] || "No name"}</Table.Td>
+                  <Table.Td>{school.history?.[language] || "No history"}</Table.Td>
                   <Table.Td>{school.phone}</Table.Td>
                   <Table.Td>{school.location}</Table.Td>
-                  <Table.Td>{school.description?.[currentLang] || "No description"}</Table.Td>
+                  <Table.Td>{school.description?.[language] || "No description"}</Table.Td>
                   <Table.Td>
                     <Group>
                       <Button size='xs' onClick={() => updateFn(school.id)}>{t("actions.update")}</Button>

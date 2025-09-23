@@ -158,9 +158,9 @@ const Rules = () => {
                             </div>
                             <div className="doc-right">
                               <div className="doc-right-name">
-                                <h4>{el.name}</h4>
+                                <h4>{el.name[language]}</h4>
                                 <p>
-                                  {el.description}
+                                  {el.description[language]}
                                 </p>
                               </div>
                               <div className="doc-downlowad">
