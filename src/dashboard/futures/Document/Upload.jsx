@@ -14,15 +14,8 @@ const UploadDocument = ({ getDocuments }) => {
         try {
             const formData = new FormData();
 
-            formData.append("name[kk]", body.name.kk);
-            formData.append("name[uz]", body.name.uz);
-            formData.append("name[ru]", body.name.ru);
-            formData.append("name[en]", body.name.en);
-
-            formData.append("description[kk]", body.description.kk);
-            formData.append("description[uz]", body.description.uz);
-            formData.append("description[ru]", body.description.ru);
-            formData.append("description[en]", body.description.en);
+            formData.append("name", body.name);
+            formData.append("description", body.description);
 
             if (body.file) {
                 formData.append("file", body.file);
@@ -67,18 +60,8 @@ const UploadDocument = ({ getDocuments }) => {
                 <FormDocument
                     submitFn={createFn}
                     initialValues={{
-                        name: {
-                            kk: "",
-                            uz: "",
-                            ru: "",
-                            en: "",
-                        },
-                        description: {
-                            kk: "",
-                            uz: "",
-                            ru: "",
-                            en: "",
-                        },
+                        name: "",
+                        description: "",
                         file: null,
                     }}
                     loading={loading}

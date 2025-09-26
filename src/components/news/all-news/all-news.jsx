@@ -40,7 +40,6 @@ export const AllNews = ({ darkMode }) => {
                     <Loader variant="dots" size="lg" />
                 </Flex>
             ) : (
-
                 <Grid gutter="sm">
                     {paginatedNews.map((item) => (
                         <Grid.Col

@@ -2,27 +2,28 @@ import { Button, FileInput, Flex, Stack, Textarea, TextInput } from "@mantine/co
 import { useForm } from "@mantine/form";
 import { modals } from "@mantine/modals";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 const FormDocument = ({ submitFn, initialValues, loading }) => {
     const { t } = useTranslation();
+
     const form = useForm({
         initialValues: {
-            name: {
-                kk: initialValues?.name?.kk || "",
-                uz: initialValues?.name?.uz || "",
-                ru: initialValues?.name?.ru || "",
-                en: initialValues?.name?.en || "",
-            },
-            description: {
-                kk: initialValues?.description?.kk || "",
-                uz: initialValues?.description?.uz || "",
-                ru: initialValues?.description?.ru || "",
-                en: initialValues?.description?.en || "",
-            },
+            name: initialValues?.name || "",
+            description: initialValues?.description || "",
             file: initialValues?.file || null,
         },
     });
 
+    useEffect(() => {
+        if (initialValues) {
+            form.setValues({
+                name: initialValues.name || "",
+                description: initialValues.description || "",
+                file: initialValues.file || null,
+            });
+        }
+    }, [initialValues]);
 
     async function handleSubmit(values) {
         await submitFn(values);
@@ -32,51 +33,15 @@ const FormDocument = ({ submitFn, initialValues, loading }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <Stack>
                 <TextInput
-                    label="Name (kk)"
+                    label="Name"
                     placeholder="Name"
-                    {...form.getInputProps("name.kk")}
-                />
-
-                <TextInput
-                    label="Name (uz)"
-                    placeholder="Name"
-                    {...form.getInputProps("name.uz")}
-                />
-
-                <TextInput
-                    label="Name (ru)"
-                    placeholder="Name (ru)"
-                    {...form.getInputProps("name.ru")}
-                />
-
-                <TextInput
-                    label="Name (en)"
-                    placeholder="Name (en)"
-                    {...form.getInputProps("name.en")}
+                    {...form.getInputProps("name")}
                 />
 
                 <Textarea
-                    label="Description (kk)"
-                    placeholder="Description (kk)"
-                    {...form.getInputProps("description.kk")}
-                />
-
-                <Textarea
-                    label="Description (uz)"
-                    placeholder="Description (uz)"
-                    {...form.getInputProps("description.uz")}
-                />
-
-                <Textarea
-                    label="Description (ru)"
-                    placeholder="Description (ru)"
-                    {...form.getInputProps("description.ru")}
-                />
-
-                <Textarea
-                    label="Description (en)"
-                    placeholder="Description (en)"
-                    {...form.getInputProps("description.en")}
+                    label="Description"
+                    placeholder="Description"
+                    {...form.getInputProps("description")}
                 />
 
                 <FileInput
@@ -90,7 +55,9 @@ const FormDocument = ({ submitFn, initialValues, loading }) => {
                     <Button onClick={() => modals.closeAll()} color="gray">
                         {t("actions.cancel")}
                     </Button>
-                    <Button type="submit" loading={loading}>{t("actions.save")}</Button>
+                    <Button type="submit" loading={loading}>
+                        {t("actions.save")}
+                    </Button>
                 </Flex>
             </Stack>
         </form>

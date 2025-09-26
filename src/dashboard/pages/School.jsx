@@ -67,6 +67,7 @@ const School = () => {
               <Table.Th>History</Table.Th>
               <Table.Th>Phone</Table.Th>
               <Table.Th>Location</Table.Th>
+              <Table.Th>Email</Table.Th>
               <Table.Th>Description</Table.Th>
               <Table.Th>Actions</Table.Th>
             </Table.Tr>
@@ -79,6 +80,7 @@ const School = () => {
                   <Table.Td>{school.history?.[language] || "No history"}</Table.Td>
                   <Table.Td>{school.phone}</Table.Td>
                   <Table.Td>{school.location}</Table.Td>
+                  <Table.Td>{school.email}</Table.Td>
                   <Table.Td>{school.description?.[language] || "No description"}</Table.Td>
                   <Table.Td>
                     <Group>

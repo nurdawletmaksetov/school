@@ -28,6 +28,8 @@ const UpdateDocument = ({ id, getDocuments }) => {
         }
     };
 
+
+
     useEffect(() => {
         getDocument();
     }, [id]);
@@ -37,15 +39,8 @@ const UpdateDocument = ({ id, getDocuments }) => {
         try {
             const formData = new FormData();
 
-            formData.append("name[kk]", body.name.kk || "");
-            formData.append("name[uz]", body.name.uz || "");
-            formData.append("name[ru]", body.name.ru || "");
-            formData.append("name[en]", body.name.en || "");
-
-            formData.append("description[kk]", body.description.kk || "");
-            formData.append("description[uz]", body.description.uz || "");
-            formData.append("description[ru]", body.description.ru || "");
-            formData.append("description[en]", body.description.en || "");
+            formData.append("name", body.name || "");
+            formData.append("description", body.description || "");
 
             if (body.file instanceof File) {
                 formData.append("file", body.file);
@@ -96,21 +91,12 @@ const UpdateDocument = ({ id, getDocuments }) => {
 
     return (
         <FormDocument
+            key={data?.id}
             submitFn={updateFn}
             loading={loading}
             initialValues={{
-                name: {
-                    kk: data?.name?.kk || "",
-                    uz: data?.name?.uz || "",
-                    ru: data?.name?.ru || "",
-                    en: data?.name?.en || "",
-                },
-                description: {
-                    kk: data?.description?.kk || "",
-                    uz: data?.description?.uz || "",
-                    ru: data?.description?.ru || "",
-                    en: data?.description?.en || "",
-                },
+                name: data?.name || "",
+                description: data?.description || "",
                 file: null,
             }}
         />
